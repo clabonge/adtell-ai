@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Fraunces, Outfit } from "next/font/google";
+import { Newsreader, Outfit } from "next/font/google";
 import { Suspense } from "react";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
@@ -8,16 +8,18 @@ import { site } from "@/content/site";
 import { organizationJsonLd } from "@/lib/structured-data";
 import "./globals.css";
 
-const fraunces = Fraunces({
+const newsreader = Newsreader({
   subsets: ["latin"],
   display: "swap",
-  variable: "--font-fraunces",
+  variable: "--font-newsreader",
+  weight: ["400", "500", "600"],
 });
 
 const outfit = Outfit({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-outfit",
+  weight: ["400", "500", "600"],
 });
 
 export const metadata: Metadata = {
@@ -42,16 +44,16 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#0e1f1c",
-  colorScheme: "light",
+  themeColor: "#0c0b0a",
+  colorScheme: "dark",
 };
 
 function HeaderFallback() {
   return (
-    <div className="border-b border-line bg-paper">
+    <div className="border-b border-line bg-void">
       <div className="mx-auto flex h-16 w-full max-w-6xl items-center px-5 sm:px-8">
-        <span className="font-serif text-2xl tracking-tight text-ink">
-          Adtell<span className="text-copper-deep">.ai</span>
+        <span className="font-serif text-2xl tracking-tight text-ivory">
+          Adtell<span className="text-oxblood">.ai</span>
         </span>
       </div>
     </div>
@@ -62,9 +64,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`${fraunces.variable} ${outfit.variable} h-full antialiased`}
+      className={`${newsreader.variable} ${outfit.variable} h-full antialiased`}
     >
-      <body className="flex min-h-full flex-col bg-paper font-sans text-ink">
+      <body className="flex min-h-full flex-col bg-void font-sans text-ivory">
         <a className="skip-link" href="#main">
           Skip to content
         </a>

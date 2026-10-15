@@ -7,8 +7,8 @@ export function OgCard() {
         display: "flex",
         flexDirection: "column",
         justifyContent: "space-between",
-        background: "#0e1f1c",
-        color: "#f4efe6",
+        background: "#0c0b0a",
+        color: "#f3efe6",
         padding: "72px",
       }}
     >
@@ -26,7 +26,7 @@ export function OgCard() {
       >
         Cut the cost of work that should not still be done by hand.
       </div>
-      <div style={{ display: "flex", fontSize: 28, color: "#f0b08a" }}>
+      <div style={{ display: "flex", fontSize: 28, color: "#d4897c" }}>
         Free AI savings audit
       </div>
     </div>

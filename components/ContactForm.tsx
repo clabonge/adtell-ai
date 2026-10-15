@@ -107,20 +107,20 @@ export function ContactForm() {
 
   if (readyToEmail) {
     return (
-      <div role="status" className="border border-line bg-paper-deep p-6 sm:p-8">
+      <div role="status" className="sheet border border-line bg-ivory p-6 text-ink sm:p-8">
         <h2 className="font-serif text-3xl tracking-tight text-ink">Send this by email.</h2>
-        <p className="mt-4 text-base leading-relaxed text-ink-soft">
+        <p className="mt-4 text-base leading-relaxed text-quiet-ink">
           The form checked your details. Email delivery is not connected yet, so nothing
           was sent to the team. Use the note below so the request actually arrives at{" "}
           {/* TODO: placeholder inbox. See content/site.ts. */}
-          <a className="font-semibold text-copper-deep underline underline-offset-4" href={`mailto:${site.email}`}>
+          <a className="font-semibold text-oxblood-ink underline underline-offset-4" href={`mailto:${site.email}`}>
             {site.email}
           </a>
           .
         </p>
         <p className="mt-6">
           <a
-            className="inline-flex min-h-11 items-center justify-center bg-copper-deep px-5 text-sm font-semibold text-paper hover:bg-ink"
+            className="inline-flex min-h-11 items-center justify-center bg-void px-5 text-sm font-semibold text-ivory hover:bg-raise"
             href={mailtoHref(readyToEmail)}
           >
             Email this audit request
@@ -128,7 +128,7 @@ export function ContactForm() {
         </p>
         <button
           type="button"
-          className="mt-4 text-sm font-semibold text-copper-deep underline underline-offset-4"
+          className="mt-4 text-sm font-semibold text-oxblood-ink underline underline-offset-4"
           onClick={() => setReadyToEmail(null)}
         >
           Edit the form
@@ -138,10 +138,10 @@ export function ContactForm() {
   }
 
   return (
-    <form onSubmit={onSubmit} noValidate aria-label="AI savings audit request" className="border border-line bg-paper p-6 sm:p-8">
-      <p className="text-sm text-muted">All fields are required.</p>
+    <form onSubmit={onSubmit} noValidate aria-label="AI savings audit request" className="sheet border border-line bg-ivory p-6 text-ink sm:p-8">
+      <p className="text-sm text-quiet-ink">All fields are required.</p>
       {errors.form ? (
-        <p role="alert" className="mt-4 border border-copper-deep bg-paper-deep px-3 py-2 text-sm text-ink">
+        <p role="alert" className="mt-4 border border-oxblood-ink bg-ivory-deep px-3 py-2 text-sm text-ink">
           {errors.form}
         </p>
       ) : null}
@@ -191,7 +191,7 @@ export function ContactForm() {
             onChange={(event) => update("size", event.target.value)}
             aria-invalid={errors.size ? true : undefined}
             aria-describedby={errors.size ? `${fieldId("size")}-error` : undefined}
-            className="mt-2 min-h-11 w-full border border-line bg-paper px-3 text-base text-ink"
+            className="mt-2 min-h-11 w-full border border-line bg-ivory-deep px-3 text-base text-ink"
           >
             <option value="">Select a range</option>
             {companySizes.map((option) => (
@@ -201,7 +201,7 @@ export function ContactForm() {
             ))}
           </select>
           {errors.size ? (
-            <p id={`${fieldId("size")}-error`} className="mt-2 text-sm text-copper-deep">
+            <p id={`${fieldId("size")}-error`} className="mt-2 text-sm text-oxblood-ink">
               {errors.size}
             </p>
           ) : null}
@@ -221,10 +221,10 @@ export function ContactForm() {
             aria-invalid={errors.drains ? true : undefined}
             aria-describedby={errors.drains ? `${fieldId("drains")}-error` : undefined}
             placeholder="The tasks people still do by hand, and where they pile up."
-            className="mt-2 w-full border border-line bg-paper px-3 py-3 text-base leading-relaxed text-ink"
+            className="mt-2 w-full border border-line bg-ivory-deep px-3 py-3 text-base leading-relaxed text-ink"
           />
           {errors.drains ? (
-            <p id={`${fieldId("drains")}-error`} className="mt-2 text-sm text-copper-deep">
+            <p id={`${fieldId("drains")}-error`} className="mt-2 text-sm text-oxblood-ink">
               {errors.drains}
             </p>
           ) : null}
@@ -249,11 +249,11 @@ export function ContactForm() {
         type="submit"
         disabled={pending}
         aria-busy={pending}
-        className="mt-6 inline-flex min-h-11 items-center justify-center bg-copper-deep px-5 text-sm font-semibold text-paper hover:bg-ink disabled:cursor-wait disabled:opacity-70"
+        className="mt-6 inline-flex min-h-11 items-center justify-center bg-void px-5 text-sm font-semibold text-ivory hover:bg-raise disabled:cursor-wait disabled:opacity-70"
       >
         {pending ? "Checking" : "Continue"}
       </button>
-      <p className="mt-4 text-sm leading-relaxed text-muted">
+      <p className="mt-4 text-sm leading-relaxed text-quiet-ink">
         Submitting checks the form on this site. It does not send email yet. You can
         also write directly to {site.email}.
       </p>
@@ -295,10 +295,10 @@ function Field({
         onChange={(event) => onChange(event.target.value)}
         aria-invalid={error ? true : undefined}
         aria-describedby={error ? `${id}-error` : undefined}
-        className="mt-2 min-h-11 w-full border border-line bg-paper px-3 text-base text-ink"
+        className="mt-2 min-h-11 w-full border border-line bg-ivory-deep px-3 text-base text-ink"
       />
       {error ? (
-        <p id={`${id}-error`} className="mt-2 text-sm text-copper-deep">
+        <p id={`${id}-error`} className="mt-2 text-sm text-oxblood-ink">
           {error}
         </p>
       ) : null}

@@ -21,13 +21,13 @@ export default function AboutPage() {
         lede={aboutIntro.lede}
         crumbs={[{ name: "About", path: "/about" }]}
       />
-      <section className="bg-paper">
+      <section>
         <Container className="grid gap-12 py-14 sm:py-20">
           {aboutStory.map((section) => (
             <article key={section.heading} className="max-w-3xl">
               <h2 className="font-serif text-3xl tracking-tight">{section.heading}</h2>
               {section.paragraphs.map((paragraph) => (
-                <p key={paragraph} className="mt-4 text-lg leading-relaxed text-ink-soft">
+                <p key={paragraph} className="mt-4 text-lg leading-relaxed text-quiet">
                   {paragraph}
                 </p>
               ))}
@@ -35,7 +35,7 @@ export default function AboutPage() {
           ))}
         </Container>
       </section>
-      <section className="bg-forest text-paper">
+      <section className="border-t border-line">
         <Container className="py-14 sm:py-20">
           <h2 className="font-serif text-3xl tracking-tight">The companies</h2>
           <div className="mt-8">
@@ -43,14 +43,14 @@ export default function AboutPage() {
           </div>
         </Container>
       </section>
-      <section className="bg-paper">
+      <section className="border-t border-line">
         <Container className="py-14 sm:py-20">
           <h2 className="font-serif text-3xl tracking-tight">How the work is judged</h2>
           <ul className="mt-8 grid gap-6 md:grid-cols-2">
             {principles.map((principle) => (
-              <li key={principle.title} className="border-t-2 border-copper pt-4">
+              <li key={principle.title} className="border-t-2 border-oxblood pt-4">
                 <h3 className="font-serif text-2xl tracking-tight">{principle.title}</h3>
-                <p className="mt-2 text-base leading-relaxed text-ink-soft">{principle.body}</p>
+                <p className="mt-2 text-base leading-relaxed text-quiet">{principle.body}</p>
               </li>
             ))}
           </ul>

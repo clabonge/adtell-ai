@@ -5,36 +5,36 @@ import remarkGfm from "remark-gfm";
 
 const components: Components = {
   h2: ({ children }) => (
-    <h2 className="mt-10 font-serif text-3xl tracking-tight text-ink">{children}</h2>
+    <h2 className="mt-10 font-serif text-3xl tracking-tight text-ivory">{children}</h2>
   ),
   h3: ({ children }) => (
-    <h3 className="mt-8 font-serif text-2xl tracking-tight text-ink">{children}</h3>
+    <h3 className="mt-8 font-serif text-2xl tracking-tight text-ivory">{children}</h3>
   ),
   p: ({ children }) => (
-    <p className="mt-4 text-lg leading-relaxed text-ink-soft">{children}</p>
+    <p className="mt-4 text-lg leading-relaxed text-quiet">{children}</p>
   ),
   ul: ({ children }) => (
-    <ul className="mt-4 list-disc space-y-2 pl-5 text-lg leading-relaxed text-ink-soft">
+    <ul className="mt-4 list-disc space-y-2 pl-5 text-lg leading-relaxed text-quiet">
       {children}
     </ul>
   ),
   ol: ({ children }) => (
-    <ol className="mt-4 list-decimal space-y-2 pl-5 text-lg leading-relaxed text-ink-soft">
+    <ol className="mt-4 list-decimal space-y-2 pl-5 text-lg leading-relaxed text-quiet">
       {children}
     </ol>
   ),
   li: ({ children }) => <li className="pl-1">{children}</li>,
   strong: ({ children }) => (
-    <strong className="font-semibold text-ink">{children}</strong>
+    <strong className="font-semibold text-ivory">{children}</strong>
   ),
   blockquote: ({ children }) => (
-    <blockquote className="mt-6 border-l-2 border-copper pl-4 text-lg text-ink">
+    <blockquote className="mt-6 border-l-2 border-oxblood pl-4 text-lg text-ivory">
       {children}
     </blockquote>
   ),
   a: ({ href, children }) => {
     const className =
-      "font-semibold text-copper-deep underline decoration-copper/50 underline-offset-4 hover:decoration-copper-deep";
+      "font-semibold text-oxblood underline decoration-oxblood/50 underline-offset-4 hover:decoration-oxblood";
     if (href?.startsWith("/")) {
       return (
         <Link href={href} className={className}>

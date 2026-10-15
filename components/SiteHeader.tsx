@@ -26,15 +26,15 @@ export function SiteHeader() {
   }, [open]);
 
   return (
-    <header className="sticky top-0 z-40 border-b border-line bg-paper/95 backdrop-blur">
+    <header className="sticky top-0 z-40 border-b border-line bg-void">
       <div className="mx-auto flex w-full max-w-6xl items-center justify-between gap-3 px-5 py-3 sm:px-8">
         <Link
           href="/"
-          className="font-serif text-2xl tracking-tight text-ink"
+          className="font-serif text-2xl tracking-tight text-ivory"
           aria-label={`${site.name} home`}
         >
           <span aria-hidden="true">
-            Adtell<span className="text-copper-deep">.ai</span>
+            Adtell<span className="text-oxblood">.ai</span>
           </span>
         </Link>
 
@@ -47,7 +47,7 @@ export function SiteHeader() {
                 href={item.href}
                 aria-current={active ? "page" : undefined}
                 className={`text-sm font-medium ${
-                  active ? "text-copper-deep" : "text-ink-soft hover:text-ink"
+                  active ? "text-oxblood" : "text-quiet hover:text-ivory"
                 }`}
               >
                 {item.label}
@@ -59,23 +59,23 @@ export function SiteHeader() {
         <div className="flex items-center gap-2">
           <Link
             href={auditPath}
-            className="inline-flex min-h-11 items-center justify-center bg-copper-deep px-3 text-sm font-semibold text-paper hover:bg-ink sm:px-4"
+            className="inline-flex min-h-11 items-center justify-center bg-ivory px-3 text-sm font-semibold text-void hover:bg-ivory-deep sm:px-4"
           >
             <span className="sm:hidden">Book</span>
             <span className="hidden sm:inline">Book an audit</span>
           </Link>
           <button
             type="button"
-            className="inline-flex min-h-11 min-w-11 items-center justify-center border border-line text-ink lg:hidden"
+            className="inline-flex min-h-11 min-w-11 items-center justify-center border border-line text-ivory lg:hidden"
             aria-expanded={open}
             aria-controls={menuId}
             onClick={() => setMenuPath(open ? null : pathname)}
           >
             <span className="sr-only">{open ? "Close menu" : "Open menu"}</span>
             <span aria-hidden="true" className="flex w-4 flex-col gap-1">
-              <span className="block h-px bg-ink" />
-              <span className="block h-px bg-ink" />
-              <span className="block h-px bg-ink" />
+              <span className="block h-px bg-ivory" />
+              <span className="block h-px bg-ivory" />
+              <span className="block h-px bg-ivory" />
             </span>
           </button>
         </div>
@@ -92,7 +92,7 @@ export function SiteHeader() {
                     href={item.href}
                     aria-current={active ? "page" : undefined}
                     className={`flex min-h-11 items-center text-base font-medium ${
-                      active ? "text-copper-deep" : "text-ink"
+                      active ? "text-oxblood" : "text-ivory"
                     }`}
                   >
                     {item.label}

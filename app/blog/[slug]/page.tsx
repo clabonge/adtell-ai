@@ -52,9 +52,9 @@ async function BlogPost({ params }: { params: PageProps<"/blog/[slug]">["params"
         lede={post.description}
         crumbs={[{ name: "Blog", path: "/blog" }]}
       />
-      <article className="bg-paper">
+      <article>
         <Container className="max-w-3xl py-12 sm:py-16">
-          <p className="text-sm text-muted">
+          <p className="text-sm text-quiet">
             <time dateTime={post.date}>{formatDate(post.date)}</time>
             <span aria-hidden="true"> · </span>
             Adtell.ai
@@ -80,7 +80,7 @@ async function BlogPost({ params }: { params: PageProps<"/blog/[slug]">["params"
 function ArticleFallback() {
   return (
     <Container className="py-24">
-      <p className="text-lg text-ink-soft">Loading the note.</p>
+      <p className="text-lg text-quiet">Loading the note.</p>
     </Container>
   );
 }

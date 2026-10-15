@@ -30,15 +30,15 @@ export function Container({
 
 export function Kicker({
   children,
-  tone = "light",
+  tone = "void",
 }: {
   children: ReactNode;
-  tone?: "light" | "dark";
+  tone?: "void" | "sheet";
 }) {
   return (
     <p
       className={`text-xs font-semibold uppercase tracking-[0.18em] ${
-        tone === "dark" ? "text-copper-bright" : "text-copper-deep"
+        tone === "sheet" ? "text-oxblood-ink" : "text-oxblood"
       }`}
     >
       {children}
@@ -47,13 +47,10 @@ export function Kicker({
 }
 
 const buttonVariants = {
-  solid:
-    "bg-copper-deep text-paper hover:bg-ink focus-visible:bg-ink",
+  solid: "bg-ivory text-void hover:bg-ivory-deep",
   ghost:
-    "border border-ink/20 bg-transparent text-ink hover:border-ink hover:bg-ink hover:text-paper",
-  inverse: "bg-paper text-ink hover:bg-copper-bright",
-  "inverse-ghost":
-    "border border-paper/40 bg-transparent text-paper hover:bg-paper hover:text-ink",
+    "border border-ivory/35 bg-transparent text-ivory hover:border-ivory hover:bg-ivory hover:text-void",
+  sheet: "bg-void text-ivory hover:bg-raise",
 } as const;
 
 export function ButtonLink({
@@ -77,33 +74,25 @@ export function ButtonLink({
   );
 }
 
-export function Breadcrumbs({
-  items,
-  tone = "light",
-}: {
-  items: Crumb[];
-  tone?: "light" | "dark";
-}) {
+export function Breadcrumbs({ items }: { items: Crumb[] }) {
   const trail = [{ name: "Home", path: "/" }, ...items];
-  const muted = tone === "dark" ? "text-mist" : "text-muted";
-  const current = tone === "dark" ? "text-paper" : "text-ink";
 
   return (
     <nav aria-label="Breadcrumb" className="mb-8">
-      <ol className={`flex flex-wrap items-center gap-x-2 gap-y-1 text-sm ${muted}`}>
+      <ol className="flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-quiet">
         {trail.map((item, index) => {
           const last = index === trail.length - 1;
           return (
             <li key={`${item.path}-${item.name}`} className="flex items-center gap-2">
               {index > 0 ? <span aria-hidden="true">/</span> : null}
               {last ? (
-                <span aria-current="page" className={current}>
+                <span aria-current="page" className="text-ivory">
                   {item.name}
                 </span>
               ) : (
                 <Link
                   href={item.path}
-                  className="underline decoration-current/40 underline-offset-4 hover:decoration-current"
+                  className="underline decoration-ivory/30 underline-offset-4 hover:decoration-ivory"
                 >
                   {item.name}
                 </Link>
@@ -128,14 +117,14 @@ export function PageHero({
   crumbs?: Crumb[];
 }) {
   return (
-    <section className="border-b border-forest-line bg-forest-deep text-paper">
+    <section className="border-b border-line">
       <Container className="py-14 sm:py-20">
-        {crumbs ? <Breadcrumbs items={crumbs} tone="dark" /> : null}
-        <Kicker tone="dark">{kicker}</Kicker>
-        <h1 className="mt-4 max-w-3xl font-serif text-4xl leading-[1.08] tracking-tight sm:text-6xl">
+        {crumbs ? <Breadcrumbs items={crumbs} /> : null}
+        <Kicker>{kicker}</Kicker>
+        <h1 className="mt-4 max-w-3xl font-serif text-4xl leading-[1.05] tracking-tight sm:text-6xl">
           {title}
         </h1>
-        <p className="mt-5 max-w-2xl text-lg leading-relaxed text-mist">{lede}</p>
+        <p className="mt-5 max-w-2xl text-lg leading-relaxed text-quiet">{lede}</p>
       </Container>
     </section>
   );

@@ -21,7 +21,7 @@ export default function ServicesPage() {
         lede={servicesIntro.lede}
         crumbs={[{ name: "Services", path: "/services" }]}
       />
-      <section className="bg-paper">
+      <section>
         <Container className="py-4 sm:py-8">
           {services.map((service) => (
             <article
@@ -31,31 +31,31 @@ export default function ServicesPage() {
             >
               <div>
                 <h2 className="font-serif text-4xl tracking-tight">{service.name}</h2>
-                <p className="mt-4 text-lg leading-relaxed text-ink-soft">{service.summary}</p>
-                <h3 className="mt-8 text-sm font-semibold uppercase tracking-[0.16em] text-muted">
+                <p className="mt-4 text-lg leading-relaxed text-quiet">{service.summary}</p>
+                <h3 className="mt-8 text-sm font-semibold uppercase tracking-[0.16em] text-oxblood">
                   Who it is for
                 </h3>
-                <p className="mt-2 text-base leading-relaxed text-ink-soft">{service.audience}</p>
-                <h3 className="mt-8 text-sm font-semibold uppercase tracking-[0.16em] text-muted">
+                <p className="mt-2 text-base leading-relaxed text-quiet">{service.audience}</p>
+                <h3 className="mt-8 text-sm font-semibold uppercase tracking-[0.16em] text-oxblood">
                   What it includes
                 </h3>
-                <ul className="mt-3 list-disc space-y-2 pl-5 text-base leading-relaxed text-ink-soft">
+                <ul className="mt-3 list-disc space-y-2 pl-5 text-base leading-relaxed text-quiet">
                   {service.includes.map((item) => (
                     <li key={item}>{item}</li>
                   ))}
                 </ul>
               </div>
-              <div className="h-fit border border-line bg-paper-deep p-5 lg:sticky lg:top-28">
-                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-muted">
+              <div className="h-fit border border-line p-5 lg:sticky lg:top-28">
+                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-oxblood">
                   Starting point
                 </p>
-                <p className="mt-2 font-serif text-4xl tracking-tight text-copper-deep">
+                <p className="mt-2 font-serif text-4xl tracking-tight text-ivory">
                   {service.priceLabel}
                 </p>
-                <p className="mt-3 text-sm leading-relaxed text-ink-soft">{service.priceDetail}</p>
+                <p className="mt-3 text-sm leading-relaxed text-quiet">{service.priceDetail}</p>
                 <Link
                   href={auditPath}
-                  className="mt-5 inline-flex min-h-11 items-center text-sm font-semibold text-copper-deep underline decoration-copper/40 underline-offset-4"
+                  className="mt-5 inline-flex min-h-11 items-center text-sm font-semibold text-oxblood underline decoration-oxblood/40 underline-offset-4"
                 >
                   {service.cta}
                 </Link>

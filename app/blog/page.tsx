@@ -22,21 +22,21 @@ export default function BlogPage() {
         lede="Short writing on where AI belongs in an operation, and where it does not. No performance claims dressed up as advice."
         crumbs={[{ name: "Blog", path: "/blog" }]}
       />
-      <section className="bg-paper">
+      <section>
         <Container className="py-14 sm:py-20">
           <ul className="grid gap-6">
             {posts.map((post) => (
               <li key={post.slug}>
                 <article className="border-b border-line pb-8">
-                  <time dateTime={post.date} className="text-sm text-muted">
+                  <time dateTime={post.date} className="text-sm text-quiet">
                     {formatDate(post.date)}
                   </time>
                   <h2 className="mt-3 font-serif text-3xl tracking-tight sm:text-4xl">
-                    <Link href={`/blog/${post.slug}`} className="hover:text-copper-deep">
+                    <Link href={`/blog/${post.slug}`} className="hover:text-oxblood">
                       {post.title}
                     </Link>
                   </h2>
-                  <p className="mt-3 max-w-2xl text-lg leading-relaxed text-ink-soft">
+                  <p className="mt-3 max-w-2xl text-lg leading-relaxed text-quiet">
                     {post.description}
                   </p>
                 </article>
