@@ -1,0 +1,23 @@
+# Render Blueprint for the Adtell.ai marketing site.
+# https://render.com/docs/blueprint-spec
+services:
+  - type: web
+    name: adtell-ai
+    runtime: node
+    branch: main
+    buildCommand: npm ci && npm run build
+    startCommand: npm start
+    # Deploy on every push to the linked branch (main).
+    autoDeployTrigger: commit
+    healthCheckPath: /
+    # Adding the apex also attaches www.adtell.ai and redirects it here.
+    domains:
+      - adtell.ai
+    envVars:
+      - key: NODE_VERSION
+        value: "22.14.0"
+      - key: NEXT_PUBLIC_SITE_URL
+        value: https://adtell.ai
+      # The build command installs dependencies itself.
+      - key: SKIP_INSTALL_DEPS
+        value: "true"
