@@ -1,0 +1,307 @@
+"use client";
+
+import { useId, useState, type FormEvent } from "react";
+import { companySizes } from "@/content/audit";
+import { site } from "@/content/site";
+import { validateAudit, type AuditErrors, type AuditSubmission } from "@/lib/audit";
+
+type FormState = {
+  name: string;
+  email: string;
+  company: string;
+  industry: string;
+  size: string;
+  drains: string;
+  companyWebsite: string;
+};
+
+const emptyForm: FormState = {
+  name: "",
+  email: "",
+  company: "",
+  industry: "",
+  size: "",
+  drains: "",
+  companyWebsite: "",
+};
+
+function mailtoHref(value: AuditSubmission) {
+  const sizeLabel =
+    companySizes.find((option) => option.value === value.size)?.label ?? value.size;
+  const subject = encodeURIComponent("AI savings audit");
+  const body = encodeURIComponent(
+    [
+      `Name: ${value.name}`,
+      `Email: ${value.email}`,
+      `Company: ${value.company}`,
+      `Industry: ${value.industry}`,
+      `Company size: ${sizeLabel}`,
+      "",
+      "Biggest time or cost drains:",
+      value.drains,
+    ].join("\n"),
+  );
+  return `mailto:${site.email}?subject=${subject}&body=${body}`;
+}
+
+export function ContactForm() {
+  const baseId = useId();
+  const [form, setForm] = useState<FormState>(emptyForm);
+  const [errors, setErrors] = useState<AuditErrors>({});
+  const [pending, setPending] = useState(false);
+  const [readyToEmail, setReadyToEmail] = useState<AuditSubmission | null>(null);
+
+  function fieldId(name: string) {
+    return `${baseId}-${name}`;
+  }
+
+  function update(name: keyof FormState, value: string) {
+    setForm((current) => ({ ...current, [name]: value }));
+  }
+
+  async function onSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    setReadyToEmail(null);
+
+    const local = validateAudit(form);
+    if (!local.ok) {
+      setErrors(local.errors);
+      return;
+    }
+
+    setPending(true);
+    setErrors({});
+    try {
+      const response = await fetch("/api/audit", {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: form.name,
+          email: form.email,
+          company: form.company,
+          industry: form.industry,
+          size: form.size,
+          drains: form.drains,
+          company_website: form.companyWebsite,
+        }),
+      });
+      const payload = (await response.json()) as {
+        ok?: boolean;
+        delivered?: boolean;
+        errors?: AuditErrors;
+      };
+      if (!response.ok || !payload.ok) {
+        setErrors(payload.errors ?? { form: "The request could not be checked. Try again." });
+        return;
+      }
+      setReadyToEmail(local.value);
+    } catch {
+      setErrors({ form: "The request could not be sent. Try again, or use the email address below." });
+    } finally {
+      setPending(false);
+    }
+  }
+
+  if (readyToEmail) {
+    return (
+      <div role="status" className="border border-line bg-paper-deep p-6 sm:p-8">
+        <h2 className="font-serif text-3xl tracking-tight text-ink">Send this by email.</h2>
+        <p className="mt-4 text-base leading-relaxed text-ink-soft">
+          The form checked your details. Email delivery is not connected yet, so nothing
+          was sent to the team. Use the note below so the request actually arrives at{" "}
+          {/* TODO: placeholder inbox. See content/site.ts. */}
+          <a className="font-semibold text-copper-deep underline underline-offset-4" href={`mailto:${site.email}`}>
+            {site.email}
+          </a>
+          .
+        </p>
+        <p className="mt-6">
+          <a
+            className="inline-flex min-h-11 items-center justify-center bg-copper-deep px-5 text-sm font-semibold text-paper hover:bg-ink"
+            href={mailtoHref(readyToEmail)}
+          >
+            Email this audit request
+          </a>
+        </p>
+        <button
+          type="button"
+          className="mt-4 text-sm font-semibold text-copper-deep underline underline-offset-4"
+          onClick={() => setReadyToEmail(null)}
+        >
+          Edit the form
+        </button>
+      </div>
+    );
+  }
+
+  return (
+    <form onSubmit={onSubmit} noValidate aria-label="AI savings audit request" className="border border-line bg-paper p-6 sm:p-8">
+      <p className="text-sm text-muted">All fields are required.</p>
+      {errors.form ? (
+        <p role="alert" className="mt-4 border border-copper-deep bg-paper-deep px-3 py-2 text-sm text-ink">
+          {errors.form}
+        </p>
+      ) : null}
+
+      <div className="mt-6 grid gap-5">
+        <Field
+          id={fieldId("name")}
+          label="Name"
+          error={errors.name}
+          autoComplete="name"
+          value={form.name}
+          onChange={(value) => update("name", value)}
+        />
+        <Field
+          id={fieldId("email")}
+          label="Email"
+          type="email"
+          error={errors.email}
+          autoComplete="email"
+          value={form.email}
+          onChange={(value) => update("email", value)}
+        />
+        <Field
+          id={fieldId("company")}
+          label="Company"
+          error={errors.company}
+          autoComplete="organization"
+          value={form.company}
+          onChange={(value) => update("company", value)}
+        />
+        <Field
+          id={fieldId("industry")}
+          label="Industry"
+          error={errors.industry}
+          value={form.industry}
+          onChange={(value) => update("industry", value)}
+          placeholder="Manufacturing, hospitality, professional services"
+        />
+        <div>
+          <label htmlFor={fieldId("size")} className="text-sm font-semibold text-ink">
+            Company size
+          </label>
+          <select
+            id={fieldId("size")}
+            name="size"
+            value={form.size}
+            onChange={(event) => update("size", event.target.value)}
+            aria-invalid={errors.size ? true : undefined}
+            aria-describedby={errors.size ? `${fieldId("size")}-error` : undefined}
+            className="mt-2 min-h-11 w-full border border-line bg-paper px-3 text-base text-ink"
+          >
+            <option value="">Select a range</option>
+            {companySizes.map((option) => (
+              <option key={option.value} value={option.value}>
+                {option.label}
+              </option>
+            ))}
+          </select>
+          {errors.size ? (
+            <p id={`${fieldId("size")}-error`} className="mt-2 text-sm text-copper-deep">
+              {errors.size}
+            </p>
+          ) : null}
+        </div>
+        <div>
+          <label htmlFor={fieldId("drains")} className="text-sm font-semibold text-ink">
+            Biggest time or cost drains
+          </label>
+          <textarea
+            id={fieldId("drains")}
+            name="drains"
+            required
+            rows={6}
+            maxLength={4000}
+            value={form.drains}
+            onChange={(event) => update("drains", event.target.value)}
+            aria-invalid={errors.drains ? true : undefined}
+            aria-describedby={errors.drains ? `${fieldId("drains")}-error` : undefined}
+            placeholder="The tasks people still do by hand, and where they pile up."
+            className="mt-2 w-full border border-line bg-paper px-3 py-3 text-base leading-relaxed text-ink"
+          />
+          {errors.drains ? (
+            <p id={`${fieldId("drains")}-error`} className="mt-2 text-sm text-copper-deep">
+              {errors.drains}
+            </p>
+          ) : null}
+        </div>
+      </div>
+
+      <div className="sr-only" aria-hidden="true">
+        <label htmlFor={fieldId("website")}>
+          Company website
+          <input
+            id={fieldId("website")}
+            name="company_website"
+            tabIndex={-1}
+            autoComplete="off"
+            value={form.companyWebsite}
+            onChange={(event) => update("companyWebsite", event.target.value)}
+          />
+        </label>
+      </div>
+
+      <button
+        type="submit"
+        disabled={pending}
+        aria-busy={pending}
+        className="mt-6 inline-flex min-h-11 items-center justify-center bg-copper-deep px-5 text-sm font-semibold text-paper hover:bg-ink disabled:cursor-wait disabled:opacity-70"
+      >
+        {pending ? "Checking" : "Continue"}
+      </button>
+      <p className="mt-4 text-sm leading-relaxed text-muted">
+        Submitting checks the form on this site. It does not send email yet. You can
+        also write directly to {site.email}.
+      </p>
+    </form>
+  );
+}
+
+function Field({
+  id,
+  label,
+  value,
+  onChange,
+  error,
+  type = "text",
+  autoComplete,
+  placeholder,
+}: {
+  id: string;
+  label: string;
+  value: string;
+  onChange: (value: string) => void;
+  error?: string;
+  type?: string;
+  autoComplete?: string;
+  placeholder?: string;
+}) {
+  return (
+    <div>
+      <label htmlFor={id} className="text-sm font-semibold text-ink">
+        {label}
+      </label>
+      <input
+        id={id}
+        name={label.toLowerCase()}
+        type={type}
+        value={value}
+        autoComplete={autoComplete}
+        placeholder={placeholder}
+        onChange={(event) => onChange(event.target.value)}
+        aria-invalid={error ? true : undefined}
+        aria-describedby={error ? `${id}-error` : undefined}
+        className="mt-2 min-h-11 w-full border border-line bg-paper px-3 text-base text-ink"
+      />
+      {error ? (
+        <p id={`${id}-error`} className="mt-2 text-sm text-copper-deep">
+          {error}
+        </p>
+      ) : null}
+    </div>
+  );
+}

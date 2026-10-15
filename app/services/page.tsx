@@ -1,0 +1,73 @@
+import { AuditBand } from "@/components/AuditBand";
+import { Container, PageHero } from "@/components/ui";
+import { services, servicesIntro } from "@/content/services";
+import { auditPath } from "@/content/nav";
+import { pageMetadata } from "@/lib/seo";
+import Link from "next/link";
+
+export const metadata = pageMetadata({
+  title: "Services and pricing",
+  description:
+    "Free AI savings audit, assessments from $2,500, implementation from $10,000, retainers from $1,500 a month, and quoted team workshops.",
+  path: "/services",
+});
+
+export default function ServicesPage() {
+  return (
+    <>
+      <PageHero
+        kicker={servicesIntro.kicker}
+        title={servicesIntro.title}
+        lede={servicesIntro.lede}
+        crumbs={[{ name: "Services", path: "/services" }]}
+      />
+      <section className="bg-paper">
+        <Container className="py-4 sm:py-8">
+          {services.map((service) => (
+            <article
+              key={service.slug}
+              id={service.slug}
+              className="scroll-mt-28 grid gap-8 border-b border-line py-12 lg:grid-cols-[minmax(0,1fr)_16rem] lg:gap-16"
+            >
+              <div>
+                <h2 className="font-serif text-4xl tracking-tight">{service.name}</h2>
+                <p className="mt-4 text-lg leading-relaxed text-ink-soft">{service.summary}</p>
+                <h3 className="mt-8 text-sm font-semibold uppercase tracking-[0.16em] text-muted">
+                  Who it is for
+                </h3>
+                <p className="mt-2 text-base leading-relaxed text-ink-soft">{service.audience}</p>
+                <h3 className="mt-8 text-sm font-semibold uppercase tracking-[0.16em] text-muted">
+                  What it includes
+                </h3>
+                <ul className="mt-3 list-disc space-y-2 pl-5 text-base leading-relaxed text-ink-soft">
+                  {service.includes.map((item) => (
+                    <li key={item}>{item}</li>
+                  ))}
+                </ul>
+              </div>
+              <div className="h-fit border border-line bg-paper-deep p-5 lg:sticky lg:top-28">
+                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-muted">
+                  Starting point
+                </p>
+                <p className="mt-2 font-serif text-4xl tracking-tight text-copper-deep">
+                  {service.priceLabel}
+                </p>
+                <p className="mt-3 text-sm leading-relaxed text-ink-soft">{service.priceDetail}</p>
+                <Link
+                  href={auditPath}
+                  className="mt-5 inline-flex min-h-11 items-center text-sm font-semibold text-copper-deep underline decoration-copper/40 underline-offset-4"
+                >
+                  {service.cta}
+                </Link>
+              </div>
+            </article>
+          ))}
+        </Container>
+      </section>
+      <AuditBand
+        title="Not sure which engagement you need?"
+        lede="That is what the free audit is for. Bring the drains. Leave with a recommendation sized to them."
+      />
+    </>
+  );
+}

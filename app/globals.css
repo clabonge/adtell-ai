@@ -1,0 +1,99 @@
+@import "tailwindcss";
+
+@theme inline {
+  --font-sans: var(--font-outfit), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-fraunces), ui-serif, Georgia, "Times New Roman", serif;
+  --color-paper: #f4efe6;
+  --color-paper-deep: #e6dfd1;
+  --color-ink: #141816;
+  --color-ink-soft: #3a443e;
+  --color-muted: #4e5852;
+  --color-mist: #c9c3b6;
+  --color-forest: #17312d;
+  --color-forest-deep: #0e1f1c;
+  --color-forest-line: #2c4a44;
+  --color-copper: #b85a2a;
+  --color-copper-deep: #8a3f18;
+  --color-copper-bright: #f0b08a;
+  --color-line: #d8d0c2;
+}
+
+html {
+  scroll-behavior: auto;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+body {
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+}
+
+::selection {
+  background: #e7cbb8;
+  color: #141816;
+}
+
+:focus-visible {
+  outline: 2px solid #f4efe6;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 4px #8a3f18;
+}
+
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: 0;
+  z-index: 50;
+  transform: translateY(-120%);
+  background: #f4efe6;
+  color: #141816;
+  padding: 0.75rem 1rem;
+  font-weight: 600;
+}
+
+.skip-link:focus {
+  transform: translateY(0.75rem);
+}
+
+summary {
+  list-style: none;
+}
+
+summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq-minus {
+  display: none;
+}
+
+details[open] .faq-plus {
+  display: none;
+}
+
+details[open] .faq-minus {
+  display: inline;
+}
+
+.hero-grid {
+  background-image:
+    linear-gradient(to right, rgb(244 239 230 / 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(244 239 230 / 0.05) 1px, transparent 1px);
+  background-size: 56px 56px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition: none !important;
+    animation: none !important;
+  }
+}
