@@ -9,7 +9,7 @@ export const aboutStory: { heading: string; paragraphs: string[] }[] = [
     heading: "The holding company",
     paragraphs: [
       "Adtell Inc. is the holding company. Its divisions are FiberOptics.com, The Fiber School, and Adtell Integration.",
-      "Adtell.ai is the consulting practice for other businesses that want AI implemented against a cost. It is not a software product, and this site does not speak for those divisions beyond naming them.",
+      "Adtell.ai is the consulting practice for other businesses that want AI implemented against a cost. It is not a software product. The lines under each division name are examples of work agents already do inside that business, including the website.",
     ],
   },
   {

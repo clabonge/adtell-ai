@@ -17,6 +17,17 @@ He also runs BCLE Furniture, Doan Distillery, LaBonge Estates Winery, Trolley Ba
 
 The businesses do different work: fiber optics, technical training, integration, furniture, spirits, wine, a public market, and property management. The question in each of them is the same. Which tasks are still done by hand even though a careful person could write the procedure down?
 
+Examples of work already running, including the website for each company:
+
+- FiberOptics.com: sales automation, marketing, training student follow-up and scheduling, order follow-up, and website creation and management.
+- The Fiber School: class scheduling, enrollment follow-up, student questions between sessions, and website creation and management.
+- Adtell Integration: bid matching, bid submission, and website creation and management.
+- BCLE Furniture: inventory automation, sales follow-up, marketing automation, and website creation and management.
+- Doan Distillery: order follow-up, tasting-room and event scheduling, marketing, and website creation and management.
+- LaBonge Estates Winery: tasting follow-up, bottle order follow-up, marketing, and website creation and management.
+- Trolley Barn Public Market: vendor follow-up, event scheduling, market announcements, and website creation and management.
+- Ivers Property Management: maintenance follow-up, tenant questions, lease renewal follow-up, and website creation and management.
+
 Agents take the repeatable part of that work. Typical uses are drafting a first pass, answering a question that has a known answer, moving information between tools, and preparing material a person still reviews. The person remains responsible for the customer, for anything that spends or collects money, and for anything that would be embarrassing or unsafe if it were wrong.
 
 ## How a workflow gets chosen
