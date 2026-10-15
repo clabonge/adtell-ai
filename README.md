@@ -12,7 +12,7 @@ npm run build
 npm start
 ```
 
-`npm run dev` serves the site locally. `npm run build` is what Vercel runs. Content changes ship when the site is rebuilt and deployed.
+`npm run dev` serves the site locally. `npm start` runs the production Node server. It listens on `0.0.0.0` and on `PORT` (3000 when `PORT` is unset). Render sets `PORT` for the service. Content changes ship when the site is rebuilt and deployed.
 
 ## Content structure
 
@@ -91,42 +91,51 @@ kind: internal-practice
 - `/api/audit` Placeholder POST handler
 - `/sitemap.xml` and `/robots.txt`
 
-## Production domain
+## Deploy on Render
 
-The canonical origin is a single value, `site.url` in `content/site.ts`. It reads `NEXT_PUBLIC_SITE_URL` and defaults to `https://adtell.ai`. That value is what `metadataBase`, canonical links, Open Graph URLs, `sitemap.xml`, `robots.txt`, and JSON-LD use. Canonical and Open Graph URLs are absolute and are built from it.
+Production hosting is Render, from the Blueprint in `render.yaml`. That file defines one Node web service:
 
-Set the variable in Vercel only if the public origin changes, then redeploy. Leave it unset to keep the default. Do not point it at a `*.vercel.app` preview URL. Canonicals should stay on `https://adtell.ai`.
+- Build: `npm ci && npm run build`
+- Start: `npm start` (Next.js production server on `0.0.0.0` and Render's `PORT`)
+- Node.js `22.14.0`, also pinned in `.node-version` and `package.json` `engines`
+- `NEXT_PUBLIC_SITE_URL=https://adtell.ai`
+- Branch `main`, with a deploy on every push to that branch
+- Custom domain `adtell.ai`. Render also adds `www.adtell.ai` and redirects it to the apex
 
-### Attach the domain in Vercel
+The app is a standard Node server. It does not use Vercel-only runtime features. `/api/audit` is a Node route handler.
 
-1. Import this repository as a Vercel project and deploy it.
-2. Open the project, then **Settings → Domains**.
-3. Add `adtell.ai`. Add `www.adtell.ai` as well.
-4. Set `adtell.ai` as the primary domain so `www.adtell.ai` redirects to it. Vercel issues the certificate after DNS matches the records it shows on the domain card.
-5. If the domain was used on another Vercel account, complete the TXT verification Vercel displays. That record is in addition to the records below.
+The canonical origin is a single value, `site.url` in `content/site.ts`. It reads `NEXT_PUBLIC_SITE_URL` and defaults to `https://adtell.ai`. That value is what `metadataBase`, canonical links, Open Graph URLs, `sitemap.xml`, `robots.txt`, and JSON-LD use. The Blueprint sets the variable so canonicals stay on `https://adtell.ai` rather than the `onrender.com` hostname. Change it only if the public origin changes, then redeploy.
 
-Use the A and CNAME values on that domain card if they differ from the table. Vercel shows a project-specific CNAME target.
+### Create the service
+
+1. In the Render dashboard, choose **New → Blueprint**.
+2. Connect the GitHub repository and select this repo. Render reads `render.yaml`.
+3. Apply the Blueprint. It creates the `adtell-ai` web service from `main`.
+4. Open the service, then **Settings → Custom Domains**. `adtell.ai` is declared in the Blueprint. Render pairs `www.adtell.ai` and redirects it to `https://adtell.ai`. Add a name only if it is missing. Do not flip the redirect so the apex points at `www`.
+5. Copy the service's `onrender.com` hostname from the top of the service page. That hostname is the `www` CNAME target below.
 
 ### GoDaddy DNS
 
-The domain is registered at GoDaddy. Leave the nameservers at GoDaddy so existing mail and verification records stay put. Changing nameservers is a different migration and is not required to serve the site.
+The domain is registered at GoDaddy. Leave the nameservers at GoDaddy so existing mail and verification records stay put.
+
+These records are the ones in Render's current custom-domain guide for a DNS host that has no `ANAME` or `ALIAS` record (GoDaddy does not). Source: [Configuring DNS Providers](https://render.com/docs/configure-other-dns).
 
 In GoDaddy: **My Products → adtell.ai → DNS → DNS Records**.
 
-Delete conflicting A, AAAA, and CNAME records for `@` and `www`, and turn off GoDaddy domain forwarding for this domain. Leave MX and other TXT records alone.
+Delete conflicting A and CNAME records for `@` and `www`. Delete every AAAA record for this domain. Render is IPv4 only, and an AAAA record can block certificate issuance. Turn off GoDaddy domain forwarding. Leave MX and other TXT records alone.
 
 Then add:
 
 | Type | Name | Value | TTL |
 | --- | --- | --- | --- |
-| A | `@` | `76.76.21.21` | 1 Hour |
-| CNAME | `www` | The CNAME target from the Vercel domain card | 1 Hour |
+| A | `@` | `216.24.57.1` | 1 Hour |
+| CNAME | `www` | The service hostname, `adtell-ai.onrender.com` unless Render shows a different `onrender.com` host | 1 Hour |
 
-`76.76.21.21` is the A record Vercel documents for an apex domain. GoDaddy labels the apex as `@`. Do not put a CNAME on `@`. An apex already has NS and SOA records, and GoDaddy will reject that CNAME or it will conflict with the A record.
+`216.24.57.1` is Render's load-balancer address for an apex `A` record. GoDaddy labels the apex as `@`. Do not put a CNAME on `@`. GoDaddy rejects that, and an apex already has NS and SOA records.
 
-The `www` target is not the same for every project. Copy it from **Settings → Domains** after you add the domain. It looks like `cname.vercel-dns.com` or a host such as `<id>.vercel-dns-017.com`. If GoDaddy adds a trailing dot, that is fine.
+The `www` CNAME always points at this service's `onrender.com` hostname, not a shared Render hostname. With the Blueprint service name `adtell-ai`, that host is `adtell-ai.onrender.com` when the name is free. If Render had to add a suffix, use the hostname shown on the service page instead. A trailing dot added by GoDaddy is fine.
 
-After the records propagate, the Vercel domain card should report a valid configuration. Check `https://adtell.ai`, view source for `rel="canonical"` pointing at `https://adtell.ai`, and open `https://adtell.ai/sitemap.xml` and `https://adtell.ai/robots.txt`.
+After the records propagate, use **Verify** on the custom domain in Render. Render requests the certificate. Then check `https://adtell.ai`, view source for `rel="canonical"` pointing at `https://adtell.ai`, and open `https://adtell.ai/sitemap.xml`, `https://adtell.ai/robots.txt`, and a POST to `https://adtell.ai/api/audit`.
 
 ## Audit form
 
