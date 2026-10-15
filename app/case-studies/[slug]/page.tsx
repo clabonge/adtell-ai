@@ -56,9 +56,9 @@ async function CaseStudy({
         lede={post.description}
         crumbs={[{ name: "Case studies", path: "/case-studies" }]}
       />
-      <article className="bg-paper">
+      <article>
         <Container className="max-w-3xl py-12 sm:py-16">
-          <p className="text-sm text-muted">
+          <p className="text-sm text-quiet">
             <time dateTime={post.date}>{formatDate(post.date)}</time>
             <span aria-hidden="true"> · </span>
             Not a client engagement
@@ -84,7 +84,7 @@ async function CaseStudy({
 function ArticleFallback() {
   return (
     <Container className="py-24">
-      <p className="text-lg text-ink-soft">Loading the case study.</p>
+      <p className="text-lg text-quiet">Loading the case study.</p>
     </Container>
   );
 }

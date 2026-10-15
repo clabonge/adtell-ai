@@ -1,25 +1,24 @@
 @import "tailwindcss";
 
+/* Obsidian editorial. Void is the field, ivory is the type, oxblood is the only hue. */
 @theme inline {
   --font-sans: var(--font-outfit), ui-sans-serif, system-ui, sans-serif;
-  --font-serif: var(--font-fraunces), ui-serif, Georgia, "Times New Roman", serif;
-  --color-paper: #f4efe6;
-  --color-paper-deep: #e6dfd1;
-  --color-ink: #141816;
-  --color-ink-soft: #3a443e;
-  --color-muted: #4e5852;
-  --color-mist: #c9c3b6;
-  --color-forest: #17312d;
-  --color-forest-deep: #0e1f1c;
-  --color-forest-line: #2c4a44;
-  --color-copper: #b85a2a;
-  --color-copper-deep: #8a3f18;
-  --color-copper-bright: #f0b08a;
-  --color-line: #d8d0c2;
+  --font-serif: var(--font-newsreader), ui-serif, Georgia, "Times New Roman", serif;
+  --color-void: #0c0b0a;
+  --color-raise: #161412;
+  --color-ivory: #f3efe6;
+  --color-ivory-deep: #e6e0d2;
+  --color-ink: #1c1612;
+  --color-quiet: #a89f94;
+  --color-quiet-ink: #5c534b;
+  --color-line: #5c534b;
+  --color-oxblood: #d4897c;
+  --color-oxblood-ink: #7a2e26;
 }
 
 html {
   scroll-behavior: auto;
+  color-scheme: dark;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -29,20 +28,20 @@ html {
 }
 
 body {
-  background: var(--color-paper);
-  color: var(--color-ink);
+  background: var(--color-void);
+  color: var(--color-ivory);
   font-family: var(--font-sans);
 }
 
 ::selection {
-  background: #e7cbb8;
-  color: #141816;
+  background: #7a2e26;
+  color: #f3efe6;
 }
 
 :focus-visible {
-  outline: 2px solid #f4efe6;
+  outline: 2px solid #f3efe6;
   outline-offset: 2px;
-  box-shadow: 0 0 0 4px #8a3f18;
+  box-shadow: 0 0 0 4px #d4897c;
 }
 
 .skip-link {
@@ -51,8 +50,8 @@ body {
   top: 0;
   z-index: 50;
   transform: translateY(-120%);
-  background: #f4efe6;
-  color: #141816;
+  background: #f3efe6;
+  color: #0c0b0a;
   padding: 0.75rem 1rem;
   font-weight: 600;
 }
@@ -81,11 +80,8 @@ details[open] .faq-minus {
   display: inline;
 }
 
-.hero-grid {
-  background-image:
-    linear-gradient(to right, rgb(244 239 230 / 0.05) 1px, transparent 1px),
-    linear-gradient(to bottom, rgb(244 239 230 / 0.05) 1px, transparent 1px);
-  background-size: 56px 56px;
+.sheet {
+  color-scheme: light;
 }
 
 @media (prefers-reduced-motion: reduce) {

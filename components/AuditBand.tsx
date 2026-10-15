@@ -9,15 +9,15 @@ export function AuditBand({
   lede?: string;
 }) {
   return (
-    <section className="bg-forest-deep text-paper">
+    <section className="sheet bg-ivory text-ink">
       <Container className="py-16 sm:py-20">
-        <Kicker tone="dark">Free AI savings audit</Kicker>
-        <h2 className="mt-4 max-w-2xl font-serif text-4xl tracking-tight sm:text-5xl">
+        <Kicker tone="sheet">Free AI savings audit</Kicker>
+        <h2 className="mt-4 max-w-2xl font-serif text-4xl tracking-tight text-ink sm:text-5xl">
           {title}
         </h2>
-        <p className="mt-4 max-w-xl text-lg leading-relaxed text-mist">{lede}</p>
+        <p className="mt-4 max-w-xl text-lg leading-relaxed text-quiet-ink">{lede}</p>
         <div className="mt-8">
-          <ButtonLink href={auditPath} variant="inverse">
+          <ButtonLink href={auditPath} variant="sheet">
             Book a free AI savings audit
           </ButtonLink>
         </div>
