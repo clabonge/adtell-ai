@@ -105,12 +105,12 @@ export default function HomePage() {
         <Container className="py-16 sm:py-24">
           <Kicker>The practice</Kicker>
           <h2 className="mt-4 max-w-3xl font-serif text-4xl tracking-tight sm:text-5xl">
-            We run our own businesses on AI.
+            Businesses running Adtell.ai
           </h2>
           <p className="mt-5 max-w-2xl text-lg leading-relaxed text-quiet">
-            {site.founder.name} is {site.founder.role} of {site.holdingCompany}. The
-            approach used inside the holding company is the same approach behind the
-            operating companies he runs with AI agents.
+            {site.founder.name} is {site.founder.role} of {site.holdingCompany}. These
+            companies already run on agents. The lines under each name are examples of
+            that work, and each one includes the website. They are not clients.
           </p>
           <div className="mt-10">
             <CompanyLists />

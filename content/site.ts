@@ -13,6 +13,89 @@ function resolveSiteUrl(): string {
 }
 
 /**
+ * Companies Chris operates, with examples of work agents already do there.
+ * Every company includes website creation and management.
+ */
+const businesses = [
+  {
+    name: "FiberOptics.com",
+    group: "division",
+    work: [
+      "Sales automation",
+      "Marketing",
+      "Training student follow-up and scheduling",
+      "Order follow-up",
+      "Website creation and management",
+    ],
+  },
+  {
+    name: "The Fiber School",
+    group: "division",
+    work: [
+      "Class scheduling",
+      "Enrollment follow-up",
+      "Student questions between sessions",
+      "Website creation and management",
+    ],
+  },
+  {
+    name: "Adtell Integration",
+    group: "division",
+    work: ["Bid matching", "Bid submission", "Website creation and management"],
+  },
+  {
+    name: "BCLE Furniture",
+    group: "operating",
+    work: [
+      "Inventory automation",
+      "Sales follow-up",
+      "Marketing automation",
+      "Website creation and management",
+    ],
+  },
+  {
+    name: "Doan Distillery",
+    group: "operating",
+    work: [
+      "Order follow-up",
+      "Tasting-room and event scheduling",
+      "Marketing",
+      "Website creation and management",
+    ],
+  },
+  {
+    name: "LaBonge Estates Winery",
+    group: "operating",
+    work: [
+      "Tasting follow-up",
+      "Bottle order follow-up",
+      "Marketing",
+      "Website creation and management",
+    ],
+  },
+  {
+    name: "Trolley Barn Public Market",
+    group: "operating",
+    work: [
+      "Vendor follow-up",
+      "Event scheduling",
+      "Market announcements",
+      "Website creation and management",
+    ],
+  },
+  {
+    name: "Ivers Property Management",
+    group: "operating",
+    work: [
+      "Maintenance follow-up",
+      "Tenant questions",
+      "Lease renewal follow-up",
+      "Website creation and management",
+    ],
+  },
+] as const;
+
+/**
  * Public identity for the firm. Layout code reads this file; it does not
  * hard-code company names or the contact address.
  *
@@ -34,12 +117,11 @@ export const site = {
     organization: "Adtell Inc.",
   },
   holdingCompany: "Adtell Inc.",
-  divisions: ["FiberOptics.com", "The Fiber School", "Adtell Integration"],
-  operatingCompanies: [
-    "BCLE Furniture",
-    "Doan Distillery",
-    "LaBonge Estates Winery",
-    "Trolley Barn Public Market",
-    "Ivers Property Management",
-  ],
+  businesses,
+  divisions: businesses
+    .filter((business) => business.group === "division")
+    .map((business) => business.name),
+  operatingCompanies: businesses
+    .filter((business) => business.group === "operating")
+    .map((business) => business.name),
 } as const;

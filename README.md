@@ -20,7 +20,7 @@ Edit these files. You should not need to change layout components for ordinary c
 
 | Path | What it controls |
 | --- | --- |
-| `content/site.ts` | Name, contact email, founder, holding company, divisions, operating companies. The public URL is `NEXT_PUBLIC_SITE_URL` (default `https://adtell.ai`) |
+| `content/site.ts` | Name, contact email, founder, holding company, and each business with the work agents already do there. The public URL is `NEXT_PUBLIC_SITE_URL` (default `https://adtell.ai`) |
 | `content/services.ts` | Service names, prices, summaries, and what each engagement includes |
 | `content/faqs.ts` | Questions and answers shown on the homepage |
 | `content/process.ts` | The “how it works” steps, plus what we need and what we will not do |
