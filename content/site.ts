@@ -62,15 +62,14 @@ export function implementationLine(item: (typeof implementations)[number]): stri
 /**
  * Public identity for the firm. Layout code reads this file; it does not
  * hard-code company names or the contact address.
- *
- * TODO: hello@adtell.ai is a placeholder inbox. Confirm the production
- * address before launch and update `email`. Wiring the audit form to that
- * inbox is a separate TODO in app/api/audit/route.ts.
+ * Audit delivery is configured with env vars. See README "Audit form delivery".
  */
 export const site = {
   name: "Adtell.ai",
   url: resolveSiteUrl(),
-  email: "hello@adtell.ai",
+  email: "clabonge@adtell.ai",
+  phone: "215-499-8959",
+  phoneTel: "+12154998959",
   updated: "2026-10-15",
   tagline: "Cut the cost of work that should not still be done by hand.",
   description:

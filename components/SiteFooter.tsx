@@ -39,13 +39,20 @@ export function SiteFooter() {
           <p className="text-xs font-semibold uppercase tracking-[0.16em] text-oxblood">
             Contact
           </p>
-          {/* TODO: hello@adtell.ai is a placeholder. See content/site.ts. */}
           <p className="mt-4 text-sm leading-relaxed text-quiet">
             <a
               className="font-semibold text-ivory underline decoration-oxblood/60 underline-offset-4"
               href={`mailto:${site.email}`}
             >
               {site.email}
+            </a>
+          </p>
+          <p className="mt-2 text-sm leading-relaxed text-quiet">
+            <a
+              className="font-semibold text-ivory underline decoration-oxblood/60 underline-offset-4"
+              href={`tel:${site.phoneTel}`}
+            >
+              {site.phone}
             </a>
           </p>
         </div>
