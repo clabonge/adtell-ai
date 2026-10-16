@@ -39,7 +39,7 @@ const implementations = [
     how: "The automation drafts booking replies, prepares tasting-room and event times, and writes order follow-up and marketing notes a person still confirms. We also create and manage the website.",
   },
   {
-    name: "LaBonge Estates Winery",
+    name: "CapoVino",
     goal: "offloading tasting follow-up and bottle orders",
     how: "The automation drafts tasting follow-up, prepares bottle-order notes, and drafts marketing a person still sends. We also create and manage the website.",
   },
