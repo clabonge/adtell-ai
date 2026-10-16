@@ -1,29 +1,22 @@
 export const aboutIntro = {
   kicker: "About",
-  title: "An operator, not a theorist.",
-  lede: "Adtell.ai is led by Chris LaBonge, Founder & President of Adtell Inc. The consulting is the same kind of work he already uses to run operating companies.",
+  title: "The firm behind the work.",
+  lede: "Adtell.ai helps businesses implement AI that removes operating cost. Chris LaBonge is Founder and President.",
 };
 
 export const aboutStory: { heading: string; paragraphs: string[] }[] = [
   {
-    heading: "The holding company",
+    heading: "The firm",
     paragraphs: [
-      "Adtell Inc. is the holding company. Its divisions are FiberOptics.com, The Fiber School, and Adtell Integration.",
-      "Adtell.ai is the consulting practice for other businesses that want AI implemented against a cost. It is not a software product. The lines under each division name are examples of work agents already do inside that business, including the website.",
+      "Adtell.ai is a consulting firm. We find the repetitive work that still sits on payroll and implement an agent for a defined task.",
+      "Chris LaBonge founded the firm. A person at the business stays accountable for the customer, for anything that spends or collects money, and for the brand.",
     ],
   },
   {
-    heading: "The businesses we run",
+    heading: "How we implement",
     paragraphs: [
-      "Chris also runs BCLE Furniture, Doan Distillery, LaBonge Estates Winery, Trolley Barn Public Market, and Ivers Property Management on AI agents.",
-      "Those are operating companies, not clients. Different work — furniture, spirits, wine, a public market, property management, alongside the holding company divisions — and the same question in each: which tasks are still done by hand even though a careful person could write the procedure down?",
-    ],
-  },
-  {
-    heading: "What we mean by operator",
-    paragraphs: [
-      "An operator is accountable for the outcome after the meeting. The recommendation has to be something we would run ourselves: a named workflow, a written limit on what the agent may do, and a person who still owns the customer, the money, and the brand.",
-      "We would rather tell you to wait than automate a process that has not been described. Theory is cheap. A workflow your team can run on Monday is the work.",
+      "We name one workflow and write down what the agent may prepare. The agent drafts, looks up an answer the business has already written, moves information between tools, or prepares material a person still reviews.",
+      "We would rather wait than automate a process that has not been described. A workflow the team can run is the work.",
     ],
   },
 ];

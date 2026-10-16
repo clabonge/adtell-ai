@@ -13,87 +13,51 @@ function resolveSiteUrl(): string {
 }
 
 /**
- * Companies Chris operates, with examples of work agents already do there.
- * Every company includes website creation and management.
+ * Businesses Adtell.ai has helped. Each line is a goal and how the
+ * automation works. No results and no figures. Adtell Integration is
+ * not on this list.
  */
-const businesses = [
+const implementations = [
   {
     name: "FiberOptics.com",
-    group: "division",
-    work: [
-      "Sales automation",
-      "Marketing",
-      "Training student follow-up and scheduling",
-      "Order follow-up",
-      "Website creation and management",
-    ],
+    goal: "offloading sales follow-up, marketing drafts, training-student scheduling, and order follow-up",
+    how: "The automation drafts the next sales step, prepares marketing notes, schedules student follow-up, and writes order updates a person still reviews. We also create and manage the website.",
   },
   {
     name: "The Fiber School",
-    group: "division",
-    work: [
-      "Class scheduling",
-      "Enrollment follow-up",
-      "Student questions between sessions",
-      "Website creation and management",
-    ],
-  },
-  {
-    name: "Adtell Integration",
-    group: "division",
-    work: ["Bid matching", "Bid submission", "Website creation and management"],
+    goal: "offloading class scheduling and enrollment follow-up",
+    how: "The automation prepares the class schedule, drafts enrollment follow-up, and drafts answers to student questions between sessions from material the school already uses. A person still confirms the schedule and the reply. We also create and manage the website.",
   },
   {
     name: "BCLE Furniture",
-    group: "operating",
-    work: [
-      "Inventory automation",
-      "Sales follow-up",
-      "Marketing automation",
-      "Website creation and management",
-    ],
+    goal: "offloading inventory updates, sales follow-up, and marketing",
+    how: "The automation prepares inventory notes, drafts sales follow-up, and drafts marketing a person still reviews. We also create and manage the website.",
   },
   {
     name: "Doan Distillery",
-    group: "operating",
-    work: [
-      "Order follow-up",
-      "Tasting-room and event scheduling",
-      "Marketing",
-      "Website creation and management",
-    ],
+    goal: "offloading event booking",
+    how: "The automation drafts booking replies, prepares tasting-room and event times, and writes order follow-up and marketing notes a person still confirms. We also create and manage the website.",
   },
   {
     name: "LaBonge Estates Winery",
-    group: "operating",
-    work: [
-      "Tasting follow-up",
-      "Bottle order follow-up",
-      "Marketing",
-      "Website creation and management",
-    ],
+    goal: "offloading tasting follow-up and bottle orders",
+    how: "The automation drafts tasting follow-up, prepares bottle-order notes, and drafts marketing a person still sends. We also create and manage the website.",
   },
   {
     name: "Trolley Barn Public Market",
-    group: "operating",
-    work: [
-      "Vendor follow-up",
-      "Event scheduling",
-      "Market announcements",
-      "Website creation and management",
-    ],
+    goal: "offloading vendor follow-up and event scheduling",
+    how: "The automation drafts vendor replies, prepares event times, and drafts market announcements a person still reviews. We also create and manage the website.",
   },
   {
     name: "Ivers Property Management",
-    group: "operating",
-    work: [
-      "Maintenance follow-up",
-      "Tenant questions",
-      "Lease renewal follow-up",
-      "Website creation and management",
-    ],
+    goal: "offloading maintenance follow-up and tenant questions",
+    how: "The automation drafts maintenance follow-up, drafts answers to tenant questions from material the company already uses, and prepares lease-renewal notes a person still sends. We also create and manage the website.",
   },
 ] as const;
+
+export function implementationLine(item: (typeof implementations)[number]): string {
+  return `We helped ${item.name} implement AI automation with the goal of ${item.goal}. ${item.how}`;
+}
 
 /**
  * Public identity for the firm. Layout code reads this file; it does not
@@ -117,11 +81,5 @@ export const site = {
     organization: "Adtell Inc.",
   },
   holdingCompany: "Adtell Inc.",
-  businesses,
-  divisions: businesses
-    .filter((business) => business.group === "division")
-    .map((business) => business.name),
-  operatingCompanies: businesses
-    .filter((business) => business.group === "operating")
-    .map((business) => business.name),
+  implementations,
 } as const;

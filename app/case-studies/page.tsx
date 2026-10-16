@@ -7,7 +7,7 @@ import { pageMetadata } from "@/lib/seo";
 export const metadata = pageMetadata({
   title: "Case studies",
   description:
-    "Notes on running operating companies with AI agents. Qualitative only. No client logos and no invented results.",
+    "Notes on AI automation we helped businesses implement. Qualitative only: goals and how the work runs, with no results and no figures.",
   path: "/case-studies",
 });
 
@@ -18,8 +18,8 @@ export default function CaseStudiesPage() {
     <>
       <PageHero
         kicker="Case studies"
-        title="Practice, written down."
-        lede="These notes describe work inside companies we operate. They are not client logos, and they do not invent performance figures."
+        title="Implementations, written down."
+        lede="These notes describe AI automation we helped a business implement. They name the goal and how the work runs. They do not include results or figures."
         crumbs={[{ name: "Case studies", path: "/case-studies" }]}
       />
       <section>

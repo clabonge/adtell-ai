@@ -10,4 +10,4 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 
 ## Adtell.ai content
 
-Service copy, pricing, FAQs, and posts live under `content/`. Read `README.md` before editing marketing copy. Write “Adtell Integration” as two words. Do not invent testimonials, statistics, client logos, phone numbers, or addresses. `hello@adtell.ai` and `app/api/audit/route.ts` are marked TODO until email delivery is real.
+Service copy, pricing, FAQs, and posts live under `content/`. Read `README.md` before editing marketing copy. The site speaks as Adtell.ai ("we"). Businesses on the helped list are implementations, not companies Chris owns or runs. Do not add Adtell Integration to that list. Do not invent testimonials, statistics, results, client logos, phone numbers, or addresses. Do not use em dashes in marketing copy. `hello@adtell.ai` and `app/api/audit/route.ts` are marked TODO until email delivery is real.
