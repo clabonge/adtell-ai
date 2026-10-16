@@ -20,7 +20,7 @@ Edit these files. You should not need to change layout components for ordinary c
 
 | Path | What it controls |
 | --- | --- |
-| `content/site.ts` | Name, contact email, founder, holding company, and each business with the work agents already do there. The public URL is `NEXT_PUBLIC_SITE_URL` (default `https://adtell.ai`) |
+| `content/site.ts` | Name, contact email, founder, and the businesses Adtell.ai has helped, each with a goal and how the automation works. The public URL is `NEXT_PUBLIC_SITE_URL` (default `https://adtell.ai`) |
 | `content/services.ts` | Service names, prices, summaries, and what each engagement includes |
 | `content/faqs.ts` | Questions and answers shown on the homepage |
 | `content/process.ts` | The “how it works” steps, plus what we need and what we will not do |
@@ -32,9 +32,9 @@ Edit these files. You should not need to change layout components for ordinary c
 
 Prices on the homepage, the services page, and the hero ledger all come from `content/services.ts`. If you change a price, search `content/blog` and `content/case-studies` in case a post mentions the old figure.
 
-Company names are listed only in `content/site.ts`. Write **Adtell Integration** as two words.
+Company names on the public site are listed only in `content/site.ts`. The site speaks as Adtell.ai ("we") and describes those businesses as implementations we helped. Do not write that Chris owns, runs, or operates them. Do not add Adtell Integration to that list. Do not write that they are not clients, and do not use the phrases "operator, not a theorist" or "companies we run".
 
-Do not add testimonials, performance statistics, client logos, phone numbers, or street addresses unless they are real and approved. The case study starter is about companies we operate. It is not a client result.
+Do not add testimonials, performance statistics, client logos, phone numbers, or street addresses unless they are real and approved. Describe a goal and how the automation works. Do not invent results or figures. Do not use em dashes in marketing copy.
 
 ### Contact email
 
@@ -73,18 +73,18 @@ Same as a post, in `content/case-studies/`, with one extra field:
 title: "A title that does not invent a result"
 description: "Summary used on the index and in meta tags."
 date: "2026-10-15"
-kind: internal-practice
+kind: implementation
 ---
 ```
 
-`kind: internal-practice` labels the piece as our own operating companies, not a client engagement. Keep these qualitative. Do not add client names or figures that were not measured and approved.
+`kind: implementation` labels a business we helped. Keep it qualitative: the goal and how the automation works. Do not add results or figures.
 
 ## Pages
 
 - `/` Home
 - `/services` Services and published prices
 - `/how-it-works` Engagement sequence
-- `/about` Chris LaBonge and the operating companies
+- `/about` Adtell.ai, the firm, and Chris LaBonge as founder
 - `/case-studies` and `/case-studies/[slug]`
 - `/blog` and `/blog/[slug]`
 - `/contact` Audit intake form

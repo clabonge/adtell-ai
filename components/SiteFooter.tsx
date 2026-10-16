@@ -48,9 +48,6 @@ export function SiteFooter() {
               {site.email}
             </a>
           </p>
-          <p className="mt-4 text-sm leading-relaxed text-quiet">
-            {site.holdingCompany} divisions: {site.divisions.join(", ")}.
-          </p>
         </div>
       </div>
       <div className="border-t border-line">

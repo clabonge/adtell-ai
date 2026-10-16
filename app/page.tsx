@@ -103,14 +103,13 @@ export default function HomePage() {
 
       <section className="border-t border-line">
         <Container className="py-16 sm:py-24">
-          <Kicker>The practice</Kicker>
+          <Kicker>Implementations</Kicker>
           <h2 className="mt-4 max-w-3xl font-serif text-4xl tracking-tight sm:text-5xl">
-            Businesses running Adtell.ai
+            Businesses we have helped
           </h2>
           <p className="mt-5 max-w-2xl text-lg leading-relaxed text-quiet">
-            {site.founder.name} is {site.founder.role} of {site.holdingCompany}. These
-            companies already run on agents. The lines under each name are examples of
-            that work, and each one includes the website. They are not clients.
+            We helped these businesses implement AI automation. Each note names the goal
+            and how the work runs, including the website.
           </p>
           <div className="mt-10">
             <CompanyLists />
@@ -120,7 +119,7 @@ export default function HomePage() {
               href="/about"
               className="text-sm font-semibold text-oxblood underline decoration-oxblood/40 underline-offset-4"
             >
-              Read the story
+              About the firm
             </Link>
           </p>
         </Container>
@@ -196,7 +195,7 @@ export default function HomePage() {
           <Container className="py-16 sm:py-24">
             <Kicker>Case study</Kicker>
             <p className="mt-4 text-sm font-semibold uppercase tracking-[0.14em] text-quiet">
-              {kindLabel(study.kind)} · not a client engagement
+              {kindLabel(study.kind)}
             </p>
             <h2 className="mt-3 max-w-3xl font-serif text-4xl tracking-tight sm:text-5xl">
               <Link href={`/case-studies/${study.slug}`} className="hover:text-oxblood">

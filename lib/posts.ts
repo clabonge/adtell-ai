@@ -82,7 +82,7 @@ function readCollection(collection: Collection): Post[] {
       }
       if (collection === "case-studies" && !data.kind) {
         throw new Error(
-          `${fullPath}: case studies need a kind field. Use kind: internal-practice for our own companies.`,
+          `${fullPath}: case studies need a kind field. Use kind: implementation for a business we helped.`,
         );
       }
 
@@ -108,6 +108,6 @@ export function getPost(collection: Collection, slug: string): Post | undefined 
 
 export function kindLabel(kind: string | undefined): string | undefined {
   if (!kind) return undefined;
-  if (kind === "internal-practice") return "Internal practice";
+  if (kind === "implementation") return "Implementation";
   return kind;
 }

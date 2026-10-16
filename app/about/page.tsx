@@ -6,9 +6,9 @@ import { site } from "@/content/site";
 import { pageMetadata } from "@/lib/seo";
 
 export const metadata = pageMetadata({
-  title: `About ${site.founder.name}`,
+  title: `About ${site.name}`,
   description:
-    "Chris LaBonge, Founder & President of Adtell Inc., runs operating companies on AI agents. Adtell.ai is that practice, offered to other businesses.",
+    "Adtell.ai is an AI consulting firm led by Chris LaBonge, Founder and President. We help businesses implement AI that removes operating cost.",
   path: "/about",
 });
 
@@ -37,7 +37,7 @@ export default function AboutPage() {
       </section>
       <section className="border-t border-line">
         <Container className="py-14 sm:py-20">
-          <h2 className="font-serif text-3xl tracking-tight">The companies</h2>
+          <h2 className="font-serif text-3xl tracking-tight">Businesses we have helped</h2>
           <div className="mt-8">
             <CompanyLists />
           </div>
@@ -57,7 +57,7 @@ export default function AboutPage() {
         </Container>
       </section>
       <AuditBand
-        title="If the fit is an operator, start with the audit."
+        title="If you can name the workflow, start with the audit."
         lede="Bring a workflow you can describe. We will tell you whether it belongs with an agent."
       />
     </>

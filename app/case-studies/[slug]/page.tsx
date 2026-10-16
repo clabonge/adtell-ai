@@ -1,5 +1,6 @@
 import { Suspense } from "react";
 import { notFound } from "next/navigation";
+import { CompanyLists } from "@/components/CompanyLists";
 import { MarkdownBody } from "@/components/MarkdownBody";
 import { Container, JsonLd, PageHero } from "@/components/ui";
 import { formatDate } from "@/lib/format";
@@ -60,10 +61,18 @@ async function CaseStudy({
         <Container className="max-w-3xl py-12 sm:py-16">
           <p className="text-sm text-quiet">
             <time dateTime={post.date}>{formatDate(post.date)}</time>
-            <span aria-hidden="true"> · </span>
-            Not a client engagement
           </p>
-          <div className="mt-2">
+          {post.kind === "implementation" ? (
+            <div className="mt-10">
+              <h2 className="font-serif text-3xl tracking-tight text-ivory">
+                The implementations
+              </h2>
+              <div className="mt-8">
+                <CompanyLists />
+              </div>
+            </div>
+          ) : null}
+          <div className="mt-10">
             <MarkdownBody source={post.body} />
           </div>
         </Container>

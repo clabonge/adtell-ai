@@ -12,7 +12,7 @@ export const faqs: Faq[] = [
   {
     question: "Which industries do you work with?",
     answer:
-      "The practice comes from operating companies in fiber optics, technical training, integration, furniture, spirits, wine, a public market, and property management. The offer is not limited to those industries. If the work is repetitive and the cost is real, the audit is how we find out whether we can help.",
+      "We have helped businesses in fiber optics, technical training, furniture, spirits, wine, a public market, and property management. The offer is not limited to those industries. If the work is repetitive and the cost is real, the audit is how we find out whether we can help.",
   },
   {
     question: "How much does implementation cost?",
@@ -30,9 +30,9 @@ export const faqs: Faq[] = [
       "No. Adtell.ai is a consulting practice. We implement workflows using tools that fit the job. We do not have a platform to license, and we will say so if a tool you already pay for is enough.",
   },
   {
-    question: "Are the companies listed on this site clients?",
+    question: "Which businesses have you helped?",
     answer:
-      "No. FiberOptics.com, The Fiber School, and Adtell Integration are divisions of Adtell Inc., the holding company. BCLE Furniture, Doan Distillery, LaBonge Estates Winery, Trolley Barn Public Market, and Ivers Property Management are operating companies Chris LaBonge runs. They are the credibility story — we run our own businesses on AI — not a client logo wall.",
+      "We helped FiberOptics.com, The Fiber School, BCLE Furniture, Doan Distillery, LaBonge Estates Winery, Trolley Barn Public Market, and Ivers Property Management implement AI automation. Each note names the goal and how the automation works, including the website.",
   },
   {
     question: "What should we send before the audit?",
