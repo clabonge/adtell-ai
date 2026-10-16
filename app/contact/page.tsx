@@ -17,7 +17,7 @@ export default function ContactPage() {
       <PageHero
         kicker="Contact"
         title="Book a free AI savings audit."
-        lede="Share the company and the work that costs you the most. The form checks those details here. Email from the form is not connected yet, so the next step gives you a note you can send directly."
+        lede="Share the company and the work that costs you the most. We email the request to the team. If email is not connected, the form gives you a note to send."
         crumbs={[{ name: "Book an audit", path: "/contact" }]}
       />
       <section>
@@ -31,16 +31,22 @@ export default function ContactPage() {
             </ul>
             <h2 className="mt-10 font-serif text-3xl tracking-tight">Write directly</h2>
             <p className="mt-4 text-base leading-relaxed text-quiet">
-              {/* TODO: hello@adtell.ai is a placeholder inbox. Confirm it in content/site.ts. */}
-              Until form delivery is connected, email{" "}
+              Email{" "}
               <a
                 className="font-semibold text-oxblood underline underline-offset-4"
                 href={`mailto:${site.email}`}
               >
                 {site.email}
               </a>{" "}
-              with the same information: name, company, industry, size, and the biggest
-              time or cost drains. Leave out secrets, customer lists, and passwords.
+              or call{" "}
+              <a
+                className="font-semibold text-oxblood underline underline-offset-4"
+                href={`tel:${site.phoneTel}`}
+              >
+                {site.phone}
+              </a>
+              . Include your name, company, industry, size, and the biggest time or cost
+              drains. Leave out secrets, customer lists, and passwords.
             </p>
           </div>
           <ContactForm />

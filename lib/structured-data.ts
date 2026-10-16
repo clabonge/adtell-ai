@@ -8,6 +8,7 @@ export function organizationJsonLd() {
     name: site.name,
     url: site.url,
     email: site.email,
+    telephone: site.phoneTel,
     description: site.description,
     founder: {
       "@type": "Person",

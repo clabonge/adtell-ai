@@ -21,3 +21,11 @@ services:
       # The build command installs dependencies itself.
       - key: SKIP_INSTALL_DEPS
         value: "true"
+      # Audit email. Values stay in the Render dashboard. Do not commit them.
+      # How to get each one: README, "Audit form delivery".
+      - key: RESEND_API_KEY
+        sync: false
+      - key: RESEND_FROM
+        sync: false
+      - key: AUDIT_WEBHOOK_URL
+        sync: false

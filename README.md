@@ -34,13 +34,7 @@ Prices on the homepage, the services page, and the hero ledger all come from `co
 
 Company names on the public site are listed only in `content/site.ts`. The site speaks as Adtell.ai ("we") and describes those businesses as implementations we helped. Do not write that Chris owns, runs, or operates them. Do not add Adtell Integration to that list. Do not write that they are not clients, and do not use the phrases "operator, not a theorist" or "companies we run".
 
-Do not add testimonials, performance statistics, client logos, phone numbers, or street addresses unless they are real and approved. Describe a goal and how the automation works. Do not invent results or figures. Do not use em dashes in marketing copy.
-
-### Contact email
-
-`hello@adtell.ai` in `content/site.ts` is a placeholder.
-
-TODO: confirm the production inbox and update `email`. Form delivery is a separate TODO in `app/api/audit/route.ts`.
+Do not add testimonials, performance statistics, client logos, or street addresses unless they are real and approved. The public email is `clabonge@adtell.ai` and the public phone is `215-499-8959`, both in `content/site.ts`. Do not invent other contact details. Describe a goal and how the automation works. Do not invent results or figures. Do not use em dashes in marketing copy.
 
 ## How to add a blog post
 
@@ -88,7 +82,7 @@ kind: implementation
 - `/case-studies` and `/case-studies/[slug]`
 - `/blog` and `/blog/[slug]`
 - `/contact` Audit intake form
-- `/api/audit` Placeholder POST handler
+- `/api/audit` Audit form delivery
 - `/sitemap.xml` and `/robots.txt`
 
 ## Deploy on Render
@@ -137,8 +131,37 @@ The `www` CNAME always points at this service's `onrender.com` hostname, not a s
 
 After the records propagate, use **Verify** on the custom domain in Render. Render requests the certificate. Then check `https://adtell.ai`, view source for `rel="canonical"` pointing at `https://adtell.ai`, and open `https://adtell.ai/sitemap.xml`, `https://adtell.ai/robots.txt`, and a POST to `https://adtell.ai/api/audit`.
 
-## Audit form
+## Audit form delivery
 
-The contact form posts JSON to `/api/audit`. The route validates the payload and returns `delivered: false`.
+The contact form posts JSON to `/api/audit`. The route validates the payload, then tries to email `clabonge@adtell.ai`.
 
-TODO: connect that route to email (or a CRM) so submissions reach the inbox in `content/site.ts`. Do not commit API keys. Do not log the request body. Until that exists, the contact page asks the visitor to email the same details directly.
+| Env var | Required | What it does |
+| --- | --- | --- |
+| `RESEND_API_KEY` | For email | Resend API key. When this is set, a valid submission is emailed to `clabonge@adtell.ai`. |
+| `RESEND_FROM` | No | Sender address. Default is `Adtell.ai <onboarding@resend.dev>`. Set this after the domain is verified, for example `Adtell.ai <audit@adtell.ai>`. |
+| `AUDIT_WEBHOOK_URL` | No | HTTPS URL that receives the same submission as JSON. Used when `RESEND_API_KEY` is unset, and when Resend returns an error. `http://127.0.0.1` and `http://localhost` are allowed for local checks only. |
+
+A normal git deploy does not fill these in. Add the values in the Render dashboard. The names are also listed in `render.yaml` with `sync: false`, so a Blueprint sync will not overwrite a value you already saved and will not put the secret in git.
+
+### Turn on Resend
+
+1. Create a Resend account at [resend.com/signup](https://resend.com/signup) with `clabonge@adtell.ai`. The default sender, `onboarding@resend.dev`, can deliver only to the email address on that Resend account.
+2. In Resend, open **API Keys** and create a key with sending access. Copy it once. Resend will not show it again.
+3. In Render, open the `adtell-ai` service, then **Environment**. Add `RESEND_API_KEY` and paste the key. Save. Render redeploys. Do not commit the key.
+4. Send a test from `/contact`. The response is `{ "ok": true, "delivered": true }` and the visitor sees “We have your request.”
+
+To send from an `@adtell.ai` address later:
+
+1. In Resend, open **Domains** and add `adtell.ai`.
+2. Add the DNS records Resend shows, at GoDaddy. Do not delete the existing MX records. Those stay on the current mailbox.
+3. After Resend marks the domain verified, set `RESEND_FROM` in Render to `Adtell.ai <audit@adtell.ai>` and save.
+
+### Webhook instead of Resend
+
+Use this when you want Zapier, Make, or another HTTPS endpoint instead of Resend. Create a catch-hook URL, then set `AUDIT_WEBHOOK_URL` in the Render environment to that URL. The POST body is JSON: `source`, `name`, `email`, `company`, `industry`, `size`, `sizeLabel`, and `drains`. A 2xx response counts as delivered.
+
+If both `RESEND_API_KEY` and `AUDIT_WEBHOOK_URL` are set, Resend is tried first. The webhook runs only when Resend does not succeed.
+
+### When the env vars are missing
+
+The form still accepts a valid submission. The route returns `{ "ok": true, "delivered": false }` and does not log the body. The visitor sees “Your request is ready to send.” with a button that opens an email to `clabonge@adtell.ai`, plus the phone number `215-499-8959`. Invalid fields still return `400`. A filled honeypot field (`company_website`) returns success and is not delivered.

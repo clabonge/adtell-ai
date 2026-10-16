@@ -49,7 +49,9 @@ export function ContactForm() {
   const [form, setForm] = useState<FormState>(emptyForm);
   const [errors, setErrors] = useState<AuditErrors>({});
   const [pending, setPending] = useState(false);
-  const [readyToEmail, setReadyToEmail] = useState<AuditSubmission | null>(null);
+  const [result, setResult] = useState<{ submission: AuditSubmission; delivered: boolean } | null>(
+    null,
+  );
 
   function fieldId(name: string) {
     return `${baseId}-${name}`;
@@ -61,7 +63,7 @@ export function ContactForm() {
 
   async function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    setReadyToEmail(null);
+    setResult(null);
 
     const local = validateAudit(form);
     if (!local.ok) {
@@ -97,41 +99,73 @@ export function ContactForm() {
         setErrors(payload.errors ?? { form: "The request could not be checked. Try again." });
         return;
       }
-      setReadyToEmail(local.value);
+      setResult({ submission: local.value, delivered: payload.delivered === true });
     } catch {
-      setErrors({ form: "The request could not be sent. Try again, or use the email address below." });
+      setErrors({
+        form: "The request could not be sent. Try again, or use the email address below.",
+      });
     } finally {
       setPending(false);
     }
   }
 
-  if (readyToEmail) {
+  if (result) {
     return (
       <div role="status" className="sheet border border-line bg-ivory p-6 text-ink sm:p-8">
-        <h2 className="font-serif text-3xl tracking-tight text-ink">Send this by email.</h2>
-        <p className="mt-4 text-base leading-relaxed text-quiet-ink">
-          The form checked your details. Email delivery is not connected yet, so nothing
-          was sent to the team. Use the note below so the request actually arrives at{" "}
-          {/* TODO: placeholder inbox. See content/site.ts. */}
-          <a className="font-semibold text-oxblood-ink underline underline-offset-4" href={`mailto:${site.email}`}>
-            {site.email}
-          </a>
-          .
-        </p>
-        <p className="mt-6">
-          <a
-            className="inline-flex min-h-11 items-center justify-center bg-void px-5 text-sm font-semibold text-ivory hover:bg-raise"
-            href={mailtoHref(readyToEmail)}
-          >
-            Email this audit request
-          </a>
-        </p>
+        <h2 className="font-serif text-3xl tracking-tight text-ink">
+          {result.delivered ? "We have your request." : "Your request is ready to send."}
+        </h2>
+        {result.delivered ? (
+          <p className="mt-4 text-base leading-relaxed text-quiet-ink">
+            We emailed the team at{" "}
+            <a
+              className="font-semibold text-oxblood-ink underline underline-offset-4"
+              href={`mailto:${site.email}`}
+            >
+              {site.email}
+            </a>
+            . We will reply to the address you entered. You can also call{" "}
+            <a className="font-semibold text-oxblood-ink underline underline-offset-4" href={`tel:${site.phoneTel}`}>
+              {site.phone}
+            </a>
+            .
+          </p>
+        ) : (
+          <>
+            <p className="mt-4 text-base leading-relaxed text-quiet-ink">
+              We accepted the form. Email from this site is not connected yet, so the team
+              does not have this request. Send the note to{" "}
+              <a
+                className="font-semibold text-oxblood-ink underline underline-offset-4"
+                href={`mailto:${site.email}`}
+              >
+                {site.email}
+              </a>
+              , or call{" "}
+              <a className="font-semibold text-oxblood-ink underline underline-offset-4" href={`tel:${site.phoneTel}`}>
+                {site.phone}
+              </a>
+              .
+            </p>
+            <p className="mt-6">
+              <a
+                className="inline-flex min-h-11 items-center justify-center bg-void px-5 text-sm font-semibold text-ivory hover:bg-raise"
+                href={mailtoHref(result.submission)}
+              >
+                Email this audit request
+              </a>
+            </p>
+          </>
+        )}
         <button
           type="button"
           className="mt-4 text-sm font-semibold text-oxblood-ink underline underline-offset-4"
-          onClick={() => setReadyToEmail(null)}
+          onClick={() => {
+            setResult(null);
+            setForm(emptyForm);
+          }}
         >
-          Edit the form
+          Start another request
         </button>
       </div>
     );
@@ -251,11 +285,11 @@ export function ContactForm() {
         aria-busy={pending}
         className="mt-6 inline-flex min-h-11 items-center justify-center bg-void px-5 text-sm font-semibold text-ivory hover:bg-raise disabled:cursor-wait disabled:opacity-70"
       >
-        {pending ? "Checking" : "Continue"}
+        {pending ? "Sending" : "Send the request"}
       </button>
       <p className="mt-4 text-sm leading-relaxed text-quiet-ink">
-        Submitting checks the form on this site. It does not send email yet. You can
-        also write directly to {site.email}.
+        We email the request to the team. If email is not connected, the next screen
+        gives you a note to send to {site.email}. You can also call {site.phone}.
       </p>
     </form>
   );

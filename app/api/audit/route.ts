@@ -1,19 +1,15 @@
 import { NextResponse } from "next/server";
-import { site } from "@/content/site";
+import { deliverAudit } from "@/lib/deliver-audit";
 import { validateAudit } from "@/lib/audit";
 
 /**
- * Placeholder intake for the free AI savings audit.
+ * Intake for the free AI savings audit.
  *
- * TODO: Wire delivery so a valid submission reaches the inbox in
- * `site.email` (hello@adtell.ai). That address is itself a placeholder
- * until the mailbox is confirmed — see content/site.ts.
- *
- * A practical wiring is a transactional email provider (for example Resend
- * or Postmark) using an API key in an environment variable. Do not commit
- * the key. Do not log the request body. Until delivery exists, this route
- * only validates input and returns delivered: false. The contact page tells
- * the visitor to email the same details directly.
+ * A valid submission is emailed to the inbox in content/site.ts when
+ * RESEND_API_KEY is set. AUDIT_WEBHOOK_URL is the fallback. If neither
+ * delivers, the route still accepts the form and returns delivered: false
+ * so the page can show a note the visitor can send. Do not log the body.
+ * Do not commit keys. See README "Audit form delivery".
  */
 export async function POST(request: Request) {
   const contentType = request.headers.get("content-type") ?? "";
@@ -60,9 +56,13 @@ export async function POST(request: Request) {
     return NextResponse.json({ ok: false, errors: result.errors }, { status: 400 });
   }
 
-  // TODO: email result.value to site.email. Nothing is stored or forwarded today.
-  void site.email;
-  void result.value;
+  let delivered = false;
+  try {
+    delivered = await deliverAudit(result.value);
+  } catch {
+    console.error("audit delivery failed: unexpected error");
+    delivered = false;
+  }
 
-  return NextResponse.json({ ok: true, delivered: false });
+  return NextResponse.json({ ok: true, delivered });
 }
