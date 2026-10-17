@@ -1,4 +1,5 @@
 import { AuditBand } from "@/components/AuditBand";
+import { SavingsShare } from "@/components/SavingsShare";
 import { Container, PageHero } from "@/components/ui";
 import { services, servicesIntro } from "@/content/services";
 import { auditPath } from "@/content/nav";
@@ -8,7 +9,7 @@ import Link from "next/link";
 export const metadata = pageMetadata({
   title: "Services and pricing",
   description:
-    "Free AI savings audit, assessments from $2,500, implementation from $10,000, retainers from $1,500 a month, and quoted team workshops.",
+    "Free AI savings audit, assessments from $2,500, implementation from $10,000 or 25% of measured savings, retainers from $1,500 a month, and quoted team workshops.",
   path: "/services",
 });
 
@@ -21,6 +22,7 @@ export default function ServicesPage() {
         lede={servicesIntro.lede}
         crumbs={[{ name: "Services", path: "/services" }]}
       />
+      <SavingsShare bordered={false} />
       <section>
         <Container className="py-4 sm:py-8">
           {services.map((service) => (
@@ -66,7 +68,7 @@ export default function ServicesPage() {
       </section>
       <AuditBand
         title="Not sure which engagement you need?"
-        lede="That is what the free audit is for. Bring the drains. Leave with a recommendation sized to them."
+        lede="Bring the drains. Leave with a recommendation, a fixed price, a 25% share of measured savings, or a reason to wait."
       />
     </>
   );
