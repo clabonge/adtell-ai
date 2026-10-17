@@ -2,6 +2,7 @@ import Link from "next/link";
 import { AuditBand } from "@/components/AuditBand";
 import { CompanyLists } from "@/components/CompanyLists";
 import { FaqList } from "@/components/FaqList";
+import { SavingsShare } from "@/components/SavingsShare";
 import { ButtonLink, Container, JsonLd, Kicker } from "@/components/ui";
 import { faqs } from "@/content/faqs";
 import { costPatterns, homeServicesIntro } from "@/content/home";
@@ -75,6 +76,12 @@ export default function HomePage() {
                 ))}
               </tbody>
             </table>
+            <p className="mt-4 text-sm leading-relaxed text-quiet-ink">
+              An implementation can also be 25% of the savings we measure.{" "}
+              <Link href="/services#savings-share" className="font-semibold text-oxblood-ink underline underline-offset-4">
+                The audit writes down a price, that share, or both.
+              </Link>
+            </p>
           </aside>
         </Container>
       </section>
@@ -163,6 +170,8 @@ export default function HomePage() {
           </ol>
         </Container>
       </section>
+
+      <SavingsShare />
 
       <section className="border-t border-line">
         <Container className="py-16 sm:py-24">

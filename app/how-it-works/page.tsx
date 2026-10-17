@@ -11,7 +11,7 @@ import { pageMetadata } from "@/lib/seo";
 export const metadata = pageMetadata({
   title: "How it works",
   description:
-    "How an Adtell.ai engagement runs: a free savings audit, a ranked recommendation, and a scoped build only when the workflow earns it.",
+    "How an Adtell.ai engagement runs: a free savings audit, a ranked recommendation, and a fixed price or 25% of measured savings when the workflow earns it.",
   path: "/how-it-works",
 });
 
