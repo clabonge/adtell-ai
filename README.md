@@ -88,10 +88,14 @@ kind: implementation
 
 ## Deploy on Render
 
-Production hosting is Render, from the Blueprint in `render.yaml`. That file defines one Node web service:
+Production hosting is Render, from the Blueprint in `render.yaml`. That file defines:
 
-- Build: `npm ci && npm run build`
-- Start: `npm start` (Next.js production server on `0.0.0.0` and Render's `PORT`)
+- The Node web service `adtell-ai`. Build: `npm ci && npm run build`, then `npm run db:migrate` when `DATABASE_URL` is set. Start: `npm start` (Next.js production server on `0.0.0.0` and Render's `PORT`). The instance type is not in the Blueprint, so sync leaves the current web plan alone.
+- Postgres `adtell-crm` on plan `0.1c-256mb` in Oregon, reachable on the private network only. `DATABASE_URL` is wired from that database and is not committed.
+- A background worker `adtell-crm-worker` on plan `0.5c-512mb`. Pre-deploy runs `npm run db:migrate`. Start runs `npm run crm:worker`.
+
+Shared settings:
+
 - Node.js `22.14.0`, also pinned in `.node-version` and `package.json` `engines`
 - `NEXT_PUBLIC_SITE_URL=https://adtell.ai`
 - Branch `main`, with a deploy on every push to that branch
@@ -136,7 +140,7 @@ After the records propagate, use **Verify** on the custom domain in Render. Rend
 
 The contact form posts JSON to `/api/audit`. A successful response is `{ "ok": true, "received": true }` only after the inquiry, related CRM records, and notification jobs are committed. The visitor then sees “Your request has been received.” That sentence does not mean an email was sent.
 
-Email and webhook are separate jobs. The worker command is `npm run crm:worker`. If the database is down, the route returns `503` and does not claim the request was received. Setup, the owner CRM, import, backup, and the approval-gated Render rollout are in `docs/crm.md`.
+Email and webhook are separate jobs. The worker command is `npm run crm:worker`. If the database is down, the route returns `503` and does not claim the request was received. Setup, the owner CRM, import, backup, and the Render Blueprint are in `docs/crm.md`.
 
 | Env var | Required | What it does |
 | --- | --- | --- |
@@ -148,4 +152,4 @@ Email and webhook are separate jobs. The worker command is `npm run crm:worker`.
 | `CRM_OWNER_EMAIL` | For owner sign-in | The only account. There is no signup. |
 | `CRM_OWNER_PASSWORD_HASH` | For owner sign-in | scrypt hash from `npm run crm:hash-password`. |
 
-`render.yaml` still lists only the marketing web service. It does not create a database or a worker. Do not add those until the rollout in `docs/crm.md` is approved.
+`render.yaml` creates the database and the worker. It does not contain `DATABASE_URL`, `CRM_SESSION_SECRET`, or `CRM_OWNER_PASSWORD_HASH`. Set the password hash on the web service in the Render dashboard. See `docs/crm.md`.
