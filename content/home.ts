@@ -16,5 +16,5 @@ export const costPatterns = [
 export const homeServicesIntro = {
   kicker: "Ways to engage",
   title: "Start with the audit. Pay for the step that fits.",
-  lede: "Every engagement below is described in full on the services page, including what it does not include. The figures are published starting points.",
+  lede: "Every engagement below is described in full on the services page. The figures are published starting points. An implementation can also be priced as 25% of the measured savings.",
 };

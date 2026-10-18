@@ -18,7 +18,31 @@ export type Service = {
 export const servicesIntro = {
   kicker: "Services",
   title: "Engagements with a published starting point.",
-  lede: "The free audit is the front door. Paid work is scoped to a workflow, a plan, a team, or ongoing implementation. Ranges are wide because companies are not identical. A quote follows the work, not a slide.",
+  lede: "The free audit is the front door. Paid work is scoped to a workflow, a plan, a team, or ongoing implementation. An implementation can be a fixed price or 25% of the measured savings. Ranges are wide because companies are not identical. A quote follows the work, not a slide.",
+};
+
+/**
+ * Commercial term for implementation. The 25% is our fee, not a claim
+ * about how much a company has already saved.
+ */
+export const savingsShare = {
+  kicker: "A second way to pay",
+  title: "Pay 25% of the savings.",
+  lede: "A fixed price is the right shape when you want a known invoice. A share is the right shape when you want us paid from the reduction. The free audit can come back with a price, a fee of 25% of the measured savings, or both. You keep the other 75%.",
+  points: [
+    {
+      title: "Count the cost",
+      body: "Hours, a bill, or rework that someone in the company can count. If it cannot be counted, we quote a price.",
+    },
+    {
+      title: "Write the measurement down",
+      body: "We agree what will be counted, and for how long, before the build starts. The 25% applies to that result.",
+    },
+    {
+      title: "Choose",
+      body: "Take the fixed price, the 25% share, or wait. The audit stays free either way.",
+    },
+  ],
 };
 
 export const services: Service[] = [
@@ -35,6 +59,7 @@ export const services: Service[] = [
     includes: [
       "A review of the workflows you flag as slow or expensive",
       "A ranked list of savings opportunities",
+      "A fixed price, a 25% share of measured savings, or both, when the work should proceed",
       "A plain recommendation, including “do nothing yet” when that is the right answer",
     ],
     cta: "Book the free audit",
@@ -64,7 +89,7 @@ export const services: Service[] = [
     brief: "One defined workflow, shipped with rules and a handoff your team can run.",
     priceLabel: "From $10,000",
     priceDetail:
-      "Quoted from a defined workflow. The audit or the roadmap is how that workflow gets named.",
+      "Quoted from a defined workflow, or 25% of the measured savings if you want the fee paid from the reduction. The audit or the roadmap is how that workflow gets named.",
     summary:
       "We design and ship one workflow: the agent, the connections it needs, and the operating rules around it. The project is tied to a specific cost, not to a vague transformation.",
     audience:
