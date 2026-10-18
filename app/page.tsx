@@ -5,7 +5,7 @@ import { FaqList } from "@/components/FaqList";
 import { SavingsShare } from "@/components/SavingsShare";
 import { ButtonLink, Container, JsonLd, Kicker } from "@/components/ui";
 import { faqs } from "@/content/faqs";
-import { costPatterns, homeServicesIntro } from "@/content/home";
+import { costPatterns, departmentPitch, homeServicesIntro } from "@/content/home";
 import { auditPath } from "@/content/nav";
 import { processSteps } from "@/content/process";
 import { services } from "@/content/services";
@@ -16,7 +16,7 @@ import { getPosts, kindLabel } from "@/lib/posts";
 import { faqJsonLd } from "@/lib/structured-data";
 
 export const metadata = pageMetadata({
-  title: `${site.name} | AI consulting that cuts operating cost`,
+  title: `${site.name} | Your outsourced AI department`,
   description: site.description,
   path: "/",
   absolute: true,
@@ -31,14 +31,14 @@ export default function HomePage() {
       <section className="border-b border-line">
         <Container className="grid gap-12 py-16 sm:py-24 lg:grid-cols-[minmax(0,1fr)_22rem] lg:items-end">
           <div>
-            <Kicker>AI consulting for operating companies</Kicker>
+            <Kicker>Your outsourced AI department</Kicker>
             <h1 className="mt-5 max-w-3xl font-serif text-[2.7rem] leading-[1.02] tracking-tight sm:text-6xl lg:text-7xl">
               {site.tagline}
             </h1>
             <p className="mt-6 max-w-xl text-lg leading-relaxed text-quiet">
-              {site.name} helps businesses find the repetitive work that still sits on
-              payroll and implement AI that removes it. The first step is a free AI
-              savings audit.
+              Hire {site.name} as your AI implementation team. We find the repetitive
+              work that still sits on payroll and implement the workflows that remove
+              it. The first step is a free AI savings audit.
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <ButtonLink href={auditPath}>
@@ -102,6 +102,24 @@ export default function HomePage() {
               <li key={pattern.title} className="border-t-2 border-oxblood pt-5">
                 <h3 className="font-serif text-2xl tracking-tight">{pattern.title}</h3>
                 <p className="mt-3 text-base leading-relaxed text-quiet">{pattern.body}</p>
+              </li>
+            ))}
+          </ul>
+        </Container>
+      </section>
+
+      <section className="border-t border-line">
+        <Container className="py-16 sm:py-24">
+          <Kicker>{departmentPitch.kicker}</Kicker>
+          <h2 className="mt-4 max-w-3xl font-serif text-4xl tracking-tight sm:text-5xl">
+            {departmentPitch.title}
+          </h2>
+          <p className="mt-5 max-w-2xl text-lg leading-relaxed text-quiet">{departmentPitch.lede}</p>
+          <ul className="mt-10 grid gap-8 md:grid-cols-3">
+            {departmentPitch.points.map((point) => (
+              <li key={point.title} className="border-t-2 border-oxblood pt-5">
+                <h3 className="font-serif text-2xl tracking-tight">{point.title}</h3>
+                <p className="mt-3 text-base leading-relaxed text-quiet">{point.body}</p>
               </li>
             ))}
           </ul>

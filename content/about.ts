@@ -1,14 +1,14 @@
 export const aboutIntro = {
   kicker: "About",
   title: "The firm behind the work.",
-  lede: "Adtell.ai helps businesses implement AI that removes operating cost. Chris LaBonge is Founder and President.",
+  lede: "Adtell.ai is the outsourced AI department. Companies pay us as their AI implementation team. Chris LaBonge is Founder and President.",
 };
 
 export const aboutStory: { heading: string; paragraphs: string[] }[] = [
   {
     heading: "The firm",
     paragraphs: [
-      "Adtell.ai is a consulting firm. We find the repetitive work that still sits on payroll and implement an agent for a defined task.",
+      "Adtell.ai is the AI implementation team a company hires instead of staffing an AI department from scratch. We find the repetitive work that still sits on payroll and implement an agent for a defined task.",
       "Chris LaBonge founded the firm. A person at the business stays accountable for the customer, for anything that spends or collects money, and for the brand.",
     ],
   },
