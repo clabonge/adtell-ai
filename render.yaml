@@ -1,13 +1,29 @@
-# Render Blueprint for the Adtell.ai marketing site.
+# Render Blueprint for Adtell.ai.
 # https://render.com/docs/blueprint-spec
+#
+# The web service plan is intentionally omitted so Blueprint sync keeps the
+# current instance. Postgres uses the smallest plan that keeps data. A free
+# Render Postgres database expires after 30 days and has no backups. Background
+# workers have no free plan. Owner password material is not in this file.
+
+databases:
+  - name: adtell-crm
+    plan: 0.1c-256mb
+    region: oregon
+    databaseName: adtell
+    user: adtell
+    # Private network only. The web service and worker use the internal URL.
+    ipAllowList: []
+
 services:
   - type: web
     name: adtell-ai
     runtime: node
     branch: main
-    buildCommand: npm ci && npm run build
+    # Migrate only when the database URL is present, so a deploy without the
+    # database still publishes the site. Migrations are idempotent.
+    buildCommand: 'npm ci && npm run build && if [ -n "$DATABASE_URL" ]; then npm run db:migrate; fi'
     startCommand: npm start
-    # Deploy on every push to the linked branch (main).
     autoDeployTrigger: commit
     healthCheckPath: /
     # Adding the apex also attaches www.adtell.ai and redirects it here.
@@ -21,14 +37,57 @@ services:
       # The build command installs dependencies itself.
       - key: SKIP_INSTALL_DEPS
         value: "true"
+      - key: DATABASE_URL
+        fromDatabase:
+          name: adtell-crm
+          property: connectionString
+      # Render generates this once. It is not stored in git.
+      - key: CRM_SESSION_SECRET
+        generateValue: true
+      # Public owner address. There is no signup.
+      - key: CRM_OWNER_EMAIL
+        value: clabonge@adtell.ai
       # Audit email. Values stay in the Render dashboard. Do not commit them.
-      # How to get each one: README, "Audit form delivery".
       - key: RESEND_API_KEY
         sync: false
       - key: RESEND_FROM
         sync: false
       - key: AUDIT_WEBHOOK_URL
         sync: false
-# CRM database, owner secrets, and the worker are intentionally absent.
-# Adding them here would provision or configure them on the next Blueprint sync.
-# See docs/crm.md, "Render rollout". Do not add them until that plan is approved.
+
+  - type: worker
+    name: adtell-crm-worker
+    runtime: node
+    branch: main
+    region: oregon
+    # Smallest background worker plan. There is no free worker.
+    plan: 0.5c-512mb
+    buildCommand: npm ci
+    preDeployCommand: npm run db:migrate
+    startCommand: npm run crm:worker
+    autoDeployTrigger: commit
+    envVars:
+      - key: NODE_VERSION
+        value: "22.14.0"
+      - key: SKIP_INSTALL_DEPS
+        value: "true"
+      - key: DATABASE_URL
+        fromDatabase:
+          name: adtell-crm
+          property: connectionString
+      # Copies of the web service values. The secrets stay in the dashboard.
+      - key: RESEND_API_KEY
+        fromService:
+          name: adtell-ai
+          type: web
+          envVarKey: RESEND_API_KEY
+      - key: RESEND_FROM
+        fromService:
+          name: adtell-ai
+          type: web
+          envVarKey: RESEND_FROM
+      - key: AUDIT_WEBHOOK_URL
+        fromService:
+          name: adtell-ai
+          type: web
+          envVarKey: AUDIT_WEBHOOK_URL

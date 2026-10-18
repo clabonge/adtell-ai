@@ -61,30 +61,42 @@ export function migrationsDirectory(): string {
 }
 
 export async function applyMigrations(database: CrmDb): Promise<string[]> {
-  await database.sql`
-    CREATE TABLE IF NOT EXISTS schema_migrations (
-      version text PRIMARY KEY,
-      applied_at timestamptz NOT NULL DEFAULT now()
-    )
-  `;
-  const files = readdirSync(migrationsDirectory())
-    .filter((file) => file.endsWith(".sql"))
-    .sort();
-  const applied: string[] = [];
-  for (const file of files) {
-    const version = file.replace(/\.sql$/, "");
-    const existing = await database.sql<{ version: string }[]>`
-      SELECT version FROM schema_migrations WHERE version = ${version}
-    `;
-    if (existing.length > 0) continue;
-    const body = readFileSync(join(migrationsDirectory(), file), "utf8");
-    await database.sql.begin(async (tx) => {
-      await tx.unsafe(body);
-      await tx`INSERT INTO schema_migrations (version) VALUES (${version})`;
-    });
-    applied.push(version);
+  // The web build and the worker pre-deploy can migrate at the same time.
+  // Hold one session lock so the second caller waits, then sees the version row.
+  const reserved = await database.sql.reserve();
+  try {
+    await reserved`SELECT pg_advisory_lock(842019, 44)`;
+    try {
+      await database.sql`
+        CREATE TABLE IF NOT EXISTS schema_migrations (
+          version text PRIMARY KEY,
+          applied_at timestamptz NOT NULL DEFAULT now()
+        )
+      `;
+      const files = readdirSync(migrationsDirectory())
+        .filter((file) => file.endsWith(".sql"))
+        .sort();
+      const applied: string[] = [];
+      for (const file of files) {
+        const version = file.replace(/\.sql$/, "");
+        const existing = await database.sql<{ version: string }[]>`
+          SELECT version FROM schema_migrations WHERE version = ${version}
+        `;
+        if (existing.length > 0) continue;
+        const body = readFileSync(join(migrationsDirectory(), file), "utf8");
+        await database.sql.begin(async (tx) => {
+          await tx.unsafe(body);
+          await tx`INSERT INTO schema_migrations (version) VALUES (${version})`;
+        });
+        applied.push(version);
+      }
+      return applied;
+    } finally {
+      await reserved`SELECT pg_advisory_unlock(842019, 44)`;
+    }
+  } finally {
+    reserved.release();
   }
-  return applied;
 }
 
 export async function pingDatabase(database: CrmDb): Promise<void> {
