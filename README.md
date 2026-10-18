@@ -82,7 +82,8 @@ kind: implementation
 - `/case-studies` and `/case-studies/[slug]`
 - `/blog` and `/blog/[slug]`
 - `/contact` Audit intake form
-- `/api/audit` Audit form delivery
+- `/api/audit` Audit form intake
+- `/admin/crm` Private owner CRM. See `docs/crm.md`.
 - `/sitemap.xml` and `/robots.txt`
 
 ## Deploy on Render
@@ -131,37 +132,20 @@ The `www` CNAME always points at this service's `onrender.com` hostname, not a s
 
 After the records propagate, use **Verify** on the custom domain in Render. Render requests the certificate. Then check `https://adtell.ai`, view source for `rel="canonical"` pointing at `https://adtell.ai`, and open `https://adtell.ai/sitemap.xml`, `https://adtell.ai/robots.txt`, and a POST to `https://adtell.ai/api/audit`.
 
-## Audit form delivery
+## Audit form and private CRM
 
-The contact form posts JSON to `/api/audit`. The route validates the payload, then tries to email `clabonge@adtell.ai`.
+The contact form posts JSON to `/api/audit`. A successful response is `{ "ok": true, "received": true }` only after the inquiry, related CRM records, and notification jobs are committed. The visitor then sees “Your request has been received.” That sentence does not mean an email was sent.
+
+Email and webhook are separate jobs. The worker command is `npm run crm:worker`. If the database is down, the route returns `503` and does not claim the request was received. Setup, the owner CRM, import, backup, and the approval-gated Render rollout are in `docs/crm.md`.
 
 | Env var | Required | What it does |
 | --- | --- | --- |
-| `RESEND_API_KEY` | For email | Resend API key. When this is set, a valid submission is emailed to `clabonge@adtell.ai`. |
-| `RESEND_FROM` | No | Sender address. Default is `Adtell.ai <onboarding@resend.dev>`. Set this after the domain is verified, for example `Adtell.ai <audit@adtell.ai>`. |
-| `AUDIT_WEBHOOK_URL` | No | HTTPS URL that receives the same submission as JSON. Used when `RESEND_API_KEY` is unset, and when Resend returns an error. `http://127.0.0.1` and `http://localhost` are allowed for local checks only. |
+| `DATABASE_URL` | For saving inquiries | Postgres connection string. Do not commit it. |
+| `RESEND_API_KEY` | For the email job | When set, the worker emails `clabonge@adtell.ai`. |
+| `RESEND_FROM` | No | Sender address. Default is `Adtell.ai <onboarding@resend.dev>`. |
+| `AUDIT_WEBHOOK_URL` | No | Trusted server URL for the webhook job. It is not taken from the form. |
+| `CRM_SESSION_SECRET` | For owner sign-in | At least 32 characters. |
+| `CRM_OWNER_EMAIL` | For owner sign-in | The only account. There is no signup. |
+| `CRM_OWNER_PASSWORD_HASH` | For owner sign-in | scrypt hash from `npm run crm:hash-password`. |
 
-A normal git deploy does not fill these in. Add the values in the Render dashboard. The names are also listed in `render.yaml` with `sync: false`, so a Blueprint sync will not overwrite a value you already saved and will not put the secret in git.
-
-### Turn on Resend
-
-1. Create a Resend account at [resend.com/signup](https://resend.com/signup) with `clabonge@adtell.ai`. The default sender, `onboarding@resend.dev`, can deliver only to the email address on that Resend account.
-2. In Resend, open **API Keys** and create a key with sending access. Copy it once. Resend will not show it again.
-3. In Render, open the `adtell-ai` service, then **Environment**. Add `RESEND_API_KEY` and paste the key. Save. Render redeploys. Do not commit the key.
-4. Send a test from `/contact`. The response is `{ "ok": true, "delivered": true }` and the visitor sees “We have your request.”
-
-To send from an `@adtell.ai` address later:
-
-1. In Resend, open **Domains** and add `adtell.ai`.
-2. Add the DNS records Resend shows, at GoDaddy. Do not delete the existing MX records. Those stay on the current mailbox.
-3. After Resend marks the domain verified, set `RESEND_FROM` in Render to `Adtell.ai <audit@adtell.ai>` and save.
-
-### Webhook instead of Resend
-
-Use this when you want Zapier, Make, or another HTTPS endpoint instead of Resend. Create a catch-hook URL, then set `AUDIT_WEBHOOK_URL` in the Render environment to that URL. The POST body is JSON: `source`, `name`, `email`, `company`, `industry`, `size`, `sizeLabel`, and `drains`. A 2xx response counts as delivered.
-
-If both `RESEND_API_KEY` and `AUDIT_WEBHOOK_URL` are set, Resend is tried first. The webhook runs only when Resend does not succeed.
-
-### When the env vars are missing
-
-The form still accepts a valid submission. The route returns `{ "ok": true, "delivered": false }` and does not log the body. The visitor sees “Your request is ready to send.” with a button that opens an email to `clabonge@adtell.ai`, plus the phone number `215-499-8959`. Invalid fields still return `400`. A filled honeypot field (`company_website`) returns success and is not delivered.
+`render.yaml` still lists only the marketing web service. It does not create a database or a worker. Do not add those until the rollout in `docs/crm.md` is approved.

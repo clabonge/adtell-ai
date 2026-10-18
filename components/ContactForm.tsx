@@ -1,6 +1,6 @@
 "use client";
 
-import { useId, useState, type FormEvent } from "react";
+import { useId, useRef, useState, type FormEvent } from "react";
 import { companySizes } from "@/content/audit";
 import { site } from "@/content/site";
 import { validateAudit, type AuditErrors, type AuditSubmission } from "@/lib/audit";
@@ -49,9 +49,10 @@ export function ContactForm() {
   const [form, setForm] = useState<FormState>(emptyForm);
   const [errors, setErrors] = useState<AuditErrors>({});
   const [pending, setPending] = useState(false);
-  const [result, setResult] = useState<{ submission: AuditSubmission; delivered: boolean } | null>(
+  const [result, setResult] = useState<{ submission: AuditSubmission; received: boolean } | null>(
     null,
   );
+  const idempotencyKey = useRef<string | null>(null);
 
   function fieldId(name: string) {
     return `${baseId}-${name}`;
@@ -71,14 +72,17 @@ export function ContactForm() {
       return;
     }
 
+    if (!idempotencyKey.current) idempotencyKey.current = crypto.randomUUID();
     setPending(true);
     setErrors({});
+    const pageUrl = new URL(window.location.href);
     try {
       const response = await fetch("/api/audit", {
         method: "POST",
         headers: {
           Accept: "application/json",
           "Content-Type": "application/json",
+          "Idempotency-Key": idempotencyKey.current,
         },
         body: JSON.stringify({
           name: form.name,
@@ -88,21 +92,39 @@ export function ContactForm() {
           size: form.size,
           drains: form.drains,
           company_website: form.companyWebsite,
+          page_url: window.location.href,
+          referrer: document.referrer,
+          utm_source: pageUrl.searchParams.get("utm_source"),
+          utm_medium: pageUrl.searchParams.get("utm_medium"),
+          utm_campaign: pageUrl.searchParams.get("utm_campaign"),
+          utm_term: pageUrl.searchParams.get("utm_term"),
+          utm_content: pageUrl.searchParams.get("utm_content"),
         }),
       });
       const payload = (await response.json()) as {
         ok?: boolean;
-        delivered?: boolean;
+        received?: boolean;
         errors?: AuditErrors;
       };
-      if (!response.ok || !payload.ok) {
-        setErrors(payload.errors ?? { form: "The request could not be checked. Try again." });
+      if (response.status === 409) {
+        idempotencyKey.current = null;
+      }
+      if (!response.ok || !payload.ok || payload.received !== true) {
+        setErrors(
+          payload.errors ?? {
+            form: "We could not save your request. Please try again.",
+          },
+        );
+        if (payload.received === false && payload.ok) {
+          setResult({ submission: local.value, received: false });
+          setErrors({});
+        }
         return;
       }
-      setResult({ submission: local.value, delivered: payload.delivered === true });
+      setResult({ submission: local.value, received: true });
     } catch {
       setErrors({
-        form: "The request could not be sent. Try again, or use the email address below.",
+        form: "We could not save your request. Please try again.",
       });
     } finally {
       setPending(false);
@@ -113,18 +135,11 @@ export function ContactForm() {
     return (
       <div role="status" className="sheet border border-line bg-ivory p-6 text-ink sm:p-8">
         <h2 className="font-serif text-3xl tracking-tight text-ink">
-          {result.delivered ? "We have your request." : "Your request is ready to send."}
+          {result.received ? "Your request has been received." : "Send this request yourself."}
         </h2>
-        {result.delivered ? (
+        {result.received ? (
           <p className="mt-4 text-base leading-relaxed text-quiet-ink">
-            We emailed the team at{" "}
-            <a
-              className="font-semibold text-oxblood-ink underline underline-offset-4"
-              href={`mailto:${site.email}`}
-            >
-              {site.email}
-            </a>
-            . We will reply to the address you entered. You can also call{" "}
+            We will follow up at the address you entered. You can also call{" "}
             <a className="font-semibold text-oxblood-ink underline underline-offset-4" href={`tel:${site.phoneTel}`}>
               {site.phone}
             </a>
@@ -133,8 +148,7 @@ export function ContactForm() {
         ) : (
           <>
             <p className="mt-4 text-base leading-relaxed text-quiet-ink">
-              We accepted the form. Email from this site is not connected yet, so the team
-              does not have this request. Send the note to{" "}
+              This note has not been saved. Send it to{" "}
               <a
                 className="font-semibold text-oxblood-ink underline underline-offset-4"
                 href={`mailto:${site.email}`}
@@ -161,6 +175,7 @@ export function ContactForm() {
           type="button"
           className="mt-4 text-sm font-semibold text-oxblood-ink underline underline-offset-4"
           onClick={() => {
+            idempotencyKey.current = null;
             setResult(null);
             setForm(emptyForm);
           }}
@@ -175,9 +190,20 @@ export function ContactForm() {
     <form onSubmit={onSubmit} noValidate aria-label="AI savings audit request" className="sheet border border-line bg-ivory p-6 text-ink sm:p-8">
       <p className="text-sm text-quiet-ink">All fields are required.</p>
       {errors.form ? (
-        <p role="alert" className="mt-4 border border-oxblood-ink bg-ivory-deep px-3 py-2 text-sm text-ink">
-          {errors.form}
-        </p>
+        <div role="alert" className="mt-4 border border-oxblood-ink bg-ivory-deep px-3 py-2 text-sm text-ink">
+          <p>{errors.form}</p>
+          <p className="mt-2">
+            You can also email{" "}
+            <a className="font-semibold underline" href={`mailto:${site.email}`}>
+              {site.email}
+            </a>{" "}
+            or call{" "}
+            <a className="font-semibold underline" href={`tel:${site.phoneTel}`}>
+              {site.phone}
+            </a>
+            .
+          </p>
+        </div>
       ) : null}
 
       <div className="mt-6 grid gap-5">
@@ -285,11 +311,11 @@ export function ContactForm() {
         aria-busy={pending}
         className="mt-6 inline-flex min-h-11 items-center justify-center bg-void px-5 text-sm font-semibold text-ivory hover:bg-raise disabled:cursor-wait disabled:opacity-70"
       >
-        {pending ? "Sending" : "Send the request"}
+        {pending ? "Saving" : "Send the request"}
       </button>
       <p className="mt-4 text-sm leading-relaxed text-quiet-ink">
-        We email the request to the team. If email is not connected, the next screen
-        gives you a note to send to {site.email}. You can also call {site.phone}.
+        We save the request before confirming it. A confirmation means we have the request.
+        It does not mean an email has already been sent. You can also email {site.email} or call {site.phone}.
       </p>
     </form>
   );
