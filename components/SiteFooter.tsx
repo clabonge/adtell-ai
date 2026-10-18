@@ -11,8 +11,8 @@ export function SiteFooter() {
             Adtell<span className="text-oxblood">.ai</span>
           </p>
           <p className="mt-4 max-w-sm text-sm leading-relaxed text-quiet">
-            {site.name} is led by {site.founder.name}, {site.founder.role} of{" "}
-            {site.founder.organization}. We help businesses implement AI that cuts
+            {site.name} is the outsourced AI department, led by {site.founder.name},{" "}
+            {site.founder.role} of {site.founder.organization}. We implement AI that cuts
             operating cost.
           </p>
         </div>

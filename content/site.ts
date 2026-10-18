@@ -73,7 +73,7 @@ export const site = {
   updated: "2026-10-15",
   tagline: "Cut the cost of work that should not still be done by hand.",
   description:
-    "Adtell.ai helps businesses implement AI that removes operating cost. Start with a free AI savings audit.",
+    "Adtell.ai is the outsourced AI department. Hire the implementation team that removes operating cost. Start with a free AI savings audit.",
   founder: {
     name: "Chris LaBonge",
     role: "Founder & President",

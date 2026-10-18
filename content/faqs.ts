@@ -10,6 +10,11 @@ export const faqs: Faq[] = [
       "A working session on the workflows you already know are slow or expensive. You get a ranked list of what is worth doing and a recommendation for the next step, which may be to do nothing yet. It is free. It is not a software demo.",
   },
   {
+    question: "What is an outsourced AI department?",
+    answer:
+      "It is the AI implementation team you pay instead of hiring one inside the company. We scope the work in a free audit, ship defined workflows, and stay on a retainer when you want the team to continue. Your people still own customers, money, and the brand. The department connects repetitive work across sales, marketing, and operations. Those departments stay in place.",
+  },
+  {
     question: "Which industries do you work with?",
     answer:
       "We have helped businesses in fiber optics, technical training, furniture, spirits, wine, a public market, and property management. The offer is not limited to those industries. If the work is repetitive and the cost is real, the audit is how we find out whether we can help.",

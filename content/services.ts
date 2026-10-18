@@ -17,8 +17,8 @@ export type Service = {
 
 export const servicesIntro = {
   kicker: "Services",
-  title: "Engagements with a published starting point.",
-  lede: "The free audit is the front door. Paid work is scoped to a workflow, a plan, a team, or ongoing implementation. An implementation can be a fixed price or 25% of the measured savings. Ranges are wide because companies are not identical. A quote follows the work, not a slide.",
+  title: "How you pay the department.",
+  lede: "The free audit scopes the work. A roadmap writes the plan. An implementation ships one workflow, for a fixed price or 25% of the measured savings. A retainer is the ongoing team, from $1,500 a month. Training is for the people inside the company who will work with that team. A quote follows the work.",
 };
 
 /**
@@ -105,12 +105,12 @@ export const services: Service[] = [
   {
     slug: "monthly-retainer",
     name: "Monthly AI Retainer",
-    brief: "Continued implementation after a workflow is already live.",
+    brief: "The AI implementation team, month to month, after a workflow is live.",
     priceLabel: "From $1,500/mo",
     priceDetail:
-      "The starting point. The monthly scope is set from the systems already in play.",
+      "The starting point for the ongoing team. The monthly scope is set from the systems already in play.",
     summary:
-      "Ongoing implementation, tuning, and oversight after a workflow is in production. For teams that want an operator on the hook for the next improvement, not a binder that ends at launch.",
+      "The ongoing AI implementation team after a workflow is live. The monthly fee covers continued implementation, tuning, and oversight.",
     audience:
       "Companies with an agent or workflow already live, who want it watched and extended as the work changes.",
     includes: [

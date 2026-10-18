@@ -8,7 +8,7 @@ import { pageMetadata } from "@/lib/seo";
 export const metadata = pageMetadata({
   title: `About ${site.name}`,
   description:
-    "Adtell.ai is an AI consulting firm led by Chris LaBonge, Founder and President. We help businesses implement AI that removes operating cost.",
+    "Adtell.ai is the outsourced AI department, led by Chris LaBonge, Founder and President. Companies pay us as their AI implementation team.",
   path: "/about",
 });
 
