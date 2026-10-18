@@ -4,6 +4,14 @@ import type { AuditSubmission } from "@/lib/audit";
 
 const DEFAULT_FROM = "Adtell.ai <onboarding@resend.dev>";
 
+export type DeliveryChannel = "email" | "webhook";
+
+export type DeliveryResult = {
+  ok: boolean;
+  status: number;
+  unconfigured?: boolean;
+};
+
 function sizeLabel(size: AuditSubmission["size"]): string {
   return companySizes.find((option) => option.value === size)?.label ?? size;
 }
@@ -34,8 +42,8 @@ function fromAddress(): string {
   return DEFAULT_FROM;
 }
 
-function webhookUrl(): string | null {
-  const configured = process.env.AUDIT_WEBHOOK_URL?.trim();
+export function webhookUrl(raw: string | undefined = process.env.AUDIT_WEBHOOK_URL): string | null {
+  const configured = raw?.trim();
   if (!configured) return null;
   try {
     const url = new URL(configured);
@@ -49,12 +57,22 @@ function webhookUrl(): string | null {
   return null;
 }
 
+export function configuredNotificationChannels(
+  env: NodeJS.ProcessEnv = process.env,
+): DeliveryChannel[] {
+  const channels: DeliveryChannel[] = [];
+  if (env.RESEND_API_KEY?.trim()) channels.push("email");
+  if (webhookUrl(env.AUDIT_WEBHOOK_URL)) channels.push("webhook");
+  return channels;
+}
+
 async function postJson(
   url: string,
   init: { headers: Record<string, string>; body: string },
+  fetchImpl: typeof fetch,
 ): Promise<{ ok: boolean; status: number }> {
   try {
-    const response = await fetch(url, {
+    const response = await fetchImpl(url, {
       method: "POST",
       headers: init.headers,
       body: init.body,
@@ -66,64 +84,61 @@ async function postJson(
   }
 }
 
-async function sendResend(apiKey: string, submission: AuditSubmission): Promise<boolean> {
-  const result = await postJson("https://api.resend.com/emails", {
-    headers: {
-      Authorization: `Bearer ${apiKey}`,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      from: fromAddress(),
-      to: [site.email],
-      reply_to: submission.email,
-      subject: subjectLine(submission.company),
-      text: auditText(submission),
-    }),
-  });
-  if (!result.ok) {
-    console.error("audit delivery failed: resend", result.status);
-  }
-  return result.ok;
-}
-
-async function sendWebhook(url: string, submission: AuditSubmission): Promise<boolean> {
-  const result = await postJson(url, {
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      source: "adtell.ai audit form",
-      name: submission.name,
-      email: submission.email,
-      company: submission.company,
-      industry: submission.industry,
-      size: submission.size,
-      sizeLabel: sizeLabel(submission.size),
-      drains: submission.drains,
-    }),
-  });
-  if (!result.ok) {
-    console.error("audit delivery failed: webhook", result.status);
-  }
-  return result.ok;
-}
-
-/**
- * Email the submission to the firm inbox. Resend is used when
- * RESEND_API_KEY is set. AUDIT_WEBHOOK_URL is the fallback when Resend is
- * unset or the Resend request fails. Returns false when nothing is delivered.
- * Does not log the submission.
- */
-export async function deliverAudit(submission: AuditSubmission): Promise<boolean> {
+export async function sendAuditEmail(
+  submission: AuditSubmission,
+  options?: { idempotencyKey?: string; fetchImpl?: typeof fetch },
+): Promise<DeliveryResult> {
   const apiKey = process.env.RESEND_API_KEY?.trim();
-  if (apiKey) {
-    const sent = await sendResend(apiKey, submission);
-    if (sent) return true;
-  }
+  if (!apiKey) return { ok: false, status: 0, unconfigured: true };
+  const headers: Record<string, string> = {
+    Authorization: `Bearer ${apiKey}`,
+    "Content-Type": "application/json",
+  };
+  if (options?.idempotencyKey) headers["Idempotency-Key"] = options.idempotencyKey;
+  const result = await postJson(
+    "https://api.resend.com/emails",
+    {
+      headers,
+      body: JSON.stringify({
+        from: fromAddress(),
+        to: [site.email],
+        reply_to: submission.email,
+        subject: subjectLine(submission.company),
+        text: auditText(submission),
+      }),
+    },
+    options?.fetchImpl ?? fetch,
+  );
+  if (!result.ok) console.error("audit delivery failed: resend", result.status);
+  return result;
+}
 
+export async function sendAuditWebhook(
+  submission: AuditSubmission,
+  options?: { eventId?: string; fetchImpl?: typeof fetch },
+): Promise<DeliveryResult> {
   const hook = webhookUrl();
-  if (hook) return sendWebhook(hook, submission);
-
-  if (!apiKey) {
-    console.error("audit delivery skipped: RESEND_API_KEY and AUDIT_WEBHOOK_URL are unset");
-  }
-  return false;
+  if (!hook) return { ok: false, status: 0, unconfigured: true };
+  const headers: Record<string, string> = { "Content-Type": "application/json" };
+  if (options?.eventId) headers["X-Adtell-Event-Id"] = options.eventId;
+  const result = await postJson(
+    hook,
+    {
+      headers,
+      body: JSON.stringify({
+        source: "adtell.ai audit form",
+        eventId: options?.eventId ?? null,
+        name: submission.name,
+        email: submission.email,
+        company: submission.company,
+        industry: submission.industry,
+        size: submission.size,
+        sizeLabel: sizeLabel(submission.size),
+        drains: submission.drains,
+      }),
+    },
+    options?.fetchImpl ?? fetch,
+  );
+  if (!result.ok) console.error("audit delivery failed: webhook", result.status);
+  return result;
 }

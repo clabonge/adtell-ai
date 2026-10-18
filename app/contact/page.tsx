@@ -17,7 +17,7 @@ export default function ContactPage() {
       <PageHero
         kicker="Contact"
         title="Book a free AI savings audit."
-        lede="Share the company and the work that costs you the most. We email the request to the team. If email is not connected, the form gives you a note to send."
+        lede="Share the company and the work that costs you the most. We save the request, then follow up at the address you enter."
         crumbs={[{ name: "Book an audit", path: "/contact" }]}
       />
       <section>

@@ -6,19 +6,30 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start --hostname 0.0.0.0 --port ${PORT:-3000}",
-    "lint": "eslint"
+    "lint": "eslint",
+    "typecheck": "tsc --noEmit --pretty false",
+    "test": "tsx --test tests/*.test.ts",
+    "db:migrate": "tsx scripts/db-migrate.ts",
+    "crm:worker": "tsx scripts/crm-worker.ts",
+    "crm:hash-password": "tsx scripts/hash-password.ts",
+    "crm:seed-demo": "tsx scripts/seed-demo.ts"
   },
   "engines": {
     "node": "22.14.0"
   },
   "dependencies": {
+    "drizzle-orm": "^0.45.4",
     "next": "16.4.1",
+    "postgres": "^3.4.9",
     "react": "19.3.0",
     "react-dom": "19.3.0",
     "react-markdown": "^10.1.0",
-    "remark-gfm": "^4.0.1"
+    "remark-gfm": "^4.0.1",
+    "tsx": "^4.23.15"
   },
   "devDependencies": {
+    "@electric-sql/pglite": "^0.5.10",
+    "@electric-sql/pglite-socket": "^0.2.13",
     "@tailwindcss/turbopack": "^4",
     "@types/node": "^20",
     "@types/react": "^19",

@@ -29,3 +29,6 @@ services:
         sync: false
       - key: AUDIT_WEBHOOK_URL
         sync: false
+# CRM database, owner secrets, and the worker are intentionally absent.
+# Adding them here would provision or configure them on the next Blueprint sync.
+# See docs/crm.md, "Render rollout". Do not add them until that plan is approved.
