@@ -23,6 +23,12 @@ export function SavingsShare({ bordered = true }: { bordered?: boolean }) {
             </li>
           ))}
         </ul>
+        <aside className="mt-10 max-w-2xl border border-line p-5">
+          <p className="text-xs font-semibold uppercase tracking-[0.16em] text-oxblood">
+            {savingsShare.illustration.label}
+          </p>
+          <p className="mt-3 text-base leading-relaxed text-quiet">{savingsShare.illustration.body}</p>
+        </aside>
         <p className="mt-10">
           <Link
             href={auditPath}

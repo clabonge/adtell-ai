@@ -18,7 +18,7 @@ export type Service = {
 export const servicesIntro = {
   kicker: "Services",
   title: "How you pay the department.",
-  lede: "The free audit scopes the work. A roadmap writes the plan. An implementation ships one workflow, for a fixed price or 25% of the measured savings. A retainer is the ongoing team, from $1,500 a month. Training is for the people inside the company who will work with that team. A quote follows the work.",
+  lede: "The free audit scopes the work. A starter automates one workflow, with the scope and price quoted in writing after the audit and no long-term commitment. A roadmap writes the plan. An implementation ships one workflow, for a fixed price or 25% of the measured savings. A retainer is the ongoing team, from $1,500 a month. Training is for the people inside the company who will work with that team. A quote follows the work.",
 };
 
 /**
@@ -28,21 +28,25 @@ export const servicesIntro = {
 export const savingsShare = {
   kicker: "A second way to pay",
   title: "Pay 25% of the savings.",
-  lede: "A fixed price is the right shape when you want a known invoice. A share is the right shape when you want us paid from the reduction. The free audit can come back with a price, a fee of 25% of the measured savings, or both. You keep the other 75%.",
+  lede: "A fixed price is the right shape when you want a known invoice. A share is the right shape when you want us paid from the reduction. Before any work starts, we agree a measured baseline with you in writing. Savings are measured against that baseline and reviewed together. Billing is monthly on the measured savings. The term length and any cap are set in that written agreement. The free audit can come back with a price, a fee of 25% of the measured savings, or both. You keep the other 75%.",
   points: [
     {
-      title: "Count the cost",
-      body: "Hours, a bill, or rework that someone in the company can count. If it cannot be counted, we quote a price.",
+      title: "Agree the baseline",
+      body: "We agree a measured baseline with you in writing before work starts. If the cost cannot be counted, we quote a price instead.",
     },
     {
-      title: "Write the measurement down",
-      body: "We agree what will be counted, and for how long, before the build starts. The 25% applies to that result.",
+      title: "Measure it together",
+      body: "Savings are measured against that baseline and reviewed with you. Billing is monthly on the measured savings.",
     },
     {
-      title: "Choose",
-      body: "Take the fixed price, the 25% share, or wait. The audit stays free either way.",
+      title: "The agreement sets the rest",
+      body: "Term length and any cap are set in the written agreement. You can still take a fixed price, the 25% share, or wait. The audit stays free either way.",
     },
   ],
+  illustration: {
+    label: "Illustration only",
+    body: "If a change saves $4,000 a month, the client keeps $3,000 and pays $1,000. This example shows the 25% fee. It is not a client result and not a promise of savings.",
+  },
 };
 
 export const services: Service[] = [
@@ -62,6 +66,24 @@ export const services: Service[] = [
       "A written one-page ranked list of opportunities afterward",
       "A fixed price, a 25% share of measured savings, or both, when the work should proceed",
       "A plain recommendation, including “do nothing yet” when that is the right answer",
+    ],
+    cta: "Book a free AI audit",
+  },
+  {
+    slug: "starter-workflow",
+    name: "Starter workflow",
+    brief: "One workflow automated. Scope and price are quoted in writing after the audit.",
+    priceLabel: "Quoted",
+    priceDetail:
+      "Scope and price are quoted in writing after the free audit. No long-term commitment.",
+    summary:
+      "A fixed-scope project between the free audit and a full implementation. We automate one workflow. The scope and the price are quoted in writing after the audit. There is no retainer and no long-term commitment.",
+    audience:
+      "Owners who want one defined workflow running before they consider a larger implementation.",
+    includes: [
+      "One workflow, named in the audit",
+      "Scope and price in writing before any build",
+      "No long-term commitment",
     ],
     cta: "Book a free AI audit",
   },
