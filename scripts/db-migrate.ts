@@ -1,4 +1,5 @@
 import { applyMigrations, getCrmDatabase, resetCrmDatabaseForTests } from "../lib/crm/db";
+import { migrationFailureLine } from "../lib/crm/text";
 
 /**
  * Migrate the database in DATABASE_URL.
@@ -50,9 +51,8 @@ async function main() {
     } catch (err) {
       const code = errorCode(err) || "error";
       if (attempt === attempts || !RETRYABLE.has(code)) {
-        console.error(`migration failed: ${code}`);
-        process.exitCode = 1;
-        return;
+        console.error(migrationFailureLine(err));
+        process.exit(1);
       }
       console.error(`migration waiting: ${code}`);
       await sleep(Math.min(15000, 2000 * attempt));
@@ -61,6 +61,6 @@ async function main() {
 }
 
 main().catch((err: unknown) => {
-  console.error(`migration failed: ${errorCode(err) || "error"}`);
+  console.error(migrationFailureLine(err));
   process.exit(1);
 });
