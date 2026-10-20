@@ -2,6 +2,7 @@ import { AuditBand } from "@/components/AuditBand";
 import { Container, PageHero } from "@/components/ui";
 import {
   processBoundaries,
+  dataHandling,
   processIntro,
   processNeeds,
   processSteps,
@@ -59,6 +60,23 @@ export default function HowItWorksPage() {
               ))}
             </ul>
           </div>
+        </Container>
+      </section>
+      <section className="border-t border-line">
+        <Container className="max-w-3xl py-14 sm:py-20">
+          <h2 className="font-serif text-3xl tracking-tight">{dataHandling.heading}</h2>
+          {dataHandling.paragraphs.map((paragraph) => (
+            <p key={paragraph} className="mt-4 text-lg leading-relaxed text-quiet">
+              {paragraph}
+            </p>
+          ))}
+          <p className="mt-4 text-lg leading-relaxed text-quiet">
+            What the audit form stores is described on the{" "}
+            <a className="font-semibold text-oxblood underline underline-offset-4" href="/privacy">
+              privacy page
+            </a>
+            .
+          </p>
         </Container>
       </section>
       <AuditBand />
