@@ -58,8 +58,14 @@ export function SiteFooter() {
         </div>
       </div>
       <div className="border-t border-line">
-        <p className="mx-auto w-full max-w-6xl px-5 py-4 text-xs text-quiet sm:px-8">
-          © {site.updated.slice(0, 4)} {site.name}
+        <p className="mx-auto flex w-full max-w-6xl flex-wrap gap-x-4 gap-y-2 px-5 py-4 text-xs text-quiet sm:px-8">
+          <span>© {site.updated.slice(0, 4)} {site.name}</span>
+          <Link href="/privacy" className="underline underline-offset-4 hover:text-ivory">
+            Privacy
+          </Link>
+          <Link href="/terms" className="underline underline-offset-4 hover:text-ivory">
+            Terms
+          </Link>
         </p>
       </div>
     </footer>

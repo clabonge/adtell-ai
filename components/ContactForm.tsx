@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useId, useRef, useState, type FormEvent } from "react";
 import { companySizes } from "@/content/audit";
 import { site } from "@/content/site";
@@ -316,6 +317,12 @@ export function ContactForm() {
       <p className="mt-4 text-sm leading-relaxed text-quiet-ink">
         We save the request before confirming it. A confirmation means we have the request.
         It does not mean an email has already been sent. You can also email {site.email} or call {site.phone}.
+      </p>
+      <p className="mt-3 text-sm leading-relaxed text-quiet-ink">
+        We store this request so we can reply, and we do not sell it.{" "}
+        <Link href="/privacy" className="font-semibold text-oxblood-ink underline underline-offset-4">
+          Privacy
+        </Link>
       </p>
     </form>
   );

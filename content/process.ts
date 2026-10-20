@@ -39,6 +39,16 @@ export const processNeeds = [
   "A person who can decide what to do with the recommendation",
 ];
 
+export const dataHandling = {
+  heading: "Your data and your systems",
+  paragraphs: [
+    "You own the accounts and anything we build for you.",
+    "We remove our access when the engagement ends.",
+    "An NDA is available on request.",
+    "We do not use client data to train AI models.",
+  ],
+};
+
 export const processBoundaries = [
   "Invent a savings dollar figure to win the meeting",
   "Start by selling a platform",
