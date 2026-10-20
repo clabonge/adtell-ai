@@ -1,7 +1,7 @@
 import { AuditBand } from "@/components/AuditBand";
 import { CompanyLists } from "@/components/CompanyLists";
 import { Container, PageHero } from "@/components/ui";
-import { aboutIntro, aboutStory, principles } from "@/content/about";
+import { aboutIntro, aboutStory, founderSection, principles } from "@/content/about";
 import { site } from "@/content/site";
 import { pageMetadata } from "@/lib/seo";
 
@@ -33,6 +33,32 @@ export default function AboutPage() {
               ))}
             </article>
           ))}
+        </Container>
+      </section>
+      <section className="border-t border-line">
+        <Container className="grid gap-10 py-14 sm:grid-cols-[16rem_minmax(0,1fr)] sm:py-20">
+          <figure>
+            <div
+              className="flex aspect-[4/5] items-center justify-center border border-dashed border-line px-6 text-center"
+              role="img"
+              aria-label="Photo placeholder. A portrait of Chris LaBonge has not been added."
+            >
+              <p className="text-sm font-semibold uppercase tracking-[0.14em] text-quiet">
+                Photo placeholder
+              </p>
+            </div>
+            <figcaption className="mt-3 text-sm leading-relaxed text-quiet">
+              Portrait of Chris LaBonge. Not yet supplied.
+            </figcaption>
+          </figure>
+          <div className="max-w-3xl">
+            <h2 className="font-serif text-3xl tracking-tight">{founderSection.heading}</h2>
+            {founderSection.paragraphs.map((paragraph) => (
+              <p key={paragraph} className="mt-4 text-lg leading-relaxed text-quiet">
+                {paragraph}
+              </p>
+            ))}
+          </div>
         </Container>
       </section>
       <section className="border-t border-line">
