@@ -6,7 +6,7 @@ import { SavingsShare } from "@/components/SavingsShare";
 import { ButtonLink, Container, JsonLd, Kicker } from "@/components/ui";
 import { faqs } from "@/content/faqs";
 import { costPatterns, departmentPitch, homeServicesIntro } from "@/content/home";
-import { auditPath } from "@/content/nav";
+import { auditCta, auditPath } from "@/content/nav";
 import { processSteps } from "@/content/process";
 import { services } from "@/content/services";
 import { site } from "@/content/site";
@@ -42,7 +42,7 @@ export default function HomePage() {
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <ButtonLink href={auditPath}>
-                Book a free AI savings audit
+                {auditCta}
               </ButtonLink>
               <ButtonLink href="/how-it-works" variant="ghost">
                 See how it works
@@ -195,7 +195,7 @@ export default function HomePage() {
         <Container className="py-16 sm:py-24">
           <Kicker>How it works</Kicker>
           <h2 className="mt-4 max-w-2xl font-serif text-4xl tracking-tight sm:text-5xl">
-            From a named drain to a workflow you can run.
+            From a named task to a workflow you can run.
           </h2>
           <ol className="mt-10 grid gap-8 md:grid-cols-2">
             {processSteps.map((step) => (

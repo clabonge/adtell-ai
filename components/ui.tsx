@@ -110,11 +110,13 @@ export function PageHero({
   title,
   lede,
   crumbs,
+  cta,
 }: {
   kicker: string;
   title: string;
   lede: string;
   crumbs?: Crumb[];
+  cta?: { href: string; label: string };
 }) {
   return (
     <section className="border-b border-line">
@@ -125,6 +127,11 @@ export function PageHero({
           {title}
         </h1>
         <p className="mt-5 max-w-2xl text-lg leading-relaxed text-quiet">{lede}</p>
+        {cta ? (
+          <div className="mt-8">
+            <ButtonLink href={cta.href}>{cta.label}</ButtonLink>
+          </div>
+        ) : null}
       </Container>
     </section>
   );

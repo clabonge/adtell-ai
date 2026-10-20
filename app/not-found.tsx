@@ -1,7 +1,10 @@
+import { AuditBand } from "@/components/AuditBand";
 import { ButtonLink, Container } from "@/components/ui";
+import { auditCta, auditPath } from "@/content/nav";
 
 export default function NotFound() {
   return (
+    <>
     <Container className="py-24">
       <p className="text-xs font-semibold uppercase tracking-[0.18em] text-oxblood">
         404
@@ -12,10 +15,12 @@ export default function NotFound() {
       </p>
       <div className="mt-8 flex flex-wrap gap-3">
         <ButtonLink href="/">Back to the homepage</ButtonLink>
-        <ButtonLink href="/contact" variant="ghost">
-          Book an audit
+        <ButtonLink href={auditPath} variant="ghost">
+          {auditCta}
         </ButtonLink>
       </div>
     </Container>
+    <AuditBand />
+    </>
   );
 }

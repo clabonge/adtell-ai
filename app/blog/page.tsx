@@ -1,5 +1,7 @@
 import Link from "next/link";
+import { AuditBand } from "@/components/AuditBand";
 import { Container, PageHero } from "@/components/ui";
+import { auditCta, auditPath } from "@/content/nav";
 import { formatDate } from "@/lib/format";
 import { getPosts } from "@/lib/posts";
 import { pageMetadata } from "@/lib/seo";
@@ -21,6 +23,7 @@ export default function BlogPage() {
         title="Notes on cutting cost."
         lede="Short writing on where AI belongs in an operation, and where it does not. No performance claims dressed up as advice."
         crumbs={[{ name: "Blog", path: "/blog" }]}
+        cta={{ href: auditPath, label: auditCta }}
       />
       <section>
         <Container className="py-14 sm:py-20">
@@ -45,6 +48,7 @@ export default function BlogPage() {
           </ul>
         </Container>
       </section>
+      <AuditBand />
     </>
   );
 }

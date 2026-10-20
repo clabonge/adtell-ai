@@ -49,20 +49,21 @@ export const services: Service[] = [
   {
     slug: "free-ai-savings-audit",
     name: "Free AI Savings Audit",
-    brief: "A working session on the drains, and a recommendation that can be to wait.",
+    brief: "A conversation on the work that costs you, then a one-page ranked list.",
     priceLabel: "Free",
     priceDetail: "No fee for the working session.",
     summary:
-      "A working session on where time and money leak. You leave with a short list of the workflows worth doing first, and a recommendation on whether a roadmap, a build, training, a retainer, or waiting is the honest next step.",
+      "A conversation, on-site locally or by video. We reply within one business day. Afterward you get a written one-page ranked list of opportunities, and a recommendation on whether a roadmap, a build, training, a retainer, or waiting is the honest next step.",
     audience:
       "Owners and operators who want a grounded look before they buy software or hire a build.",
     includes: [
-      "A review of the workflows you flag as slow or expensive",
-      "A ranked list of savings opportunities",
+      "A conversation on the workflows you flag as slow or expensive, on-site locally or by video",
+      "A reply within one business day",
+      "A written one-page ranked list of opportunities afterward",
       "A fixed price, a 25% share of measured savings, or both, when the work should proceed",
       "A plain recommendation, including “do nothing yet” when that is the right answer",
     ],
-    cta: "Book the free audit",
+    cta: "Book a free AI audit",
   },
   {
     slug: "ai-assessment-roadmap",

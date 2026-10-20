@@ -32,4 +32,4 @@ If a workflow touches a customer, money, safety, or the brand, write down what t
 
 Tool lists grow faster than payroll shrinks. A shortlist is useful after you know the workflow, the system it has to touch, and what "done" means for the person who currently does the work. Before that, a shortlist is shopping.
 
-If you want a grounded look at your own drains, [book a free AI savings audit](/contact). Bring the tasks your team complains about repeating. The recommendation may be an assessment, a build, training, or nothing yet. The last of those is a valid result.
+If you want a grounded look at the work that costs you, [book a free AI audit](/contact). Bring the tasks your team complains about repeating. The recommendation may be an assessment, a build, training, or nothing yet. The last of those is a valid result.

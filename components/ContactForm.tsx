@@ -37,7 +37,7 @@ function mailtoHref(value: AuditSubmission) {
       `Industry: ${value.industry}`,
       `Company size: ${sizeLabel}`,
       "",
-      "Biggest time or cost drains:",
+      "The work that costs the most:",
       value.drains,
     ].join("\n"),
   );
@@ -268,7 +268,7 @@ export function ContactForm() {
         </div>
         <div>
           <label htmlFor={fieldId("drains")} className="text-sm font-semibold text-ink">
-            Biggest time or cost drains
+            The work that costs the most
           </label>
           <textarea
             id={fieldId("drains")}

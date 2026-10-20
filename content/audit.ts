@@ -9,8 +9,10 @@ export const companySizes = [
 export type CompanySize = (typeof companySizes)[number]["value"];
 
 export const auditExpect = [
-  "We read what you send before any conversation.",
-  "The session stays on the drains you named.",
-  "You get a ranked recommendation, which can be to wait.",
+  "The free audit is a conversation, on-site locally or by video.",
+  "We reply within one business day.",
+  "Afterward you get a written one-page ranked list of opportunities.",
+  "We read what you send before the conversation.",
+  "The recommendation can be to wait.",
   "When the work should proceed, you get a fixed price, a 25% share of measured savings, or both.",
 ];

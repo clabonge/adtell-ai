@@ -7,3 +7,5 @@ export const primaryNav = [
 ] as const;
 
 export const auditPath = "/contact" as const;
+
+export const auditCta = "Book a free AI audit" as const;

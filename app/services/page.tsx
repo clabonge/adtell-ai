@@ -2,7 +2,7 @@ import { AuditBand } from "@/components/AuditBand";
 import { SavingsShare } from "@/components/SavingsShare";
 import { Container, PageHero } from "@/components/ui";
 import { services, servicesIntro } from "@/content/services";
-import { auditPath } from "@/content/nav";
+import { auditCta, auditPath } from "@/content/nav";
 import { pageMetadata } from "@/lib/seo";
 import Link from "next/link";
 
@@ -21,6 +21,7 @@ export default function ServicesPage() {
         title={servicesIntro.title}
         lede={servicesIntro.lede}
         crumbs={[{ name: "Services", path: "/services" }]}
+        cta={{ href: auditPath, label: auditCta }}
       />
       <SavingsShare bordered={false} />
       <section>
@@ -68,7 +69,7 @@ export default function ServicesPage() {
       </section>
       <AuditBand
         title="Not sure which engagement you need?"
-        lede="Bring the drains. Leave with a recommendation, a fixed price, a 25% share of measured savings, or a reason to wait."
+        lede="Bring the work that costs you. Leave with a recommendation, a fixed price, a 25% share of measured savings, or a reason to wait."
       />
     </>
   );

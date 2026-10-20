@@ -1,7 +1,9 @@
 import { Suspense } from "react";
 import { notFound } from "next/navigation";
+import { AuditBand } from "@/components/AuditBand";
 import { MarkdownBody } from "@/components/MarkdownBody";
 import { Container, JsonLd, PageHero } from "@/components/ui";
+import { auditCta, auditPath } from "@/content/nav";
 import { formatDate } from "@/lib/format";
 import { getPost, getPosts } from "@/lib/posts";
 import { pageMetadata } from "@/lib/seo";
@@ -51,6 +53,7 @@ async function BlogPost({ params }: { params: PageProps<"/blog/[slug]">["params"
         title={post.title}
         lede={post.description}
         crumbs={[{ name: "Blog", path: "/blog" }]}
+        cta={{ href: auditPath, label: auditCta }}
       />
       <article>
         <Container className="max-w-3xl py-12 sm:py-16">
@@ -64,6 +67,7 @@ async function BlogPost({ params }: { params: PageProps<"/blog/[slug]">["params"
           </div>
         </Container>
       </article>
+      <AuditBand />
       <JsonLd data={breadcrumbJsonLd(crumbs)} />
       <JsonLd
         data={articleJsonLd({

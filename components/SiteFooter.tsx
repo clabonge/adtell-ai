@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { auditPath, primaryNav } from "@/content/nav";
+import { auditCta, auditPath, primaryNav } from "@/content/nav";
 import { site } from "@/content/site";
 
 export function SiteFooter() {
@@ -30,7 +30,7 @@ export function SiteFooter() {
             ))}
             <li>
               <Link href={auditPath} className="text-ivory hover:text-oxblood">
-                Book an audit
+                {auditCta}
               </Link>
             </li>
           </ul>
