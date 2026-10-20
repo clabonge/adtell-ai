@@ -6,6 +6,7 @@ import {
   processNeeds,
   processSteps,
 } from "@/content/process";
+import { auditCta, auditPath } from "@/content/nav";
 import { pageMetadata } from "@/lib/seo";
 
 export const metadata = pageMetadata({
@@ -23,6 +24,7 @@ export default function HowItWorksPage() {
         title={processIntro.title}
         lede={processIntro.lede}
         crumbs={[{ name: "How it works", path: "/how-it-works" }]}
+        cta={{ href: auditPath, label: auditCta }}
       />
       <section>
         <Container className="py-14 sm:py-20">

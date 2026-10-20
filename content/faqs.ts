@@ -7,7 +7,7 @@ export const faqs: Faq[] = [
   {
     question: "What is the free AI savings audit?",
     answer:
-      "A working session on the workflows you already know are slow or expensive. You get a ranked list of what is worth doing and a recommendation for the next step, which may be to do nothing yet. It is free. It is not a software demo.",
+      "A conversation, on-site locally or by video, about the workflows you already know are slow or expensive. We reply within one business day. Afterward you get a written one-page ranked list of opportunities and a recommendation for the next step, which may be to do nothing yet. It is free. It is not a software demo.",
   },
   {
     question: "What is an outsourced AI department?",
@@ -47,7 +47,7 @@ export const faqs: Faq[] = [
   {
     question: "What should we send before the audit?",
     answer:
-      "Your name, a work email, the company, the industry, the rough size of the company, and a description of the biggest time or cost drains. Specific workflows are more useful than a list of tools.",
+      "Your name, a work email, the company, the industry, the rough size of the company, and a description of the work that costs the most time or money. Specific workflows are more useful than a list of tools.",
   },
   {
     question: "What should we keep out of the form?",

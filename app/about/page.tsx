@@ -2,6 +2,7 @@ import { AuditBand } from "@/components/AuditBand";
 import { CompanyLists } from "@/components/CompanyLists";
 import { Container, PageHero } from "@/components/ui";
 import { aboutIntro, aboutStory, founderSection, principles } from "@/content/about";
+import { auditCta, auditPath } from "@/content/nav";
 import { site } from "@/content/site";
 import { pageMetadata } from "@/lib/seo";
 
@@ -20,6 +21,7 @@ export default function AboutPage() {
         title={aboutIntro.title}
         lede={aboutIntro.lede}
         crumbs={[{ name: "About", path: "/about" }]}
+        cta={{ href: auditPath, label: auditCta }}
       />
       <section>
         <Container className="grid gap-12 py-14 sm:py-20">

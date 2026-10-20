@@ -8,7 +8,7 @@ Buying AI software is easy to justify and hard to unwind. A license feels like p
 
 ## What the audit is for
 
-The [free AI savings audit](/contact) is a working session, not a pitch. You describe the company and the drains: the tasks that eat time or create rework. That is enough to separate three kinds of work.
+The [free AI savings audit](/contact) is a conversation, not a pitch. You describe the company and the work that costs the most: the tasks that eat time or create rework. That is enough to separate three kinds of work.
 
 1. Work that is repetitive enough to hand to an agent, with a person still approving the outcome.
 2. Work that needs a written roadmap before anyone builds, because it crosses teams or systems.
@@ -31,6 +31,6 @@ There is a second way to pay for an implementation. On a workflow whose cost can
 
 ## What to bring
 
-You do not need a data platform or an AI strategy document. You need a clear account of where time goes. The audit form asks for industry, company size, and the biggest time or cost drains on purpose. Those answers do more for a first conversation than a list of models.
+You do not need a data platform or an AI strategy document. You need a clear account of where time goes. The audit form asks for industry, company size, and the work that costs the most time or money on purpose. Those answers do more for a first conversation than a list of models.
 
-[Book the audit](/contact) when you want that conversation. Keep secrets, customer lists, and passwords out of the form. The first pass only needs enough detail to know whether a conversation is worth having.
+[Book a free AI audit](/contact) when you want that conversation. Keep secrets, customer lists, and passwords out of the form. The first pass only needs enough detail to know whether a conversation is worth having.

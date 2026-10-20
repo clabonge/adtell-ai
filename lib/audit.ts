@@ -53,7 +53,7 @@ export function validateAudit(input: {
   }
 
   if (drains.length < 10) {
-    errors.drains = "Describe the drains in a sentence or two.";
+    errors.drains = "Describe that work in a sentence or two.";
   } else if (drains.length > 4000) {
     errors.drains = "Use 4,000 characters or fewer.";
   }

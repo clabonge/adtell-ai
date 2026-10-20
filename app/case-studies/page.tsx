@@ -1,5 +1,7 @@
 import Link from "next/link";
+import { AuditBand } from "@/components/AuditBand";
 import { Container, PageHero } from "@/components/ui";
+import { auditCta, auditPath } from "@/content/nav";
 import { formatDate } from "@/lib/format";
 import { getPosts, kindLabel } from "@/lib/posts";
 import { pageMetadata } from "@/lib/seo";
@@ -21,6 +23,7 @@ export default function CaseStudiesPage() {
         title="Implementations, written down."
         lede="These notes describe AI automation we helped a business implement. They name the goal and how the work runs. They do not include results or figures."
         crumbs={[{ name: "Case studies", path: "/case-studies" }]}
+        cta={{ href: auditPath, label: auditCta }}
       />
       <section>
         <Container className="py-14 sm:py-20">
@@ -48,6 +51,7 @@ export default function CaseStudiesPage() {
           </ul>
         </Container>
       </section>
+      <AuditBand />
     </>
   );
 }

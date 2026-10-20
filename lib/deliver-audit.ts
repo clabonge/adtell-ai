@@ -26,7 +26,7 @@ function auditText(submission: AuditSubmission): string {
     `Industry: ${submission.industry}`,
     `Company size: ${sizeLabel(submission.size)}`,
     "",
-    "Biggest time or cost drains:",
+    "The work that costs the most:",
     submission.drains,
   ].join("\n");
 }

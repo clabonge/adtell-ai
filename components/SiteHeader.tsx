@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useId, useState } from "react";
-import { auditPath, primaryNav } from "@/content/nav";
+import { auditCta, auditPath, primaryNav } from "@/content/nav";
 import { site } from "@/content/site";
 
 function isActive(pathname: string, href: string) {
@@ -59,10 +59,9 @@ export function SiteHeader() {
         <div className="flex items-center gap-2">
           <Link
             href={auditPath}
-            className="inline-flex min-h-11 items-center justify-center bg-ivory px-3 text-sm font-semibold text-void hover:bg-ivory-deep sm:px-4"
+            className="inline-flex min-h-11 max-w-[11rem] items-center justify-center bg-ivory px-3 text-center text-sm font-semibold leading-tight text-void hover:bg-ivory-deep sm:max-w-none sm:px-4"
           >
-            <span className="sm:hidden">Book</span>
-            <span className="hidden sm:inline">Book an audit</span>
+            {auditCta}
           </Link>
           <button
             type="button"

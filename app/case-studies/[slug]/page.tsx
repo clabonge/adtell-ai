@@ -1,8 +1,10 @@
 import { Suspense } from "react";
 import { notFound } from "next/navigation";
+import { AuditBand } from "@/components/AuditBand";
 import { CompanyLists } from "@/components/CompanyLists";
 import { MarkdownBody } from "@/components/MarkdownBody";
 import { Container, JsonLd, PageHero } from "@/components/ui";
+import { auditCta, auditPath } from "@/content/nav";
 import { formatDate } from "@/lib/format";
 import { getPost, getPosts, kindLabel } from "@/lib/posts";
 import { pageMetadata } from "@/lib/seo";
@@ -56,6 +58,7 @@ async function CaseStudy({
         title={post.title}
         lede={post.description}
         crumbs={[{ name: "Case studies", path: "/case-studies" }]}
+        cta={{ href: auditPath, label: auditCta }}
       />
       <article>
         <Container className="max-w-3xl py-12 sm:py-16">
@@ -77,6 +80,7 @@ async function CaseStudy({
           </div>
         </Container>
       </article>
+      <AuditBand />
       <JsonLd data={breadcrumbJsonLd(crumbs)} />
       <JsonLd
         data={articleJsonLd({

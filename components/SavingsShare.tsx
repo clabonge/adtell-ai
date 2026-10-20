@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Container, Kicker } from "@/components/ui";
-import { auditPath } from "@/content/nav";
+import { auditCta, auditPath } from "@/content/nav";
 import { savingsShare } from "@/content/services";
 
 export function SavingsShare({ bordered = true }: { bordered?: boolean }) {
@@ -28,7 +28,7 @@ export function SavingsShare({ bordered = true }: { bordered?: boolean }) {
             href={auditPath}
             className="text-sm font-semibold text-oxblood underline decoration-oxblood/40 underline-offset-4"
           >
-            Book a free AI savings audit
+            {auditCta}
           </Link>
         </p>
       </Container>
