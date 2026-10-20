@@ -7,9 +7,11 @@
 # workers have no free plan. Owner password material is not in this file.
 
 databases:
-  - name: adtell-crm
+  # New name so sync can create a Virginia instance. Region cannot be changed
+  # on the empty Oregon database adtell-crm. Delete that instance after sync.
+  - name: adtell-crm-va
     plan: 0.1c-256mb
-    region: oregon
+    region: virginia
     databaseName: adtell
     user: adtell
     # Private network only. The web service and worker use the internal URL.
@@ -18,6 +20,7 @@ databases:
 services:
   - type: web
     name: adtell-ai
+    # This service already runs in Virginia. Render cannot change that region.
     runtime: node
     branch: main
     # Migrate only when the database URL is present, so a deploy without the
@@ -39,7 +42,7 @@ services:
         value: "true"
       - key: DATABASE_URL
         fromDatabase:
-          name: adtell-crm
+          name: adtell-crm-va
           property: connectionString
       # Render generates this once. It is not stored in git.
       - key: CRM_SESSION_SECRET
@@ -59,7 +62,7 @@ services:
     name: adtell-crm-worker
     runtime: node
     branch: main
-    region: oregon
+    region: virginia
     # Smallest background worker plan. There is no free worker.
     plan: 0.5c-512mb
     buildCommand: npm ci
@@ -73,21 +76,11 @@ services:
         value: "true"
       - key: DATABASE_URL
         fromDatabase:
-          name: adtell-crm
+          name: adtell-crm-va
           property: connectionString
-      # Copies of the web service values. The secrets stay in the dashboard.
+      # Dashboard values. fromService fails the sync when the web service
+      # does not already have the key. AUDIT_WEBHOOK_URL is optional and omitted.
       - key: RESEND_API_KEY
-        fromService:
-          name: adtell-ai
-          type: web
-          envVarKey: RESEND_API_KEY
+        sync: false
       - key: RESEND_FROM
-        fromService:
-          name: adtell-ai
-          type: web
-          envVarKey: RESEND_FROM
-      - key: AUDIT_WEBHOOK_URL
-        fromService:
-          name: adtell-ai
-          type: web
-          envVarKey: AUDIT_WEBHOOK_URL
+        sync: false

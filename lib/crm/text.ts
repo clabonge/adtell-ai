@@ -92,6 +92,24 @@ export function logSafe(scope: string, err: unknown): void {
   console.error(`${scope}: ${code}`);
 }
 
+export function migrationFailureLine(err: unknown): string {
+  const code =
+    err && typeof err === "object" && "code" in err && (err as { code: unknown }).code
+      ? String((err as { code: unknown }).code)
+      : err && typeof err === "object" && "errno" in err && typeof (err as { errno: unknown }).errno === "string"
+        ? (err as { errno: string }).errno
+        : "error";
+  const raw = err instanceof Error ? err.message : "";
+  const detail = raw
+    .replace(/postgres(?:ql)?:\/\/[^@\s/]+@/gi, "postgresql://")
+    .replace(/[^\s]+:[^\s@]+@/g, "[redacted]@")
+    .replace(/\s+/g, " ")
+    .trim()
+    .slice(0, 240);
+  const extra = detail && detail !== code ? `: ${detail}` : "";
+  return `migration failed: ${code}${extra}. This release will not go live.`;
+}
+
 export function postgresErrorCode(err: unknown): string {
   if (!err || typeof err !== "object" || !("code" in err)) return "";
   return String((err as { code: unknown }).code);

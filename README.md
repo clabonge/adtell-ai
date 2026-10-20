@@ -91,8 +91,8 @@ kind: implementation
 Production hosting is Render, from the Blueprint in `render.yaml`. That file defines:
 
 - The Node web service `adtell-ai`. Build: `npm ci && npm run build`, then `npm run db:migrate` when `DATABASE_URL` is set. Start: `npm start` (Next.js production server on `0.0.0.0` and Render's `PORT`). The instance type is not in the Blueprint, so sync leaves the current web plan alone.
-- Postgres `adtell-crm` on plan `0.1c-256mb` in Oregon, reachable on the private network only. `DATABASE_URL` is wired from that database and is not committed.
-- A background worker `adtell-crm-worker` on plan `0.5c-512mb`. Pre-deploy runs `npm run db:migrate`. Start runs `npm run crm:worker`.
+- Postgres `adtell-crm-va` on plan `0.1c-256mb` in Virginia, the same region as the web service, reachable on the private network only. `DATABASE_URL` is wired from that database and is not committed.
+- A background worker `adtell-crm-worker` on plan `0.5c-512mb` in Virginia. Pre-deploy runs `npm run db:migrate`. Start runs `npm run crm:worker`. Email settings are entered on the worker. The webhook variable is optional and omitted.
 
 Shared settings:
 

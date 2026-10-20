@@ -16,6 +16,7 @@ import { csvCell, parseCsv } from "../lib/crm/csv";
 import { workerLoop } from "../lib/crm/worker";
 import { loginOwner, sessionCookie } from "../lib/crm/auth";
 import { assertDemoSeedAllowed } from "../lib/crm/seed";
+import { migrationFailureLine } from "../lib/crm/text";
 import type { AuditSubmission } from "../lib/audit";
 import { startTestDatabase, tempDir, type TestDatabase } from "./helpers";
 
@@ -564,6 +565,18 @@ describe("crm", () => {
         DATABASE_URL: "postgres://user:pass@dpg.example.com/adtell",
       }),
     );
+  });
+
+  it("logs a migration failure without the database password", () => {
+    const line = migrationFailureLine(
+      Object.assign(
+        new Error("getaddrinfo ENOTFOUND dpg-abc-a postgres://adtell:secret-pass@dpg-abc-a/adtell"),
+        { code: "ENOTFOUND" },
+      ),
+    );
+    assert.match(line, /^migration failed: ENOTFOUND/);
+    assert.match(line, /This release will not go live\.$/);
+    assert.equal(line.includes("secret-pass"), false);
   });
 
   it("stops the worker loop when aborted", async () => {
