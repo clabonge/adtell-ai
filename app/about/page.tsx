@@ -1,5 +1,5 @@
 import { AuditBand } from "@/components/AuditBand";
-import { CompanyLists } from "@/components/CompanyLists";
+import { ImplementationHighlights } from "@/components/CompanyLists";
 import { Container, PageHero } from "@/components/ui";
 import { aboutIntro, aboutStory, founderSection, principles } from "@/content/about";
 import { auditCta, auditPath } from "@/content/nav";
@@ -66,8 +66,11 @@ export default function AboutPage() {
       <section className="border-t border-line">
         <Container className="py-14 sm:py-20">
           <h2 className="font-serif text-3xl tracking-tight">Businesses we have helped</h2>
+          <p className="mt-4 max-w-2xl text-lg leading-relaxed text-quiet">
+            Three of the businesses we have helped. The full list is on the case studies page.
+          </p>
           <div className="mt-8">
-            <CompanyLists />
+            <ImplementationHighlights />
           </div>
         </Container>
       </section>

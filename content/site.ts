@@ -14,46 +14,55 @@ function resolveSiteUrl(): string {
 
 /**
  * Businesses Adtell.ai has helped. Each line is a goal and how the
- * automation works. No results and no figures. Adtell Integration is
- * not on this list.
+ * automation works. Adtell Integration is not on this list.
  */
 const implementations = [
   {
     name: "FiberOptics.com",
     goal: "offloading sales follow-up, marketing drafts, training-student scheduling, and order follow-up",
-    how: "The automation drafts the next sales step, prepares marketing notes, schedules student follow-up, and writes order updates a person still reviews. We also create and manage the website.",
+    how: "The automation drafts the next sales step, prepares marketing notes, schedules student follow-up, and writes order updates a person still reviews.",
   },
   {
     name: "The Fiber School",
     goal: "offloading class scheduling and enrollment follow-up",
-    how: "The automation prepares the class schedule, drafts enrollment follow-up, and drafts answers to student questions between sessions from material the school already uses. A person still confirms the schedule and the reply. We also create and manage the website.",
+    how: "The automation prepares the class schedule, drafts enrollment follow-up, and drafts answers to student questions between sessions from material the school already uses. A person still confirms the schedule and the reply.",
   },
   {
     name: "BCLE Furniture",
     goal: "offloading inventory updates, sales follow-up, and marketing",
-    how: "The automation prepares inventory notes, drafts sales follow-up, and drafts marketing a person still reviews. We also create and manage the website.",
+    how: "The automation prepares inventory notes, drafts sales follow-up, and drafts marketing a person still reviews.",
   },
   {
     name: "Doan Distillery",
     goal: "offloading event booking",
-    how: "The automation drafts booking replies, prepares tasting-room and event times, and writes order follow-up and marketing notes a person still confirms. We also create and manage the website.",
+    how: "The automation drafts booking replies, prepares tasting-room and event times, and writes order follow-up and marketing notes a person still confirms.",
   },
   {
     name: "CapoVino",
     goal: "offloading tasting follow-up and bottle orders",
-    how: "The automation drafts tasting follow-up, prepares bottle-order notes, and drafts marketing a person still sends. We also create and manage the website.",
+    how: "The automation drafts tasting follow-up, prepares bottle-order notes, and drafts marketing a person still sends.",
   },
   {
     name: "Trolley Barn Public Market",
     goal: "offloading vendor follow-up and event scheduling",
-    how: "The automation drafts vendor replies, prepares event times, and drafts market announcements a person still reviews. We also create and manage the website.",
+    how: "The automation drafts vendor replies, prepares event times, and drafts market announcements a person still reviews.",
   },
   {
     name: "Ivers Property Management",
     goal: "offloading maintenance follow-up and tenant questions",
-    how: "The automation drafts maintenance follow-up, drafts answers to tenant questions from material the company already uses, and prepares lease-renewal notes a person still sends. We also create and manage the website.",
+    how: "The automation drafts maintenance follow-up, drafts answers to tenant questions from material the company already uses, and prepares lease-renewal notes a person still sends.",
   },
 ] as const;
+
+export const highlightNames = ["Doan Distillery", "CapoVino", "BCLE Furniture"] as const;
+
+export function highlightedImplementations() {
+  return highlightNames.map((name) => {
+    const found = implementations.find((item) => item.name === name);
+    if (!found) throw new Error(`Missing implementation highlight: ${name}`);
+    return found;
+  });
+}
 
 export function implementationLine(item: (typeof implementations)[number]): string {
   return `We helped ${item.name} implement AI automation with the goal of ${item.goal}. ${item.how}`;

@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { AuditBand } from "@/components/AuditBand";
-import { CompanyLists } from "@/components/CompanyLists";
+import { ImplementationHighlights } from "@/components/CompanyLists";
 import { FaqList } from "@/components/FaqList";
 import { SavingsShare } from "@/components/SavingsShare";
 import { ButtonLink, Container, JsonLd, Kicker } from "@/components/ui";
@@ -133,20 +133,11 @@ export default function HomePage() {
             Businesses we have helped
           </h2>
           <p className="mt-5 max-w-2xl text-lg leading-relaxed text-quiet">
-            We helped these businesses implement AI automation. Each note names the goal
-            and how the work runs, including the website.
+            Three businesses we have helped, and why that task was the place to start.
           </p>
           <div className="mt-10">
-            <CompanyLists />
+            <ImplementationHighlights />
           </div>
-          <p className="mt-8">
-            <Link
-              href="/about"
-              className="text-sm font-semibold text-oxblood underline decoration-oxblood/40 underline-offset-4"
-            >
-              About the firm
-            </Link>
-          </p>
         </Container>
       </section>
 

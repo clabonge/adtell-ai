@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { AuditBand } from "@/components/AuditBand";
+import { CompanyLists } from "@/components/CompanyLists";
 import { Container, PageHero } from "@/components/ui";
 import { auditCta, auditPath } from "@/content/nav";
 import { formatDate } from "@/lib/format";
@@ -9,7 +10,7 @@ import { pageMetadata } from "@/lib/seo";
 export const metadata = pageMetadata({
   title: "Case studies",
   description:
-    "Notes on AI automation we helped businesses implement. Qualitative only: goals and how the work runs, with no results and no figures.",
+    "What we implemented for each business, and why that task was the place to start.",
   path: "/case-studies",
 });
 
@@ -20,14 +21,19 @@ export default function CaseStudiesPage() {
     <>
       <PageHero
         kicker="Case studies"
-        title="Implementations, written down."
-        lede="These notes describe AI automation we helped a business implement. They name the goal and how the work runs. They do not include results or figures."
+        title="What we implemented."
+        lede="The businesses we have helped, and why each task was the place to start."
         crumbs={[{ name: "Case studies", path: "/case-studies" }]}
         cta={{ href: auditPath, label: auditCta }}
       />
       <section>
         <Container className="py-14 sm:py-20">
-          <ul className="grid gap-6">
+          <h2 className="font-serif text-3xl tracking-tight">The businesses</h2>
+          <div className="mt-10">
+            <CompanyLists />
+          </div>
+          <h2 className="mt-16 font-serif text-3xl tracking-tight">How the work was chosen</h2>
+          <ul className="mt-8 grid gap-6">
             {studies.map((study) => (
               <li key={study.slug}>
                 <article className="border border-line p-6 sm:p-8">
