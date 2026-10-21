@@ -2,8 +2,10 @@
 
 import Link from "next/link";
 import { useId, useRef, useState, type FormEvent } from "react";
+import { BookingPrompt } from "@/components/BookingPrompt";
 import { companySizes } from "@/content/audit";
 import { site } from "@/content/site";
+import { bookingUrl } from "@/lib/booking";
 import { validateAudit, type AuditErrors, type AuditSubmission } from "@/lib/audit";
 
 type FormState = {
@@ -139,13 +141,24 @@ export function ContactForm() {
           {result.received ? "Your request has been received." : "Send this request yourself."}
         </h2>
         {result.received ? (
-          <p className="mt-4 text-base leading-relaxed text-quiet-ink">
-            We will follow up at the address you entered. You can also call{" "}
-            <a className="font-semibold text-oxblood-ink underline underline-offset-4" href={`tel:${site.phoneTel}`}>
-              {site.phone}
-            </a>
-            .
-          </p>
+          <>
+            <p className="mt-4 text-base leading-relaxed text-quiet-ink">
+              We will follow up at the address you entered.
+            </p>
+            {bookingUrl() ? (
+              <div className="mt-4">
+                <BookingPrompt />
+              </div>
+            ) : (
+              <p className="mt-4 text-base leading-relaxed text-quiet-ink">
+                You can also call{" "}
+                <a className="font-semibold text-oxblood-ink underline underline-offset-4" href={`tel:${site.phoneTel}`}>
+                  {site.phone}
+                </a>
+                .
+              </p>
+            )}
+          </>
         ) : (
           <>
             <p className="mt-4 text-base leading-relaxed text-quiet-ink">
