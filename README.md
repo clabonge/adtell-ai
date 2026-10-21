@@ -99,6 +99,7 @@ Shared settings:
 
 - Node.js `22.14.0`, also pinned in `.node-version` and `package.json` `engines`
 - `NEXT_PUBLIC_SITE_URL=https://adtell.ai`
+- `NEXT_PUBLIC_BOOKING_URL` is optional. When it is an http or https link, `/contact` and a successful audit form offer a free 30-minute audit call. Leave it unset to hide that link. It is read at build time, so set it before the build and redeploy when it changes.
 - Branch `main`, with a deploy on every push to that branch
 - Custom domain `adtell.ai`. Render also adds `www.adtell.ai` and redirects it to the apex
 

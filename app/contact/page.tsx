@@ -1,4 +1,5 @@
 import { AuditBand } from "@/components/AuditBand";
+import { BookingPrompt } from "@/components/BookingPrompt";
 import { ContactForm } from "@/components/ContactForm";
 import { Container, PageHero } from "@/components/ui";
 import { auditExpect } from "@/content/audit";
@@ -32,6 +33,7 @@ export default function ContactPage() {
                 <li key={item}>{item}</li>
               ))}
             </ul>
+            <BookingPrompt tone="void" className="mt-8" />
             <h2 className="mt-10 font-serif text-3xl tracking-tight">Write directly</h2>
             <p className="mt-4 text-base leading-relaxed text-quiet">
               Email{" "}
