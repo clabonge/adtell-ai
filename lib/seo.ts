@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { site } from "@/content/site";
+import { shareImageAlt, shareImageSize } from "@/lib/share-image";
 
 type PageMeta = {
   title: string;
@@ -23,6 +24,18 @@ export function pageMetadata({
   const described = description.includes("Bucks County")
     ? description
     : `${description} ${site.localPresence}`;
+  const openGraphImage = {
+    url: new URL("/opengraph-image", site.url).toString(),
+    ...shareImageSize,
+    alt: shareImageAlt,
+    type: "image/png",
+  };
+  const twitterImage = {
+    url: new URL("/twitter-image", site.url).toString(),
+    ...shareImageSize,
+    alt: shareImageAlt,
+    type: "image/png",
+  };
 
   return {
     title: absolute ? { absolute: titled } : titled,
@@ -35,12 +48,14 @@ export function pageMetadata({
       siteName: site.name,
       type: ogType,
       locale: "en_US",
+      images: [openGraphImage],
       ...(publishedTime ? { publishedTime } : {}),
     },
     twitter: {
       card: "summary_large_image",
       title: titled,
       description: described,
+      images: [twitterImage],
     },
   };
 }
