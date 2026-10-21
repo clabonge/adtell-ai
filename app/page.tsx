@@ -16,10 +16,9 @@ import { getPosts, kindLabel } from "@/lib/posts";
 import { faqJsonLd } from "@/lib/structured-data";
 
 export const metadata = pageMetadata({
-  title: `${site.name} | Your outsourced AI department`,
+  title: site.name,
   description: site.description,
   path: "/",
-  absolute: true,
 });
 
 export default function HomePage() {

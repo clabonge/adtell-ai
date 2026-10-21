@@ -4,11 +4,10 @@ import { ImplementationHighlights } from "@/components/CompanyLists";
 import { Container, PageHero } from "@/components/ui";
 import { aboutIntro, aboutStory, founderSection, principles } from "@/content/about";
 import { auditCta, auditPath } from "@/content/nav";
-import { site } from "@/content/site";
 import { pageMetadata } from "@/lib/seo";
 
 export const metadata = pageMetadata({
-  title: `About ${site.name}`,
+  title: "About",
   description:
     "Adtell.ai is the outsourced AI department, led by Chris LaBonge, Founder and President. Companies pay us as their AI implementation team.",
   path: "/about",

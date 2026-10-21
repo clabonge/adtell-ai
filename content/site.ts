@@ -83,7 +83,7 @@ export const site = {
    * Shared revision for public pages that have not moved since.
    * Sitemap lastmod uses this unless a page has its own later date.
    */
-  updated: "2026-10-20",
+  updated: "2026-10-21",
   /** Pages revised after `updated`. */
   pageUpdated: {
     "/services": "2026-10-21",
