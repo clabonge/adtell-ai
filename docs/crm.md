@@ -56,6 +56,7 @@ Rate limits are stored in Postgres, so they apply across more than one web insta
 A job is queued only for a channel that is configured when the inquiry is saved.
 
 - `RESEND_API_KEY` queues an email to `clabonge@adtell.ai`.
+- `AUDIT_CONFIRMATION_EMAIL=true` also queues a confirmation to the person who submitted the form. Any other value, including a blank value, leaves that email off. The sender is `Adtell.ai <audit@adtell.ai>`, not `RESEND_FROM`. It still needs `RESEND_API_KEY` on the process that saves the inquiry and on the worker that sends it. This message goes to a prospect.
 - `AUDIT_WEBHOOK_URL` queues a webhook. The URL must be https, except `http://127.0.0.1` and `http://localhost` for local checks. The form cannot choose this URL.
 
 One channel succeeding does not cancel the other. The worker claims jobs with `FOR UPDATE SKIP LOCKED`, holds a 60 second lease, and uses bounded backoff: 30 seconds, then double, capped at one hour, for up to 5 attempts. Failed jobs are listed at `/admin/crm/notifications` and can be retried there.

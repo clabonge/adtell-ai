@@ -3,6 +3,7 @@ import { and, eq, sql } from "drizzle-orm";
 import { companySizes, type CompanySize } from "@/content/audit";
 import type { AuditSubmission } from "@/lib/audit";
 import {
+  sendAuditConfirmation,
   sendAuditEmail,
   sendAuditWebhook,
   type DeliveryChannel,
@@ -89,7 +90,10 @@ export async function claimJobs(
       const job = updated[0];
       if (!job) continue;
       const payload = parsePayload(job.payload, job.inquiryId);
-      if (!payload || (job.channel !== "email" && job.channel !== "webhook")) {
+      if (
+        !payload ||
+        (job.channel !== "email" && job.channel !== "webhook" && job.channel !== "confirmation")
+      ) {
         await tx
           .update(notificationJobs)
           .set({
@@ -191,7 +195,12 @@ export async function processJob(
             idempotencyKey: job.idempotencyKey,
             fetchImpl,
           })
-        : await sendAuditWebhook(job.payload, { eventId: job.idempotencyKey, fetchImpl });
+        : job.channel === "confirmation"
+          ? await sendAuditConfirmation(job.payload, {
+              idempotencyKey: job.idempotencyKey,
+              fetchImpl,
+            })
+          : await sendAuditWebhook(job.payload, { eventId: job.idempotencyKey, fetchImpl });
     if (result.unconfigured) {
       await releaseUnconfigured(database, job);
       return;
