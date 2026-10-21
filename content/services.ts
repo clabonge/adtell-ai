@@ -12,6 +12,10 @@ export type Service = {
   summary: string;
   audience: string;
   includes: string[];
+  delivery?: {
+    deliverables: string[];
+    timeline: string;
+  };
   cta: string;
 };
 
@@ -85,6 +89,13 @@ export const services: Service[] = [
       "Scope and price in writing before any build",
       "No long-term commitment",
     ],
+    delivery: {
+      deliverables: [
+        "One workflow automated",
+        "Scope and price quoted in writing after the audit",
+      ],
+      timeline: "Set in the written quote after the audit. No long-term commitment.",
+    },
     cta: "Book a free AI audit",
   },
   {
@@ -104,6 +115,10 @@ export const services: Service[] = [
       "A sequenced roadmap, a tool direction, and an implementation estimate",
       "A decision memo the people who spend the money can act on",
     ],
+    delivery: {
+      deliverables: ["A ranked workflow list", "A cost baseline", "A build plan"],
+      timeline: "2 to 4 weeks.",
+    },
     cta: "Discuss a roadmap",
   },
   {
@@ -123,6 +138,10 @@ export const services: Service[] = [
       "Written rules for what the agent may prepare and what a person must approve",
       "Documentation and a short training session so the team can run it",
     ],
+    delivery: {
+      deliverables: ["One live workflow", "A staff handoff", "30 days of tuning"],
+      timeline: "30 days of tuning after the workflow is live.",
+    },
     cta: "Discuss an implementation",
   },
   {
@@ -141,6 +160,13 @@ export const services: Service[] = [
       "Attention on the workflows we share with you",
       "Room to pick up a new savings target when one becomes obvious",
     ],
+    delivery: {
+      deliverables: [
+        "Continued implementation, tuning, and oversight",
+        "A set number of improvement cycles each month, agreed up front",
+      ],
+      timeline: "Month to month, after a workflow is live.",
+    },
     cta: "Discuss a retainer",
   },
   {
@@ -159,6 +185,13 @@ export const services: Service[] = [
       "Exercises on the tools the team will use",
       "A short playbook managers can reuse after we leave",
     ],
+    delivery: {
+      deliverables: [
+        "Sessions built around your workflows",
+        "A short playbook managers can reuse",
+      ],
+      timeline: "Set in the quote for the group.",
+    },
     cta: "Discuss a workshop",
   },
 ];
