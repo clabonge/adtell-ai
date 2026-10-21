@@ -79,7 +79,16 @@ export const site = {
   email: "clabonge@adtell.ai",
   phone: "215-499-8959",
   phoneTel: "+12154998959",
-  updated: "2026-10-15",
+  /**
+   * Shared revision for public pages that have not moved since.
+   * Sitemap lastmod uses this unless a page has its own later date.
+   */
+  updated: "2026-10-20",
+  /** Pages revised after `updated`. */
+  pageUpdated: {
+    "/services": "2026-10-21",
+    "/contact": "2026-10-21",
+  },
   tagline: "Cut the cost of work that should not still be done by hand.",
   serviceRegion: "Bucks, Montgomery and the Lehigh Valley",
   localPresence:

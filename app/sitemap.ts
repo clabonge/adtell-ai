@@ -4,6 +4,12 @@ import { sampleAudit } from "@/content/sample-audit";
 import { site } from "@/content/site";
 import { getPosts } from "@/lib/posts";
 
+function lastModifiedFor(path: string): string {
+  if (path === sampleAudit.path) return sampleAudit.updated;
+  if (path === "/services" || path === "/contact") return site.pageUpdated[path];
+  return site.updated;
+}
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticPaths = [
     "",
@@ -20,7 +26,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const pages: MetadataRoute.Sitemap = staticPaths.map((path) => ({
     url: new URL(path || "/", site.url).toString(),
-    lastModified: path === sampleAudit.path ? sampleAudit.updated : site.updated,
+    lastModified: lastModifiedFor(path),
     changeFrequency: path === "" || path === "/blog" ? "weekly" : "monthly",
     priority: path === "" ? 1 : path === "/services" || path === "/contact" ? 0.8 : 0.7,
   }));
@@ -51,7 +57,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...industryPages,
     ...posts.map((post) => ({
       url: new URL(post.path, site.url).toString(),
-      lastModified: post.date,
+      lastModified: post.date > site.updated ? post.date : site.updated,
       changeFrequency: "monthly" as const,
       priority: 0.6,
     })),
