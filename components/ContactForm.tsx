@@ -328,8 +328,8 @@ export function ContactForm() {
         {pending ? "Saving" : "Send the request"}
       </button>
       <p className="mt-4 text-sm leading-relaxed text-quiet-ink">
-        We save the request before confirming it. A confirmation means we have the request.
-        It does not mean an email has already been sent. You can also email {site.email} or call {site.phone}.
+        We save your request and email you a confirmation. We reply within one business day. You
+        can also email {site.email} or call {site.phone}.
       </p>
       <p className="mt-3 text-sm leading-relaxed text-quiet-ink">
         We store this request so we can reply, and we do not sell it.{" "}
