@@ -4,6 +4,8 @@ import { AuditBand } from "@/components/AuditBand";
 import { MarkdownBody } from "@/components/MarkdownBody";
 import { Container, JsonLd, PageHero } from "@/components/ui";
 import { auditCta, auditPath } from "@/content/nav";
+import { doanWorkflow } from "@/content/workflows";
+import { HandoffList, WorkflowDiagram } from "@/components/WorkflowDiagram";
 import { formatDate } from "@/lib/format";
 import { getPost, getPosts, kindLabel } from "@/lib/posts";
 import { pageMetadata } from "@/lib/seo";
@@ -67,6 +69,12 @@ async function CaseStudy({
           <div className="mt-10">
             <MarkdownBody source={post.body} />
           </div>
+          {post.slug === "doan-distillery-event-booking" ? (
+            <>
+              <WorkflowDiagram heading="How event booking moves" steps={doanWorkflow} />
+              <HandoffList />
+            </>
+          ) : null}
         </Container>
       </article>
       <AuditBand />

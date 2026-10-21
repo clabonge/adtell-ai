@@ -11,6 +11,8 @@ import {
   whoWeHelp,
 } from "@/content/industries";
 import { auditCta, auditPath } from "@/content/nav";
+import { industryWorkflows } from "@/content/workflows";
+import { HandoffList, WorkflowDiagram } from "@/components/WorkflowDiagram";
 import { pageMetadata } from "@/lib/seo";
 import { breadcrumbJsonLd } from "@/lib/structured-data";
 
@@ -69,6 +71,8 @@ async function Industry({
               {paragraph}
             </p>
           ))}
+          <WorkflowDiagram heading="How the work moves" steps={industryWorkflows[industry.slug]} />
+          <HandoffList />
           <h2 className="mt-12 font-serif text-3xl tracking-tight">Businesses we helped</h2>
           <ul className="mt-8 grid gap-10">
             {businesses.map((business, index) => (
