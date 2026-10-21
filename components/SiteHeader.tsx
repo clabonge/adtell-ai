@@ -31,7 +31,7 @@ export function SiteHeader() {
         <Link
           href="/"
           className="font-serif text-2xl tracking-tight text-ivory"
-          aria-label={`${site.name} home`}
+          aria-label={site.name}
         >
           <span aria-hidden="true">
             Adtell<span className="text-oxblood">.ai</span>

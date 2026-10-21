@@ -53,7 +53,10 @@ function HeaderFallback() {
     <div className="border-b border-line bg-void">
       <div className="mx-auto flex h-16 w-full max-w-6xl items-center px-5 sm:px-8">
         <span className="font-serif text-2xl tracking-tight text-ivory">
-          Adtell<span className="text-oxblood">.ai</span>
+          <span className="sr-only">{site.name}</span>
+          <span aria-hidden="true">
+            Adtell<span className="text-oxblood">.ai</span>
+          </span>
         </span>
       </div>
     </div>

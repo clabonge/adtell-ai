@@ -1,4 +1,4 @@
-export function OgCard() {
+export function OgCard({ title }: { title: string }) {
   return (
     <div
       style={{
@@ -12,23 +12,19 @@ export function OgCard() {
         padding: "72px",
       }}
     >
-      <div style={{ display: "flex", fontSize: 36, letterSpacing: "-0.04em" }}>
-        Adtell.ai
-      </div>
+      <div style={{ display: "flex", fontSize: 36, letterSpacing: "-0.04em" }}>Adtell.ai</div>
       <div
         style={{
           display: "flex",
-          fontSize: 64,
-          lineHeight: 1.05,
+          fontSize: title.length > 70 ? 46 : 60,
+          lineHeight: 1.08,
           letterSpacing: "-0.03em",
-          maxWidth: 920,
+          maxWidth: 1040,
         }}
       >
-        Cut the cost of work that should not still be done by hand.
+        {title}
       </div>
-      <div style={{ display: "flex", fontSize: 28, color: "#d4897c" }}>
-        Free AI savings audit
-      </div>
+      <div style={{ display: "flex", fontSize: 28, color: "#d4897c" }}>Free AI savings audit</div>
     </div>
   );
 }

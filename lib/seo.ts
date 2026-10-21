@@ -1,6 +1,10 @@
 import type { Metadata } from "next";
 import { site } from "@/content/site";
-import { shareImageAlt, shareImageSize } from "@/lib/share-image";
+import { shareImageSize } from "@/lib/share-image";
+
+export function shareImagePath(title: string): string {
+  return `/og?${new URLSearchParams({ title }).toString()}`;
+}
 
 type PageMeta = {
   title: string;
@@ -32,16 +36,17 @@ export function pageMetadata({
   const described = description.includes("Bucks County")
     ? description
     : `${description} ${site.localPresence}`;
+  const imageUrl = new URL(shareImagePath(titled), site.url).toString();
   const openGraphImage = {
-    url: new URL("/opengraph-image", site.url).toString(),
+    url: imageUrl,
     ...shareImageSize,
-    alt: shareImageAlt,
+    alt: titled,
     type: "image/png",
   };
   const twitterImage = {
-    url: new URL("/twitter-image", site.url).toString(),
+    url: imageUrl,
     ...shareImageSize,
-    alt: shareImageAlt,
+    alt: titled,
     type: "image/png",
   };
 

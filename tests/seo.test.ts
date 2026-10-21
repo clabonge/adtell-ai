@@ -5,8 +5,7 @@ import { describe, it } from "node:test";
 import robots from "../app/robots";
 import sitemap from "../app/sitemap";
 import { auditCta, auditPath } from "../content/nav";
-import { pageMetadata } from "../lib/seo";
-import { shareImageAlt } from "../lib/share-image";
+import { pageMetadata, shareImagePath } from "../lib/seo";
 
 const publicPaths = [
   "/",
@@ -38,13 +37,30 @@ describe("technical seo", () => {
     assert.equal(meta.alternates?.canonical, "https://adtell.ai/services");
     const images = meta.openGraph && "images" in meta.openGraph ? meta.openGraph.images : [];
     const image = Array.isArray(images) ? images[0] : images;
-    assert.equal(typeof image === "object" && image && "url" in image ? image.url : "", "https://adtell.ai/opengraph-image");
-    assert.equal(typeof image === "object" && image && "alt" in image ? image.alt : "", shareImageAlt);
+    const expected = new URL(
+      shareImagePath("Services and pricing | Bucks, Montgomery and the Lehigh Valley"),
+      "https://adtell.ai",
+    ).toString();
+    assert.equal(typeof image === "object" && image && "url" in image ? image.url : "", expected);
+    assert.equal(
+      typeof image === "object" && image && "alt" in image ? image.alt : "",
+      "Services and pricing | Bucks, Montgomery and the Lehigh Valley",
+    );
+    const home = pageMetadata({
+      title: "About",
+      description: "Published starting points for the department.",
+      path: "/about",
+    });
+    const homeImages = home.openGraph && "images" in home.openGraph ? home.openGraph.images : [];
+    const homeImage = Array.isArray(homeImages) ? homeImages[0] : homeImages;
+    const homeUrl = typeof homeImage === "object" && homeImage && "url" in homeImage ? homeImage.url : "";
+    assert.equal(homeUrl === expected, false);
+    assert.match(String(homeUrl), /title=/);
     const twitterImages = meta.twitter && "images" in meta.twitter ? meta.twitter.images : [];
     const twitterImage = Array.isArray(twitterImages) ? twitterImages[0] : twitterImages;
     assert.equal(
       typeof twitterImage === "object" && twitterImage && "url" in twitterImage ? twitterImage.url : "",
-      "https://adtell.ai/twitter-image",
+      expected,
     );
     assert.equal(meta.twitter && "card" in meta.twitter ? meta.twitter.card : "", "summary_large_image");
   });
