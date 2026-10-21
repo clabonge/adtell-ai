@@ -1,6 +1,7 @@
 export type Faq = {
   question: string;
   answer: string;
+  link?: { href: string; label: string };
 };
 
 export const faqs: Faq[] = [

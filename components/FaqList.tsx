@@ -1,3 +1,4 @@
+import Link from "next/link";
 import type { Faq } from "@/content/faqs";
 
 export function FaqList({ items }: { items: readonly Faq[] }) {
@@ -16,6 +17,17 @@ export function FaqList({ items }: { items: readonly Faq[] }) {
           </summary>
           <p className="max-w-3xl pb-5 text-base leading-relaxed text-quiet">
             {item.answer}
+            {item.link ? (
+              <>
+                {" "}
+                <Link
+                  href={item.link.href}
+                  className="font-semibold text-oxblood underline underline-offset-4"
+                >
+                  {item.link.label}
+                </Link>
+              </>
+            ) : null}
           </p>
         </details>
       ))}

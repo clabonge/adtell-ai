@@ -22,7 +22,7 @@ export function organizationJsonLd() {
   };
 }
 
-export function faqJsonLd(items: readonly Faq[]) {
+export function faqJsonLd(items: readonly Faq[], answerText?: (item: Faq) => string) {
   return {
     "@context": "https://schema.org",
     "@type": "FAQPage",
@@ -31,7 +31,7 @@ export function faqJsonLd(items: readonly Faq[]) {
       name: item.question,
       acceptedAnswer: {
         "@type": "Answer",
-        text: item.answer,
+        text: answerText ? answerText(item) : item.answer,
       },
     })),
   };
