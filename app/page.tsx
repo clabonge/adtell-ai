@@ -38,7 +38,7 @@ export default function HomePage() {
             <p className="mt-6 max-w-xl text-lg leading-relaxed text-quiet">
               Hire {site.name} as your AI implementation team. We find the repetitive
               work that still sits on payroll and implement the workflows that remove
-              it. The first step is a free AI savings audit.
+              it. The first step is a free AI savings audit. {site.localPresence}
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <ButtonLink href={auditPath}>

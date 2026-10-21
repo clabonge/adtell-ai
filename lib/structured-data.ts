@@ -4,12 +4,17 @@ import type { Faq } from "@/content/faqs";
 export function organizationJsonLd() {
   return {
     "@context": "https://schema.org",
-    "@type": "ProfessionalService",
+    "@type": ["LocalBusiness", "ProfessionalService"],
     name: site.name,
     url: site.url,
     email: site.email,
-    telephone: site.phoneTel,
+    telephone: site.phone,
     description: site.description,
+    areaServed: [
+      { "@type": "AdministrativeArea", name: "Bucks County" },
+      { "@type": "AdministrativeArea", name: "Montgomery County" },
+      { "@type": "Place", name: "Lehigh Valley" },
+    ],
     founder: {
       "@type": "Person",
       name: site.founder.name,
