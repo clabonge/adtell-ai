@@ -8,6 +8,24 @@ export const companySizes = [
 
 export type CompanySize = (typeof companySizes)[number]["value"];
 
+export const auditOffer = {
+  title: "What the free audit gives you",
+  points: [
+    "A conversation, on-site locally or by video.",
+    "A written one-page ranked list of what to automate first, and what to leave alone.",
+    "Free, and the recommendation can be to wait.",
+  ],
+  cta: "Request my free audit",
+  reply: "We reply within one business day.",
+} as const;
+
+export const auditRequests = {
+  costs: "Find which of these costs you most",
+  handoff: "Request my free audit",
+  calculator: "Get these numbers checked for free",
+  calculatorNote: "The audit writes the baseline down. Free, no obligation.",
+} as const;
+
 export const auditExpect = [
   "The free audit is a conversation, on-site locally or by video.",
   "We reply within one business day.",

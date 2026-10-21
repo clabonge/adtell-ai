@@ -1,18 +1,15 @@
-import Link from "next/link";
-import { AuditBand } from "@/components/AuditBand";
 import { BookingPrompt } from "@/components/BookingPrompt";
+import { SampleAuditPreview } from "@/components/AuditConversion";
 import { ContactForm } from "@/components/ContactForm";
 import { Container, PageHero } from "@/components/ui";
-import { auditExpect } from "@/content/audit";
-import { auditCta } from "@/content/nav";
-import { sampleAudit } from "@/content/sample-audit";
+import { auditOffer } from "@/content/audit";
 import { site } from "@/content/site";
 import { pageMetadata } from "@/lib/seo";
 
 export const metadata = pageMetadata({
   title: "Book a free AI audit",
   description:
-    "Tell Adtell.ai your company, industry, size, and the work that costs the most time. The free AI savings audit starts there.",
+    "Get a free one-page list of the work AI can take off your team. Tell Adtell.ai your name, email, company, and the work that costs the most.",
   path: "/contact",
 });
 
@@ -21,31 +18,17 @@ export default function ContactPage() {
     <>
       <PageHero
         kicker="Contact"
-        title="Book a free AI audit."
-        lede="The free audit is a conversation, on-site locally or by video. We reply within one business day. Afterward you get a written one-page ranked list of opportunities. Share the company and the work that costs you the most. We save the request, then follow up at the address you enter."
+        title="Get a free one-page list of the work AI can take off your team."
+        lede="Tell us your name, email, company, and the work that costs the most."
         crumbs={[{ name: "Book an audit", path: "/contact" }]}
-        cta={{ href: "#audit-request", label: auditCta }}
+        cta={{ href: "#audit-request", label: auditOffer.cta }}
       />
+      <SampleAuditPreview />
       <section id="audit-request" className="scroll-mt-24">
-        <Container className="grid gap-12 py-14 sm:py-20 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)]">
+        <Container className="grid gap-12 py-14 sm:py-20 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.8fr)]">
+          <ContactForm />
           <div>
-            <h2 className="font-serif text-3xl tracking-tight">What to expect</h2>
-            <ul className="mt-5 list-disc space-y-3 pl-5 text-base leading-relaxed text-quiet">
-              {auditExpect.map((item) => (
-                <li key={item}>{item}</li>
-              ))}
-            </ul>
-            <p className="mt-6 text-base leading-relaxed text-quiet">
-              <Link
-                href={sampleAudit.path}
-                className="font-semibold text-oxblood underline underline-offset-4"
-              >
-                See an example of the one-page list
-              </Link>
-              . {sampleAudit.label}. It uses a fictional business.
-            </p>
-            <BookingPrompt tone="void" className="mt-8" />
-            <h2 className="mt-10 font-serif text-3xl tracking-tight">Write directly</h2>
+            <h2 className="font-serif text-3xl tracking-tight">Write directly</h2>
             <p className="mt-4 text-base leading-relaxed text-quiet">
               Email{" "}
               <a
@@ -61,14 +44,13 @@ export default function ContactPage() {
               >
                 {site.phone}
               </a>
-              . Include your name, company, industry, size, and the work that costs the
-              most. Leave out secrets, customer lists, and passwords.
+              . Include your name, company, and the work that costs the most. Leave out
+              secrets, customer lists, and passwords.
             </p>
+            <BookingPrompt tone="void" className="mt-8" />
           </div>
-          <ContactForm />
         </Container>
       </section>
-      <AuditBand href="#audit-request" />
     </>
   );
 }

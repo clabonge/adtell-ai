@@ -92,6 +92,6 @@ describe("technical seo", () => {
     assert.match(services, /href=\{auditPath\}/);
     const contact = readFileSync("app/contact/page.tsx", "utf8");
     assert.match(contact, /href: "#audit-request"/);
-    assert.match(contact, /href="#audit-request"/);
+    assert.match(contact, /id="audit-request"/);
   });
 });

@@ -1,9 +1,11 @@
 import Link from "next/link";
 import { AuditBand } from "@/components/AuditBand";
+import { AuditOffer, AuditRequest, SampleAuditPreview } from "@/components/AuditConversion";
 import { FaqList } from "@/components/FaqList";
 import { SavingsCalculator } from "@/components/SavingsCalculator";
 import { SavingsShare } from "@/components/SavingsShare";
 import { Container, JsonLd, Kicker, PageHero } from "@/components/ui";
+import { auditRequests } from "@/content/audit";
 import { sampleAudit } from "@/content/sample-audit";
 import { servicesFaqs, servicesFaqJsonText } from "@/content/services-faq";
 import { cfoTerms, services, servicesIntro } from "@/content/services";
@@ -28,8 +30,15 @@ export default function ServicesPage() {
         crumbs={[{ name: "Services", path: "/services" }]}
         cta={{ href: auditPath, label: auditCta }}
       />
+      <AuditOffer />
+      <SampleAuditPreview />
       <SavingsShare bordered={false} />
       <SavingsCalculator />
+      <section className="border-t border-line">
+        <Container className="py-12 sm:py-16">
+          <AuditRequest label={auditRequests.calculator} note={auditRequests.calculatorNote} />
+        </Container>
+      </section>
       <section>
         <Container className="py-4 sm:py-8">
           {services.map((service) => (

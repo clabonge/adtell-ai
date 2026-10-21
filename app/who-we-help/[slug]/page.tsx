@@ -2,15 +2,18 @@ import { Suspense } from "react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { AuditBand } from "@/components/AuditBand";
+import { AuditOffer, AuditRequest, SampleAuditPreview } from "@/components/AuditConversion";
 import { Container, JsonLd, PageHero } from "@/components/ui";
 import {
   getIndustry,
   industries,
+  industryAsk,
   industryBusinesses,
   industryLines,
   industryPath,
   whoWeHelp,
 } from "@/content/industries";
+import { auditRequests } from "@/content/audit";
 import { auditCta, auditPath } from "@/content/nav";
 import { sampleAudit } from "@/content/sample-audit";
 import { industryWorkflows } from "@/content/workflows";
@@ -66,16 +69,11 @@ async function Industry({
         ]}
         cta={{ href: auditPath, label: auditCta }}
       />
+      <AuditOffer />
+      <SampleAuditPreview />
       <article>
         <Container className="max-w-3xl py-14 sm:py-20">
-          {industry.paragraphs.map((paragraph) => (
-            <p key={paragraph} className="mt-4 text-lg leading-relaxed text-quiet first:mt-0">
-              {paragraph}
-            </p>
-          ))}
-          <WorkflowDiagram heading="How the work moves" steps={industryWorkflows[industry.slug]} />
-          <HandoffList />
-          <h2 className="mt-12 font-serif text-3xl tracking-tight">Businesses we helped</h2>
+          <h2 className="font-serif text-3xl tracking-tight">Businesses we helped</h2>
           <ul className="mt-8 grid gap-10">
             {businesses.map((business, index) => (
               <li key={business.name}>
@@ -84,6 +82,15 @@ async function Industry({
               </li>
             ))}
           </ul>
+          <AuditRequest label={industryAsk(industry)} />
+          {industry.paragraphs.map((paragraph) => (
+            <p key={paragraph} className="mt-4 text-lg leading-relaxed text-quiet first:mt-8">
+              {paragraph}
+            </p>
+          ))}
+          <WorkflowDiagram heading="How the work moves" steps={industryWorkflows[industry.slug]} />
+          <HandoffList />
+          <AuditRequest label={auditRequests.handoff} />
           <h2 className="mt-12 font-serif text-3xl tracking-tight">Related</h2>
           <ul className="mt-4 list-disc space-y-3 pl-5 text-base leading-relaxed text-quiet">
             {industry.slug === "hospitality-and-events" ? (
