@@ -184,6 +184,31 @@ export default function HomePage() {
 
       <section className="border-t border-line">
         <Container className="py-16 sm:py-24">
+          <Kicker>Illustration</Kicker>
+          <h2 className="mt-4 max-w-3xl font-serif text-4xl tracking-tight sm:text-5xl">
+            What one task costs in a year.
+          </h2>
+          <p className="mt-5 max-w-2xl text-lg leading-relaxed text-quiet">
+            Hours per week and a loaded hourly cost. The services page turns that into an annual
+            cost, an illustrative 25% savings-share fee, and months to pay back an implementation
+            from $10,000.
+          </p>
+          <p className="mt-4 text-sm font-semibold uppercase tracking-[0.14em] text-oxblood">
+            Illustration, not a promise.
+          </p>
+          <p className="mt-8">
+            <Link
+              href="/services#savings-calculator"
+              className="text-sm font-semibold text-oxblood underline decoration-oxblood/40 underline-offset-4"
+            >
+              Open the illustration
+            </Link>
+          </p>
+        </Container>
+      </section>
+
+      <section className="border-t border-line">
+        <Container className="py-16 sm:py-24">
           <Kicker>How it works</Kicker>
           <h2 className="mt-4 max-w-2xl font-serif text-4xl tracking-tight sm:text-5xl">
             From a named task to a workflow you can run.
