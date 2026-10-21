@@ -9,7 +9,7 @@ import { servicesFaqs, servicesFaqJsonText } from "@/content/services-faq";
 import { cfoTerms, services, servicesIntro } from "@/content/services";
 import { auditCta, auditPath } from "@/content/nav";
 import { pageMetadata } from "@/lib/seo";
-import { faqJsonLd } from "@/lib/structured-data";
+import { faqJsonLd, servicesOfferJsonLd } from "@/lib/structured-data";
 
 export const metadata = pageMetadata({
   title: "Services and pricing",
@@ -134,6 +134,7 @@ export default function ServicesPage() {
           </div>
         </Container>
       </section>
+      <JsonLd data={servicesOfferJsonLd()} />
       <JsonLd data={faqJsonLd(servicesFaqs, servicesFaqJsonText)} />
       <AuditBand
         title="Not sure which engagement you need?"
