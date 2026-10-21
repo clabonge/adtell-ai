@@ -61,6 +61,7 @@ describe("crm", () => {
     process.env.CRM_OWNER_EMAIL = "owner@example.com";
     process.env.RESEND_API_KEY = "";
     process.env.AUDIT_WEBHOOK_URL = "";
+    delete process.env.AUDIT_CONFIRMATION_EMAIL;
     await resetCrmDatabaseForTests();
   });
 
@@ -240,6 +241,63 @@ describe("crm", () => {
     assert.equal(jobs.find((job) => job.channel === "email")?.status, "pending");
     assert.ok(calls.some((url) => url.includes("resend.com")));
     assert.ok(calls.some((url) => url.includes("127.0.0.1")));
+    assert.equal(
+      jobs.some((job) => job.channel === "confirmation"),
+      false,
+    );
+  });
+
+  it("emails the prospect only when the confirmation flag is on", async () => {
+    process.env.RESEND_API_KEY = "re_test";
+    delete process.env.AUDIT_CONFIRMATION_EMAIL;
+    const quiet = await captureInquiry(database.crm, {
+      submission: { ...submission, email: "quiet@example.com", company: "Quiet Co" },
+      idempotencyKey: randomUUID(),
+      attribution: emptyAttribution(),
+      address: "203.0.113.51",
+      windows: [{ name: "minute", seconds: 60, max: 10 }],
+    });
+    assert.equal(quiet.ok, true);
+    if (!quiet.ok) return;
+    const quietJobs = await database.crm.db
+      .select()
+      .from(notificationJobs)
+      .where(eq(notificationJobs.inquiryId, quiet.inquiryId));
+    assert.equal(
+      quietJobs.some((job) => job.channel === "confirmation"),
+      false,
+    );
+
+    process.env.AUDIT_CONFIRMATION_EMAIL = "true";
+    const saved = await captureInquiry(database.crm, {
+      submission: { ...submission, email: "prospect@example.com", company: "Prospect Co" },
+      idempotencyKey: randomUUID(),
+      attribution: emptyAttribution(),
+      address: "203.0.113.52",
+      windows: [{ name: "minute", seconds: 60, max: 10 }],
+    });
+    assert.equal(saved.ok, true);
+    if (!saved.ok) return;
+    let sent = "";
+    const fetchImpl: typeof fetch = async (_input, init) => {
+      sent = String(init?.body ?? "");
+      return new Response("ok", { status: 200 });
+    };
+    await runDueJobs(database.crm, { channels: ["confirmation"], fetchImpl });
+    const jobs = await database.crm.db
+      .select()
+      .from(notificationJobs)
+      .where(eq(notificationJobs.inquiryId, saved.inquiryId));
+    assert.equal(jobs.find((job) => job.channel === "confirmation")?.status, "succeeded");
+    const message = JSON.parse(sent) as { from: string; to: string[]; text: string };
+    assert.equal(message.from, "Adtell.ai <audit@adtell.ai>");
+    assert.deepEqual(message.to, ["prospect@example.com"]);
+    assert.match(message.text, /Thank you/);
+    assert.match(message.text, /one business day/);
+    assert.match(message.text, /one-page ranked list/);
+    assert.equal(message.text.includes(submission.drains), false);
+    delete process.env.AUDIT_CONFIRMATION_EMAIL;
+    process.env.RESEND_API_KEY = "";
   });
 
   it("reclaims a lease after a crash and ignores the old token", async () => {

@@ -4,7 +4,14 @@ import type { AuditSubmission } from "@/lib/audit";
 
 const DEFAULT_FROM = "Adtell.ai <onboarding@resend.dev>";
 
-export type DeliveryChannel = "email" | "webhook";
+export type DeliveryChannel = "email" | "webhook" | "confirmation";
+
+const CONFIRMATION_FROM = "Adtell.ai <audit@adtell.ai>";
+
+/** Prospect confirmation stays off unless this is exactly "true". */
+export function confirmationEmailEnabled(env: NodeJS.ProcessEnv = process.env): boolean {
+  return env.AUDIT_CONFIRMATION_EMAIL?.trim().toLowerCase() === "true";
+}
 
 export type DeliveryResult = {
   ok: boolean;
@@ -62,6 +69,7 @@ export function configuredNotificationChannels(
 ): DeliveryChannel[] {
   const channels: DeliveryChannel[] = [];
   if (env.RESEND_API_KEY?.trim()) channels.push("email");
+  if (env.RESEND_API_KEY?.trim() && confirmationEmailEnabled(env)) channels.push("confirmation");
   if (webhookUrl(env.AUDIT_WEBHOOK_URL)) channels.push("webhook");
   return channels;
 }
@@ -110,6 +118,55 @@ export async function sendAuditEmail(
     options?.fetchImpl ?? fetch,
   );
   if (!result.ok) console.error("audit delivery failed: resend", result.status);
+  return result;
+}
+
+function confirmationText(submission: AuditSubmission): string {
+  const name = submission.name.replace(/[\r\n]+/g, " ").trim();
+  const greeting = name ? `Hello ${name},` : "Hello,";
+  return [
+    greeting,
+    "",
+    "Thank you. We received your request for a free AI savings audit.",
+    "",
+    "We reply within one business day.",
+    "",
+    "What happens next: a conversation, on-site locally or by video. Afterward you get a written one-page ranked list of opportunities. The recommendation can be a roadmap, a build, training, a retainer, or waiting.",
+    "",
+    "Adtell.ai",
+    site.email,
+    site.phone,
+  ].join("\n");
+}
+
+export async function sendAuditConfirmation(
+  submission: AuditSubmission,
+  options?: { idempotencyKey?: string; fetchImpl?: typeof fetch },
+): Promise<DeliveryResult> {
+  const apiKey = process.env.RESEND_API_KEY?.trim();
+  if (!apiKey || !confirmationEmailEnabled()) {
+    return { ok: false, status: 0, unconfigured: true };
+  }
+  const headers: Record<string, string> = {
+    Authorization: `Bearer ${apiKey}`,
+    "Content-Type": "application/json",
+  };
+  if (options?.idempotencyKey) headers["Idempotency-Key"] = options.idempotencyKey;
+  const result = await postJson(
+    "https://api.resend.com/emails",
+    {
+      headers,
+      body: JSON.stringify({
+        from: CONFIRMATION_FROM,
+        to: [submission.email],
+        reply_to: site.email,
+        subject: "We received your AI savings audit request",
+        text: confirmationText(submission),
+      }),
+    },
+    options?.fetchImpl ?? fetch,
+  );
+  if (!result.ok) console.error("audit confirmation failed: resend", result.status);
   return result;
 }
 

@@ -151,7 +151,8 @@ Email and webhook are separate jobs. The worker command is `npm run crm:worker`.
 | --- | --- | --- |
 | `DATABASE_URL` | For saving inquiries | Postgres connection string. Do not commit it. |
 | `RESEND_API_KEY` | For the email job | When set, the worker emails `clabonge@adtell.ai`. |
-| `RESEND_FROM` | No | Sender address. Default is `Adtell.ai <onboarding@resend.dev>`. |
+| `RESEND_FROM` | No | Sender address for the owner email. Default is `Adtell.ai <onboarding@resend.dev>`. |
+| `AUDIT_CONFIRMATION_EMAIL` | No | Defaults off. Set to `true` to also email the person who submitted the form, from `audit@adtell.ai`. |
 | `AUDIT_WEBHOOK_URL` | No | Trusted server URL for the webhook job. It is not taken from the form. |
 | `CRM_SESSION_SECRET` | For owner sign-in | At least 32 characters. |
 | `CRM_OWNER_EMAIL` | For owner sign-in | The only account. There is no signup. |
