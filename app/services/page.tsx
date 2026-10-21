@@ -4,6 +4,7 @@ import { FaqList } from "@/components/FaqList";
 import { SavingsCalculator } from "@/components/SavingsCalculator";
 import { SavingsShare } from "@/components/SavingsShare";
 import { Container, JsonLd, Kicker, PageHero } from "@/components/ui";
+import { sampleAudit } from "@/content/sample-audit";
 import { servicesFaqs, servicesFaqJsonText } from "@/content/services-faq";
 import { services, servicesIntro } from "@/content/services";
 import { auditCta, auditPath } from "@/content/nav";
@@ -69,6 +70,17 @@ export default function ServicesPage() {
                       {service.delivery.timeline}
                     </p>
                   </>
+                ) : null}
+                {service.slug === "free-ai-savings-audit" ? (
+                  <p className="mt-6 text-base leading-relaxed text-quiet">
+                    <Link
+                      href={sampleAudit.path}
+                      className="font-semibold text-oxblood underline underline-offset-4"
+                    >
+                      See an example of the one-page list
+                    </Link>
+                    . {sampleAudit.label}. It uses a fictional business.
+                  </p>
                 ) : null}
               </div>
               <div className="h-fit border border-line p-5 lg:sticky lg:top-28">

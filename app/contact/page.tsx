@@ -1,9 +1,11 @@
+import Link from "next/link";
 import { AuditBand } from "@/components/AuditBand";
 import { BookingPrompt } from "@/components/BookingPrompt";
 import { ContactForm } from "@/components/ContactForm";
 import { Container, PageHero } from "@/components/ui";
 import { auditExpect } from "@/content/audit";
 import { auditCta } from "@/content/nav";
+import { sampleAudit } from "@/content/sample-audit";
 import { site } from "@/content/site";
 import { pageMetadata } from "@/lib/seo";
 
@@ -33,6 +35,15 @@ export default function ContactPage() {
                 <li key={item}>{item}</li>
               ))}
             </ul>
+            <p className="mt-6 text-base leading-relaxed text-quiet">
+              <Link
+                href={sampleAudit.path}
+                className="font-semibold text-oxblood underline underline-offset-4"
+              >
+                See an example of the one-page list
+              </Link>
+              . {sampleAudit.label}. It uses a fictional business.
+            </p>
             <BookingPrompt tone="void" className="mt-8" />
             <h2 className="mt-10 font-serif text-3xl tracking-tight">Write directly</h2>
             <p className="mt-4 text-base leading-relaxed text-quiet">
