@@ -11,16 +11,24 @@ type PageMeta = {
   publishedTime?: string;
 };
 
+/** Browser and social title. Region stays on the homepage and Who we help pages. */
+export function documentTitle(topic: string, path: string): string {
+  if (path === "/" || path === "") return `${site.name} | ${site.serviceRegion}`;
+  if (path === "/who-we-help" || path.startsWith("/who-we-help/")) {
+    return `${topic} | ${site.serviceRegion} | ${site.name}`;
+  }
+  return `${topic} | ${site.name}`;
+}
+
 export function pageMetadata({
   title,
   description,
   path,
-  absolute = false,
   ogType = "website",
   publishedTime,
 }: PageMeta): Metadata {
   const url = new URL(path, site.url).toString();
-  const titled = title.includes(site.serviceRegion) ? title : `${title} | ${site.serviceRegion}`;
+  const titled = documentTitle(title, path);
   const described = description.includes("Bucks County")
     ? description
     : `${description} ${site.localPresence}`;
@@ -38,7 +46,7 @@ export function pageMetadata({
   };
 
   return {
-    title: absolute ? { absolute: titled } : titled,
+    title: { absolute: titled },
     description: described,
     alternates: { canonical: url },
     openGraph: {

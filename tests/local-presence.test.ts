@@ -24,27 +24,23 @@ describe("local presence", () => {
     assert.equal(json.includes("postalCode"), false);
   });
 
-  it("adds the region to titles and descriptions", () => {
+  it("keeps the region in descriptions and on the homepage title", () => {
     const meta = pageMetadata({
       title: "Services and pricing",
       description: "Published starting points for the department.",
       path: "/services",
     });
-    assert.equal(meta.title, "Services and pricing | Bucks, Montgomery and the Lehigh Valley");
+    assert.deepEqual(meta.title, { absolute: "Services and pricing | Adtell.ai" });
+    assert.equal(JSON.stringify(meta.title).includes(site.serviceRegion), false);
     assert.match(String(meta.description), /Based in Bucks County/);
-    assert.equal(
-      meta.openGraph?.title,
-      "Services and pricing | Bucks, Montgomery and the Lehigh Valley",
-    );
+    assert.equal(meta.openGraph?.title, "Services and pricing | Adtell.ai");
     const home = pageMetadata({
-      title: "Adtell.ai | Your outsourced AI department",
+      title: site.name,
       description: site.description,
       path: "/",
-      absolute: true,
     });
     assert.deepEqual(home.title, {
-      absolute:
-        "Adtell.ai | Your outsourced AI department | Bucks, Montgomery and the Lehigh Valley",
+      absolute: "Adtell.ai | Bucks, Montgomery and the Lehigh Valley",
     });
     assert.equal(String(home.description).split("Based in Bucks County").length, 2);
   });
