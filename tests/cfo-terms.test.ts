@@ -8,7 +8,13 @@ describe("cfo terms", () => {
     const copy = [cfoTerms.title, cfoTerms.lede, ...cfoTerms.items.flatMap((item) => [item.title, ...item.points])].join(
       " ",
     );
-    assert.equal(cfoTerms.items.length, 3);
+    assert.equal(cfoTerms.items.length, 4);
+    assert.match(copy, /Data, access and ownership/);
+    assert.match(copy, /The tools run in your own accounts/);
+    assert.match(copy, /You pay for those subscriptions/);
+    assert.match(copy, /You own what we build/);
+    assert.match(copy, /Our access ends when the engagement ends/);
+    assert.match(copy, /We do not sell data/);
     assert.match(copy, /50% at kickoff and 50% when the roadmap is delivered/);
     assert.match(copy, /50% at signing, 25% when the workflow goes live, and 25% at the end of the 30-day tuning period/);
     assert.match(copy, /Invoices are due within 15 days/);

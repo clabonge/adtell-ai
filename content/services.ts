@@ -224,6 +224,15 @@ export const cfoTerms = {
       ],
     },
     {
+      title: "Data, access and ownership",
+      points: [
+        "The tools run in your own accounts. You pay for those subscriptions.",
+        "You own what we build.",
+        "Our access ends when the engagement ends.",
+        "We do not sell data.",
+      ],
+    },
+    {
       title: "If a workflow underperforms",
       points: [
         "Before the build, we agree in writing what the workflow must do. Those are the acceptance criteria.",
