@@ -1,5 +1,7 @@
+import Link from "next/link";
 import { AuditBand } from "@/components/AuditBand";
 import { Container, PageHero } from "@/components/ui";
+import { getIndustry, industryPath } from "@/content/industries";
 import { auditCta, auditPath } from "@/content/nav";
 import { sampleAudit } from "@/content/sample-audit";
 import { pageMetadata } from "@/lib/seo";
@@ -11,6 +13,7 @@ export const metadata = pageMetadata({
 });
 
 export default function SampleAuditPage() {
+  const hospitality = getIndustry("hospitality-and-events");
   return (
     <>
       <PageHero
@@ -43,6 +46,30 @@ export default function SampleAuditPage() {
             ))}
           </ol>
           <p className="mt-10 text-base leading-relaxed text-quiet">{sampleAudit.close}</p>
+          <h2 className="mt-12 font-serif text-3xl tracking-tight">Related</h2>
+          <p className="mt-4 text-base leading-relaxed text-quiet">
+            This example is not a client engagement. For the hospitality and events work, read{" "}
+            <Link
+              href="/case-studies/doan-distillery-event-booking"
+              className="font-semibold text-oxblood underline underline-offset-4"
+            >
+              event booking at Doan Distillery
+            </Link>
+            {hospitality ? (
+              <>
+                {" "}
+                and the{" "}
+                <Link
+                  href={industryPath(hospitality)}
+                  className="font-semibold text-oxblood underline underline-offset-4"
+                >
+                  {hospitality.name}
+                </Link>{" "}
+                page
+              </>
+            ) : null}
+            .
+          </p>
         </Container>
       </article>
       <AuditBand />
