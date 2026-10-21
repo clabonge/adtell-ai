@@ -8,7 +8,7 @@ import { getPost } from "../lib/posts";
 
 describe("sitemap dates", () => {
   it("uses each page's own revision instead of 15 October 2026", () => {
-    assert.equal(site.updated, "2026-10-20");
+    assert.equal(site.updated, "2026-10-21");
     const entries = sitemap();
     const modified = (path: string) => {
       const url = new URL(path || "/", site.url).toString();
@@ -17,7 +17,7 @@ describe("sitemap dates", () => {
       return String(entry.lastModified);
     };
 
-    assert.equal(modified("/"), "2026-10-20");
+    assert.equal(modified("/"), "2026-10-21");
     assert.equal(modified("/services"), "2026-10-21");
     assert.equal(modified("/contact"), "2026-10-21");
     assert.equal(modified(sampleAudit.path), sampleAudit.updated);

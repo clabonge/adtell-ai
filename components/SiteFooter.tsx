@@ -8,7 +8,10 @@ export function SiteFooter() {
       <div className="mx-auto grid w-full max-w-6xl gap-10 px-5 py-14 sm:px-8 md:grid-cols-[1.4fr_1fr_1fr]">
         <div>
           <p className="font-serif text-3xl tracking-tight">
-            Adtell<span className="text-oxblood">.ai</span>
+            <span className="sr-only">{site.name}</span>
+            <span aria-hidden="true">
+              Adtell<span className="text-oxblood">.ai</span>
+            </span>
           </p>
           <p className="mt-4 max-w-sm text-sm leading-relaxed text-quiet">
             {site.name} is the outsourced AI department, led by {site.founder.name},{" "}
