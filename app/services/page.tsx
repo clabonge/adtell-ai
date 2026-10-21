@@ -113,10 +113,11 @@ export default function ServicesPage() {
             {cfoTerms.items.map((item) => (
               <article key={item.title} className="border border-line p-6">
                 <h3 className="font-serif text-2xl tracking-tight">{item.title}</h3>
-                <p className="mt-4 border border-oxblood px-4 py-3 text-sm font-semibold uppercase tracking-[0.14em] text-oxblood">
-                  {cfoTerms.placeholderLabel}
-                </p>
-                <p className="mt-4 text-base leading-relaxed text-quiet">{item.body}</p>
+                <ul className="mt-4 list-disc space-y-2 pl-5 text-base leading-relaxed text-quiet">
+                  {item.points.map((point) => (
+                    <li key={point}>{point}</li>
+                  ))}
+                </ul>
               </article>
             ))}
           </div>
