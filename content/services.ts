@@ -195,3 +195,41 @@ export const services: Service[] = [
     cta: "Discuss a workshop",
   },
 ];
+
+/**
+ * Costs, terms, and risk. Published prices stay on the service cards.
+ * Do not add a savings-share term length or cap here.
+ */
+export const cfoTerms = {
+  id: "costs-terms-risk",
+  kicker: "Costs, terms, and risk",
+  title: "What a CFO should see before a yes.",
+  lede: "Published prices on this page are unchanged. The final terms are set in each client's written agreement. Any savings-share term length or cap is set in that agreement and is not stated here.",
+  items: [
+    {
+      title: "Payment schedule",
+      points: [
+        "An AI roadmap is 50% at kickoff and 50% when the roadmap is delivered.",
+        "A fixed-price implementation is 50% at signing, 25% when the workflow goes live, and 25% at the end of the 30-day tuning period.",
+        "Invoices are due within 15 days.",
+        "Monthly retainers are billed at the start of each month. You can cancel with 30 days' notice. There is no long-term lock-in.",
+      ],
+    },
+    {
+      title: "Tool subscriptions",
+      points: [
+        "You pay for software and AI tool subscriptions directly, in your own name, so you own the accounts and the data.",
+        "Every quote lists the expected monthly tool costs, so the total cost is clear before you sign.",
+        "We do not mark up tool costs.",
+      ],
+    },
+    {
+      title: "If a workflow underperforms",
+      points: [
+        "Before the build, we agree in writing what the workflow must do. Those are the acceptance criteria.",
+        "During the 30-day tuning period, we fix anything that falls short at no extra charge.",
+        "If it still does not meet the agreed criteria at the end of tuning, you do not pay the final 25%, and you keep everything built so far.",
+      ],
+    },
+  ],
+} as const;
