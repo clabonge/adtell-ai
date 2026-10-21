@@ -1,11 +1,14 @@
 import { Suspense } from "react";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { AuditBand } from "@/components/AuditBand";
+import { HandoffList, WorkflowDiagram } from "@/components/WorkflowDiagram";
 import { MarkdownBody } from "@/components/MarkdownBody";
 import { Container, JsonLd, PageHero } from "@/components/ui";
+import { getIndustry, industryPath } from "@/content/industries";
 import { auditCta, auditPath } from "@/content/nav";
+import { sampleAudit } from "@/content/sample-audit";
 import { doanWorkflow } from "@/content/workflows";
-import { HandoffList, WorkflowDiagram } from "@/components/WorkflowDiagram";
 import { formatDate } from "@/lib/format";
 import { getPost, getPosts, kindLabel } from "@/lib/posts";
 import { pageMetadata } from "@/lib/seo";
@@ -73,6 +76,7 @@ async function CaseStudy({
             <>
               <WorkflowDiagram heading="How event booking moves" steps={doanWorkflow} />
               <HandoffList />
+              <RelatedProof />
             </>
           ) : null}
         </Container>
@@ -88,6 +92,35 @@ async function CaseStudy({
         })}
       />
     </>
+  );
+}
+
+function RelatedProof() {
+  const hospitality = getIndustry("hospitality-and-events");
+  if (!hospitality) return null;
+  return (
+    <div className="mt-12 border-t border-line pt-8">
+      <h2 className="font-serif text-3xl tracking-tight">Related</h2>
+      <ul className="mt-4 list-disc space-y-3 pl-5 text-base leading-relaxed text-quiet">
+        <li>
+          <Link
+            href={industryPath(hospitality)}
+            className="font-semibold text-oxblood underline underline-offset-4"
+          >
+            {hospitality.name}
+          </Link>
+        </li>
+        <li>
+          <Link
+            href={sampleAudit.path}
+            className="font-semibold text-oxblood underline underline-offset-4"
+          >
+            See an example of the one-page list
+          </Link>
+          . {sampleAudit.label}. It uses a fictional business.
+        </li>
+      </ul>
+    </div>
   );
 }
 

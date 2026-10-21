@@ -1,4 +1,5 @@
 import { Suspense } from "react";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { AuditBand } from "@/components/AuditBand";
 import { Container, JsonLd, PageHero } from "@/components/ui";
@@ -11,6 +12,7 @@ import {
   whoWeHelp,
 } from "@/content/industries";
 import { auditCta, auditPath } from "@/content/nav";
+import { sampleAudit } from "@/content/sample-audit";
 import { industryWorkflows } from "@/content/workflows";
 import { HandoffList, WorkflowDiagram } from "@/components/WorkflowDiagram";
 import { pageMetadata } from "@/lib/seo";
@@ -81,6 +83,28 @@ async function Industry({
                 <p className="mt-2 text-base leading-relaxed text-quiet">{lines[index]}</p>
               </li>
             ))}
+          </ul>
+          <h2 className="mt-12 font-serif text-3xl tracking-tight">Related</h2>
+          <ul className="mt-4 list-disc space-y-3 pl-5 text-base leading-relaxed text-quiet">
+            {industry.slug === "hospitality-and-events" ? (
+              <li>
+                <Link
+                  href="/case-studies/doan-distillery-event-booking"
+                  className="font-semibold text-oxblood underline underline-offset-4"
+                >
+                  Event booking at Doan Distillery
+                </Link>
+              </li>
+            ) : null}
+            <li>
+              <Link
+                href={sampleAudit.path}
+                className="font-semibold text-oxblood underline underline-offset-4"
+              >
+                See an example of the one-page list
+              </Link>
+              . {sampleAudit.label}. It uses a fictional business.
+            </li>
           </ul>
         </Container>
       </article>

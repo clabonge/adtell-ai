@@ -5,7 +5,7 @@ import { describe, it } from "node:test";
 import robots from "../app/robots";
 import sitemap from "../app/sitemap";
 import { auditCta, auditPath } from "../content/nav";
-import { pageMetadata, shareImagePath } from "../lib/seo";
+import { documentTitle, pageMetadata, shareImagePath } from "../lib/seo";
 
 const publicPaths = [
   "/",
@@ -37,15 +37,11 @@ describe("technical seo", () => {
     assert.equal(meta.alternates?.canonical, "https://adtell.ai/services");
     const images = meta.openGraph && "images" in meta.openGraph ? meta.openGraph.images : [];
     const image = Array.isArray(images) ? images[0] : images;
-    const expected = new URL(
-      shareImagePath("Services and pricing | Bucks, Montgomery and the Lehigh Valley"),
-      "https://adtell.ai",
-    ).toString();
+    const servicesTitle = documentTitle("Services and pricing", "/services");
+    const expected = new URL(shareImagePath(servicesTitle), "https://adtell.ai").toString();
     assert.equal(typeof image === "object" && image && "url" in image ? image.url : "", expected);
-    assert.equal(
-      typeof image === "object" && image && "alt" in image ? image.alt : "",
-      "Services and pricing | Bucks, Montgomery and the Lehigh Valley",
-    );
+    assert.equal(typeof image === "object" && image && "alt" in image ? image.alt : "", servicesTitle);
+    assert.equal(servicesTitle, "Services and pricing | Adtell.ai");
     const home = pageMetadata({
       title: "About",
       description: "Published starting points for the department.",
