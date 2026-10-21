@@ -1,4 +1,5 @@
 import { AuditBand } from "@/components/AuditBand";
+import { SavingsCalculator } from "@/components/SavingsCalculator";
 import { SavingsShare } from "@/components/SavingsShare";
 import { Container, PageHero } from "@/components/ui";
 import { services, servicesIntro } from "@/content/services";
@@ -24,6 +25,7 @@ export default function ServicesPage() {
         cta={{ href: auditPath, label: auditCta }}
       />
       <SavingsShare bordered={false} />
+      <SavingsCalculator />
       <section>
         <Container className="py-4 sm:py-8">
           {services.map((service) => (
