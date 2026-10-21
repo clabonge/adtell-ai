@@ -51,7 +51,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...industryPages,
     ...posts.map((post) => ({
       url: new URL(post.path, site.url).toString(),
-      lastModified: post.date,
+      lastModified: post.date > site.updated ? post.date : site.updated,
       changeFrequency: "monthly" as const,
       priority: 0.6,
     })),

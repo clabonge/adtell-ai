@@ -79,7 +79,8 @@ export const site = {
   email: "clabonge@adtell.ai",
   phone: "215-499-8959",
   phoneTel: "+12154998959",
-  updated: "2026-10-15",
+  /** Last revision of the public pages. Sitemap lastmod uses this date. */
+  updated: "2026-10-20",
   tagline: "Cut the cost of work that should not still be done by hand.",
   serviceRegion: "Bucks, Montgomery and the Lehigh Valley",
   localPresence:
