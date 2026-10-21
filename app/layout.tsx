@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Newsreader, Outfit } from "next/font/google";
 import { Suspense } from "react";
+import { MobileAuditBar } from "@/components/MobileAuditBar";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
 import { JsonLd } from "@/components/ui";
@@ -80,6 +81,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           {children}
         </main>
         <SiteFooter />
+        <Suspense fallback={null}>
+          <MobileAuditBar />
+        </Suspense>
         <JsonLd data={organizationJsonLd()} />
       </body>
     </html>
