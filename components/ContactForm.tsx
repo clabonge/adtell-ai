@@ -31,19 +31,12 @@ const emptyForm: FormState = {
 function mailtoHref(value: AuditSubmission) {
   const sizeLabel =
     companySizes.find((option) => option.value === value.size)?.label ?? value.size;
+  const lines = [`Name: ${value.name}`, `Email: ${value.email}`, `Company: ${value.company}`];
+  if (value.industry) lines.push(`Industry: ${value.industry}`);
+  if (value.size) lines.push(`Company size: ${sizeLabel}`);
+  lines.push("", "The work that costs the most:", value.drains);
   const subject = encodeURIComponent("AI savings audit");
-  const body = encodeURIComponent(
-    [
-      `Name: ${value.name}`,
-      `Email: ${value.email}`,
-      `Company: ${value.company}`,
-      `Industry: ${value.industry}`,
-      `Company size: ${sizeLabel}`,
-      "",
-      "The work that costs the most:",
-      value.drains,
-    ].join("\n"),
-  );
+  const body = encodeURIComponent(lines.join("\n"));
   return `mailto:${site.email}?subject=${subject}&body=${body}`;
 }
 
@@ -202,7 +195,9 @@ export function ContactForm() {
 
   return (
     <form onSubmit={onSubmit} noValidate aria-label="AI savings audit request" className="sheet border border-line bg-ivory p-6 text-ink sm:p-8">
-      <p className="text-sm text-quiet-ink">All fields are required.</p>
+      <p className="text-sm text-quiet-ink">
+        Name, email, company, and the work that costs the most are required.
+      </p>
       {errors.form ? (
         <div role="alert" className="mt-4 border border-oxblood-ink bg-ivory-deep px-3 py-2 text-sm text-ink">
           <p>{errors.form}</p>
@@ -249,6 +244,7 @@ export function ContactForm() {
         <Field
           id={fieldId("industry")}
           label="Industry"
+          optional
           error={errors.industry}
           value={form.industry}
           onChange={(value) => update("industry", value)}
@@ -256,7 +252,7 @@ export function ContactForm() {
         />
         <div>
           <label htmlFor={fieldId("size")} className="text-sm font-semibold text-ink">
-            Company size
+            Company size <span className="font-normal text-quiet-ink">(optional)</span>
           </label>
           <select
             id={fieldId("size")}
@@ -294,7 +290,7 @@ export function ContactForm() {
             onChange={(event) => update("drains", event.target.value)}
             aria-invalid={errors.drains ? true : undefined}
             aria-describedby={errors.drains ? `${fieldId("drains")}-error` : undefined}
-            placeholder="The tasks people still do by hand, and where they pile up."
+            placeholder="e.g. booking replies we write from scratch every day"
             className="mt-2 w-full border border-line bg-ivory-deep px-3 py-3 text-base leading-relaxed text-ink"
           />
           {errors.drains ? (
@@ -319,13 +315,16 @@ export function ContactForm() {
         </label>
       </div>
 
+      <p className="mt-6 text-sm leading-relaxed text-quiet-ink">
+        Free. No obligation. We reply within one business day with a time to talk.
+      </p>
       <button
         type="submit"
         disabled={pending}
         aria-busy={pending}
-        className="mt-6 inline-flex min-h-11 items-center justify-center bg-void px-5 text-sm font-semibold text-ivory hover:bg-raise disabled:cursor-wait disabled:opacity-70"
+        className="mt-4 inline-flex min-h-11 items-center justify-center bg-void px-5 text-sm font-semibold text-ivory hover:bg-raise disabled:cursor-wait disabled:opacity-70"
       >
-        {pending ? "Saving" : "Send the request"}
+        {pending ? "Saving" : "Request my free audit"}
       </button>
       <p className="mt-4 text-sm leading-relaxed text-quiet-ink">
         We save your request and email you a confirmation. We reply within one business day. You
@@ -350,6 +349,7 @@ function Field({
   type = "text",
   autoComplete,
   placeholder,
+  optional = false,
 }: {
   id: string;
   label: string;
@@ -359,11 +359,13 @@ function Field({
   type?: string;
   autoComplete?: string;
   placeholder?: string;
+  optional?: boolean;
 }) {
   return (
     <div>
       <label htmlFor={id} className="text-sm font-semibold text-ink">
         {label}
+        {optional ? <span className="font-normal text-quiet-ink"> (optional)</span> : null}
       </label>
       <input
         id={id}

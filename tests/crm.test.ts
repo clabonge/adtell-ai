@@ -300,6 +300,70 @@ describe("crm", () => {
     process.env.RESEND_API_KEY = "";
   });
 
+  it("accepts a blank industry and company size and still notifies", async () => {
+    process.env.RESEND_API_KEY = "re_test";
+    process.env.AUDIT_CONFIRMATION_EMAIL = "true";
+    const blank = {
+      name: "Blank Owner",
+      email: "blank@example.com",
+      company: "Blank Optional Co",
+      industry: "",
+      size: "" as const,
+      drains: "Booking replies we write from scratch every day.",
+    };
+    const key = randomUUID();
+    const first = await handleAuditRequest(auditRequest(key, blank));
+    const firstBody = (await first.json()) as { ok: boolean; received?: boolean };
+    assert.equal(first.status, 200);
+    assert.equal(firstBody.received, true);
+    const replay = await handleAuditRequest(auditRequest(key, blank));
+    const replayBody = (await replay.json()) as { ok: boolean; received?: boolean };
+    assert.equal(replay.status, 200);
+    assert.equal(replayBody.received, true);
+    const rows = await database.crm.db
+      .select()
+      .from(inquiries)
+      .where(eq(inquiries.email, blank.email));
+    assert.equal(rows.length, 1);
+    assert.equal(rows[0]?.industry, "");
+    assert.equal(rows[0]?.companySize, "");
+
+    const conflict = await handleAuditRequest(
+      auditRequest(key, { ...blank, drains: "A different description of the same work." }),
+    );
+    assert.equal(conflict.status, 409);
+
+    const invalid = await handleAuditRequest(auditRequest(randomUUID(), { ...blank, email: "bad-size@example.com", size: "huge" }));
+    const invalidBody = (await invalid.json()) as { errors?: { size?: string } };
+    assert.equal(invalid.status, 400);
+    assert.equal(invalidBody.errors?.size, "Select a company size.");
+
+    const sent: string[] = [];
+    const fetchImpl: typeof fetch = async (_input, init) => {
+      sent.push(String(init?.body ?? ""));
+      return new Response("ok", { status: 200 });
+    };
+    await runDueJobs(database.crm, { channels: ["email", "confirmation"], limit: 20, fetchImpl });
+    const jobs = await database.crm.db
+      .select()
+      .from(notificationJobs)
+      .where(eq(notificationJobs.inquiryId, rows[0]?.id ?? ""));
+    assert.equal(jobs.find((job) => job.channel === "email")?.status, "succeeded");
+    assert.equal(jobs.find((job) => job.channel === "confirmation")?.status, "succeeded");
+    const messages = sent.map((body) => JSON.parse(body) as { to: string[]; text: string });
+    const note = messages.find((message) => message.text.includes("Blank Optional Co"));
+    const confirmation = messages.find((message) => message.to.includes(blank.email));
+    assert.ok(note);
+    assert.ok(confirmation);
+    assert.match(note.text, /Blank Optional Co/);
+    assert.equal(note.text.includes("Industry:"), false);
+    assert.equal(note.text.includes("Company size:"), false);
+    assert.match(confirmation.text, /Thank you/);
+    assert.match(confirmation.text, /one business day/);
+    delete process.env.AUDIT_CONFIRMATION_EMAIL;
+    process.env.RESEND_API_KEY = "";
+  });
+
   it("reclaims a lease after a crash and ignores the old token", async () => {
     const saved = await captureInquiry(database.crm, {
       submission: { ...submission, email: "crash@example.com", company: "Crash Co" },

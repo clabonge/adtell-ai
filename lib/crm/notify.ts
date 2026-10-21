@@ -283,21 +283,22 @@ export async function retryFailedJob(
 export function parsePayload(value: unknown, inquiryId: string): ClaimedJob["payload"] | null {
   if (!value || typeof value !== "object") return null;
   const record = value as Record<string, unknown>;
-  const size = typeof record.size === "string" ? record.size : "";
-  if (!companySizes.some((option) => option.value === size)) return null;
+  const size = typeof record.size === "string" ? record.size.trim() : "";
+  if (size && !companySizes.some((option) => option.value === size)) return null;
   const name = textField(record.name);
   const email = textField(record.email);
   const company = textField(record.company);
-  const industry = textField(record.industry);
+  const industry = typeof record.industry === "string" ? record.industry.trim() : "";
   const drains = textField(record.drains);
-  if (!name || !email || !company || !industry || !drains) return null;
+  if (!name || !email || !company || !drains) return null;
+  if (industry.length > 120) return null;
   return {
     inquiryId,
     name,
     email,
     company,
     industry,
-    size: size as CompanySize,
+    size: size as CompanySize | "",
     drains,
   };
 }

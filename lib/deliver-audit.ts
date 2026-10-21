@@ -24,18 +24,17 @@ function sizeLabel(size: AuditSubmission["size"]): string {
 }
 
 function auditText(submission: AuditSubmission): string {
-  return [
+  const lines = [
     "New AI savings audit request",
     "",
     `Name: ${submission.name}`,
     `Email: ${submission.email}`,
     `Company: ${submission.company}`,
-    `Industry: ${submission.industry}`,
-    `Company size: ${sizeLabel(submission.size)}`,
-    "",
-    "The work that costs the most:",
-    submission.drains,
-  ].join("\n");
+  ];
+  if (submission.industry) lines.push(`Industry: ${submission.industry}`);
+  if (submission.size) lines.push(`Company size: ${sizeLabel(submission.size)}`);
+  lines.push("", "The work that costs the most:", submission.drains);
+  return lines.join("\n");
 }
 
 function subjectLine(company: string): string {

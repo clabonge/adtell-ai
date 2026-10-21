@@ -48,7 +48,7 @@ export const faqs: Faq[] = [
   {
     question: "What should we send before the audit?",
     answer:
-      "Your name, a work email, the company, the industry, the rough size of the company, and a description of the work that costs the most time or money. Specific workflows are more useful than a list of tools.",
+      "Your name, a work email, the company, and a description of the work that costs the most time or money. Industry and company size are optional. Specific workflows are more useful than a list of tools.",
   },
   {
     question: "What should we keep out of the form?",

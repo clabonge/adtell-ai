@@ -27,8 +27,8 @@ export default function PrivacyPage() {
           <p className="text-sm text-quiet">{legalReview}</p>
           <h2 className="mt-10 font-serif text-3xl tracking-tight">What the form collects</h2>
           <p className="mt-4 text-lg leading-relaxed text-quiet">
-            The form asks for your name, email, company, industry, company size, and a description
-            of the work. If your browser sends them, we also store the page address, the referring
+            The form asks for your name, email, company, and a description of the work. Industry
+            and company size are optional. If your browser sends them, we also store the page address, the referring
             page, and the campaign parameters on the link you used.
           </p>
           <p className="mt-4 text-lg leading-relaxed text-quiet">
