@@ -1,9 +1,11 @@
 import Link from "next/link";
 import { AuditBand } from "@/components/AuditBand";
+import { AuditOffer, AuditRequest, SampleAuditPreview } from "@/components/AuditConversion";
 import { ImplementationHighlights } from "@/components/CompanyLists";
 import { FaqList } from "@/components/FaqList";
 import { SavingsShare } from "@/components/SavingsShare";
 import { ButtonLink, Container, JsonLd, Kicker } from "@/components/ui";
+import { auditRequests } from "@/content/audit";
 import { faqs } from "@/content/faqs";
 import { costPatterns, departmentPitch, homeServicesIntro } from "@/content/home";
 import { auditCta, auditPath } from "@/content/nav";
@@ -85,6 +87,9 @@ export default function HomePage() {
         </Container>
       </section>
 
+      <AuditOffer />
+      <SampleAuditPreview />
+
       <section>
         <Container className="py-16 sm:py-24">
           <Kicker>Where the money goes</Kicker>
@@ -104,6 +109,7 @@ export default function HomePage() {
               </li>
             ))}
           </ul>
+          <AuditRequest label={auditRequests.costs} />
         </Container>
       </section>
 

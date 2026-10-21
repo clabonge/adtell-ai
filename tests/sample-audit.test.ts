@@ -31,7 +31,9 @@ describe("sample audit", () => {
   it("is linked from the contact and services pages and listed in the sitemap", () => {
     const contact = readFileSync("app/contact/page.tsx", "utf8");
     const services = readFileSync("app/services/page.tsx", "utf8");
-    assert.match(contact, /sampleAudit\.path/);
+    const preview = readFileSync("components/AuditConversion.tsx", "utf8");
+    assert.match(contact, /SampleAuditPreview/);
+    assert.match(preview, /sampleAudit\.path/);
     assert.match(services, /sampleAudit\.path/);
     const entry = sitemap().find(
       (item) => item.url === new URL(sampleAudit.path, site.url).toString(),

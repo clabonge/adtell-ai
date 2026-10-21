@@ -95,3 +95,8 @@ export function industryBusinesses(industry: Industry) {
 export function industryLines(industry: Industry): string[] {
   return industryBusinesses(industry).map((business) => implementationLine(business));
 }
+
+export function industryAsk(industry: Industry): string {
+  const name = `${industry.name.charAt(0).toLowerCase()}${industry.name.slice(1)}`;
+  return `Ask what we'd do for your ${name} business`;
+}
