@@ -143,7 +143,7 @@ After the records propagate, use **Verify** on the custom domain in Render. Rend
 
 ## Audit form and private CRM
 
-The contact form posts JSON to `/api/audit`. A successful response is `{ "ok": true, "received": true }` only after the inquiry, related CRM records, and notification jobs are committed. The visitor then sees “Your request has been received.” That sentence does not mean an email was sent.
+The contact form posts JSON to `/api/audit`. A successful response is `{ "ok": true, "received": true }` only after the inquiry, related CRM records, and notification jobs are committed. The visitor then sees “Your request has been received.” The form also says we save the request and email a confirmation, and that we reply within one business day.
 
 Email and webhook are separate jobs. The worker command is `npm run crm:worker`. If the database is down, the route returns `503` and does not claim the request was received. Setup, the owner CRM, import, backup, and the Render Blueprint are in `docs/crm.md`.
 
