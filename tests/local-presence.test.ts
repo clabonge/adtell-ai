@@ -18,7 +18,7 @@ describe("local presence", () => {
     assert.equal(data.url, "https://adtell.ai");
     assert.deepEqual(
       data.areaServed.map((area: { name: string }) => area.name),
-      ["Bucks County", "Montgomery County", "Lehigh Valley"],
+      ["Bucks County", "Montgomery County", "Lehigh Valley, PA"],
     );
     assert.equal(json.includes("streetAddress"), false);
     assert.equal(json.includes("postalCode"), false);

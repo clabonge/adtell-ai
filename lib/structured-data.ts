@@ -1,5 +1,12 @@
 import { site } from "@/content/site";
 import type { Faq } from "@/content/faqs";
+import { services, type Service } from "@/content/services";
+
+export const areaServed = [
+  { "@type": "AdministrativeArea", name: "Bucks County" },
+  { "@type": "AdministrativeArea", name: "Montgomery County" },
+  { "@type": "AdministrativeArea", name: "Lehigh Valley, PA" },
+] as const;
 
 export function organizationJsonLd() {
   return {
@@ -10,11 +17,7 @@ export function organizationJsonLd() {
     email: site.email,
     telephone: site.phone,
     description: site.description,
-    areaServed: [
-      { "@type": "AdministrativeArea", name: "Bucks County" },
-      { "@type": "AdministrativeArea", name: "Montgomery County" },
-      { "@type": "Place", name: "Lehigh Valley" },
-    ],
+    areaServed: [...areaServed],
     founder: {
       "@type": "Person",
       name: site.founder.name,
@@ -23,6 +26,71 @@ export function organizationJsonLd() {
     parentOrganization: {
       "@type": "Organization",
       name: site.holdingCompany,
+    },
+  };
+}
+
+function publishedPrice(service: Service): Record<string, unknown> {
+  switch (service.priceLabel) {
+    case "Free":
+      return { price: "0", priceCurrency: "USD" };
+    case "Quoted":
+      return { description: "Quoted" };
+    case "$2,500\u2013$7,500":
+      return {
+        priceSpecification: {
+          "@type": "PriceSpecification",
+          minPrice: "2500",
+          maxPrice: "7500",
+          priceCurrency: "USD",
+        },
+      };
+    case "From $10,000":
+      return {
+        priceSpecification: {
+          "@type": "PriceSpecification",
+          minPrice: "10000",
+          priceCurrency: "USD",
+        },
+      };
+    case "From $1,500/mo":
+      return {
+        priceSpecification: {
+          "@type": "UnitPriceSpecification",
+          minPrice: "1500",
+          priceCurrency: "USD",
+          unitText: "MONTH",
+        },
+      };
+    default:
+      throw new Error(`No published price mapping for ${service.priceLabel}`);
+  }
+}
+
+/** ProfessionalService plus the published service list. Rendered on /services. */
+export function servicesOfferJsonLd() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    name: site.name,
+    url: new URL("/services", site.url).toString(),
+    email: site.email,
+    telephone: site.phone,
+    areaServed: [...areaServed],
+    hasOfferCatalog: {
+      "@type": "OfferCatalog",
+      name: "Services",
+      itemListElement: services.map((service) => ({
+        "@type": "Offer",
+        name: service.name,
+        url: new URL(`/services#${service.slug}`, site.url).toString(),
+        itemOffered: {
+          "@type": "Service",
+          name: service.name,
+          description: service.brief,
+        },
+        ...publishedPrice(service),
+      })),
     },
   };
 }
