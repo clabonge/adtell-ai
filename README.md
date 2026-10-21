@@ -79,6 +79,7 @@ kind: implementation
 - `/services` Services and published prices
 - `/how-it-works` Engagement sequence
 - `/about` Adtell.ai, the firm, and Chris LaBonge as founder
+- `/pricing` redirects to `/services`. `/audit` and `/book` redirect to `/contact`.
 - `/case-studies` and `/case-studies/[slug]`
 - `/blog` and `/blog/[slug]`
 - `/contact` Audit intake form
