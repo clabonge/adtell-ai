@@ -15,6 +15,7 @@ export function SiteFooter() {
             {site.founder.role} of {site.founder.organization}. We implement AI that cuts
             operating cost.
           </p>
+          <p className="mt-4 max-w-sm text-sm leading-relaxed text-quiet">{site.localPresence}</p>
         </div>
         <nav aria-label="Footer">
           <p className="text-xs font-semibold uppercase tracking-[0.16em] text-oxblood">

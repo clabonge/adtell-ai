@@ -19,14 +19,18 @@ export function pageMetadata({
   publishedTime,
 }: PageMeta): Metadata {
   const url = new URL(path, site.url).toString();
+  const titled = title.includes(site.serviceRegion) ? title : `${title} | ${site.serviceRegion}`;
+  const described = description.includes("Bucks County")
+    ? description
+    : `${description} ${site.localPresence}`;
 
   return {
-    title: absolute ? { absolute: title } : title,
-    description,
+    title: absolute ? { absolute: titled } : titled,
+    description: described,
     alternates: { canonical: url },
     openGraph: {
-      title,
-      description,
+      title: titled,
+      description: described,
       url,
       siteName: site.name,
       type: ogType,
@@ -35,8 +39,8 @@ export function pageMetadata({
     },
     twitter: {
       card: "summary_large_image",
-      title,
-      description,
+      title: titled,
+      description: described,
     },
   };
 }

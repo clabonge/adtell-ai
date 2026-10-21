@@ -81,8 +81,11 @@ export const site = {
   phoneTel: "+12154998959",
   updated: "2026-10-15",
   tagline: "Cut the cost of work that should not still be done by hand.",
+  serviceRegion: "Bucks, Montgomery and the Lehigh Valley",
+  localPresence:
+    "Based in Bucks County, serving Bucks, Montgomery and the Lehigh Valley, on-site or by video.",
   description:
-    "Adtell.ai is the outsourced AI department. Hire the implementation team that removes operating cost. Start with a free AI savings audit.",
+    "Adtell.ai is the outsourced AI department. Hire the implementation team that removes operating cost. Start with a free AI savings audit. Based in Bucks County, serving Bucks, Montgomery and the Lehigh Valley, on-site or by video.",
   founder: {
     name: "Chris LaBonge",
     role: "Founder & President",
