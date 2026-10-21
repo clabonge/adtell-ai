@@ -48,6 +48,11 @@ export default function PrivacyPage() {
             We use the request to reply to you. We do not sell it. Sending the form is not
             permission for a marketing list. We do not use form submissions to train AI models.
           </p>
+          <h2 className="mt-10 font-serif text-3xl tracking-tight">Client data and model training</h2>
+          <p className="mt-4 text-lg leading-relaxed text-quiet">
+            On a paid engagement we use business-tier tools and settings that keep client data out
+            of model training. We do not use client data to train AI models.
+          </p>
           <h2 className="mt-10 font-serif text-3xl tracking-tight">Deletion</h2>
           <p className="mt-4 text-lg leading-relaxed text-quiet">
             To ask us to delete a request, email{" "}

@@ -1,11 +1,14 @@
+import Link from "next/link";
 import { AuditBand } from "@/components/AuditBand";
+import { FaqList } from "@/components/FaqList";
 import { SavingsCalculator } from "@/components/SavingsCalculator";
 import { SavingsShare } from "@/components/SavingsShare";
-import { Container, PageHero } from "@/components/ui";
+import { Container, JsonLd, Kicker, PageHero } from "@/components/ui";
+import { servicesFaqs, servicesFaqJsonText } from "@/content/services-faq";
 import { services, servicesIntro } from "@/content/services";
 import { auditCta, auditPath } from "@/content/nav";
 import { pageMetadata } from "@/lib/seo";
-import Link from "next/link";
+import { faqJsonLd } from "@/lib/structured-data";
 
 export const metadata = pageMetadata({
   title: "Services and pricing",
@@ -87,6 +90,18 @@ export default function ServicesPage() {
           ))}
         </Container>
       </section>
+      <section id="services-faq" className="scroll-mt-24 border-t border-line">
+        <Container className="py-16 sm:py-24">
+          <Kicker>Questions</Kicker>
+          <h2 className="mt-4 max-w-3xl font-serif text-4xl tracking-tight sm:text-5xl">
+            Before you choose an engagement.
+          </h2>
+          <div className="mt-8">
+            <FaqList items={servicesFaqs} />
+          </div>
+        </Container>
+      </section>
+      <JsonLd data={faqJsonLd(servicesFaqs, servicesFaqJsonText)} />
       <AuditBand
         title="Not sure which engagement you need?"
         lede="Bring the work that costs you. Leave with a recommendation, a fixed price, a 25% share of measured savings, or a reason to wait."
