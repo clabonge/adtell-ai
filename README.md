@@ -26,6 +26,7 @@ Edit these files. You should not need to change layout components for ordinary c
 | `content/process.ts` | The “how it works” steps, plus what we need and what we will not do |
 | `content/about.ts` | About-page story and operating principles |
 | `content/home.ts` | Homepage cost-pattern cards |
+| `content/industries.ts` | Who we help index and the industry pages |
 | `content/audit.ts` | Company-size options and the “what to expect” list on the contact page |
 | `content/blog/*.md` | Blog posts |
 | `content/case-studies/*.md` | Case studies |
@@ -80,6 +81,7 @@ kind: implementation
 - `/how-it-works` Engagement sequence
 - `/about` Adtell.ai, the firm, and Chris LaBonge as founder
 - `/pricing` redirects to `/services`. `/audit` and `/book` redirect to `/contact`.
+- `/who-we-help` and `/who-we-help/[slug]`
 - `/case-studies` and `/case-studies/[slug]`
 - `/blog` and `/blog/[slug]`
 - `/contact` Audit intake form

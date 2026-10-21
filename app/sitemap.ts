@@ -1,4 +1,5 @@
 import type { MetadataRoute } from "next";
+import { industries, industryPath, whoWeHelp } from "@/content/industries";
 import { sampleAudit } from "@/content/sample-audit";
 import { site } from "@/content/site";
 import { getPosts } from "@/lib/posts";
@@ -35,8 +36,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
     })),
   ];
 
+  const industryPages: MetadataRoute.Sitemap = [
+    whoWeHelp.path,
+    ...industries.map((industry) => industryPath(industry)),
+  ].map((path) => ({
+    url: new URL(path, site.url).toString(),
+    lastModified: whoWeHelp.updated,
+    changeFrequency: "monthly" as const,
+    priority: 0.7,
+  }));
+
   return [
     ...pages,
+    ...industryPages,
     ...posts.map((post) => ({
       url: new URL(post.path, site.url).toString(),
       lastModified: post.date,
