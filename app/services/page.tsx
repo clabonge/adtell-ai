@@ -1,4 +1,5 @@
 import { AuditBand } from "@/components/AuditBand";
+import { SavingsCalculator } from "@/components/SavingsCalculator";
 import { SavingsShare } from "@/components/SavingsShare";
 import { Container, PageHero } from "@/components/ui";
 import { services, servicesIntro } from "@/content/services";
@@ -24,6 +25,7 @@ export default function ServicesPage() {
         cta={{ href: auditPath, label: auditCta }}
       />
       <SavingsShare bordered={false} />
+      <SavingsCalculator />
       <section>
         <Container className="py-4 sm:py-8">
           {services.map((service) => (
@@ -47,6 +49,24 @@ export default function ServicesPage() {
                     <li key={item}>{item}</li>
                   ))}
                 </ul>
+                {service.delivery ? (
+                  <>
+                    <h3 className="mt-8 text-sm font-semibold uppercase tracking-[0.16em] text-oxblood">
+                      Deliverables
+                    </h3>
+                    <ul className="mt-3 list-disc space-y-2 pl-5 text-base leading-relaxed text-quiet">
+                      {service.delivery.deliverables.map((item) => (
+                        <li key={item}>{item}</li>
+                      ))}
+                    </ul>
+                    <h3 className="mt-8 text-sm font-semibold uppercase tracking-[0.16em] text-oxblood">
+                      Typical timeline
+                    </h3>
+                    <p className="mt-2 text-base leading-relaxed text-quiet">
+                      {service.delivery.timeline}
+                    </p>
+                  </>
+                ) : null}
               </div>
               <div className="h-fit border border-line p-5 lg:sticky lg:top-28">
                 <p className="text-xs font-semibold uppercase tracking-[0.16em] text-oxblood">

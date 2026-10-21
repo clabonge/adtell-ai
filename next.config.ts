@@ -4,6 +4,13 @@ const nextConfig: NextConfig = {
   /* config options here */
   cacheComponents: true,
   partialPrefetching: true,
+  async redirects() {
+    return [
+      { source: "/pricing", destination: "/services", statusCode: 301 },
+      { source: "/audit", destination: "/contact", statusCode: 301 },
+      { source: "/book", destination: "/contact", statusCode: 301 },
+    ];
+  },
   async headers() {
     return [
       {
