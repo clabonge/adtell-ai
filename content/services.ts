@@ -195,3 +195,30 @@ export const services: Service[] = [
     cta: "Discuss a workshop",
   },
 ];
+
+/**
+ * CFO section. Real commercial terms that are not already published
+ * stay as placeholders until Chris confirms them. Do not add a
+ * savings-share term length or cap here.
+ */
+export const cfoTerms = {
+  id: "costs-terms-risk",
+  kicker: "Costs, terms, and risk",
+  title: "What a CFO should see before a yes.",
+  lede: "Published prices on this page are unchanged. A savings-share term length or cap is set in the written agreement. Neither is stated in this section.",
+  placeholderLabel: "Placeholder. Chris must confirm this term before it is treated as published.",
+  items: [
+    {
+      title: "Payment schedule on fixed-price work",
+      body: "When any amount is due before work starts, and when the rest of a fixed-price engagement is due.",
+    },
+    {
+      title: "Tool subscriptions",
+      body: "Who pays for tool subscriptions, and how that cost is estimated in the quote.",
+    },
+    {
+      title: "If a workflow underperforms",
+      body: "What happens if a workflow underperforms during the 30 days of tuning after an implementation goes live.",
+    },
+  ],
+} as const;

@@ -6,7 +6,7 @@ import { SavingsShare } from "@/components/SavingsShare";
 import { Container, JsonLd, Kicker, PageHero } from "@/components/ui";
 import { sampleAudit } from "@/content/sample-audit";
 import { servicesFaqs, servicesFaqJsonText } from "@/content/services-faq";
-import { services, servicesIntro } from "@/content/services";
+import { cfoTerms, services, servicesIntro } from "@/content/services";
 import { auditCta, auditPath } from "@/content/nav";
 import { pageMetadata } from "@/lib/seo";
 import { faqJsonLd } from "@/lib/structured-data";
@@ -100,6 +100,26 @@ export default function ServicesPage() {
               </div>
             </article>
           ))}
+        </Container>
+      </section>
+      <section id={cfoTerms.id} className="scroll-mt-24 border-t border-line">
+        <Container className="py-16 sm:py-24">
+          <Kicker>{cfoTerms.kicker}</Kicker>
+          <h2 className="mt-4 max-w-3xl font-serif text-4xl tracking-tight sm:text-5xl">
+            {cfoTerms.title}
+          </h2>
+          <p className="mt-4 max-w-2xl text-lg leading-relaxed text-quiet">{cfoTerms.lede}</p>
+          <div className="mt-10 grid gap-6">
+            {cfoTerms.items.map((item) => (
+              <article key={item.title} className="border border-line p-6">
+                <h3 className="font-serif text-2xl tracking-tight">{item.title}</h3>
+                <p className="mt-4 border border-oxblood px-4 py-3 text-sm font-semibold uppercase tracking-[0.14em] text-oxblood">
+                  {cfoTerms.placeholderLabel}
+                </p>
+                <p className="mt-4 text-base leading-relaxed text-quiet">{item.body}</p>
+              </article>
+            ))}
+          </div>
         </Container>
       </section>
       <section id="services-faq" className="scroll-mt-24 border-t border-line">
