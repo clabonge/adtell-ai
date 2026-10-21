@@ -31,6 +31,6 @@ There is a second way to pay for an implementation. On a workflow whose cost can
 
 ## What to bring
 
-You do not need a data platform or an AI strategy document. You need a clear account of where time goes. The audit form asks for industry, company size, and the work that costs the most time or money on purpose. Those answers do more for a first conversation than a list of models.
+You do not need a data platform or an AI strategy document. You need a clear account of where time goes. The audit form asks for the work that costs the most time or money. Industry and company size are optional. A specific workflow does more for a first conversation than a list of models.
 
 [Book a free AI audit](/contact) when you want that conversation. Keep secrets, customer lists, and passwords out of the form. The first pass only needs enough detail to know whether a conversation is worth having.

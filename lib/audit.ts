@@ -9,7 +9,7 @@ export type AuditSubmission = {
   email: string;
   company: string;
   industry: string;
-  size: CompanySize;
+  size: CompanySize | "";
   drains: string;
 };
 
@@ -45,10 +45,9 @@ export function validateAudit(input: {
   if (!company) errors.company = "Enter the company name.";
   else if (company.length > 200) errors.company = "Use 200 characters or fewer.";
 
-  if (!industry) errors.industry = "Enter the industry.";
-  else if (industry.length > 120) errors.industry = "Use 120 characters or fewer.";
+  if (industry.length > 120) errors.industry = "Use 120 characters or fewer.";
 
-  if (!companySizes.some((option) => option.value === size)) {
+  if (size && !companySizes.some((option) => option.value === size)) {
     errors.size = "Select a company size.";
   }
 
