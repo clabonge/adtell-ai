@@ -1,4 +1,5 @@
 import type { MetadataRoute } from "next";
+import { sampleAudit } from "@/content/sample-audit";
 import { site } from "@/content/site";
 import { getPosts } from "@/lib/posts";
 
@@ -13,11 +14,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/contact",
     "/privacy",
     "/terms",
+    sampleAudit.path,
   ];
 
   const pages: MetadataRoute.Sitemap = staticPaths.map((path) => ({
     url: new URL(path || "/", site.url).toString(),
-    lastModified: site.updated,
+    lastModified: path === sampleAudit.path ? sampleAudit.updated : site.updated,
     changeFrequency: path === "" || path === "/blog" ? "weekly" : "monthly",
     priority: path === "" ? 1 : path === "/services" || path === "/contact" ? 0.8 : 0.7,
   }));

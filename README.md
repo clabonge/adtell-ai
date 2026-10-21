@@ -83,6 +83,7 @@ kind: implementation
 - `/case-studies` and `/case-studies/[slug]`
 - `/blog` and `/blog/[slug]`
 - `/contact` Audit intake form
+- `/sample-audit` Example only. A fictional one-page ranked list, not a client result.
 - `/api/audit` Audit form intake
 - `/admin/crm` Private owner CRM. See `docs/crm.md`.
 - `/sitemap.xml` and `/robots.txt`
