@@ -6,7 +6,7 @@ import { getPosts } from "@/lib/posts";
 
 function lastModifiedFor(path: string): string {
   if (path === sampleAudit.path) return sampleAudit.updated;
-  if (path === "/services" || path === "/contact") return site.pageUpdated[path];
+  if (path === "/services" || path === "/contact" || path === "/cfo-brief") return site.pageUpdated[path];
   return site.updated;
 }
 
@@ -21,6 +21,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/contact",
     "/privacy",
     "/terms",
+    "/cfo-brief",
     sampleAudit.path,
   ];
 

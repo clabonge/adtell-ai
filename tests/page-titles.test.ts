@@ -17,6 +17,7 @@ const pages: { topic: string; path: string }[] = [
   { topic: "Privacy", path: "/privacy" },
   { topic: "Terms", path: "/terms" },
   { topic: sampleAudit.title, path: sampleAudit.path },
+  { topic: "A one-page brief for the CFO", path: "/cfo-brief" },
   { topic: whoWeHelp.title, path: whoWeHelp.path },
   ...industries.map((industry) => ({ topic: industry.name, path: industryPath(industry) })),
   ...getPosts("blog").map((post) => ({ topic: post.title, path: `/blog/${post.slug}` })),

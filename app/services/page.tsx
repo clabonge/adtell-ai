@@ -8,6 +8,7 @@ import { Container, JsonLd, Kicker, PageHero } from "@/components/ui";
 import { auditRequests } from "@/content/audit";
 import { sampleAudit } from "@/content/sample-audit";
 import { servicesFaqs, servicesFaqJsonText } from "@/content/services-faq";
+import { cfoBrief } from "@/content/cfo-brief";
 import { cfoTerms, services, servicesIntro } from "@/content/services";
 import { auditCta, auditPath } from "@/content/nav";
 import { pageMetadata } from "@/lib/seo";
@@ -118,6 +119,16 @@ export default function ServicesPage() {
             {cfoTerms.title}
           </h2>
           <p className="mt-4 max-w-2xl text-lg leading-relaxed text-quiet">{cfoTerms.lede}</p>
+          <p className="mt-4 text-base leading-relaxed text-quiet">
+            <Link href={cfoBrief.path} className="font-semibold text-oxblood underline underline-offset-4">
+              Read the one-page CFO brief
+            </Link>{" "}
+            or{" "}
+            <Link href={cfoBrief.pdfPath} className="font-semibold text-oxblood underline underline-offset-4">
+              download the PDF
+            </Link>
+            .
+          </p>
           <div className="mt-10 grid gap-6">
             {cfoTerms.items.map((item) => (
               <article key={item.title} className="border border-line p-6">
