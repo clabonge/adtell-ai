@@ -94,7 +94,7 @@ Use the filename without `.md` as the key. Do not invent a quote, a name, or a r
 - `/cfo-brief` Printable one-page brief of published prices and payment terms. `/cfo-brief.pdf` is the same brief as a download.
 - `/how-it-works` Engagement sequence
 - `/about` Adtell.ai, the firm, and Chris LaBonge as founder
-- `/pricing` redirects to `/services`. `/audit` and `/book` redirect to `/contact`.
+- `/pricing` redirects to `/services`. `/faq` redirects to `/#faq`. `/audit` and `/book` redirect to `/contact`.
 - `/who-we-help` and `/who-we-help/[slug]`
 - `/case-studies` and `/case-studies/[slug]`
 - `/blog` and `/blog/[slug]`
