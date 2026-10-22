@@ -9,7 +9,7 @@ export function MobileAuditBar() {
   if (pathname === "/contact") return null;
 
   return (
-    <div className="md:hidden">
+    <div className="md:hidden print:hidden">
       <div className="h-20" aria-hidden="true" />
       <div className="fixed inset-x-0 bottom-0 z-30 border-t border-line bg-void px-4 pt-3 pb-[max(0.75rem,env(safe-area-inset-bottom))]">
         <Link

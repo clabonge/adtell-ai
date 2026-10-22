@@ -4,7 +4,7 @@ import { site } from "@/content/site";
 
 export function SiteFooter() {
   return (
-    <footer className="mt-auto border-t border-line bg-void text-ivory">
+    <footer className="mt-auto border-t border-line bg-void text-ivory print:hidden">
       <div className="mx-auto grid w-full max-w-6xl gap-10 px-5 py-14 sm:px-8 md:grid-cols-[1.4fr_1fr_1fr]">
         <div>
           <p className="font-serif text-3xl tracking-tight">

@@ -71,7 +71,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${newsreader.variable} ${outfit.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col bg-void font-sans text-ivory">
-        <a className="skip-link" href="#main">
+        <a className="skip-link print:hidden" href="#main">
           Skip to content
         </a>
         <Suspense fallback={<HeaderFallback />}>
