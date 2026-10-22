@@ -27,7 +27,7 @@ describe("services FAQ", () => {
     assert.equal(servicesFaqs[4]?.link?.href, "/privacy");
   });
 
-  it("does not state a savings-share term length or cap", () => {
+  it("does not state a term length or cap", () => {
     const joined = servicesFaqs.map((item) => `${item.question} ${item.answer}`).join(" ");
     assert.doesNotMatch(joined, /\b\d+\s*(month|months|year|years)\b/i);
     assert.doesNotMatch(joined, /cap of/i);

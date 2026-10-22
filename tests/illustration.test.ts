@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import { describe, it } from "node:test";
-import { services, savingsShare } from "../content/services";
+import { savingsShare, services } from "../content/services";
 import { formatDollars, formatPayback, illustrateTask } from "../lib/illustration";
 
 describe("task illustration", () => {

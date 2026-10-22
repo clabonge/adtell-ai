@@ -10,6 +10,17 @@ export const PREVIEW_LABEL =
 export const PREVIEW_FALLBACK =
   "We could not draft a preview just now. You can still send the form, and a person will review it.";
 
+/** Contact form reads these query names to prefill the try-it answers. */
+export function fullAuditHref(industry: string, weeklyTime: string): string {
+  const params = new URLSearchParams();
+  const industryText = industry.trim().slice(0, 120);
+  const weeklyText = weeklyTime.trim().slice(0, 500);
+  if (industryText) params.set("industry", industryText);
+  if (weeklyText) params.set("weekly_time", weeklyText);
+  const query = params.toString();
+  return query ? `/contact?${query}` : "/contact";
+}
+
 const HOUR_MS = 60 * 60 * 1000;
 const PREVIEW_LIMIT = 5;
 const FIELD_MAX = 280;

@@ -4,6 +4,7 @@ import { AuditOffer, AuditRequest, SampleAuditPreview } from "@/components/Audit
 import { ImplementationHighlights } from "@/components/CompanyLists";
 import { FaqList } from "@/components/FaqList";
 import { SavingsShare } from "@/components/SavingsShare";
+import { WorkflowTry } from "@/components/WorkflowTry";
 import { ButtonLink, Container, JsonLd, Kicker } from "@/components/ui";
 import { auditRequests } from "@/content/audit";
 import { faqs } from "@/content/faqs";
@@ -30,13 +31,15 @@ export default function HomePage() {
   return (
     <>
       <section className="border-b border-line">
-        <Container className="grid gap-12 py-16 sm:py-24 lg:grid-cols-[minmax(0,1fr)_22rem] lg:items-end">
+        <Container className="py-12 sm:py-16">
+          <Kicker>Your outsourced AI department</Kicker>
+          <h1 className="mt-4 max-w-3xl font-serif text-[2.7rem] leading-[1.02] tracking-tight sm:text-6xl lg:text-7xl">
+            {site.tagline}
+          </h1>
+          <WorkflowTry />
+          <div className="mt-10 grid gap-12 lg:grid-cols-[minmax(0,1fr)_22rem] lg:items-end">
           <div>
-            <Kicker>Your outsourced AI department</Kicker>
-            <h1 className="mt-5 max-w-3xl font-serif text-[2.7rem] leading-[1.02] tracking-tight sm:text-6xl lg:text-7xl">
-              {site.tagline}
-            </h1>
-            <p className="mt-6 max-w-xl text-lg leading-relaxed text-quiet">
+            <p className="max-w-xl text-lg leading-relaxed text-quiet">
               Hire {site.name} as your AI implementation team. We find the repetitive
               work that still sits on payroll and implement the workflows that remove
               it. The first step is a free AI savings audit. {site.localPresence}
@@ -84,6 +87,7 @@ export default function HomePage() {
               </Link>
             </p>
           </aside>
+          </div>
         </Container>
       </section>
 

@@ -13,7 +13,7 @@ function briefCopy(): string {
 }
 
 describe("cfo brief", () => {
-  it("uses published prices and payment terms without a savings-share term, cap, or ownership claim", () => {
+  it("uses published prices and payment terms without a term length, cap, or ownership claim", () => {
     const copy = briefCopy();
     assert.deepEqual(
       cfoBrief.prices.map((price) => price.price),

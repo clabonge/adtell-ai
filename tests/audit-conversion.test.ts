@@ -113,12 +113,12 @@ describe("audit conversion", () => {
 
   it("leads the contact page with the list headline, the example, and the form", () => {
     const contact = read("app/contact/page.tsx");
-    const headline = contact.indexOf(
-      "Get a free one-page list of the work AI can take off your team.",
-    );
+    const headline = contact.indexOf("Contact us");
+    const subhead = contact.indexOf("Request your free AI audit.");
     const preview = contact.indexOf("<SampleAuditPreview />");
-    const form = contact.indexOf("<ContactForm />");
+    const form = contact.indexOf("<ContactForm");
     assert.ok(headline > 0);
+    assert.ok(subhead > headline);
     assert.ok(preview > headline);
     assert.ok(form > preview);
     assert.equal(contact.includes("What to expect"), false);

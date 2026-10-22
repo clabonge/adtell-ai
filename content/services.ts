@@ -28,11 +28,12 @@ export const servicesIntro = {
 /**
  * Commercial term for implementation. The 25% is our fee, not a claim
  * about how much a company has already saved.
+ * Do not state how long that fee runs.
  */
 export const savingsShare = {
   kicker: "A second way to pay",
   title: "Pay 25% of the savings.",
-  lede: "A fixed price is the right shape when you want a known invoice. A share is the right shape when you want us paid from the reduction. Before any work starts, we agree a measured baseline with you in writing. Savings are measured against that baseline and reviewed together. Billing is monthly on the measured savings. The term length and any cap are set in that written agreement. The free audit can come back with a price, a fee of 25% of the measured savings, or both. You keep the other 75%.",
+  lede: "A fixed price is the right shape when you want a known invoice. A share is the right shape when you want us paid from the reduction. Before any work starts, we agree a measured baseline with you in writing. Savings are measured against that baseline and reviewed together. Billing is monthly on the measured savings. The free audit can come back with a price, a fee of 25% of the measured savings, or both. You keep the other 75%.",
   points: [
     {
       title: "Agree the baseline",
@@ -44,7 +45,7 @@ export const savingsShare = {
     },
     {
       title: "The agreement sets the rest",
-      body: "Term length and any cap are set in the written agreement. You can still take a fixed price, the 25% share, or wait. The audit stays free either way.",
+      body: "You can still take a fixed price, the 25% share, or wait. The audit stays free either way.",
     },
   ],
   illustration: {
@@ -198,13 +199,13 @@ export const services: Service[] = [
 
 /**
  * Costs, terms, and risk. Published prices stay on the service cards.
- * Do not add a savings-share term length or cap here.
+ * Do not state how long the 25% fee runs.
  */
 export const cfoTerms = {
   id: "costs-terms-risk",
   kicker: "Costs, terms, and risk",
   title: "What a CFO should see before a yes.",
-  lede: "Published prices on this page are unchanged. The final terms are set in each client's written agreement. Any savings-share term length or cap is set in that agreement and is not stated here.",
+  lede: "Published prices on this page are unchanged. The final terms are set in each client's written agreement.",
   items: [
     {
       title: "Payment schedule",

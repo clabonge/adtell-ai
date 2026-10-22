@@ -86,6 +86,7 @@ export const site = {
   updated: "2026-10-21",
   /** Pages revised after `updated`. */
   pageUpdated: {
+    "/": "2026-10-22",
     "/services": "2026-10-22",
     "/contact": "2026-10-22",
     "/cfo-brief": "2026-10-22",

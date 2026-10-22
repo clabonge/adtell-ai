@@ -2,8 +2,7 @@ import type { Faq } from "@/content/faqs";
 import { site } from "@/content/site";
 
 /**
- * Questions for /services. Savings-share term length and any cap stay
- * in the written agreement. Do not put a duration or a cap here.
+ * Questions for /services. Do not state how long the 25% fee runs.
  */
 export const servicesFaqs: Faq[] = [
   {
@@ -24,7 +23,7 @@ export const servicesFaqs: Faq[] = [
   {
     question: "Can we cancel?",
     answer:
-      "Yes. The retainer has no long-term lock-in. How you cancel, and any savings-share term length or cap, are set in your written agreement.",
+      "Yes. The retainer has no long-term lock-in. How you cancel is set in your written agreement.",
   },
   {
     question: "Is your data used to train AI?",

@@ -47,9 +47,19 @@ function mailtoHref(value: AuditSubmission) {
   return `mailto:${site.email}?subject=${subject}&body=${body}`;
 }
 
-export function ContactForm() {
+export function ContactForm({
+  initialIndustry = "",
+  initialWeeklyTime = "",
+}: {
+  initialIndustry?: string;
+  initialWeeklyTime?: string;
+}) {
   const baseId = useId();
-  const [form, setForm] = useState<FormState>(emptyForm);
+  const [form, setForm] = useState<FormState>({
+    ...emptyForm,
+    industry: initialIndustry,
+    weeklyTime: initialWeeklyTime,
+  });
   const [errors, setErrors] = useState<AuditErrors>({});
   const [pending, setPending] = useState(false);
   const [previewEnabled, setPreviewEnabled] = useState(false);
