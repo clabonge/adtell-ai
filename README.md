@@ -74,6 +74,19 @@ kind: implementation
 
 `kind: implementation` labels a business we helped. Keep it qualitative: the goal and how the automation works. Do not add results or figures.
 
+A client quote is optional and stays off the page until you add one. `content/case-study-quotes.ts` starts empty, so nothing is shown. When a real quote is approved, add the case study slug:
+
+```ts
+export const caseStudyQuotes = {
+  "the-study-slug": {
+    text: "The approved sentence.",
+    attribution: "Name, Company",
+  },
+};
+```
+
+Use the filename without `.md` as the key. Do not invent a quote, a name, or a result. The case study page renders that entry and skips every study that has none.
+
 ## Pages
 
 - `/` Home
