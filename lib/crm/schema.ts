@@ -73,6 +73,8 @@ export const inquiries = pgTable("inquiries", {
   industry: text("industry").notNull(),
   companySize: text("company_size").notNull(),
   drains: text("drains").notNull(),
+  weeklyTime: text("weekly_time"),
+  auditPreview: text("audit_preview"),
   pageUrl: text("page_url"),
   referrer: text("referrer"),
   utmSource: text("utm_source"),

@@ -83,6 +83,8 @@ export function notificationPayload(inquiryId: string, submission: AuditSubmissi
     industry: submission.industry,
     size: submission.size,
     drains: submission.drains,
+    weeklyTime: submission.weeklyTime ?? "",
+    auditPreview: submission.auditPreview ?? "",
   };
 }
 
@@ -253,6 +255,8 @@ async function insertInquiry(
       industry: submission.industry,
       companySize: submission.size,
       drains: submission.drains,
+      weeklyTime: blankToNull(submission.weeklyTime),
+      auditPreview: blankToNull(submission.auditPreview),
       pageUrl: input.attribution.pageUrl,
       referrer: input.attribution.referrer,
       utmSource: input.attribution.utmSource,

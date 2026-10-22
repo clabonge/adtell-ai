@@ -1,7 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { useId, useRef, useState, type FormEvent } from "react";
+import { useEffect, useId, useRef, useState, type FormEvent } from "react";
+import { AuditPreview } from "@/components/AuditPreview";
 import { BookingPrompt } from "@/components/BookingPrompt";
 import { companySizes } from "@/content/audit";
 import { site } from "@/content/site";
@@ -15,6 +16,8 @@ type FormState = {
   industry: string;
   size: string;
   drains: string;
+  weeklyTime: string;
+  auditPreview: string;
   companyWebsite: string;
 };
 
@@ -25,6 +28,8 @@ const emptyForm: FormState = {
   industry: "",
   size: "",
   drains: "",
+  weeklyTime: "",
+  auditPreview: "",
   companyWebsite: "",
 };
 
@@ -35,6 +40,8 @@ function mailtoHref(value: AuditSubmission) {
   if (value.industry) lines.push(`Industry: ${value.industry}`);
   if (value.size) lines.push(`Company size: ${sizeLabel}`);
   lines.push("", "The work that costs the most:", value.drains);
+  if (value.weeklyTime) lines.push("", "What eats the most time each week:", value.weeklyTime);
+  if (value.auditPreview) lines.push("", "Example AI preview:", value.auditPreview);
   const subject = encodeURIComponent("AI savings audit");
   const body = encodeURIComponent(lines.join("\n"));
   return `mailto:${site.email}?subject=${subject}&body=${body}`;
@@ -45,6 +52,7 @@ export function ContactForm() {
   const [form, setForm] = useState<FormState>(emptyForm);
   const [errors, setErrors] = useState<AuditErrors>({});
   const [pending, setPending] = useState(false);
+  const [previewEnabled, setPreviewEnabled] = useState(false);
   const [result, setResult] = useState<{ submission: AuditSubmission; received: boolean } | null>(
     null,
   );
@@ -54,8 +62,25 @@ export function ContactForm() {
     return `${baseId}-${name}`;
   }
 
+  useEffect(() => {
+    let cancelled = false;
+    fetch("/api/audit-preview", { headers: { Accept: "application/json" } })
+      .then((response) => response.json())
+      .then((payload: { enabled?: boolean }) => {
+        if (!cancelled && payload.enabled === true) setPreviewEnabled(true);
+      })
+      .catch(() => undefined);
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
   function update(name: keyof FormState, value: string) {
-    setForm((current) => ({ ...current, [name]: value }));
+    setForm((current) => ({
+      ...current,
+      [name]: value,
+      ...(name === "industry" || name === "drains" || name === "weeklyTime" ? { auditPreview: "" } : null),
+    }));
   }
 
   async function onSubmit(event: FormEvent<HTMLFormElement>) {
@@ -87,6 +112,8 @@ export function ContactForm() {
           industry: form.industry,
           size: form.size,
           drains: form.drains,
+          weekly_time: form.weeklyTime,
+          audit_preview: form.auditPreview,
           company_website: form.companyWebsite,
           page_url: window.location.href,
           referrer: document.referrer,
@@ -299,6 +326,43 @@ export function ContactForm() {
             </p>
           ) : null}
         </div>
+        <div>
+          <label htmlFor={fieldId("weeklyTime")} className="text-sm font-semibold text-ink">
+            What eats the most time each week?{" "}
+            <span className="font-normal text-quiet-ink">(optional)</span>
+          </label>
+          <textarea
+            id={fieldId("weeklyTime")}
+            name="weekly_time"
+            rows={3}
+            maxLength={500}
+            value={form.weeklyTime}
+            onChange={(event) => update("weeklyTime", event.target.value)}
+            aria-invalid={errors.weeklyTime ? true : undefined}
+            aria-describedby={errors.weeklyTime ? `${fieldId("weeklyTime")}-error` : undefined}
+            placeholder="e.g. writing the same follow-up after every visit"
+            className="mt-2 w-full border border-line bg-ivory-deep px-3 py-3 text-base leading-relaxed text-ink"
+          />
+          {errors.weeklyTime ? (
+            <p id={`${fieldId("weeklyTime")}-error`} className="mt-2 text-sm text-oxblood-ink">
+              {errors.weeklyTime}
+            </p>
+          ) : null}
+        </div>
+        <AuditPreview
+          enabled={previewEnabled}
+          industry={form.industry}
+          drains={form.drains}
+          weeklyTime={form.weeklyTime}
+          companyWebsite={form.companyWebsite}
+          onText={(text, key) =>
+            setForm((current) =>
+              `${current.industry}\n${current.drains}\n${current.weeklyTime}` === key
+                ? { ...current, auditPreview: text }
+                : current,
+            )
+          }
+        />
       </div>
 
       <div className="sr-only" aria-hidden="true">

@@ -34,7 +34,17 @@ function auditText(submission: AuditSubmission): string {
   if (submission.industry) lines.push(`Industry: ${submission.industry}`);
   if (submission.size) lines.push(`Company size: ${sizeLabel(submission.size)}`);
   lines.push("", "The work that costs the most:", submission.drains);
+  if (submission.weeklyTime) {
+    lines.push("", "What eats the most time each week:", submission.weeklyTime);
+  }
+  if (submission.auditPreview) {
+    lines.push("", "Example AI preview:", submission.auditPreview);
+  }
   return lines.join("\n");
+}
+
+export function ownerAuditText(submission: AuditSubmission): string {
+  return auditText(submission);
 }
 
 function subjectLine(company: string): string {
@@ -111,7 +121,7 @@ export async function sendAuditEmail(
         to: [site.email],
         reply_to: submission.email,
         subject: subjectLine(submission.company),
-        text: auditText(submission),
+        text: ownerAuditText(submission),
       }),
     },
     options?.fetchImpl ?? fetch,
@@ -120,7 +130,7 @@ export async function sendAuditEmail(
   return result;
 }
 
-function confirmationText(submission: AuditSubmission): string {
+export function prospectConfirmationText(submission: AuditSubmission): string {
   const name = submission.name.replace(/[\r\n]+/g, " ").trim();
   const greeting = name ? `Hello ${name},` : "Hello,";
   return [
@@ -162,7 +172,7 @@ export async function sendAuditConfirmation(
         to: [submission.email],
         reply_to: site.email,
         subject: "We received your AI savings audit request",
-        text: confirmationText(submission),
+        text: prospectConfirmationText(submission),
       }),
     },
     options?.fetchImpl ?? fetch,

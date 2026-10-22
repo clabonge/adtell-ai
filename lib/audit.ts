@@ -1,6 +1,7 @@
 import { companySizes, type CompanySize } from "@/content/audit";
+import { sanitizeStoredPreview } from "@/lib/audit-preview";
 
-export type AuditField = "name" | "email" | "company" | "industry" | "size" | "drains";
+export type AuditField = "name" | "email" | "company" | "industry" | "size" | "drains" | "weeklyTime";
 
 export type AuditErrors = Partial<Record<AuditField | "form", string>>;
 
@@ -11,6 +12,8 @@ export type AuditSubmission = {
   industry: string;
   size: CompanySize | "";
   drains: string;
+  weeklyTime?: string;
+  auditPreview?: string;
 };
 
 const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -26,6 +29,8 @@ export function validateAudit(input: {
   industry: unknown;
   size: unknown;
   drains: unknown;
+  weeklyTime?: unknown;
+  auditPreview?: unknown;
 }): { ok: true; value: AuditSubmission } | { ok: false; errors: AuditErrors } {
   const name = clean(input.name);
   const email = clean(input.email);
@@ -33,6 +38,8 @@ export function validateAudit(input: {
   const industry = clean(input.industry);
   const size = clean(input.size);
   const drains = clean(input.drains);
+  const weeklyTime = clean(input.weeklyTime);
+  const auditPreview = sanitizeStoredPreview(input.auditPreview);
   const errors: AuditErrors = {};
 
   if (!name) errors.name = "Enter your name.";
@@ -57,6 +64,8 @@ export function validateAudit(input: {
     errors.drains = "Use 4,000 characters or fewer.";
   }
 
+  if (weeklyTime.length > 500) errors.weeklyTime = "Use 500 characters or fewer.";
+
   if (Object.keys(errors).length > 0) return { ok: false, errors };
 
   return {
@@ -68,6 +77,8 @@ export function validateAudit(input: {
       industry,
       size: size as CompanySize,
       drains,
+      weeklyTime,
+      auditPreview,
     },
   };
 }

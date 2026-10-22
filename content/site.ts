@@ -87,7 +87,7 @@ export const site = {
   /** Pages revised after `updated`. */
   pageUpdated: {
     "/services": "2026-10-22",
-    "/contact": "2026-10-21",
+    "/contact": "2026-10-22",
     "/cfo-brief": "2026-10-22",
   },
   tagline: "Cut the cost of work that should not still be done by hand.",

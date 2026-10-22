@@ -57,6 +57,9 @@ services:
         sync: false
       - key: AUDIT_WEBHOOK_URL
         sync: false
+      # Example audit preview. The value stays in the Render dashboard.
+      - key: OPENAI_API_KEY
+        sync: false
 
   - type: worker
     name: adtell-crm-worker
