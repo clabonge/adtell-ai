@@ -10,6 +10,7 @@ import {
   auditPreviewConfigured,
   draftAuditPreview,
   handleAuditPreview,
+  previewHealth,
   previewSystemPrompt,
   previewTextAllowed,
   resetPreviewRateLimit,
@@ -65,6 +66,14 @@ describe("audit preview", { concurrency: 1 }, () => {
     assert.match(prompt, /hours saved/);
     assert.match(prompt, /Doan Distillery/);
     assert.equal(previewTextAllowed(cleanWorkflows.map((item) => item.handles).join(" ")), true);
+    assert.equal(
+      previewTextAllowed("A person reviews the draft before it reaches the drivers."),
+      true,
+    );
+    assert.equal(previewTextAllowed("No dollar amount and no percent is stated."), true);
+    assert.equal(previewTextAllowed("Built for Ivers Property Management."), false);
+    assert.equal(previewTextAllowed("About 5 dollars a week."), false);
+    assert.equal(previewTextAllowed("About 10 percent less work."), false);
     for (const sample of [
       "This saves $1,000.",
       "About 10% less work.",
@@ -213,5 +222,94 @@ describe("audit preview", { concurrency: 1 }, () => {
     assert.match(ownerAuditText(submission), /What eats the most time each week:/);
     assert.equal(prospectConfirmationText(submission).includes("Example AI preview"), false);
     assert.equal(prospectConfirmationText(submission).includes(submission.auditPreview), false);
+  });
+
+  it("maps the form into the completion and returns the mocked workflows", async () => {
+    resetPreviewRateLimit();
+    const seen: {
+      model?: string;
+      max_completion_tokens?: number;
+      max_tokens?: number;
+      messages?: { role: string; content: string }[];
+    }[] = [];
+    const response = await handleAuditPreview(previewRequest(readyBody, "203.0.113.70"), {
+      env: { ...process.env, OPENAI_API_KEY: "sk-test-preview-key-ok" },
+      fetchImpl: async (_input, init) => {
+        seen.push(JSON.parse(String(init?.body)));
+        return modelResponse(cleanWorkflows);
+      },
+    });
+    const body = (await response.json()) as {
+      ok?: boolean;
+      message?: string;
+      workflows?: { name: string }[];
+    };
+    assert.equal(response.status, 200);
+    assert.equal(body.ok, true);
+    assert.equal(body.message, undefined);
+    assert.equal(body.workflows?.length, 2);
+    assert.equal(body.workflows?.[0]?.name, "Booking replies");
+    assert.equal(seen[0]?.model, PREVIEW_MODEL);
+    assert.equal(seen[0]?.max_completion_tokens, 450);
+    assert.equal(seen[0]?.max_tokens, undefined);
+    const user = seen[0]?.messages?.find((message) => message.role === "user")?.content ?? "";
+    assert.match(user, /Industry: Hospitality/);
+    assert.match(user, /rewrite booking replies from scratch every day/);
+    assert.match(user, /follow-up after a tasting/);
+  });
+
+  it("records the OpenAI error code and keeps the key out of the log", async () => {
+    resetPreviewRateLimit();
+    const secret = "sk-SECRET-should-not-leak";
+    const lines: unknown[][] = [];
+    const original = console.error;
+    console.error = (...args: unknown[]) => {
+      lines.push(args);
+    };
+    try {
+      const response = await handleAuditPreview(previewRequest(readyBody, "203.0.113.71"), {
+        env: { ...process.env, OPENAI_API_KEY: secret },
+        fetchImpl: async () =>
+          new Response(
+            JSON.stringify({
+              error: {
+                message: `Incorrect API key provided: ${secret}`,
+                type: "invalid_request_error",
+                code: "invalid_api_key",
+              },
+            }),
+            { status: 401, headers: { "Content-Type": "application/json" } },
+          ),
+      });
+      const body = (await response.json()) as { ok?: boolean; message?: string };
+      assert.equal(body.ok, false);
+      assert.equal(body.message, PREVIEW_FALLBACK);
+      const health = previewHealth({ ...process.env, OPENAI_API_KEY: secret });
+      assert.equal(health.keyPresent, true);
+      assert.equal(health.keyPrefixOk, true);
+      assert.equal(health.lastErrorCode, "invalid_api_key");
+      const logged = JSON.stringify(lines);
+      assert.equal(logged.includes(secret), false);
+      assert.equal(logged.includes("Incorrect API key"), false);
+      assert.match(logged, /401/);
+      assert.match(logged, /invalid_api_key/);
+      assert.match(logged, /invalid_request_error/);
+    } finally {
+      console.error = original;
+    }
+
+    const missing = previewHealth({ ...process.env, OPENAI_API_KEY: "" });
+    assert.equal(missing.keyPresent, false);
+    assert.equal(missing.keyPrefixOk, false);
+    const short = previewHealth({ ...process.env, OPENAI_API_KEY: "sk-test" });
+    assert.equal(short.keyPresent, true);
+    assert.equal(short.keyPrefixOk, false);
+    const spaced = previewHealth({ ...process.env, OPENAI_API_KEY: "sk-test preview key value" });
+    assert.equal(spaced.keyPresent, true);
+    assert.equal(spaced.keyPrefixOk, false);
+    const wrongPrefix = previewHealth({ ...process.env, OPENAI_API_KEY: "pk-test-preview-key-ok" });
+    assert.equal(wrongPrefix.keyPresent, true);
+    assert.equal(wrongPrefix.keyPrefixOk, false);
+    assert.equal(readFileSync("app/api/audit-preview/health/route.ts", "utf8").includes("previewHealth"), true);
   });
 });
