@@ -33,6 +33,63 @@ export function auditPreviewConfigured(env: NodeJS.ProcessEnv = process.env): bo
   return Boolean(env.OPENAI_API_KEY?.trim());
 }
 
+let lastPreviewErrorCode: string | null = null;
+
+/** Presence and shape of the key, plus the last failure code. Never the key itself. */
+export function previewHealth(env: NodeJS.ProcessEnv = process.env): {
+  keyPresent: boolean;
+  keyPrefixOk: boolean;
+  lastErrorCode: string | null;
+} {
+  const key = (env.OPENAI_API_KEY ?? "").trim();
+  return {
+    keyPresent: key.length > 0,
+    keyPrefixOk: key.startsWith("sk-") && key.length >= 20 && !/\s/.test(key),
+    lastErrorCode: lastPreviewErrorCode,
+  };
+}
+
+function safeErrorToken(value: string): string {
+  const trimmed = value.trim().slice(0, 80);
+  if (!/^[A-Za-z0-9_.:-]{1,80}$/.test(trimmed)) return "";
+  if (/sk-[A-Za-z0-9]|bearer/i.test(trimmed)) return "";
+  return trimmed;
+}
+
+function logPreviewFailure(detail: {
+  status?: number;
+  code?: string;
+  type?: string;
+  category: string;
+}): void {
+  const code = detail.code ? safeErrorToken(detail.code) : "";
+  const type = detail.type ? safeErrorToken(detail.type) : "";
+  const category = safeErrorToken(detail.category) || "unknown";
+  const status = Number.isInteger(detail.status) ? detail.status : undefined;
+  console.error(
+    "audit preview failed",
+    JSON.stringify({
+      ...(status === undefined ? {} : { status }),
+      ...(code ? { code } : {}),
+      ...(type ? { type } : {}),
+      category,
+    }),
+  );
+  lastPreviewErrorCode = code || type || category;
+}
+
+async function readOpenAiError(response: Response): Promise<{ code: string; type: string }> {
+  try {
+    const payload = (await response.json()) as { error?: { code?: unknown; type?: unknown } };
+    return {
+      code: typeof payload.error?.code === "string" ? payload.error.code : "",
+      type: typeof payload.error?.type === "string" ? payload.error.type : "",
+    };
+  } catch {
+    return { code: "", type: "" };
+  }
+}
+
 export function resetPreviewRateLimit(): void {
   hits.clear();
 }
@@ -69,12 +126,24 @@ function blockedNames(): string[] {
   ];
 }
 
-const MONEY = /\$|\b(?:usd|dollars?)\b/i;
-const PERCENT = /%|\bpercent(?:s|age)?\b/i;
+const MONEY = /\$|\b\d[\d,]*(?:\.\d+)?\s*(?:usd|dollars?)\b|\b(?:usd|dollars?)\s*\d/i;
+const PERCENT = /%|\b\d[\d,]*(?:\.\d+)?\s*percent(?:s|age)?\b|\bpercent(?:s|age)?\s*\d/i;
 const ROI = /\broi\b/i;
 const GUARANTEE = /guarant/i;
 const PRICE = /\bpric(?:e|es|ed|ing)\b/i;
 const HOURS = /\b\d[\d,]*(?:\.\d+)?\s*(?:hours?|hrs?)\b|\bhours?\s+saved\b/i;
+
+function escapeRegExp(value: string): string {
+  return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
+/** Whole names only, so a short token such as Ivers does not match drivers. */
+function mentionsBlockedName(text: string): boolean {
+  return blockedNames().some((name) => {
+    const pattern = new RegExp(`(?:^|[^A-Za-z0-9])${escapeRegExp(name)}(?:$|[^A-Za-z0-9])`, "i");
+    return pattern.test(text);
+  });
+}
 
 /** Reject money, savings figures, guarantees, prices, and client names. */
 export function previewTextAllowed(text: string): boolean {
@@ -88,8 +157,7 @@ export function previewTextAllowed(text: string): boolean {
   ) {
     return false;
   }
-  const lower = text.toLowerCase();
-  return !blockedNames().some((name) => lower.includes(name.toLowerCase()));
+  return !mentionsBlockedName(text);
 }
 
 export function sanitizeStoredPreview(value: unknown): string {
@@ -220,7 +288,8 @@ export async function draftAuditPreview(
       body: JSON.stringify({
         model: PREVIEW_MODEL,
         temperature: 0.2,
-        max_tokens: 450,
+        // Current chat-completions rejects max_tokens (unsupported_parameter) in a few hundred ms.
+        max_completion_tokens: 450,
         response_format: { type: "json_object" },
         messages: [
           { role: "system", content: previewSystemPrompt() },
@@ -229,7 +298,13 @@ export async function draftAuditPreview(
       }),
     });
     if (!response.ok) {
-      console.error("audit preview failed", response.status);
+      const failure = await readOpenAiError(response);
+      logPreviewFailure({
+        status: response.status,
+        code: failure.code,
+        type: failure.type,
+        category: "openai",
+      });
       return { ok: false, message: PREVIEW_FALLBACK };
     }
     const payload = (await response.json()) as {
@@ -237,11 +312,15 @@ export async function draftAuditPreview(
     };
     const content = payload.choices?.[0]?.message?.content ?? "";
     const workflows = workflowsFromModel(content);
-    if (!workflows) return { ok: false, message: PREVIEW_FALLBACK };
+    if (!workflows) {
+      logPreviewFailure({ category: "filtered", code: "filtered" });
+      return { ok: false, message: PREVIEW_FALLBACK };
+    }
     return { ok: true, workflows };
   } catch (err) {
-    const name = err && typeof err === "object" && "name" in err ? String(err.name) : "error";
-    if (name !== "AbortError") console.error("audit preview failed", name);
+    const name = err && typeof err === "object" && "name" in err ? String(err.name) : "";
+    if (name === "AbortError") logPreviewFailure({ category: "timeout", code: "timeout" });
+    else logPreviewFailure({ category: "network", code: "network" });
     return { ok: false, message: PREVIEW_FALLBACK };
   } finally {
     clearTimeout(timer);
