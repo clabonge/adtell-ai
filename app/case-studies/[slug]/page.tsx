@@ -2,6 +2,7 @@ import { Suspense } from "react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { AuditBand } from "@/components/AuditBand";
+import { ClientQuote } from "@/components/ClientQuote";
 import { HandoffList, WorkflowDiagram } from "@/components/WorkflowDiagram";
 import { MarkdownBody } from "@/components/MarkdownBody";
 import { Container, JsonLd, PageHero } from "@/components/ui";
@@ -69,6 +70,7 @@ async function CaseStudy({
           <p className="text-sm text-quiet">
             <time dateTime={post.date}>{formatDate(post.date)}</time>
           </p>
+          <ClientQuote slug={post.slug} />
           <div className="mt-10">
             <MarkdownBody source={post.body} />
           </div>
