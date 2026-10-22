@@ -2,7 +2,7 @@ import type { Faq } from "@/content/faqs";
 import { site } from "@/content/site";
 
 /**
- * Questions for /services. Do not put a duration or a cap here.
+ * Questions for /services. Do not state how long the 25% fee runs.
  */
 export const servicesFaqs: Faq[] = [
   {

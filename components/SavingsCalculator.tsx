@@ -32,8 +32,8 @@ export function SavingsCalculator() {
         </h2>
         <p className="mt-5 max-w-2xl text-lg leading-relaxed text-quiet">
           Enter the hours a task takes each week and the loaded hourly cost. The figures below
-          are an illustration of the annual cost and months to pay back an implementation
-          from $10,000.
+          are an illustration of the annual cost, a 25% savings-share fee, and months to pay
+          back an implementation from $10,000.
         </p>
         <p id={noteId} className="mt-4 text-sm font-semibold uppercase tracking-[0.14em] text-oxblood">
           Illustration, not a promise.
@@ -94,6 +94,10 @@ export function SavingsCalculator() {
                 <dd className="mt-1 font-serif text-3xl tracking-tight">{formatDollars(result.annualCost)}</dd>
               </div>
               <div>
+                <dt className="text-sm font-semibold">Illustrative 25% savings-share fee</dt>
+                <dd className="mt-1 font-serif text-3xl tracking-tight">{formatDollars(result.fee)}</dd>
+              </div>
+              <div>
                 <dt className="text-sm font-semibold">
                   Months to payback on an implementation from $10,000
                 </dt>
@@ -106,8 +110,9 @@ export function SavingsCalculator() {
           </div>
         </form>
         <p className="mt-6 max-w-2xl text-base leading-relaxed text-quiet">
-          Payback is how many months of that annual cost cover an implementation from $10,000.
-          The price is set in writing after the audit.
+          This treats the annual cost of the task as the measured savings. The fee is 25% of that
+          amount. Payback is how many months of that amount cover an implementation from $10,000.
+          The baseline, the savings, and the price are set in writing after the audit.
         </p>
         <p className="mt-8">
           <ButtonLink href={auditPath}>{auditCta}</ButtonLink>

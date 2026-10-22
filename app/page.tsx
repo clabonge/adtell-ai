@@ -3,6 +3,7 @@ import { AuditBand } from "@/components/AuditBand";
 import { AuditOffer, AuditRequest, SampleAuditPreview } from "@/components/AuditConversion";
 import { ImplementationHighlights } from "@/components/CompanyLists";
 import { FaqList } from "@/components/FaqList";
+import { SavingsShare } from "@/components/SavingsShare";
 import { WorkflowTry } from "@/components/WorkflowTry";
 import { ButtonLink, Container, JsonLd, Kicker } from "@/components/ui";
 import { auditRequests } from "@/content/audit";
@@ -79,6 +80,12 @@ export default function HomePage() {
                 ))}
               </tbody>
             </table>
+            <p className="mt-4 text-sm leading-relaxed text-quiet-ink">
+              An implementation can also be 25% of the savings we measure.{" "}
+              <Link href="/services#savings-share" className="font-semibold text-oxblood-ink underline underline-offset-4">
+                The audit writes down a price, that share, or both.
+              </Link>
+            </p>
           </aside>
           </div>
         </Container>
@@ -182,6 +189,8 @@ export default function HomePage() {
         </Container>
       </section>
 
+      <SavingsShare />
+
       <section className="border-t border-line">
         <Container className="py-16 sm:py-24">
           <Kicker>Illustration</Kicker>
@@ -190,7 +199,8 @@ export default function HomePage() {
           </h2>
           <p className="mt-5 max-w-2xl text-lg leading-relaxed text-quiet">
             Hours per week and a loaded hourly cost. The services page turns that into an annual
-            cost and months to pay back an implementation from $10,000.
+            cost, an illustrative 25% savings-share fee, and months to pay back an implementation
+            from $10,000.
           </p>
           <p className="mt-4 text-sm font-semibold uppercase tracking-[0.14em] text-oxblood">
             Illustration, not a promise.

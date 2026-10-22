@@ -63,14 +63,24 @@ describe("try it preview", () => {
     );
   });
 
-  it("keeps savings-share wording off the public site", () => {
-    const pattern = /share of|savings share|savings-share/i;
-    const roots = ["app", "components", "content"];
+  it("keeps the 25% share and leaves out a term length or a cap", () => {
+    const share = readFileSync("content/services.ts", "utf8");
+    const home = readFileSync("app/page.tsx", "utf8");
+    assert.match(share, /25% of the measured savings/);
+    assert.match(home, /\/services#savings-share/);
+    const forbidden = [
+      "term length",
+      "any cap",
+      "capped at",
+      "savings-share term",
+    ];
     const hits: string[] = [];
-    for (const root of roots) {
+    for (const root of ["app", "components", "content"]) {
       for (const file of sourceFiles(root)) {
         const text = readFileSync(file, "utf8");
-        if (pattern.test(text)) hits.push(file);
+        for (const phrase of forbidden) {
+          if (text.toLowerCase().includes(phrase)) hits.push(`${file}: ${phrase}`);
+        }
       }
     }
     assert.deepEqual(hits, []);

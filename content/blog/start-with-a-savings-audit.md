@@ -25,7 +25,9 @@ If there is a real target, the next paid step is sized to it.
 - Training is the right move when the team will live with the tools.
 - A retainer is the right move when something is in production and needs continued implementation.
 
-Published starting points for those engagements are on the [services page](/services). They are ranges because the work varies. They are not a quote for your company until the workflow has been seen. An implementation starts at $10,000 and is quoted from the workflow.
+Published starting points for those engagements are on the [services page](/services). They are ranges because the work varies. They are not a quote for your company until the workflow has been seen.
+
+There is a second way to pay for an implementation. On a workflow whose cost can be counted, the fee can be 25% of the measured savings, and you keep the other 75%. The audit names that cost, the measurement, and whether a fixed price or the share is the better fit.
 
 ## What to bring
 
