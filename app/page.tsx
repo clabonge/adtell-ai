@@ -3,7 +3,7 @@ import { AuditBand } from "@/components/AuditBand";
 import { AuditOffer, AuditRequest, SampleAuditPreview } from "@/components/AuditConversion";
 import { ImplementationHighlights } from "@/components/CompanyLists";
 import { FaqList } from "@/components/FaqList";
-import { SavingsShare } from "@/components/SavingsShare";
+import { WorkflowTry } from "@/components/WorkflowTry";
 import { ButtonLink, Container, JsonLd, Kicker } from "@/components/ui";
 import { auditRequests } from "@/content/audit";
 import { faqs } from "@/content/faqs";
@@ -30,13 +30,15 @@ export default function HomePage() {
   return (
     <>
       <section className="border-b border-line">
-        <Container className="grid gap-12 py-16 sm:py-24 lg:grid-cols-[minmax(0,1fr)_22rem] lg:items-end">
+        <Container className="py-12 sm:py-16">
+          <Kicker>Your outsourced AI department</Kicker>
+          <h1 className="mt-4 max-w-3xl font-serif text-[2.7rem] leading-[1.02] tracking-tight sm:text-6xl lg:text-7xl">
+            {site.tagline}
+          </h1>
+          <WorkflowTry />
+          <div className="mt-10 grid gap-12 lg:grid-cols-[minmax(0,1fr)_22rem] lg:items-end">
           <div>
-            <Kicker>Your outsourced AI department</Kicker>
-            <h1 className="mt-5 max-w-3xl font-serif text-[2.7rem] leading-[1.02] tracking-tight sm:text-6xl lg:text-7xl">
-              {site.tagline}
-            </h1>
-            <p className="mt-6 max-w-xl text-lg leading-relaxed text-quiet">
+            <p className="max-w-xl text-lg leading-relaxed text-quiet">
               Hire {site.name} as your AI implementation team. We find the repetitive
               work that still sits on payroll and implement the workflows that remove
               it. The first step is a free AI savings audit. {site.localPresence}
@@ -77,13 +79,8 @@ export default function HomePage() {
                 ))}
               </tbody>
             </table>
-            <p className="mt-4 text-sm leading-relaxed text-quiet-ink">
-              An implementation can also be 25% of the savings we measure.{" "}
-              <Link href="/services#savings-share" className="font-semibold text-oxblood-ink underline underline-offset-4">
-                The audit writes down a price, that share, or both.
-              </Link>
-            </p>
           </aside>
+          </div>
         </Container>
       </section>
 
@@ -185,8 +182,6 @@ export default function HomePage() {
         </Container>
       </section>
 
-      <SavingsShare />
-
       <section className="border-t border-line">
         <Container className="py-16 sm:py-24">
           <Kicker>Illustration</Kicker>
@@ -195,8 +190,7 @@ export default function HomePage() {
           </h2>
           <p className="mt-5 max-w-2xl text-lg leading-relaxed text-quiet">
             Hours per week and a loaded hourly cost. The services page turns that into an annual
-            cost, an illustrative 25% savings-share fee, and months to pay back an implementation
-            from $10,000.
+            cost and months to pay back an implementation from $10,000.
           </p>
           <p className="mt-4 text-sm font-semibold uppercase tracking-[0.14em] text-oxblood">
             Illustration, not a promise.

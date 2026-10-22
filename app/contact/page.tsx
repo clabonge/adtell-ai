@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import { BookingPrompt } from "@/components/BookingPrompt";
 import { SampleAuditPreview } from "@/components/AuditConversion";
 import { ContactForm } from "@/components/ContactForm";
@@ -7,26 +8,36 @@ import { site } from "@/content/site";
 import { pageMetadata } from "@/lib/seo";
 
 export const metadata = pageMetadata({
-  title: "Book a free AI audit",
+  title: "Contact us",
   description:
-    "Get a free one-page list of the work AI can take off your team. Tell Adtell.ai your name, email, company, and the work that costs the most.",
+    "Request your free AI audit. Tell Adtell.ai your name, email, company, and the work that costs the most.",
   path: "/contact",
 });
 
-export default function ContactPage() {
+function clipParam(value: string | string[] | undefined, max: number): string {
+  const text = Array.isArray(value) ? value[0] : value;
+  if (typeof text !== "string") return "";
+  return text.replace(/\s+/g, " ").trim().slice(0, max);
+}
+
+export default function ContactPage(props: {
+  searchParams: Promise<{ industry?: string | string[]; weekly_time?: string | string[] }>;
+}) {
   return (
     <>
       <PageHero
         kicker="Contact"
-        title="Get a free one-page list of the work AI can take off your team."
-        lede="Tell us your name, email, company, and the work that costs the most."
-        crumbs={[{ name: "Book an audit", path: "/contact" }]}
+        title="Contact us"
+        lede="Request your free AI audit."
+        crumbs={[{ name: "Contact us", path: "/contact" }]}
         cta={{ href: "#audit-request", label: auditOffer.cta }}
       />
       <SampleAuditPreview />
       <section id="audit-request" className="scroll-mt-24">
         <Container className="grid gap-12 py-14 sm:py-20 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.8fr)]">
-          <ContactForm />
+          <Suspense fallback={<ContactForm />}>
+            <PrefilledContactForm searchParams={props.searchParams} />
+          </Suspense>
           <div>
             <h2 className="font-serif text-3xl tracking-tight">Write directly</h2>
             <p className="mt-4 text-base leading-relaxed text-quiet">
@@ -53,4 +64,15 @@ export default function ContactPage() {
       </section>
     </>
   );
+}
+
+async function PrefilledContactForm({
+  searchParams,
+}: {
+  searchParams: Promise<{ industry?: string | string[]; weekly_time?: string | string[] }>;
+}) {
+  const query = await searchParams;
+  const industry = clipParam(query.industry, 120);
+  const weeklyTime = clipParam(query.weekly_time, 500);
+  return <ContactForm initialIndustry={industry} initialWeeklyTime={weeklyTime} />;
 }

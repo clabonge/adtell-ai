@@ -92,38 +92,52 @@ export function AuditPreview({
         Preview my audit
       </button>
       {phase === "idle" ? null : (
-        <article aria-live="polite" className="mt-4 border border-line bg-ivory-deep p-4">
-          <p className="text-xs font-semibold uppercase tracking-[0.16em] text-oxblood-ink">Preview</p>
-          {phase === "drafting" ? (
-            <p className="mt-3 animate-pulse text-sm text-quiet-ink">AI is drafting</p>
-          ) : null}
-          {phase === "ready" ? (
-            <ol className="mt-4 grid gap-4">
-              {workflows.map((workflow) => (
-                <li key={workflow.name} className="border-t border-line pt-3">
-                  <h3 className="font-serif text-xl tracking-tight text-ink">{workflow.name}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-quiet-ink">
-                    <span className="font-semibold text-ink">What the AI would handle. </span>
-                    {workflow.handles}
-                  </p>
-                  <p className="mt-2 text-sm leading-relaxed text-quiet-ink">
-                    <span className="font-semibold text-ink">Where a person reviews. </span>
-                    {workflow.person}
-                  </p>
-                  <p className="mt-2 text-sm leading-relaxed text-quiet-ink">
-                    <span className="font-semibold text-ink">Likely tools. </span>
-                    {workflow.tools}
-                  </p>
-                </li>
-              ))}
-            </ol>
-          ) : null}
-          {phase === "fallback" ? (
-            <p className="mt-3 text-sm leading-relaxed text-quiet-ink">{message}</p>
-          ) : null}
-          <p className="mt-4 text-sm leading-relaxed text-quiet-ink">{PREVIEW_LABEL}</p>
-        </article>
+        <PreviewCard phase={phase} workflows={workflows} message={message} />
       )}
     </div>
+  );
+}
+
+export function PreviewCard({
+  phase,
+  workflows,
+  message,
+}: {
+  phase: "drafting" | "ready" | "fallback";
+  workflows: readonly PreviewWorkflow[];
+  message: string;
+}) {
+  return (
+    <article aria-live="polite" className="mt-4 border border-line bg-ivory-deep p-4">
+      <p className="text-xs font-semibold uppercase tracking-[0.16em] text-oxblood-ink">Preview</p>
+      {phase === "drafting" ? (
+        <p className="mt-3 animate-pulse text-sm text-quiet-ink">AI is drafting</p>
+      ) : null}
+      {phase === "ready" ? (
+        <ol className="mt-4 grid gap-4">
+          {workflows.map((workflow) => (
+            <li key={workflow.name} className="border-t border-line pt-3">
+              <h3 className="font-serif text-xl tracking-tight text-ink">{workflow.name}</h3>
+              <p className="mt-2 text-sm leading-relaxed text-quiet-ink">
+                <span className="font-semibold text-ink">What the AI would handle. </span>
+                {workflow.handles}
+              </p>
+              <p className="mt-2 text-sm leading-relaxed text-quiet-ink">
+                <span className="font-semibold text-ink">Where a person reviews. </span>
+                {workflow.person}
+              </p>
+              <p className="mt-2 text-sm leading-relaxed text-quiet-ink">
+                <span className="font-semibold text-ink">Likely tools. </span>
+                {workflow.tools}
+              </p>
+            </li>
+          ))}
+        </ol>
+      ) : null}
+      {phase === "fallback" ? (
+        <p className="mt-3 text-sm leading-relaxed text-quiet-ink">{message}</p>
+      ) : null}
+      <p className="mt-4 text-sm leading-relaxed text-quiet-ink">{PREVIEW_LABEL}</p>
+    </article>
   );
 }

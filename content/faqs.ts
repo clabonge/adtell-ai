@@ -23,12 +23,7 @@ export const faqs: Faq[] = [
   {
     question: "How much does implementation cost?",
     answer:
-      "Implementation projects start at $10,000 and are quoted from a defined workflow. You can also pay 25% of the measured savings and keep the other 75%, when the cost can be counted. An assessment and roadmap, when you need a plan before a build, is $2,500–$7,500. A monthly retainer starts at $1,500 per month. Team workshops are quoted for the group. The free audit is where we put a price, the share, or both in front of you.",
-  },
-  {
-    question: "Can we pay a share of the savings?",
-    answer:
-      "Yes. On work where the cost can be counted, you can pay 25% of the measured savings and keep the other 75%. Before work starts, we agree a measured baseline with you in writing. Savings are measured against that baseline and reviewed together. Billing is monthly on the measured savings. The term length and any cap are set in that written agreement. Illustration only: if a change saves $4,000 a month, you keep $3,000 and pay $1,000. That example is not a client result. You can take the share, a fixed price, or both. If the savings cannot be counted, we quote a price. The audit itself stays free.",
+      "Implementation projects start at $10,000 and are quoted from a defined workflow. An assessment and roadmap, when you need a plan before a build, is $2,500–$7,500. A monthly retainer starts at $1,500 per month. Team workshops are quoted for the group. The free audit is where we put a price in front of you.",
   },
   {
     question: "Will this replace our team?",

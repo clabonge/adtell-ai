@@ -6,7 +6,8 @@ import { getPosts } from "@/lib/posts";
 
 function lastModifiedFor(path: string): string {
   if (path === sampleAudit.path) return sampleAudit.updated;
-  if (path === "/services" || path === "/contact" || path === "/cfo-brief") return site.pageUpdated[path];
+  const key = (path || "/") as keyof typeof site.pageUpdated;
+  if (key in site.pageUpdated) return site.pageUpdated[key];
   return site.updated;
 }
 

@@ -2,7 +2,7 @@ import { cfoTerms, services } from "@/content/services";
 
 /**
  * One-page brief for the person who signs. Prices and payment terms are
- * the published ones. Do not add a savings-share term or cap, and do not
+ * the published ones. Do not add a fee tied to savings, or a cap, and do not
  * add a claim about who owns accounts or data.
  */
 const toolPoints = cfoTerms.items.find((item) => item.title === "Tool subscriptions")?.points ?? [];

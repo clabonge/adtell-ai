@@ -13,7 +13,7 @@ const pages: { topic: string; path: string }[] = [
   { topic: "About", path: "/about" },
   { topic: "Case studies", path: "/case-studies" },
   { topic: "Blog", path: "/blog" },
-  { topic: "Book a free AI audit", path: "/contact" },
+  { topic: "Contact us", path: "/contact" },
   { topic: "Privacy", path: "/privacy" },
   { topic: "Terms", path: "/terms" },
   { topic: sampleAudit.title, path: sampleAudit.path },

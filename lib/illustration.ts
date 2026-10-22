@@ -1,15 +1,13 @@
 /**
  * Illustration math for the services calculator.
- * The 25% share and the $10,000 starting price are the published terms
+ * The $10,000 starting price is the published implementation price
  * in content/services.ts. This is not a forecast of savings.
  */
 export const WEEKS_PER_YEAR = 52;
-export const FEE_SHARE = 0.25;
 export const IMPLEMENTATION_FROM = 10_000;
 
 export type TaskIllustration = {
   annualCost: number;
-  fee: number;
   paybackMonths: number;
 };
 
@@ -27,7 +25,6 @@ export function illustrateTask(
   if (annualCost <= 0) return null;
   return {
     annualCost,
-    fee: roundCents(annualCost * FEE_SHARE),
     paybackMonths: IMPLEMENTATION_FROM / (annualCost / 12),
   };
 }

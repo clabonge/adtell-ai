@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { AuditBand } from "@/components/AuditBand";
 import { AuditOffer, AuditRequest, SampleAuditPreview } from "@/components/AuditConversion";
 import { FurnitureShop, IndustryExample } from "@/components/IndustryExample";
+import { WorkflowTry } from "@/components/WorkflowTry";
 import { Container, JsonLd, PageHero } from "@/components/ui";
 import {
   getIndustry,
@@ -55,6 +56,7 @@ export default async function IndustryPage(props: PageProps<"/who-we-help/[slug]
           { name: whoWeHelp.title, path: whoWeHelp.path },
           { name: industry.name, path },
         ]}
+        after={<WorkflowTry presetIndustry={industry.name} />}
         cta={{ href: auditPath, label: auditCta }}
       />
       <AuditOffer />

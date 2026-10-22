@@ -4,7 +4,7 @@ import { describe, it } from "node:test";
 import { cfoTerms, services } from "../content/services";
 
 describe("cfo terms", () => {
-  it("states the payment, tool, and underperformance terms without a savings-share term or cap", () => {
+  it("states the payment, tool, and underperformance terms without a term length or cap", () => {
     const copy = [cfoTerms.title, cfoTerms.lede, ...cfoTerms.items.flatMap((item) => [item.title, ...item.points])].join(
       " ",
     );
@@ -23,7 +23,6 @@ describe("cfo terms", () => {
     assert.match(copy, /you do not pay the final 25%/);
     assert.match(copy, /you keep everything built so far/);
     assert.match(copy, /final terms are set in each client's written agreement/);
-    assert.match(copy, /not stated here/);
     assert.equal(/\d+\s*(month|months|year|years)/i.test(copy), false);
     assert.equal(copy.toLowerCase().includes("cap of"), false);
     assert.equal(copy.includes("$"), false);

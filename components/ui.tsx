@@ -111,12 +111,14 @@ export function PageHero({
   lede,
   crumbs,
   cta,
+  after,
 }: {
   kicker: string;
   title: string;
   lede: string;
   crumbs?: Crumb[];
   cta?: { href: string; label: string };
+  after?: ReactNode;
 }) {
   return (
     <section className="border-b border-line">
@@ -127,6 +129,7 @@ export function PageHero({
           {title}
         </h1>
         <p className="mt-5 max-w-2xl text-lg leading-relaxed text-quiet">{lede}</p>
+        {after}
         {cta ? (
           <div className="mt-8">
             <ButtonLink href={cta.href}>{cta.label}</ButtonLink>

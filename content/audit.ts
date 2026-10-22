@@ -32,5 +32,5 @@ export const auditExpect = [
   "Afterward you get a written one-page ranked list of opportunities.",
   "We read what you send before the conversation.",
   "The recommendation can be to wait.",
-  "When the work should proceed, you get a fixed price, a 25% share of measured savings, or both.",
+  "When the work should proceed, you get a fixed price.",
 ];

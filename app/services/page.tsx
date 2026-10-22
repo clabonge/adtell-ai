@@ -3,7 +3,6 @@ import { AuditBand } from "@/components/AuditBand";
 import { AuditOffer, AuditRequest, SampleAuditPreview } from "@/components/AuditConversion";
 import { FaqList } from "@/components/FaqList";
 import { SavingsCalculator } from "@/components/SavingsCalculator";
-import { SavingsShare } from "@/components/SavingsShare";
 import { Container, JsonLd, Kicker, PageHero } from "@/components/ui";
 import { auditRequests } from "@/content/audit";
 import { sampleAudit } from "@/content/sample-audit";
@@ -17,7 +16,7 @@ import { faqJsonLd, servicesOfferJsonLd } from "@/lib/structured-data";
 export const metadata = pageMetadata({
   title: "Services and pricing",
   description:
-    "Free AI savings audit, a quoted one-workflow starter, assessments from $2,500, implementation from $10,000 or 25% of measured savings, retainers from $1,500 a month, and quoted team workshops.",
+    "Free AI savings audit, a quoted one-workflow starter, assessments from $2,500, implementation from $10,000, retainers from $1,500 a month, and quoted team workshops.",
   path: "/services",
 });
 
@@ -33,7 +32,6 @@ export default function ServicesPage() {
       />
       <AuditOffer />
       <SampleAuditPreview />
-      <SavingsShare bordered={false} />
       <SavingsCalculator />
       <section className="border-t border-line">
         <Container className="py-12 sm:py-16">
@@ -158,7 +156,7 @@ export default function ServicesPage() {
       <JsonLd data={faqJsonLd(servicesFaqs, servicesFaqJsonText)} />
       <AuditBand
         title="Not sure which engagement you need?"
-        lede="Bring the work that costs you. Leave with a recommendation, a fixed price, a 25% share of measured savings, or a reason to wait."
+        lede="Bring the work that costs you. Leave with a recommendation, a fixed price, or a reason to wait."
       />
     </>
   );

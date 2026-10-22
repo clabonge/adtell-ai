@@ -22,35 +22,7 @@ export type Service = {
 export const servicesIntro = {
   kicker: "Services",
   title: "How you pay the department.",
-  lede: "The free audit scopes the work. A starter automates one workflow, with the scope and price quoted in writing after the audit and no long-term commitment. A roadmap writes the plan. An implementation ships one workflow, for a fixed price or 25% of the measured savings. A retainer is the ongoing team, from $1,500 a month. Training is for the people inside the company who will work with that team. A quote follows the work.",
-};
-
-/**
- * Commercial term for implementation. The 25% is our fee, not a claim
- * about how much a company has already saved.
- */
-export const savingsShare = {
-  kicker: "A second way to pay",
-  title: "Pay 25% of the savings.",
-  lede: "A fixed price is the right shape when you want a known invoice. A share is the right shape when you want us paid from the reduction. Before any work starts, we agree a measured baseline with you in writing. Savings are measured against that baseline and reviewed together. Billing is monthly on the measured savings. The term length and any cap are set in that written agreement. The free audit can come back with a price, a fee of 25% of the measured savings, or both. You keep the other 75%.",
-  points: [
-    {
-      title: "Agree the baseline",
-      body: "We agree a measured baseline with you in writing before work starts. If the cost cannot be counted, we quote a price instead.",
-    },
-    {
-      title: "Measure it together",
-      body: "Savings are measured against that baseline and reviewed with you. Billing is monthly on the measured savings.",
-    },
-    {
-      title: "The agreement sets the rest",
-      body: "Term length and any cap are set in the written agreement. You can still take a fixed price, the 25% share, or wait. The audit stays free either way.",
-    },
-  ],
-  illustration: {
-    label: "Illustration only",
-    body: "If a change saves $4,000 a month, the client keeps $3,000 and pays $1,000. This example shows the 25% fee. It is not a client result and not a promise of savings.",
-  },
+  lede: "The free audit scopes the work. A starter automates one workflow, with the scope and price quoted in writing after the audit and no long-term commitment. A roadmap writes the plan. An implementation ships one workflow for a fixed price, from $10,000. A retainer is the ongoing team, from $1,500 a month. Training is for the people inside the company who will work with that team. A quote follows the work.",
 };
 
 export const services: Service[] = [
@@ -68,7 +40,7 @@ export const services: Service[] = [
       "A conversation on the workflows you flag as slow or expensive, on-site locally or by video",
       "A reply within one business day",
       "A written one-page ranked list of opportunities afterward",
-      "A fixed price, a 25% share of measured savings, or both, when the work should proceed",
+      "A fixed price when the work should proceed",
       "A plain recommendation, including “do nothing yet” when that is the right answer",
     ],
     cta: "Book a free AI audit",
@@ -127,7 +99,7 @@ export const services: Service[] = [
     brief: "One defined workflow, shipped with rules and a handoff your team can run.",
     priceLabel: "From $10,000",
     priceDetail:
-      "Quoted from a defined workflow, or 25% of the measured savings if you want the fee paid from the reduction. The audit or the roadmap is how that workflow gets named.",
+      "Quoted from a defined workflow. The audit or the roadmap is how that workflow gets named.",
     summary:
       "We design and ship one workflow: the agent, the connections it needs, and the operating rules around it. The project is tied to a specific cost, not to a vague transformation.",
     audience:
@@ -198,13 +170,13 @@ export const services: Service[] = [
 
 /**
  * Costs, terms, and risk. Published prices stay on the service cards.
- * Do not add a savings-share term length or cap here.
+ * Do not add a term length or a cap.
  */
 export const cfoTerms = {
   id: "costs-terms-risk",
   kicker: "Costs, terms, and risk",
   title: "What a CFO should see before a yes.",
-  lede: "Published prices on this page are unchanged. The final terms are set in each client's written agreement. Any savings-share term length or cap is set in that agreement and is not stated here.",
+  lede: "Published prices on this page are unchanged. The final terms are set in each client's written agreement.",
   items: [
     {
       title: "Payment schedule",
