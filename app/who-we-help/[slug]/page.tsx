@@ -1,4 +1,3 @@
-import { Suspense } from "react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { AuditBand } from "@/components/AuditBand";
@@ -36,20 +35,8 @@ export async function generateMetadata(props: PageProps<"/who-we-help/[slug]">) 
   });
 }
 
-export default function IndustryPage(props: PageProps<"/who-we-help/[slug]">) {
-  return (
-    <Suspense fallback={<IndustryFallback />}>
-      <Industry params={props.params} />
-    </Suspense>
-  );
-}
-
-async function Industry({
-  params,
-}: {
-  params: PageProps<"/who-we-help/[slug]">["params"];
-}) {
-  const { slug } = await params;
+export default async function IndustryPage(props: PageProps<"/who-we-help/[slug]">) {
+  const { slug } = await props.params;
   const industry = getIndustry(slug);
   if (!industry) notFound();
 
@@ -124,13 +111,5 @@ async function Industry({
         ])}
       />
     </>
-  );
-}
-
-function IndustryFallback() {
-  return (
-    <Container className="py-24">
-      <p className="text-lg text-quiet">Loading this industry.</p>
-    </Container>
   );
 }
