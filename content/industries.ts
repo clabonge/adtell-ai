@@ -12,7 +12,7 @@ export const whoWeHelp = {
   kicker: "Who we help",
   heading: "The work we have already implemented.",
   lede: "We implement AI for operators who still do repetitive work by hand. Each page names the businesses we helped and the task we took on.",
-  updated: "2026-10-21",
+  updated: "2026-10-22",
 } as const;
 
 export const industries = [
