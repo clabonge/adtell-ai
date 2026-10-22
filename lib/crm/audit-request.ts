@@ -55,6 +55,8 @@ export async function handleAuditRequest(request: Request): Promise<Response> {
     industry: body.industry,
     size: body.size,
     drains: body.drains,
+    weeklyTime: body.weekly_time,
+    auditPreview: body.audit_preview,
   });
   if (!result.ok) return json({ ok: false, errors: result.errors }, 400);
 

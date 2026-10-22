@@ -159,6 +159,8 @@ After the records propagate, use **Verify** on the custom domain in Render. Rend
 
 The contact form posts JSON to `/api/audit`. A successful response is `{ "ok": true, "received": true }` only after the inquiry, related CRM records, and notification jobs are committed. The visitor then sees “Your request has been received.” The form also says we save the request and email a confirmation, and that we reply within one business day.
 
+When `OPENAI_API_KEY` is set, the form can draft an example preview after the industry and the time sink are filled. Previewing is optional. The preview text is saved on the inquiry and included in the email to Chris. It is not included in the prospect confirmation. The model is `gpt-4o-mini`.
+
 Email and webhook are separate jobs. The worker command is `npm run crm:worker`. If the database is down, the route returns `503` and does not claim the request was received. Setup, the owner CRM, import, backup, and the Render Blueprint are in `docs/crm.md`.
 
 | Env var | Required | What it does |
@@ -168,6 +170,7 @@ Email and webhook are separate jobs. The worker command is `npm run crm:worker`.
 | `RESEND_FROM` | No | Sender address for the owner email. Default is `Adtell.ai <onboarding@resend.dev>`. |
 | `AUDIT_CONFIRMATION_EMAIL` | No | Defaults off. Set to `true` to also email the person who submitted the form, from `audit@adtell.ai`. |
 | `AUDIT_WEBHOOK_URL` | No | Trusted server URL for the webhook job. It is not taken from the form. |
+| `OPENAI_API_KEY` | No | When set, the audit form shows Preview my audit and calls `gpt-4o-mini`. Leave it unset to hide the button. Do not commit the key. |
 | `CRM_SESSION_SECRET` | For owner sign-in | At least 32 characters. |
 | `CRM_OWNER_EMAIL` | For owner sign-in | The only account. There is no signup. |
 | `CRM_OWNER_PASSWORD_HASH` | For owner sign-in | scrypt hash from `npm run crm:hash-password`. |

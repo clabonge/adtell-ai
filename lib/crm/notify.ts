@@ -1,6 +1,7 @@
 import { randomUUID } from "node:crypto";
 import { and, eq, sql } from "drizzle-orm";
 import { companySizes, type CompanySize } from "@/content/audit";
+import { sanitizeStoredPreview } from "@/lib/audit-preview";
 import type { AuditSubmission } from "@/lib/audit";
 import {
   sendAuditConfirmation,
@@ -292,6 +293,7 @@ export function parsePayload(value: unknown, inquiryId: string): ClaimedJob["pay
   const drains = textField(record.drains);
   if (!name || !email || !company || !drains) return null;
   if (industry.length > 120) return null;
+  const weeklyTime = typeof record.weeklyTime === "string" ? record.weeklyTime.trim().slice(0, 500) : "";
   return {
     inquiryId,
     name,
@@ -300,6 +302,8 @@ export function parsePayload(value: unknown, inquiryId: string): ClaimedJob["pay
     industry,
     size: size as CompanySize | "",
     drains,
+    weeklyTime,
+    auditPreview: sanitizeStoredPreview(record.auditPreview),
   };
 }
 

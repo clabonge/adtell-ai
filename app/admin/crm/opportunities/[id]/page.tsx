@@ -171,6 +171,12 @@ async function Opportunity({
               {inquiry.submittedAt.toISOString()} · {inquiry.name} · {inquiry.email}
             </p>
             <p className="mt-2 whitespace-pre-wrap">{inquiry.drains}</p>
+            {inquiry.weeklyTime ? (
+              <p className="mt-2 whitespace-pre-wrap">{inquiry.weeklyTime}</p>
+            ) : null}
+            {inquiry.auditPreview ? (
+              <p className="mt-2 whitespace-pre-wrap">{inquiry.auditPreview}</p>
+            ) : null}
             <p className="mt-2 text-quiet-ink">
               {[inquiry.pageUrl, inquiry.referrer, inquiry.utmSource, inquiry.utmCampaign].filter(Boolean).join(" · ")}
             </p>

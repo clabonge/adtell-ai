@@ -30,6 +30,8 @@ export function inquiryContentHash(value: AuditSubmission): string {
       industry: value.industry,
       size: value.size,
       drains: value.drains,
+      weeklyTime: value.weeklyTime ?? "",
+      auditPreview: value.auditPreview ?? "",
     }),
   );
 }
