@@ -1,6 +1,6 @@
 /**
- * Captions for the approved BCLE Furniture photographs.
- * Model numbers already in the file names stay. Do not add a result or a count.
+ * BCLE Furniture is the example client. BespokeQuote.furniture is the
+ * quoting and inventory system Adtell.ai delivered. No prices or results.
  */
 export type BcleShot = {
   name: string;
@@ -8,44 +8,49 @@ export type BcleShot = {
   caption: string;
 };
 
+export const deliveredLead =
+  "Adtell.ai delivered BespokeQuote.furniture to BCLE Furniture to automate their quoting and inventory management.";
+
 export const bcleHero = {
-  name: "bcle-selexx-cnc",
-  alt: "Anderson Selexx 510 FL CNC at BCLE Furniture",
-  caption: "Anderson Selexx 510 FL CNC at BCLE Furniture",
+  name: "bespokequote-dashboard",
+  alt: "BespokeQuote.furniture dashboard with a project package, quote lines, and order actions",
+  caption:
+    "BespokeQuote.furniture, the quoting and inventory system Adtell.ai delivered for BCLE Furniture",
 } as const satisfies BcleShot;
 
 export const bcleShop = {
-  kicker: "Real shops, real work",
-  heading: "Built and proven at BCLE Furniture",
-  lede: "These workflows run every day on the BCLE Furniture shop floor.",
+  kicker: "BespokeQuote.furniture",
+  heading: "Delivered for BCLE Furniture",
+  lede: deliveredLead,
   photos: [
     {
-      name: "bcle-shop-floor",
-      alt: "The BCLE Furniture shop floor, with machines and work in progress",
-      caption: "The BCLE Furniture shop floor",
+      name: "bespokequote-dashboard",
+      alt: "BespokeQuote.furniture dashboard with a project package, quote lines, and order actions",
+      caption: "The quoting dashboard",
     },
     {
-      name: "bcle-cnc-vacuum-lift",
-      alt: "CNC vacuum pods lifting a cut panel at BCLE Furniture",
-      caption: "CNC vacuum pods lifting a cut panel at BCLE",
+      name: "bespokequote-how-it-works",
+      alt: "BespokeQuote.furniture steps from sending drawings to a reviewed quote, a purchase order, and delivery tracking",
+      caption: "From a drawing set to delivery",
     },
     {
-      name: "bcle-burkle-operator",
-      alt: "Panels going through the Burkle finishing line at BCLE Furniture",
-      caption: "Panels going through the Burkle finishing line",
+      name: "bcle-ai-cut-sheet-receiving-tag",
+      alt: "Blurred receiving tag prepared for inventory at BCLE Furniture",
+      caption: "A blurred receiving tag for inventory",
     },
   ] as const satisfies readonly BcleShot[],
 };
 
 export const bcleAbout = {
   photo: {
-    name: "bcle-selexx-cnc",
-    alt: "The Selexx 510 FL CNC at BCLE Furniture",
-    caption: "The Selexx 510 FL CNC at BCLE Furniture.",
+    name: "bespokequote-dashboard",
+    alt: "BespokeQuote.furniture dashboard with a project package, quote lines, and order actions",
+    caption:
+      "BespokeQuote.furniture, the quoting and inventory system Adtell.ai delivered for BCLE Furniture",
   } as const satisfies BcleShot,
   kicker: "Where the practice started",
   heading: "Inside BCLE Furniture",
-  lede: "Chris runs BCLE Furniture, a working casework and millwork shop. It is where these AI workflows were built and proven on real jobs.",
+  lede: "Chris runs BCLE Furniture, a working casework and millwork shop. BespokeQuote.furniture is the quoting and inventory system delivered there.",
   photos: [
     {
       name: "bcle-shop-floor",
@@ -58,11 +63,6 @@ export const bcleAbout = {
       caption: "Thermwood CNC router",
     },
     {
-      name: "bcle-burkle-finishing-line",
-      alt: "Burkle finishing line at BCLE Furniture",
-      caption: "Burkle finishing line",
-    },
-    {
       name: "bcle-burkle-operator",
       alt: "A person feeding panels into the Burkle finishing line at BCLE Furniture",
       caption: "Feeding panels into the Burkle",
@@ -70,33 +70,32 @@ export const bcleAbout = {
   ] as const satisfies readonly BcleShot[],
 };
 
-export const bcleInventory = {
-  label: "BCLE Furniture",
-  heading: "How BCLE Furniture runs inventory with AI",
-  lede: "At BCLE Furniture, inventory notes on sheets the AI prepares: nesting layouts for the CNC and receiving tags that feed inventory. A person on the floor still checks the work.",
-  banner: {
-    name: "bcle-burkle-operator-racks",
-    alt: "An operator at the Burkle line among panel racks at BCLE Furniture",
-    caption: "An operator at the Burkle line among panel racks at BCLE Furniture",
-  } as const satisfies BcleShot,
+export const bcleDelivery = {
+  screenshots: [
+    {
+      name: "bespokequote-dashboard",
+      alt: "BespokeQuote.furniture dashboard with a project package, quote lines, and order actions",
+      caption: "The quoting dashboard",
+    },
+    {
+      name: "bespokequote-how-it-works",
+      alt: "BespokeQuote.furniture steps from sending drawings to a reviewed quote, a purchase order, and delivery tracking",
+      caption: "From a drawing set to delivery",
+    },
+  ] as const satisfies readonly BcleShot[],
+  inventoryHeading: "The inventory side",
+  inventory: "AI-prepared cut sheets and receiving tags.",
   sheets: [
     {
       name: "bcle-ai-cut-sheet-nesting",
       alt: "Blurred AI nesting sheet for the CNC at BCLE Furniture",
-      caption: "AI-generated nesting sheet for the CNC",
+      caption: "AI-prepared nesting sheet",
     },
     {
       name: "bcle-ai-cut-sheet-receiving-tag",
       alt: "Blurred receiving tag prepared for inventory at BCLE Furniture",
-      caption: "Receiving tag the AI reads to update inventory",
+      caption: "AI-prepared receiving tag",
     },
   ] as const satisfies readonly BcleShot[],
   blurNote: "Client and job names are blurred.",
-  pieceKicker: "From sheet to finished piece",
-  piece: "Parts like these are cut on the CNC from the AI-prepared nesting sheets.",
-  piecePhoto: {
-    name: "bcle-cnc-cut-cabinet",
-    alt: "A cabinet cut on the CNC at BCLE Furniture from nested sheets",
-    caption: "A cabinet cut on the CNC at BCLE Furniture",
-  } as const satisfies BcleShot,
 };

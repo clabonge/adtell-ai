@@ -1,3 +1,5 @@
+import { deliveredLead } from "@/content/bcle";
+
 /**
  * Labeled examples for industry pages. These are the shape of the work,
  * not client results. Do not add prices, savings figures, quotes, or testimonials.
@@ -117,10 +119,10 @@ export const industryExamples: Record<string, IndustryExample> = {
 };
 
 export const furnitureShop = {
-  heading: "See what we built for BCLE Furniture",
+  heading: "What we delivered for BCLE Furniture: BespokeQuote.furniture",
   href: "https://bespokequote.furniture",
   host: "bespokequote.furniture",
-  lead: "bespokequote.furniture is BCLE Furniture's quoting site.",
+  lead: deliveredLead,
   points: [
     "Clients upload drawings: DWG, DXF, PDF, and sketches.",
     "A person reviews a quote priced from real materials and labor.",

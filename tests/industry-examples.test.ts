@@ -34,9 +34,9 @@ describe("industry examples", () => {
     assert.match(furniture.steps[3].text, /sent only after/);
     assert.match(furniture.steps[4].text, /Follow-up/);
 
-    assert.equal(furnitureShop.heading, "See what we built for BCLE Furniture");
+    assert.equal(furnitureShop.heading, "What we delivered for BCLE Furniture: BespokeQuote.furniture");
     assert.equal(furnitureShop.href, "https://bespokequote.furniture");
-    assert.match(furnitureShop.lead, /BCLE Furniture's quoting site/);
+    assert.match(furnitureShop.lead, /delivered BespokeQuote\.furniture to BCLE Furniture to automate their quoting and inventory/);
     assert.match(furnitureShop.points.join(" "), /DWG, DXF, PDF/);
     assert.match(furnitureShop.points.join(" "), /materials and labor/);
     assert.match(furnitureShop.points.join(" "), /PO and deposit/);
@@ -47,7 +47,8 @@ describe("industry examples", () => {
     assert.match(page, /<SampleAuditPreview \/>/);
     assert.match(page, /<IndustryExample slug=\{industry\.slug\} \/>/);
     assert.match(page, /manufacturing-and-furniture/);
-    assert.match(page, /<FurnitureShop \/>/);
+    assert.match(page, /<BcleDelivery \/>/);
+    assert.equal(page.includes("FurnitureShop"), false);
     assert.match(page, /sampleAudit\.path/);
   });
 });

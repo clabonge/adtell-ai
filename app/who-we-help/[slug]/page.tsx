@@ -1,9 +1,9 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { AuditBand } from "@/components/AuditBand";
-import { BcleInventoryStory } from "@/components/BcleSections";
+import { BcleDelivery } from "@/components/BcleSections";
 import { AuditOffer, AuditRequest, SampleAuditPreview } from "@/components/AuditConversion";
-import { FurnitureShop, IndustryExample } from "@/components/IndustryExample";
+import { IndustryExample } from "@/components/IndustryExample";
 import { WorkflowTry } from "@/components/WorkflowTry";
 import { Container, JsonLd, PageHero } from "@/components/ui";
 import {
@@ -60,14 +60,13 @@ export default async function IndustryPage(props: PageProps<"/who-we-help/[slug]
         after={<WorkflowTry presetIndustry={industry.name} />}
         cta={{ href: auditPath, label: auditCta }}
       />
-      {industry.slug === "manufacturing-and-furniture" ? <BcleInventoryStory /> : null}
+      {industry.slug === "manufacturing-and-furniture" ? <BcleDelivery /> : null}
       <AuditOffer />
       {industry.slug === "hospitality-and-events" ? (
         <SampleAuditPreview />
       ) : (
         <IndustryExample slug={industry.slug} />
       )}
-      {industry.slug === "manufacturing-and-furniture" ? <FurnitureShop /> : null}
       <article>
         <Container className="max-w-3xl py-14 sm:py-20">
           <h2 className="font-serif text-3xl tracking-tight">Businesses we helped</h2>
