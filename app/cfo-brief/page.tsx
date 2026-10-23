@@ -64,6 +64,12 @@ export default function CfoBriefPage() {
             </section>
           ))}
           <p className="mt-10 text-base leading-relaxed text-quiet">
+            <Link href="/security" className="font-semibold text-oxblood underline underline-offset-4">
+              How we handle access and client data
+            </Link>
+            .
+          </p>
+          <p className="mt-4 text-base leading-relaxed text-quiet">
             The final terms are set in each client&apos;s written agreement.
           </p>
         </Container>

@@ -6,6 +6,7 @@ import { getPosts } from "@/lib/posts";
 
 function lastModifiedFor(path: string): string {
   if (path === sampleAudit.path) return sampleAudit.updated;
+  if (path === "/security") return "2026-10-23";
   const key = (path || "/") as keyof typeof site.pageUpdated;
   if (key in site.pageUpdated) return site.pageUpdated[key];
   return site.updated;
@@ -28,6 +29,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/blog",
     "/contact",
     "/privacy",
+    "/security",
     "/terms",
     "/cfo-brief",
     sampleAudit.path,

@@ -127,6 +127,10 @@ export default function ServicesPage() {
             <Link href={cfoBrief.pdfPath} className="font-semibold text-oxblood underline underline-offset-4">
               download the PDF
             </Link>
+            .{" "}
+            <Link href="/security" className="font-semibold text-oxblood underline underline-offset-4">
+              How we handle access and client data
+            </Link>
             .
           </p>
           <div className="mt-10 grid gap-6">

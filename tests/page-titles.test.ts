@@ -15,6 +15,7 @@ const pages: { topic: string; path: string }[] = [
   { topic: "Blog", path: "/blog" },
   { topic: "Contact us", path: "/contact" },
   { topic: "Privacy", path: "/privacy" },
+  { topic: "Security", path: "/security" },
   { topic: "Terms", path: "/terms" },
   { topic: sampleAudit.title, path: sampleAudit.path },
   { topic: "A one-page brief for the CFO", path: "/cfo-brief" },

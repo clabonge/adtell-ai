@@ -16,6 +16,7 @@ const publicPaths = [
   "/blog",
   "/contact",
   "/privacy",
+  "/security",
   "/terms",
   "/cfo-brief",
 ];
