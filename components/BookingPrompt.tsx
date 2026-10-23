@@ -1,5 +1,5 @@
 import { site } from "@/content/site";
-import { bookingUrl } from "@/lib/booking";
+import { bookingLinkLabel, bookingUrl } from "@/lib/booking";
 
 export function BookingPrompt({
   tone = "sheet",
@@ -31,5 +31,19 @@ export function BookingPrompt({
       </a>
       .
     </p>
+  );
+}
+
+/** Compact link beside the audit form. Renders nothing when the URL is unset. */
+export function PickTimeLink({ className = "" }: { className?: string }) {
+  const url = bookingUrl();
+  if (!url) return null;
+  return (
+    <a
+      className={`text-sm font-semibold text-oxblood-ink underline underline-offset-4 ${className}`.trim()}
+      href={url}
+    >
+      {bookingLinkLabel}
+    </a>
   );
 }

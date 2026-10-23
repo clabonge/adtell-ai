@@ -60,6 +60,9 @@ services:
       # Example audit preview. The value stays in the Render dashboard.
       - key: OPENAI_API_KEY
         sync: false
+      # Optional scheduling link. Leave unset to hide "Prefer to pick a time?"
+      - key: NEXT_PUBLIC_BOOKING_URL
+        sync: false
 
   - type: worker
     name: adtell-crm-worker
@@ -86,4 +89,7 @@ services:
       - key: RESEND_API_KEY
         sync: false
       - key: RESEND_FROM
+        sync: false
+      # Same optional scheduling link as the web service. The confirmation email reads it here.
+      - key: NEXT_PUBLIC_BOOKING_URL
         sync: false
