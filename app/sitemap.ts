@@ -64,8 +64,22 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
+  const countyPaths = [
+    "/ai-consulting/bucks-county-pa",
+    "/ai-consulting/montgomery-county-pa",
+    "/ai-consulting/lehigh-valley-pa",
+  ];
+
+  const countyPages: MetadataRoute.Sitemap = countyPaths.map((path) => ({
+    url: new URL(path, site.url).toString(),
+    lastModified: "2026-10-23",
+    changeFrequency: "monthly" as const,
+    priority: 0.7,
+  }));
+
   return [
     ...pages,
+    ...countyPages,
     ...industryPages,
     ...posts.map((post) => ({
       url: new URL(post.path, site.url).toString(),

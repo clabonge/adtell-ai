@@ -26,6 +26,9 @@ const pages: { topic: string; path: string }[] = [
     topic: post.title,
     path: `/case-studies/${post.slug}`,
   })),
+  { topic: "AI consulting in Bucks County", path: "/ai-consulting/bucks-county-pa" },
+  { topic: "AI consulting in Montgomery County", path: "/ai-consulting/montgomery-county-pa" },
+  { topic: "AI consulting in the Lehigh Valley", path: "/ai-consulting/lehigh-valley-pa" },
 ];
 
 describe("page titles", () => {

@@ -8,6 +8,27 @@ export const areaServed = [
   { "@type": "AdministrativeArea", name: "Lehigh Valley, PA" },
 ] as const;
 
+export function countyServiceJsonLd(areaName: string) {
+  return {
+    "@context": "https://schema.org",
+    "@type": ["LocalBusiness", "ProfessionalService"],
+    name: site.name,
+    url: site.url,
+    email: site.email,
+    telephone: site.phone,
+    areaServed: { "@type": "AdministrativeArea", name: areaName },
+    founder: {
+      "@type": "Person",
+      name: site.founder.name,
+      jobTitle: `${site.founder.role}, ${site.founder.organization}`,
+    },
+    parentOrganization: {
+      "@type": "Organization",
+      name: site.holdingCompany,
+    },
+  };
+}
+
 export function organizationJsonLd() {
   return {
     "@context": "https://schema.org",

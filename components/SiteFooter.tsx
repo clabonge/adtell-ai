@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { counties, countyPath } from "@/content/counties";
 import { auditCta, auditPath, primaryNav } from "@/content/nav";
 import { site } from "@/content/site";
 
@@ -19,6 +20,15 @@ export function SiteFooter() {
             operating cost.
           </p>
           <p className="mt-4 max-w-sm text-sm leading-relaxed text-quiet">{site.localPresence}</p>
+          <ul className="mt-4 space-y-2 text-sm">
+            {counties.map((county) => (
+              <li key={county.slug}>
+                <Link href={countyPath(county)} className="text-ivory hover:text-oxblood">
+                  {county.name}
+                </Link>
+              </li>
+            ))}
+          </ul>
         </div>
         <nav aria-label="Footer">
           <p className="text-xs font-semibold uppercase tracking-[0.16em] text-oxblood">
