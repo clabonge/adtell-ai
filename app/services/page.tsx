@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { AuditBand } from "@/components/AuditBand";
-import { AuditOffer, AuditRequest, SampleAuditPreview } from "@/components/AuditConversion";
+import { AuditOffer, AuditRequest } from "@/components/AuditConversion";
 import { FaqList } from "@/components/FaqList";
 import { SavingsCalculator } from "@/components/SavingsCalculator";
 import { SavingsShare } from "@/components/SavingsShare";
@@ -32,7 +32,6 @@ export default function ServicesPage() {
         cta={{ href: auditPath, label: auditCta }}
       />
       <AuditOffer />
-      <SampleAuditPreview />
       <SavingsShare bordered={false} />
       <SavingsCalculator />
       <section className="border-t border-line">
