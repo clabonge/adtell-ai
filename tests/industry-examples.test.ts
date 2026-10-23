@@ -34,7 +34,7 @@ describe("industry examples", () => {
     assert.match(furniture.steps[3].text, /sent only after/);
     assert.match(furniture.steps[4].text, /Follow-up/);
 
-    assert.equal(furnitureShop.heading, "See what we built for our own shop");
+    assert.equal(furnitureShop.heading, "See what we built for BCLE Furniture");
     assert.equal(furnitureShop.href, "https://bespokequote.furniture");
     assert.match(furnitureShop.lead, /BCLE Furniture's quoting site/);
     assert.match(furnitureShop.points.join(" "), /DWG, DXF, PDF/);

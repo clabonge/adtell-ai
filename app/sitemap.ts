@@ -59,7 +59,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...industries.map((industry) => industryPath(industry)),
   ].map((path) => ({
     url: new URL(path, site.url).toString(),
-    lastModified: whoWeHelp.updated,
+    lastModified:
+      (path as keyof typeof site.pageUpdated) in site.pageUpdated
+        ? site.pageUpdated[path as keyof typeof site.pageUpdated]
+        : whoWeHelp.updated,
     changeFrequency: "monthly" as const,
     priority: 0.7,
   }));

@@ -1,12 +1,15 @@
 import Link from "next/link";
 import { AuditBand } from "@/components/AuditBand";
 import { AuditOffer, AuditRequest, SampleAuditPreview } from "@/components/AuditConversion";
+import { BclePhoto } from "@/components/BclePhoto";
+import { BcleShopStrip } from "@/components/BcleSections";
 import { ImplementationHighlights } from "@/components/CompanyLists";
 import { FaqList } from "@/components/FaqList";
 import { SavingsShare } from "@/components/SavingsShare";
 import { WorkflowTry } from "@/components/WorkflowTry";
 import { ButtonLink, Container, JsonLd, Kicker } from "@/components/ui";
 import { auditRequests } from "@/content/audit";
+import { bcleHero } from "@/content/bcle";
 import { faqs } from "@/content/faqs";
 import { costPatterns, departmentPitch, homeServicesIntro } from "@/content/home";
 import { auditCta, auditPath } from "@/content/nav";
@@ -32,10 +35,24 @@ export default function HomePage() {
     <>
       <section className="border-b border-line">
         <Container className="py-12 sm:py-16">
-          <Kicker>Your outsourced AI department</Kicker>
-          <h1 className="mt-4 max-w-3xl font-serif text-[2.7rem] leading-[1.02] tracking-tight sm:text-6xl lg:text-7xl">
-            {site.tagline}
-          </h1>
+          <div className="grid items-end gap-8 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)]">
+            <div>
+              <Kicker>Your outsourced AI department</Kicker>
+              <h1 className="mt-4 max-w-3xl font-serif text-[2.7rem] leading-[1.02] tracking-tight sm:text-6xl lg:text-7xl">
+                {site.tagline}
+              </h1>
+            </div>
+            <figure>
+              <BclePhoto
+                name={bcleHero.name}
+                alt={bcleHero.alt}
+                sizes="(min-width: 1024px) 42vw, 100vw"
+                priority
+                className="h-auto w-full"
+              />
+              <figcaption className="mt-2 text-sm leading-relaxed text-quiet">{bcleHero.caption}</figcaption>
+            </figure>
+          </div>
           <WorkflowTry />
           <div className="mt-10 grid gap-12 lg:grid-cols-[minmax(0,1fr)_22rem] lg:items-end">
           <div>
@@ -91,6 +108,7 @@ export default function HomePage() {
         </Container>
       </section>
 
+      <BcleShopStrip />
       <AuditOffer />
       <SampleAuditPreview />
 

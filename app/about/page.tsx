@@ -1,8 +1,10 @@
-import Image from "next/image";
 import { AuditBand } from "@/components/AuditBand";
+import { BclePhoto } from "@/components/BclePhoto";
+import { BcleAboutPractice } from "@/components/BcleSections";
 import { ImplementationHighlights } from "@/components/CompanyLists";
 import { Container, PageHero } from "@/components/ui";
 import { aboutIntro, aboutStory, founderSection, principles } from "@/content/about";
+import { bcleAbout } from "@/content/bcle";
 import { auditCta, auditPath } from "@/content/nav";
 import { pageMetadata } from "@/lib/seo";
 
@@ -38,16 +40,15 @@ export default function AboutPage() {
         </Container>
       </section>
       <section className="border-t border-line">
-        <Container className="grid gap-10 py-14 sm:grid-cols-[16rem_minmax(0,1fr)] sm:py-20">
-          <figure className="max-w-xs">
-            <Image
-              src="/images/chris-labonge.png"
-              alt="Chris LaBonge, founder of Adtell.ai"
-              width={323}
-              height={323}
-              sizes="(min-width: 640px) 16rem, 20rem"
+        <Container className="grid items-center gap-10 py-14 sm:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] sm:py-20">
+          <figure>
+            <BclePhoto
+              name={bcleAbout.photo.name}
+              alt={bcleAbout.photo.alt}
+              sizes="(min-width: 640px) 42vw, 100vw"
               className="h-auto w-full"
             />
+            <figcaption className="mt-3 text-sm leading-relaxed text-quiet">{bcleAbout.photo.caption}</figcaption>
           </figure>
           <div className="max-w-3xl">
             <h2 className="font-serif text-3xl tracking-tight">{founderSection.heading}</h2>
@@ -59,6 +60,7 @@ export default function AboutPage() {
           </div>
         </Container>
       </section>
+      <BcleAboutPractice />
       <section className="border-t border-line">
         <Container className="py-14 sm:py-20">
           <h2 className="font-serif text-3xl tracking-tight">Businesses we have helped</h2>
