@@ -25,7 +25,7 @@ export const founderSection = {
   heading: "Chris LaBonge, Founder",
   paragraphs: [
     "Chris LaBonge is Founder of Adtell.ai. He has more than 25 years of IT experience and 25 years of operations experience, and he holds an accounting degree.",
-    "He runs and implements AI across his own operating businesses. We offer that same practice to other companies: name the repetitive work, implement it, and leave a person in charge.",
+    "He runs and implements AI at BCLE Furniture. We offer that same practice to other companies: name the repetitive work, implement it, and leave a person in charge.",
   ],
 };
 

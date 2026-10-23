@@ -35,7 +35,9 @@ describe("who we help", () => {
       const url = new URL(industryPath(industry), site.url).toString();
       assert.equal(urls.includes(url), true, url);
       const entry = sitemap().find((item) => item.url === url);
-      assert.equal(entry?.lastModified, whoWeHelp.updated);
+      const key = industryPath(industry) as keyof typeof site.pageUpdated;
+      const expected = key in site.pageUpdated ? site.pageUpdated[key] : whoWeHelp.updated;
+      assert.equal(entry?.lastModified, expected);
     }
   });
 

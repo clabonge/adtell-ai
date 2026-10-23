@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { AuditBand } from "@/components/AuditBand";
+import { BcleInventoryStory } from "@/components/BcleSections";
 import { AuditOffer, AuditRequest, SampleAuditPreview } from "@/components/AuditConversion";
 import { FurnitureShop, IndustryExample } from "@/components/IndustryExample";
 import { WorkflowTry } from "@/components/WorkflowTry";
@@ -59,6 +60,7 @@ export default async function IndustryPage(props: PageProps<"/who-we-help/[slug]
         after={<WorkflowTry presetIndustry={industry.name} />}
         cta={{ href: auditPath, label: auditCta }}
       />
+      {industry.slug === "manufacturing-and-furniture" ? <BcleInventoryStory /> : null}
       <AuditOffer />
       {industry.slug === "hospitality-and-events" ? (
         <SampleAuditPreview />

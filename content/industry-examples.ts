@@ -117,7 +117,7 @@ export const industryExamples: Record<string, IndustryExample> = {
 };
 
 export const furnitureShop = {
-  heading: "See what we built for our own shop",
+  heading: "See what we built for BCLE Furniture",
   href: "https://bespokequote.furniture",
   host: "bespokequote.furniture",
   lead: "bespokequote.furniture is BCLE Furniture's quoting site.",
