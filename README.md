@@ -104,6 +104,7 @@ Use the filename without `.md` as the key. Do not invent a quote, a name, or a r
 - `/api/audit` Audit form intake
 - `/admin/crm` Private owner CRM. See `docs/crm.md`.
 - `/sitemap.xml` and `/robots.txt`
+- `/ai-consulting/bucks-county-pa`, `/ai-consulting/montgomery-county-pa`, and `/ai-consulting/lehigh-valley-pa` On-site audits and workshops. No street address and no client claims.
 
 ## Deploy on Render
 
