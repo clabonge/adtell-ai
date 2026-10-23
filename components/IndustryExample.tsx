@@ -1,5 +1,5 @@
 import { ButtonLink, Container } from "@/components/ui";
-import { furnitureShop, industryExamples } from "@/content/industry-examples";
+import { industryExamples } from "@/content/industry-examples";
 import { auditPath } from "@/content/nav";
 
 export function IndustryExample({ slug }: { slug: string }) {
@@ -25,34 +25,6 @@ export function IndustryExample({ slug }: { slug: string }) {
             <ButtonLink href={auditPath}>Get your own list</ButtonLink>
           </div>
         </article>
-      </Container>
-    </section>
-  );
-}
-
-export function FurnitureShop() {
-  return (
-    <section className="border-b border-line">
-      <Container className="max-w-3xl py-12 sm:py-16">
-        <h2 className="font-serif text-3xl tracking-tight">{furnitureShop.heading}</h2>
-        <p className="mt-4 text-lg leading-relaxed text-quiet">
-          <a
-            href={furnitureShop.href}
-            className="font-semibold text-oxblood underline underline-offset-4"
-          >
-            {furnitureShop.host}
-          </a>{" "}
-          is BCLE Furniture&apos;s quoting site.
-        </p>
-        <ul className="mt-6 list-disc space-y-2 pl-5 text-base leading-relaxed text-quiet">
-          {furnitureShop.points.map((point) => (
-            <li key={point}>{point}</li>
-          ))}
-        </ul>
-        <p className="mt-6 text-lg leading-relaxed text-quiet">{furnitureShop.close}</p>
-        <div className="mt-8">
-          <ButtonLink href={auditPath}>Request my free audit</ButtonLink>
-        </div>
       </Container>
     </section>
   );

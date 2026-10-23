@@ -2,20 +2,17 @@ import { getImageProps } from "next/image";
 import { preload } from "react-dom";
 import type { CSSProperties } from "react";
 
-const dimensions = {
-  "bcle-ai-cut-sheet-nesting": { width: 1600, height: 1200 },
-  "bcle-ai-cut-sheet-receiving-tag": { width: 1200, height: 1600 },
-  "bcle-burkle-finishing-line": { width: 1600, height: 1200 },
-  "bcle-burkle-operator": { width: 1600, height: 1200 },
-  "bcle-burkle-operator-racks": { width: 1600, height: 1200 },
-  "bcle-cnc-cut-cabinet": { width: 1200, height: 1600 },
-  "bcle-cnc-vacuum-lift": { width: 1200, height: 1600 },
-  "bcle-selexx-cnc": { width: 1600, height: 1200 },
-  "bcle-shop-floor": { width: 1600, height: 1200 },
-  "bcle-thermwood-cnc": { width: 1200, height: 1600 },
+const shots = {
+  "bcle-ai-cut-sheet-nesting": { dir: "bcle", width: 1600, height: 1200 },
+  "bcle-ai-cut-sheet-receiving-tag": { dir: "bcle", width: 1200, height: 1600 },
+  "bcle-burkle-operator": { dir: "bcle", width: 1600, height: 1200 },
+  "bcle-shop-floor": { dir: "bcle", width: 1600, height: 1200 },
+  "bcle-thermwood-cnc": { dir: "bcle", width: 1200, height: 1600 },
+  "bespokequote-dashboard": { dir: "bespokequote", width: 1400, height: 766 },
+  "bespokequote-how-it-works": { dir: "bespokequote", width: 1600, height: 1000 },
 } as const;
 
-export type BcleName = keyof typeof dimensions;
+export type BcleName = keyof typeof shots;
 
 export function BclePhoto({
   name,
@@ -33,15 +30,15 @@ export function BclePhoto({
   className?: string;
   style?: CSSProperties;
 }) {
-  const { width, height } = dimensions[name];
-  const shared = { alt, width, height, sizes };
+  const shot = shots[name];
+  const shared = { alt, width: shot.width, height: shot.height, sizes };
   const { props: webp } = getImageProps({
     ...shared,
-    src: `/images/bcle/${name}.webp`,
+    src: `/images/${shot.dir}/${name}.webp`,
   });
   const { props: jpg } = getImageProps({
     ...shared,
-    src: `/images/bcle/${name}.jpg`,
+    src: `/images/${shot.dir}/${name}.jpg`,
     priority,
     loading: priority ? "eager" : "lazy",
     fetchPriority: priority ? "high" : "auto",
