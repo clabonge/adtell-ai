@@ -1,6 +1,5 @@
 import { Suspense } from "react";
 import { BookingPrompt } from "@/components/BookingPrompt";
-import { SampleAuditPreview } from "@/components/AuditConversion";
 import { ContactForm } from "@/components/ContactForm";
 import { Container, PageHero } from "@/components/ui";
 import { auditOffer } from "@/content/audit";
@@ -32,7 +31,6 @@ export default function ContactPage(props: {
         crumbs={[{ name: "Contact us", path: "/contact" }]}
         cta={{ href: "#audit-request", label: auditOffer.cta }}
       />
-      <SampleAuditPreview />
       <section id="audit-request" className="scroll-mt-24">
         <Container className="grid gap-12 py-14 sm:py-20 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.8fr)]">
           <Suspense fallback={<ContactForm />}>

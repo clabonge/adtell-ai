@@ -28,11 +28,14 @@ describe("sample audit", () => {
     assert.equal(names.includes(sampleAudit.business), false);
   });
 
-  it("is linked from the contact and services pages and listed in the sitemap", () => {
+  it("stays on the sample page and hospitality, and is linked from services", () => {
     const contact = readFileSync("app/contact/page.tsx", "utf8");
     const services = readFileSync("app/services/page.tsx", "utf8");
+    const hospitality = readFileSync("app/who-we-help/[slug]/page.tsx", "utf8");
     const preview = readFileSync("components/AuditConversion.tsx", "utf8");
-    assert.match(contact, /SampleAuditPreview/);
+    assert.equal(contact.includes("SampleAuditPreview"), false);
+    assert.equal(services.includes("<SampleAuditPreview />"), false);
+    assert.match(hospitality, /<SampleAuditPreview \/>/);
     assert.match(preview, /sampleAudit\.path/);
     assert.match(services, /sampleAudit\.path/);
     const entry = sitemap().find(

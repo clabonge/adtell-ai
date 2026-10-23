@@ -88,7 +88,7 @@ export const site = {
   pageUpdated: {
     "/": "2026-10-22",
     "/services": "2026-10-22",
-    "/contact": "2026-10-22",
+    "/contact": "2026-10-23",
     "/cfo-brief": "2026-10-22",
     "/case-studies/doan-distillery-event-booking": "2026-10-23",
     "/case-studies/running-our-companies-on-ai-agents": "2026-10-23",

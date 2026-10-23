@@ -4,6 +4,8 @@ import { describe, it } from "node:test";
 import { auditOffer, auditRequests } from "../content/audit";
 import { industries, industryAsk, industryLines } from "../content/industries";
 import { sampleAudit } from "../content/sample-audit";
+import { site } from "../content/site";
+import sitemap from "../app/sitemap";
 
 function read(path: string) {
   return readFileSync(path, "utf8");
@@ -51,12 +53,14 @@ describe("audit conversion", () => {
     assert.match(preview, /sampleAudit\.path/);
     assert.match(preview, /auditPath/);
 
-    for (const source of [home, services, industry, contact]) {
+    for (const source of [home, industry]) {
       const offerAt = source.indexOf("<AuditOffer />");
       const previewAt = source.indexOf("<SampleAuditPreview />");
       assert.ok(previewAt >= 0, source.slice(0, 40));
       if (offerAt >= 0) assert.ok(previewAt > offerAt);
     }
+    assert.equal(services.includes("<SampleAuditPreview />"), false);
+    assert.equal(contact.includes("<SampleAuditPreview />"), false);
     assert.equal(contact.includes("<AuditOffer />"), false);
   });
 
@@ -111,18 +115,21 @@ describe("audit conversion", () => {
     assert.match(home, /<AuditBand \/>/);
   });
 
-  it("leads the contact page with the list headline, the example, and the form", () => {
+  it("leads the contact page with the list headline and the form", () => {
     const contact = read("app/contact/page.tsx");
     const headline = contact.indexOf("Contact us");
     const subhead = contact.indexOf("Request your free AI audit.");
-    const preview = contact.indexOf("<SampleAuditPreview />");
     const form = contact.indexOf("<ContactForm");
+    const aside = contact.indexOf("Write directly");
     assert.ok(headline > 0);
     assert.ok(subhead > headline);
-    assert.ok(preview > headline);
-    assert.ok(form > preview);
+    assert.ok(form > subhead);
+    assert.ok(aside > form);
     assert.equal(contact.includes("What to expect"), false);
     assert.equal(contact.includes("AuditBand"), false);
     assert.equal(contact.includes("\u2014"), false);
+    assert.equal(site.pageUpdated["/contact"], "2026-10-23");
+    const entry = sitemap().find((item) => item.url === new URL("/contact", site.url).toString());
+    assert.equal(entry?.lastModified, "2026-10-23");
   });
 });
