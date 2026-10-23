@@ -11,6 +11,13 @@ function lastModifiedFor(path: string): string {
   return site.updated;
 }
 
+function postLastModified(path: string, date: string): string {
+  const base = date > site.updated ? date : site.updated;
+  const key = path as keyof typeof site.pageUpdated;
+  if (key in site.pageUpdated && site.pageUpdated[key] > base) return site.pageUpdated[key];
+  return base;
+}
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticPaths = [
     "",
@@ -59,7 +66,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...industryPages,
     ...posts.map((post) => ({
       url: new URL(post.path, site.url).toString(),
-      lastModified: post.date > site.updated ? post.date : site.updated,
+      lastModified: postLastModified(post.path, post.date),
       changeFrequency: "monthly" as const,
       priority: 0.6,
     })),

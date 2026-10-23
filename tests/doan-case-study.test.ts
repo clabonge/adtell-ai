@@ -24,6 +24,11 @@ describe("Doan Distillery case study", () => {
     const entry = sitemap().find(
       (item) => item.url === new URL(`/case-studies/${post.slug}`, site.url).toString(),
     );
-    assert.equal(entry?.lastModified, post.date);
+    assert.equal(post.date, "2026-10-21");
+    assert.equal(
+      entry?.lastModified,
+      site.pageUpdated["/case-studies/doan-distillery-event-booking"],
+    );
+    assert.equal(entry?.lastModified, "2026-10-23");
   });
 });
