@@ -29,8 +29,12 @@ describe("sitemap dates", () => {
 
     const doan = getPost("case-studies", "doan-distillery-event-booking");
     assert.ok(doan);
-    assert.equal(modified(`/case-studies/${doan.slug}`), doan.date);
     assert.equal(doan.date, "2026-10-21");
+    assert.equal(modified(`/case-studies/${doan.slug}`), "2026-10-23");
+    assert.equal(
+      modified("/case-studies/running-our-companies-on-ai-agents"),
+      "2026-10-23",
+    );
 
     for (const entry of entries) {
       const value = String(entry.lastModified);

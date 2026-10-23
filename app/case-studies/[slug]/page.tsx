@@ -1,4 +1,3 @@
-import { Suspense } from "react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { AuditBand } from "@/components/AuditBand";
@@ -32,20 +31,8 @@ export async function generateMetadata(props: PageProps<"/case-studies/[slug]">)
   });
 }
 
-export default function CaseStudyPage(props: PageProps<"/case-studies/[slug]">) {
-  return (
-    <Suspense fallback={<ArticleFallback />}>
-      <CaseStudy params={props.params} />
-    </Suspense>
-  );
-}
-
-async function CaseStudy({
-  params,
-}: {
-  params: PageProps<"/case-studies/[slug]">["params"];
-}) {
-  const { slug } = await params;
+export default async function CaseStudyPage(props: PageProps<"/case-studies/[slug]">) {
+  const { slug } = await props.params;
   const post = getPost("case-studies", slug);
   if (!post) notFound();
 
@@ -123,13 +110,5 @@ function RelatedProof() {
         </li>
       </ul>
     </div>
-  );
-}
-
-function ArticleFallback() {
-  return (
-    <Container className="py-24">
-      <p className="text-lg text-quiet">Loading the case study.</p>
-    </Container>
   );
 }
