@@ -116,7 +116,7 @@ Shared settings:
 
 - Node.js `22.14.0`, also pinned in `.node-version` and `package.json` `engines`
 - `NEXT_PUBLIC_SITE_URL=https://adtell.ai`
-- `NEXT_PUBLIC_BOOKING_URL` is optional. When it is an http or https link, `/contact` and a successful audit form offer a free 30-minute audit call. Leave it unset to hide that link. It is read at build time, so set it before the build and redeploy when it changes.
+- `NEXT_PUBLIC_BOOKING_URL` is optional. When it is an http or https link, the audit form shows "Prefer to pick a time?" and the confirmation email includes that link. Leave it unset to hide both. The form reads it at build time, so set it on the web service before the build and redeploy when it changes. The confirmation email is sent by the worker, so set the same value there too. The Blueprint lists the key with no value.
 - Branch `main`, with a deploy on every push to that branch
 - Custom domain `adtell.ai`. Render also adds `www.adtell.ai` and redirects it to the apex
 
@@ -169,6 +169,7 @@ Email and webhook are separate jobs. The worker command is `npm run crm:worker`.
 | `RESEND_API_KEY` | For the email job | When set, the worker emails `clabonge@adtell.ai`. |
 | `RESEND_FROM` | No | Sender address for the owner email. Default is `Adtell.ai <onboarding@resend.dev>`. |
 | `AUDIT_CONFIRMATION_EMAIL` | No | Defaults off. Set to `true` to also email the person who submitted the form, from `audit@adtell.ai`. |
+| `NEXT_PUBLIC_BOOKING_URL` | No | Optional http or https link. When set, the audit form shows "Prefer to pick a time?" and the confirmation email includes it. Leave it unset to hide both. Set it on the web service before the build and on the worker. Do not commit a value. |
 | `AUDIT_WEBHOOK_URL` | No | Trusted server URL for the webhook job. It is not taken from the form. |
 | `OPENAI_API_KEY` | No | When set, the homepage, industry pages, and audit form can draft a preview with `gpt-4o-mini`. Leave it unset to hide those controls. Do not commit the key. |
 | `CRM_SESSION_SECRET` | For owner sign-in | At least 32 characters. |

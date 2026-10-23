@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useEffect, useId, useRef, useState, type FormEvent } from "react";
 import { AuditPreview } from "@/components/AuditPreview";
-import { BookingPrompt } from "@/components/BookingPrompt";
+import { BookingPrompt, PickTimeLink } from "@/components/BookingPrompt";
 import { companySizes } from "@/content/audit";
 import { site } from "@/content/site";
 import { bookingUrl } from "@/lib/booking";
@@ -232,9 +232,12 @@ export function ContactForm({
 
   return (
     <form onSubmit={onSubmit} noValidate aria-label="AI savings audit request" className="sheet border border-line bg-ivory p-6 text-ink sm:p-8">
-      <p className="text-sm text-quiet-ink">
-        Name, email, company, and the work that costs the most are required.
-      </p>
+      <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-2">
+        <p className="text-sm text-quiet-ink">
+          Name, email, company, and the work that costs the most are required.
+        </p>
+        <PickTimeLink />
+      </div>
       {errors.form ? (
         <div role="alert" className="mt-4 border border-oxblood-ink bg-ivory-deep px-3 py-2 text-sm text-ink">
           <p>{errors.form}</p>
