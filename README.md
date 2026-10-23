@@ -99,6 +99,7 @@ Use the filename without `.md` as the key. Do not invent a quote, a name, or a r
 - `/case-studies` and `/case-studies/[slug]`
 - `/blog` and `/blog/[slug]`
 - `/contact` Audit intake form
+- `/security` Access, AI providers, retention, and the end of an engagement. No certification claims.
 - `/sample-audit` Example only. A fictional one-page ranked list, not a client result.
 - `/api/audit` Audit form intake
 - `/admin/crm` Private owner CRM. See `docs/crm.md`.
