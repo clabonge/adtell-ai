@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { FirstYearCost } from "@/components/FirstYearCost";
 import { PrintBrief } from "@/components/PrintBrief";
 import { Container, PageHero } from "@/components/ui";
 import { cfoBrief } from "@/content/cfo-brief";
@@ -50,6 +51,11 @@ export default function CfoBriefPage() {
           {cfoBrief.sections.map((section) => (
             <section key={section.title} className="mt-10">
               <h2 className="font-serif text-3xl tracking-tight">{section.title}</h2>
+              {section.title === "First-year cost illustration" ? (
+                <div className="print:hidden">
+                  <FirstYearCost />
+                </div>
+              ) : null}
               <ul className="mt-4 list-disc space-y-2 pl-5 text-base leading-relaxed text-quiet">
                 {section.points.map((point) => (
                   <li key={point}>{point}</li>
