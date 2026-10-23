@@ -3,6 +3,7 @@
 import { useId, useState, type FormEvent } from "react";
 import { ButtonLink, Container, Kicker } from "@/components/ui";
 import { auditCta, auditPath } from "@/content/nav";
+import { FirstYearCost } from "@/components/FirstYearCost";
 import { formatDollars, formatPayback, illustrateTask, type TaskIllustration } from "@/lib/illustration";
 
 const noteId = "savings-illustration-note";
@@ -109,6 +110,12 @@ export function SavingsCalculator() {
           ) : null}
           </div>
         </form>
+        <h3 className="mt-12 max-w-3xl font-serif text-3xl tracking-tight">First-year total</h3>
+        <p className="mt-4 max-w-2xl text-base leading-relaxed text-quiet">
+          Add the published build, the optional published retainer, and a tool subscription you
+          enter. Payback uses a monthly saving you enter.
+        </p>
+        <FirstYearCost />
         <p className="mt-6 max-w-2xl text-base leading-relaxed text-quiet">
           This treats the annual cost of the task as the measured savings. The fee is 25% of that
           amount. Payback is how many months of that amount cover an implementation from $10,000.

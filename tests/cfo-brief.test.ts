@@ -29,6 +29,9 @@ describe("cfo brief", () => {
     assert.match(copy, /You pay for software and AI tool subscriptions directly/);
     assert.match(copy, /We do not mark up tool costs/);
     assert.match(copy, /The audit writes the baseline down/);
+    assert.match(copy, /Illustration only, not a client result/);
+    assert.match(copy, /from \$10,000/);
+    assert.match(copy, /from \$1,500 a month/);
     assert.equal(copy.includes("own the accounts"), false);
     assert.equal(copy.includes("in your own name"), false);
     assert.equal(copy.toLowerCase().includes("cap"), false);
@@ -48,6 +51,7 @@ describe("cfo brief", () => {
     assert.match(pdf, /From \$10,000/);
     assert.match(pdf, /50% at signing/);
     assert.match(pdf, /baseline/);
+    assert.match(pdf, /Illustration only, not a client result/);
     assert.equal(pdf.includes("own the accounts"), false);
     assert.equal(pdf.toLowerCase().includes("cap of"), false);
   });
