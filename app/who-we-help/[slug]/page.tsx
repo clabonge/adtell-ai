@@ -76,6 +76,16 @@ export default async function IndustryPage(props: PageProps<"/who-we-help/[slug]
               <li key={business.name}>
                 <h3 className="font-serif text-2xl tracking-tight">{business.name}</h3>
                 <p className="mt-2 text-base leading-relaxed text-quiet">{lines[index]}</p>
+                {"study" in business && business.study ? (
+                  <p className="mt-3">
+                    <Link
+                      href={business.study}
+                      className="text-sm font-semibold text-oxblood underline decoration-oxblood/40 underline-offset-4"
+                    >
+                      Read the case study
+                    </Link>
+                  </p>
+                ) : null}
               </li>
             ))}
           </ul>

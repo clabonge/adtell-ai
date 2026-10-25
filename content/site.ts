@@ -21,13 +21,14 @@ function resolveSiteUrl(): string {
 const implementations = [
   {
     name: "FiberOptics.com",
-    goal: "offloading sales follow-up, marketing drafts, training-student scheduling, and order follow-up",
-    how: "The automation drafts the next sales step, prepares marketing notes, schedules student follow-up, and writes order updates a person still reviews.",
+    goal: "updating website content, social media, customer outreach, and product recommendations",
+    how: "FiberOptics.com is the product and shop division of Adtell Inc. The workflows use Outlook, Shopify, Teams, SharePoint, and QuickBooks. A person reviews and approves what goes out.",
   },
   {
     name: "The Fiber School",
-    goal: "offloading class scheduling and enrollment follow-up",
-    how: "The automation prepares the class schedule, drafts enrollment follow-up, and drafts answers to student questions between sessions from material the school already uses. A person still confirms the schedule and the reply.",
+    goal: "student communications about expiring certifications, upselling additional classes, outreach, and social media",
+    how: "The Fiber School is the training division of Adtell Inc. The public site is thefiberschool.com. The workflows use Outlook, Teams, SharePoint, and QuickBooks. A person reviews and approves what goes out.",
+    study: "/case-studies/the-fiber-school-student-communications",
   },
   {
     name: "BCLE Furniture",
