@@ -1,6 +1,7 @@
+import Link from "next/link";
 import { BclePhoto } from "@/components/BclePhoto";
 import { ButtonLink, Container, Kicker } from "@/components/ui";
-import { bcleAbout, bcleDelivery, bcleShop } from "@/content/bcle";
+import { bcleAbout, bcleCaseStudy, bcleCaseStudyShots, bcleDelivery, bcleShop } from "@/content/bcle";
 import { furnitureShop } from "@/content/industry-examples";
 import { auditPath } from "@/content/nav";
 
@@ -46,6 +47,19 @@ function Screen({
     );
   }
   return <FramedPhoto name={name} alt={alt} sizes={sizes} />;
+}
+
+function CaseStudyLink() {
+  return (
+    <p className="mt-6">
+      <Link
+        href={bcleCaseStudy.path}
+        className="text-sm font-semibold text-oxblood underline decoration-oxblood/40 underline-offset-4"
+      >
+        Read the BCLE Furniture case study
+      </Link>
+    </p>
+  );
 }
 
 function DeliveredLead() {
@@ -98,6 +112,7 @@ export function BcleShopStrip() {
             </li>
           ))}
         </ul>
+        <CaseStudyLink />
       </Container>
     </section>
   );
@@ -120,6 +135,7 @@ export function BcleAboutPractice() {
             </li>
           ))}
         </ul>
+        <CaseStudyLink />
       </Container>
     </section>
   );
@@ -171,7 +187,38 @@ export function BcleDelivery() {
         <div className="mt-8">
           <ButtonLink href={auditPath}>Request my free audit</ButtonLink>
         </div>
+        <CaseStudyLink />
       </Container>
     </section>
+  );
+}
+
+export function BcleCaseStudyShots() {
+  return (
+    <div className="mt-12">
+      <h2 className="font-serif text-3xl tracking-tight">The software</h2>
+      <p className="mt-4 text-lg leading-relaxed text-quiet">
+        These screenshots are BespokeQuote.furniture. Names and amounts on the screens are part of
+        the software interface.
+      </p>
+      <ul className="mt-8 grid gap-8">
+        {bcleCaseStudyShots.map((shot) => (
+          <li key={shot.name}>
+            <figure>
+              <Screen name={shot.name} alt={shot.alt} sizes="(min-width: 768px) 42rem, 100vw" />
+              <figcaption className="mt-3 text-sm leading-relaxed text-quiet">{shot.caption}</figcaption>
+            </figure>
+          </li>
+        ))}
+      </ul>
+      <p className="mt-6 text-lg leading-relaxed text-quiet">
+        <a
+          href={furnitureShop.href}
+          className="font-semibold text-oxblood underline underline-offset-4"
+        >
+          {furnitureShop.host}
+        </a>
+      </p>
+    </div>
   );
 }

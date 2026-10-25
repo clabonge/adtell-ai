@@ -11,6 +11,29 @@ export type BcleShot = {
 export const deliveredLead =
   "Adtell.ai delivered BespokeQuote.furniture to BCLE Furniture to automate their quoting and inventory management.";
 
+export const bcleCaseStudy = {
+  slug: "bcle-furniture-bespokequote",
+  path: "/case-studies/bcle-furniture-bespokequote",
+} as const;
+
+export const bcleCaseStudyShots = [
+  {
+    name: "bespokequote-how-it-works",
+    alt: "BespokeQuote.furniture steps from sending drawings to a reviewed quote, a purchase order, and delivery tracking",
+    caption: "From a drawing set to delivery",
+  },
+  {
+    name: "bespokequote-dashboard",
+    alt: "BespokeQuote.furniture dashboard with a project package, quote lines, and order actions",
+    caption: "The quoting dashboard",
+  },
+  {
+    name: "bespokequote-home",
+    alt: "BespokeQuote.furniture home page with steps from uploading drawings to a reviewed quote and delivery tracking",
+    caption: "The public BespokeQuote.furniture page",
+  },
+] as const satisfies readonly BcleShot[];
+
 export const bcleHero = {
   name: "bespokequote-dashboard",
   alt: "BespokeQuote.furniture dashboard with a project package, quote lines, and order actions",
