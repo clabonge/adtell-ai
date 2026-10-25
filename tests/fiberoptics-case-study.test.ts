@@ -24,7 +24,10 @@ describe("FiberOptics.com case study", () => {
     assert.match(post.body, /Outlook, Shopify, Teams, SharePoint, and QuickBooks/);
     assert.match(post.body, /https:\/\/fiberoptics\.com/);
     assert.match(post.body, /A person reviews and approves/);
-    assert.match(post.body, /2\.5 times previous efficiency/);
+    assert.match(
+      post.body,
+      /2\.5 times previous efficiency across the combined work of FiberOptics\.com and The Fiber School/,
+    );
     assert.match(post.body, /direct cost savings/);
     assert.match(post.body, /\[book a free AI audit\]\(\/contact\)/);
     assert.equal(post.body.includes("\u2014"), false);

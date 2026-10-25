@@ -21,6 +21,6 @@ A person reviews and approves what goes out. The automation does not send it on 
 
 ## What changed
 
-The measured productivity gain is 2.5 times previous efficiency. That gain also relates to direct cost savings.
+The measured productivity gain is 2.5 times previous efficiency across the combined work of FiberOptics.com and The Fiber School. That gain also relates to direct cost savings.
 
 If you want the same kind of look at a workflow in your own operation, [book a free AI audit](/contact).
