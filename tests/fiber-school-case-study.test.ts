@@ -28,7 +28,10 @@ describe("The Fiber School case study", () => {
     assert.equal(/shopify/i.test(post.body), false);
     assert.match(post.body, /https:\/\/thefiberschool\.com/);
     assert.match(post.body, /A person reviews and approves/);
-    assert.match(post.body, /2\.5 times previous efficiency/);
+    assert.match(
+      post.body,
+      /2\.5 times previous efficiency across the combined work of FiberOptics\.com and The Fiber School/,
+    );
     assert.match(post.body, /direct cost savings/);
     assert.match(post.body, /\[book a free AI audit\]\(\/contact\)/);
     assert.equal(post.body.includes("\u2014"), false);
