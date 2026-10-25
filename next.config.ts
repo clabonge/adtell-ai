@@ -10,6 +10,11 @@ const nextConfig: NextConfig = {
       { source: "/faq", destination: "/#faq", statusCode: 301 },
       { source: "/audit", destination: "/contact", statusCode: 301 },
       { source: "/book", destination: "/contact", statusCode: 301 },
+      {
+        source: "/case-studies/running-our-companies-on-ai-agents",
+        destination: "/case-studies",
+        statusCode: 301,
+      },
     ];
   },
   async headers() {

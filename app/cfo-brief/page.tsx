@@ -3,6 +3,7 @@ import { FirstYearCost } from "@/components/FirstYearCost";
 import { PrintBrief } from "@/components/PrintBrief";
 import { Container, PageHero } from "@/components/ui";
 import { cfoBrief } from "@/content/cfo-brief";
+import { sampleBaseline } from "@/content/sample-baseline";
 import { auditPath } from "@/content/nav";
 import { site } from "@/content/site";
 import { pageMetadata } from "@/lib/seo";
@@ -61,6 +62,24 @@ export default function CfoBriefPage() {
                   <li key={point}>{point}</li>
                 ))}
               </ul>
+              {section.title === "How savings are measured" ? (
+                <p className="mt-4 text-base leading-relaxed text-quiet">
+                  <Link
+                    href={sampleBaseline.path}
+                    className="font-semibold text-oxblood underline underline-offset-4"
+                  >
+                    {sampleBaseline.linkLabel}
+                  </Link>{" "}
+                  or{" "}
+                  <Link
+                    href={sampleBaseline.pdfPath}
+                    className="font-semibold text-oxblood underline underline-offset-4"
+                  >
+                    download the PDF
+                  </Link>
+                  . {sampleBaseline.label}. {sampleBaseline.business} is a made-up business.
+                </p>
+              ) : null}
             </section>
           ))}
           <p className="mt-10 text-base leading-relaxed text-quiet">

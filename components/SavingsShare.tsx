@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Container, Kicker } from "@/components/ui";
 import { auditCta, auditPath } from "@/content/nav";
+import { sampleBaseline } from "@/content/sample-baseline";
 import { savingsShare } from "@/content/services";
 
 export function SavingsShare({ bordered = true }: { bordered?: boolean }) {
@@ -29,6 +30,15 @@ export function SavingsShare({ bordered = true }: { bordered?: boolean }) {
           </p>
           <p className="mt-3 text-base leading-relaxed text-quiet">{savingsShare.illustration.body}</p>
         </aside>
+        <p className="mt-6 max-w-2xl text-base leading-relaxed text-quiet">
+          <Link
+            href={sampleBaseline.path}
+            className="font-semibold text-oxblood underline underline-offset-4"
+          >
+            {sampleBaseline.linkLabel}
+          </Link>
+          . {sampleBaseline.label}. {sampleBaseline.business} is a made-up business.
+        </p>
         <p className="mt-10">
           <Link
             href={auditPath}

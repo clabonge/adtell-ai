@@ -19,8 +19,8 @@ describe("sitemap dates", () => {
 
     assert.equal(modified("/"), "2026-10-25");
     assert.equal(modified("/about"), "2026-10-25");
-    assert.equal(modified("/services"), "2026-10-23");
-    assert.equal(modified("/cfo-brief"), "2026-10-23");
+    assert.equal(modified("/services"), "2026-10-25");
+    assert.equal(modified("/cfo-brief"), "2026-10-25");
     assert.equal(modified("/contact"), site.pageUpdated["/contact"]);
     assert.equal(modified(sampleAudit.path), sampleAudit.updated);
     assert.equal(modified(whoWeHelp.path), whoWeHelp.updated);
@@ -35,9 +35,10 @@ describe("sitemap dates", () => {
     assert.ok(doan);
     assert.equal(doan.date, "2026-10-21");
     assert.equal(modified(`/case-studies/${doan.slug}`), "2026-10-23");
+    assert.equal(modified("/case-studies"), "2026-10-25");
     assert.equal(
-      modified("/case-studies/running-our-companies-on-ai-agents"),
-      "2026-10-23",
+      entries.some((item) => item.url.includes("running-our-companies-on-ai-agents")),
+      false,
     );
 
     for (const entry of entries) {

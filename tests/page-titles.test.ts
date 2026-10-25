@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 import { describe, it } from "node:test";
 import { industries, industryPath, whoWeHelp } from "../content/industries";
 import { sampleAudit } from "../content/sample-audit";
+import { sampleBaseline } from "../content/sample-baseline";
 import { site } from "../content/site";
 import { getPosts } from "../lib/posts";
 import { documentTitle, pageMetadata } from "../lib/seo";
@@ -18,6 +19,7 @@ const pages: { topic: string; path: string }[] = [
   { topic: "Security", path: "/security" },
   { topic: "Terms", path: "/terms" },
   { topic: sampleAudit.title, path: sampleAudit.path },
+  { topic: sampleBaseline.title, path: sampleBaseline.path },
   { topic: "A one-page brief for the CFO", path: "/cfo-brief" },
   { topic: whoWeHelp.title, path: whoWeHelp.path },
   ...industries.map((industry) => ({ topic: industry.name, path: industryPath(industry) })),
