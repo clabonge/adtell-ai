@@ -23,6 +23,7 @@ const implementations = [
     name: "FiberOptics.com",
     goal: "updating website content, social media, customer outreach, and product recommendations",
     how: "FiberOptics.com is the product and shop division of Adtell Inc. The workflows use Outlook, Shopify, Teams, SharePoint, and QuickBooks. A person reviews and approves what goes out.",
+    study: "/case-studies/fiberoptics-com-website-and-outreach",
   },
   {
     name: "The Fiber School",

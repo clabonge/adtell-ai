@@ -15,4 +15,8 @@ BespokeQuote.furniture is the quoting and inventory system delivered at BCLE Fur
 
 A person reviews the quote. The job is tracked in the dashboard after that review.
 
+## What changed
+
+Measured result. Before, a quote could take up to three days for review and quoting. Now the maximum turnaround is 24 hours.
+
 We can build the same kind of system for your shop. The furniture page is [Manufacturing and furniture](/who-we-help/manufacturing-and-furniture). [Book a free AI audit](/contact).

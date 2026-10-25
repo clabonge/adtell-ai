@@ -17,7 +17,7 @@ import { faqJsonLd, servicesOfferJsonLd } from "@/lib/structured-data";
 export const metadata = pageMetadata({
   title: "Services and pricing",
   description:
-    "Free AI savings audit, a quoted one-workflow starter, assessments from $2,500, implementation from $10,000 or 25% of measured savings, retainers from $1,500 a month, and quoted team workshops.",
+    "Free AI savings audit, a starter workflow built at $2,500–$7,500, a written roadmap at the same range, implementation from $10,000 or 25% of measured savings, retainers from $1,500 a month, and quoted team workshops.",
   path: "/services",
 });
 
@@ -99,6 +99,9 @@ export default function ServicesPage() {
                 <p className="mt-2 font-serif text-4xl tracking-tight text-ivory">
                   {service.priceLabel}
                 </p>
+                {service.priceAside ? (
+                  <p className="mt-2 text-sm font-semibold text-ivory">{service.priceAside}</p>
+                ) : null}
                 <p className="mt-3 text-sm leading-relaxed text-quiet">{service.priceDetail}</p>
                 <Link
                   href={auditPath}

@@ -108,6 +108,25 @@ export const industryWorkflows: Record<string, readonly WorkflowStep[]> = {
   ],
 };
 
+export const fiberOpticsWorkflow: readonly WorkflowStep[] = [
+  {
+    label: "Before",
+    text: "Website content, social media, customer outreach, and product recommendations were updated by a person.",
+  },
+  {
+    label: "AI draft",
+    text: "The workflows use Outlook, Shopify, Teams, SharePoint, and QuickBooks. Shopify is the store.",
+  },
+  {
+    label: "Person approves",
+    text: "A person reviews and approves what goes out.",
+  },
+  {
+    label: "Sent",
+    text: "Nothing goes out until that person approves it. The automation does not send it on its own.",
+  },
+];
+
 export const doanWorkflow: readonly WorkflowStep[] = [
   {
     label: "Before",
