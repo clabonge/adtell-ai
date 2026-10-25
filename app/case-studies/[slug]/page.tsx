@@ -10,7 +10,7 @@ import { Container, JsonLd, PageHero } from "@/components/ui";
 import { getIndustry, industryPath } from "@/content/industries";
 import { auditCta, auditPath } from "@/content/nav";
 import { sampleAudit } from "@/content/sample-audit";
-import { doanWorkflow, fiberOpticsWorkflow } from "@/content/workflows";
+import { doanWorkflow, fiberOpticsWorkflow, fiberSchoolWorkflow } from "@/content/workflows";
 import { HomepageShot } from "@/components/HomepageShot";
 import { formatDate } from "@/lib/format";
 import { getPost, getPosts, kindLabel } from "@/lib/posts";
@@ -77,6 +77,21 @@ export default async function CaseStudyPage(props: PageProps<"/case-studies/[slu
                 height={900}
               />
               <WorkflowDiagram heading="How the work moves" steps={fiberOpticsWorkflow} />
+              <HandoffList />
+            </>
+          ) : null}
+          {post.slug === "the-fiber-school-student-communications" ? (
+            <>
+              <HomepageShot
+                dir="thefiberschool"
+                name="thefiberschool-home"
+                alt="The Fiber School homepage at thefiberschool.com"
+                caption="The public The Fiber School homepage."
+                href="https://thefiberschool.com"
+                width={1440}
+                height={900}
+              />
+              <WorkflowDiagram heading="How the work moves" steps={fiberSchoolWorkflow} />
               <HandoffList />
             </>
           ) : null}

@@ -145,3 +145,22 @@ export const doanWorkflow: readonly WorkflowStep[] = [
     text: "Nothing goes out until that person confirms it. The automation does not send it on its own.",
   },
 ];
+
+export const fiberSchoolWorkflow: readonly WorkflowStep[] = [
+  {
+    label: "Before",
+    text: "Student communications about expiring certifications, upselling additional classes, outreach, and social media were prepared by a person.",
+  },
+  {
+    label: "AI draft",
+    text: "The workflows use Outlook, Teams, SharePoint, and QuickBooks.",
+  },
+  {
+    label: "Person approves",
+    text: "A person reviews and approves what goes out.",
+  },
+  {
+    label: "Sent",
+    text: "Nothing goes out until that person approves it. The automation does not send it on its own.",
+  },
+];

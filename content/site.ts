@@ -29,6 +29,7 @@ const implementations = [
     name: "The Fiber School",
     goal: "student communications about expiring certifications, upselling additional classes, outreach, and social media",
     how: "The Fiber School is the training division of Adtell Inc. The public site is thefiberschool.com. The workflows use Outlook, Teams, SharePoint, and QuickBooks. A person reviews and approves what goes out.",
+    study: "/case-studies/the-fiber-school-student-communications",
   },
   {
     name: "BCLE Furniture",
