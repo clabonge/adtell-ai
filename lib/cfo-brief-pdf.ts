@@ -12,7 +12,10 @@ export function cfoBriefBlocks(): PdfBlock[] {
     { kind: "heading", text: "Published prices" },
   ];
   for (const price of cfoBrief.prices) {
-    blocks.push({ kind: "bullet", text: `${price.name}: ${price.price}` });
+    blocks.push({
+      kind: "bullet",
+      text: price.aside ? `${price.name}: ${price.price}. ${price.aside}.` : `${price.name}: ${price.price}`,
+    });
   }
   for (const section of cfoBrief.sections) {
     blocks.push({ kind: "gap" }, { kind: "heading", text: section.title });

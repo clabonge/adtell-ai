@@ -91,7 +91,12 @@ export default function HomePage() {
                       </Link>
                     </th>
                     <td className="py-3 text-right font-serif text-lg text-oxblood-ink">
-                      {service.priceLabel}
+                      <span className="block">{service.priceLabel}</span>
+                      {service.priceAside ? (
+                        <span className="mt-1 block font-sans text-xs font-normal leading-snug text-quiet-ink">
+                          {service.priceAside}
+                        </span>
+                      ) : null}
                     </td>
                   </tr>
                 ))}
@@ -197,7 +202,12 @@ export default function HomePage() {
                     </span>
                   </span>
                   <span className="font-serif text-xl text-ivory sm:text-right">
-                    {service.priceLabel}
+                    <span className="block">{service.priceLabel}</span>
+                    {service.priceAside ? (
+                      <span className="mt-1 block font-sans text-xs font-normal leading-snug text-quiet">
+                        {service.priceAside}
+                      </span>
+                    ) : null}
                   </span>
                 </Link>
               </li>
