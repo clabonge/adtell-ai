@@ -66,14 +66,6 @@ function publishedPrice(service: Service): Record<string, unknown> {
           priceCurrency: "USD",
         },
       };
-    case "From $5,000":
-      return {
-        priceSpecification: {
-          "@type": "PriceSpecification",
-          minPrice: "5000",
-          priceCurrency: "USD",
-        },
-      };
     case "From $10,000":
       return {
         priceSpecification: {

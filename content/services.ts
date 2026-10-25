@@ -8,6 +8,8 @@ export type Service = {
   name: string;
   brief: string;
   priceLabel: string;
+  /** Short line beside a shared range, so two offers are not read as the same product. */
+  priceAside?: string;
   priceDetail: string;
   summary: string;
   audience: string;
@@ -22,7 +24,7 @@ export type Service = {
 export const servicesIntro = {
   kicker: "Services",
   title: "How you pay the department.",
-  lede: "The free audit scopes the work. A starter automates one workflow, from $5,000, with the scope and price quoted in writing after the audit and no long-term commitment. A roadmap writes the plan. An implementation ships one workflow, for a fixed price or 25% of the measured savings. A retainer is the ongoing team, from $1,500 a month. Training is for the people inside the company who will work with that team. A quote follows the work.",
+  lede: "The free audit scopes the work. A starter builds one workflow at $2,500–$7,500. A roadmap writes the plan at the same range. They are different offers. An implementation ships one workflow, for a fixed price or 25% of the measured savings. A retainer is the ongoing team, from $1,500 a month. Training is for the people inside the company who will work with that team. A quote follows the work.",
 };
 
 /**
@@ -77,12 +79,13 @@ export const services: Service[] = [
   {
     slug: "starter-workflow",
     name: "Starter workflow",
-    brief: "One workflow automated, from $5,000. Scope and price are quoted in writing after the audit.",
-    priceLabel: "From $5,000",
+    brief: "One workflow built. Scope and price are quoted in writing after the audit.",
+    priceLabel: "$2,500–$7,500",
+    priceAside: "One workflow built",
     priceDetail:
-      "The starting point for one defined workflow. Scope and price are quoted in writing after the free audit. No long-term commitment.",
+      "This range is for one workflow built. The roadmap uses the same range for a written plan. Scope and price are quoted in writing after the free audit. No long-term commitment.",
     summary:
-      "A fixed-scope project between the free audit and a full implementation. We automate one workflow. The scope and the price are quoted in writing after the audit. There is no retainer and no long-term commitment.",
+      "A fixed-scope build of one workflow, between the free audit and a full implementation. This offer is the build. The scope and the price are quoted in writing after the audit. There is no retainer and no long-term commitment.",
     audience:
       "Owners who want one defined workflow running before they consider a larger implementation.",
     includes: [
@@ -104,10 +107,11 @@ export const services: Service[] = [
     name: "AI Assessment & Roadmap",
     brief: "A written plan for what to build, what to skip, and in what order.",
     priceLabel: "$2,500–$7,500",
+    priceAside: "Written plan",
     priceDetail:
-      "The range depends on how many functions are in scope and how scattered the current process is.",
+      "The range depends on how many functions are in scope and how scattered the current process is. This is the written plan. The starter workflow uses the same range for one workflow built.",
     summary:
-      "A written plan for where AI belongs in the business, what to build first, what to leave alone, and what the first implementation will take.",
+      "A written plan for where AI belongs in the business, what to build first, what to leave alone, and what the first implementation will take. This offer is the plan.",
     audience:
       "Leadership teams that need a sequence before anyone writes an integration or signs a software contract.",
     includes: [

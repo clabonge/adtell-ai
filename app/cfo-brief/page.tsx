@@ -44,7 +44,10 @@ export default function CfoBriefPage() {
           <ul className="mt-4 grid gap-3">
             {cfoBrief.prices.map((price) => (
               <li key={price.name} className="flex items-baseline justify-between gap-6 border-b border-line pb-3">
-                <span className="text-base text-ivory">{price.name}</span>
+                <span className="text-base text-ivory">
+                  {price.name}
+                  {price.aside ? <span className="mt-1 block text-sm text-quiet">{price.aside}</span> : null}
+                </span>
                 <span className="font-serif text-2xl tracking-tight">{price.price}</span>
               </li>
             ))}

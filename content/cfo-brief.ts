@@ -18,6 +18,7 @@ export const cfoBrief = {
   prices: services.map((service) => ({
     name: service.name,
     price: service.priceLabel,
+    aside: service.priceAside,
   })),
   sections: [
     {
