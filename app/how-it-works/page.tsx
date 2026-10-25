@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { AuditBand } from "@/components/AuditBand";
 import { Container, PageHero } from "@/components/ui";
 import {
@@ -40,6 +41,16 @@ export default function HowItWorksPage() {
               </li>
             ))}
           </ol>
+          <p className="mt-10 max-w-2xl text-lg leading-relaxed text-quiet">
+            When the work should proceed, that recommendation includes a fixed price, a fee of 25%
+            of measured savings, or both.{" "}
+            <Link
+              href="/services#savings-share"
+              className="font-semibold text-oxblood underline underline-offset-4"
+            >
+              The savings share
+            </Link>
+          </p>
         </Container>
       </section>
       <section className="border-t border-line">

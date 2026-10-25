@@ -19,7 +19,7 @@ export const processSteps: ProcessStep[] = [
   {
     number: "02",
     title: "Separate cost from curiosity",
-    body: "We walk the work you named. We mark what is repetitive enough to scope, what needs a written roadmap, and what should be left alone. You leave with a ranked list and a recommendation, including a recommendation to wait. When the work should proceed, that recommendation includes a fixed price, a fee of 25% of measured savings, or both.",
+    body: "We walk the work you named. We mark what is repetitive enough to scope, what needs a written roadmap, and what should be left alone. You leave with a ranked list and a recommendation, including a recommendation to wait.",
   },
   {
     number: "03",
