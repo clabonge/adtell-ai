@@ -15,7 +15,6 @@ export function countyServiceJsonLd(areaName: string) {
     name: site.name,
     url: site.url,
     email: site.email,
-    telephone: site.phone,
     areaServed: { "@type": "AdministrativeArea", name: areaName },
     founder: {
       "@type": "Person",
@@ -36,7 +35,6 @@ export function organizationJsonLd() {
     name: site.name,
     url: site.url,
     email: site.email,
-    telephone: site.phone,
     description: site.description,
     areaServed: [...areaServed],
     founder: {
@@ -96,7 +94,6 @@ export function servicesOfferJsonLd() {
     name: site.name,
     url: new URL("/services", site.url).toString(),
     email: site.email,
-    telephone: site.phone,
     areaServed: [...areaServed],
     hasOfferCatalog: {
       "@type": "OfferCatalog",

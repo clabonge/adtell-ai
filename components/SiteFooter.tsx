@@ -2,8 +2,10 @@ import Link from "next/link";
 import { counties, countyPath } from "@/content/counties";
 import { auditCta, auditPath, primaryNav } from "@/content/nav";
 import { footerIntro, site } from "@/content/site";
+import { bookingLinkLabel, bookingUrl } from "@/lib/booking";
 
 export function SiteFooter() {
+  const scheduleUrl = bookingUrl();
   return (
     <footer className="mt-auto border-t border-line bg-void text-ivory print:hidden">
       <div className="mx-auto grid w-full max-w-6xl gap-10 px-5 py-14 sm:px-8 md:grid-cols-[1.4fr_1fr_1fr]">
@@ -58,13 +60,23 @@ export function SiteFooter() {
             </a>
           </p>
           <p className="mt-2 text-sm leading-relaxed text-quiet">
-            <a
+            <Link
               className="font-semibold text-ivory underline decoration-oxblood/60 underline-offset-4"
-              href={`tel:${site.phoneTel}`}
+              href={auditPath}
             >
-              {site.phone}
-            </a>
+              {auditCta}
+            </Link>
           </p>
+          {scheduleUrl ? (
+            <p className="mt-2 text-sm leading-relaxed text-quiet">
+              <a
+                className="font-semibold text-ivory underline decoration-oxblood/60 underline-offset-4"
+                href={scheduleUrl}
+              >
+                {bookingLinkLabel}
+              </a>
+            </p>
+          ) : null}
         </div>
       </div>
       <div className="border-t border-line">

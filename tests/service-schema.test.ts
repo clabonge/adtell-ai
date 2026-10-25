@@ -9,7 +9,7 @@ describe("service structured data", () => {
     const data = servicesOfferJsonLd();
     const json = JSON.stringify(data);
     assert.equal(data["@type"], "ProfessionalService");
-    assert.equal(data.telephone, "215-499-8959");
+    assert.equal("telephone" in data, false);
     assert.equal(data.email, "clabonge@adtell.ai");
     assert.deepEqual(
       data.areaServed.map((area) => area.name),

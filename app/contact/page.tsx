@@ -45,13 +45,13 @@ export default function ContactPage(props: {
                 href={`mailto:${site.email}`}
               >
                 {site.email}
-              </a>{" "}
-              or call{" "}
+              </a>
+              , or use the{" "}
               <a
                 className="font-semibold text-oxblood underline underline-offset-4"
-                href={`tel:${site.phoneTel}`}
+                href="#audit-request"
               >
-                {site.phone}
+                audit form
               </a>
               . Include your name, company, and the work that costs the most. Leave out
               secrets, customer lists, and passwords.

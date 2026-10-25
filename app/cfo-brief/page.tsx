@@ -5,7 +5,7 @@ import { Container, PageHero } from "@/components/ui";
 import { cfoBrief } from "@/content/cfo-brief";
 import { sampleBaseline } from "@/content/sample-baseline";
 import { auditPath } from "@/content/nav";
-import { site } from "@/content/site";
+import { publicContactLine } from "@/lib/booking";
 import { pageMetadata } from "@/lib/seo";
 
 export const metadata = pageMetadata({
@@ -37,9 +37,7 @@ export default function CfoBriefPage() {
               Download the PDF
             </Link>
           </div>
-          <p className="mt-8 hidden text-sm text-quiet print:block">
-            {site.name}. {site.email}. {site.phone}.
-          </p>
+          <p className="mt-8 hidden text-sm text-quiet print:block">{publicContactLine()}</p>
           <h2 className="mt-10 font-serif text-3xl tracking-tight">Published prices</h2>
           <ul className="mt-4 grid gap-3">
             {cfoBrief.prices.map((price) => (

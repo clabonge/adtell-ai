@@ -164,6 +164,8 @@ export function ContactForm({
     }
   }
 
+  const scheduleUrl = bookingUrl();
+
   if (result) {
     return (
       <div role="status" className="sheet border border-line bg-ivory p-6 text-ink sm:p-8">
@@ -175,34 +177,34 @@ export function ContactForm({
             <p className="mt-4 text-base leading-relaxed text-quiet-ink">
               We will follow up at the address you entered.
             </p>
-            {bookingUrl() ? (
+            {scheduleUrl ? (
               <div className="mt-4">
                 <BookingPrompt />
               </div>
-            ) : (
-              <p className="mt-4 text-base leading-relaxed text-quiet-ink">
-                You can also call{" "}
-                <a className="font-semibold text-oxblood-ink underline underline-offset-4" href={`tel:${site.phoneTel}`}>
-                  {site.phone}
-                </a>
-                .
-              </p>
-            )}
+            ) : null}
           </>
         ) : (
           <>
             <p className="mt-4 text-base leading-relaxed text-quiet-ink">
-              This note has not been saved. Send it to{" "}
+              This note has not been saved. Email it to{" "}
               <a
                 className="font-semibold text-oxblood-ink underline underline-offset-4"
                 href={`mailto:${site.email}`}
               >
                 {site.email}
               </a>
-              , or call{" "}
-              <a className="font-semibold text-oxblood-ink underline underline-offset-4" href={`tel:${site.phoneTel}`}>
-                {site.phone}
-              </a>
+              . You can also start another request with the audit form
+              {scheduleUrl ? (
+                <>
+                  , or{" "}
+                  <a
+                    className="font-semibold text-oxblood-ink underline underline-offset-4"
+                    href={scheduleUrl}
+                  >
+                    book a time
+                  </a>
+                </>
+              ) : null}
               .
             </p>
             <p className="mt-6">
@@ -245,11 +247,16 @@ export function ContactForm({
             You can also email{" "}
             <a className="font-semibold underline" href={`mailto:${site.email}`}>
               {site.email}
-            </a>{" "}
-            or call{" "}
-            <a className="font-semibold underline" href={`tel:${site.phoneTel}`}>
-              {site.phone}
             </a>
+            {scheduleUrl ? (
+              <>
+                {" "}
+                or{" "}
+                <a className="font-semibold underline" href={scheduleUrl}>
+                  book a time
+                </a>
+              </>
+            ) : null}
             .
           </p>
         </div>
@@ -405,7 +412,17 @@ export function ContactForm({
       </button>
       <p className="mt-4 text-sm leading-relaxed text-quiet-ink">
         We save your request and email you a confirmation. We reply within one business day. You
-        can also email {site.email} or call {site.phone}.
+        can also email {site.email}
+        {scheduleUrl ? (
+          <>
+            {" "}
+            or{" "}
+            <a className="font-semibold underline" href={scheduleUrl}>
+              book a time
+            </a>
+          </>
+        ) : null}
+        .
       </p>
       <p className="mt-3 text-sm leading-relaxed text-quiet-ink">
         We store this request so we can reply, and we do not sell it.{" "}

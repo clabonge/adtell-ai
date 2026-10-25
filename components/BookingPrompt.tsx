@@ -1,4 +1,3 @@
-import { site } from "@/content/site";
 import { bookingLinkLabel, bookingUrl } from "@/lib/booking";
 
 export function BookingPrompt({
@@ -24,10 +23,6 @@ export function BookingPrompt({
       Want to pick a time now?{" "}
       <a className={linkClass} href={url}>
         Book a free 30-minute audit call
-      </a>{" "}
-      or call{" "}
-      <a className={linkClass} href={`tel:${site.phoneTel}`}>
-        {site.phone}
       </a>
       .
     </p>

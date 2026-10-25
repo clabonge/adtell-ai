@@ -1,11 +1,11 @@
 import { sampleBaseline } from "@/content/sample-baseline";
-import { site } from "@/content/site";
+import { publicContactLine } from "@/lib/booking";
 import { type PdfBlock, renderPdf } from "@/lib/simple-pdf";
 
 export function sampleBaselineBlocks(): PdfBlock[] {
   const blocks: PdfBlock[] = [
     { kind: "title", text: sampleBaseline.title },
-    { kind: "body", text: `${site.name}. ${site.email}. ${site.phone}.` },
+    { kind: "body", text: publicContactLine() },
     { kind: "gap" },
     { kind: "body", text: `${sampleBaseline.label}. ${sampleBaseline.lede}` },
     { kind: "gap" },
