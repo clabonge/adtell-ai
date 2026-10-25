@@ -9,6 +9,7 @@ const shots = {
   "bcle-shop-floor": { dir: "bcle", width: 1600, height: 1200 },
   "bcle-thermwood-cnc": { dir: "bcle", width: 1200, height: 1600 },
   "bespokequote-dashboard": { dir: "bespokequote", width: 1400, height: 766 },
+  "bespokequote-home": { dir: "bespokequote", width: 1600, height: 1000 },
   "bespokequote-how-it-works": { dir: "bespokequote", width: 1600, height: 1000 },
 } as const;
 

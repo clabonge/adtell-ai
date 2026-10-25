@@ -2,7 +2,9 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { AuditBand } from "@/components/AuditBand";
 import { ClientQuote } from "@/components/ClientQuote";
+import { BcleCaseStudyShots } from "@/components/BcleSections";
 import { HandoffList, WorkflowDiagram } from "@/components/WorkflowDiagram";
+import { bcleCaseStudy } from "@/content/bcle";
 import { MarkdownBody } from "@/components/MarkdownBody";
 import { Container, JsonLd, PageHero } from "@/components/ui";
 import { getIndustry, industryPath } from "@/content/industries";
@@ -61,6 +63,7 @@ export default async function CaseStudyPage(props: PageProps<"/case-studies/[slu
           <div className="mt-10">
             <MarkdownBody source={post.body} />
           </div>
+          {post.slug === bcleCaseStudy.slug ? <BcleCaseStudyShots /> : null}
           {post.slug === "doan-distillery-event-booking" ? (
             <>
               <WorkflowDiagram heading="How event booking moves" steps={doanWorkflow} />

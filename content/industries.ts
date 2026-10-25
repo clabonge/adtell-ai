@@ -43,10 +43,10 @@ export const industries = [
     slug: "manufacturing-and-furniture",
     name: "Manufacturing and furniture",
     description:
-      "Inventory notes, sales follow-up, and marketing drafts a person still reviews. We helped BCLE Furniture.",
-    lede: "Inventory notes, sales follow-up, and marketing drafts are the work we have implemented for a furniture business. A person still reviews what goes out.",
+      "BespokeQuote.furniture for quoting and inventory at BCLE Furniture. Clients upload drawings, a person reviews the quote, and the job is tracked in a dashboard.",
+    lede: "Adtell.ai delivered BespokeQuote.furniture to BCLE Furniture to automate quoting and inventory management. A person reviews the quote.",
     paragraphs: [
-      "The first workflow is a task a careful person can already describe: an inventory note, the next sales step, or a marketing draft. We implement that draft. The person at the business still checks it.",
+      "Clients upload drawings: DWG, DXF, PDF, and sketches. A person reviews a quote priced from real materials and labor. The job is approved with a PO and deposit. Status and messages live in a dashboard.",
     ],
     businesses: ["BCLE Furniture"],
   },
