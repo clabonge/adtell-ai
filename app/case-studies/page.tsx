@@ -2,6 +2,7 @@ import Link from "next/link";
 import { AuditBand } from "@/components/AuditBand";
 import { CompanyLists } from "@/components/CompanyLists";
 import { Container, PageHero } from "@/components/ui";
+import { caseStudiesOverview } from "@/content/case-studies-overview";
 import { auditCta, auditPath } from "@/content/nav";
 import { formatDate } from "@/lib/format";
 import { getPosts, kindLabel } from "@/lib/posts";
@@ -32,7 +33,18 @@ export default function CaseStudiesPage() {
           <div className="mt-10">
             <CompanyLists />
           </div>
-          <h2 className="mt-16 font-serif text-3xl tracking-tight">How the work was chosen</h2>
+          <p className="mt-16 max-w-3xl text-lg leading-relaxed text-quiet">{caseStudiesOverview.intro}</p>
+          {caseStudiesOverview.sections.map((section) => (
+            <div key={section.heading} className="mt-12 max-w-3xl">
+              <h2 className="font-serif text-3xl tracking-tight">{section.heading}</h2>
+              {section.paragraphs.map((paragraph) => (
+                <p key={paragraph} className="mt-4 text-lg leading-relaxed text-quiet">
+                  {paragraph}
+                </p>
+              ))}
+            </div>
+          ))}
+          <h2 className="mt-16 font-serif text-3xl tracking-tight">Written notes</h2>
           <ul className="mt-8 grid gap-6">
             {studies.map((study) => (
               <li key={study.slug}>
