@@ -13,7 +13,7 @@ describe("local presence", () => {
     const data = organizationJsonLd();
     const json = JSON.stringify(data);
     assert.deepEqual(data["@type"], ["LocalBusiness", "ProfessionalService"]);
-    assert.equal(data.telephone, "215-499-8959");
+    assert.equal("telephone" in data, false);
     assert.equal(data.email, "clabonge@adtell.ai");
     assert.equal(data.url, "https://adtell.ai");
     assert.deepEqual(

@@ -47,7 +47,7 @@ The form keeps the `company_website` honeypot. That field is not a company websi
 
 A saved request returns `{ "ok": true, "received": true }`. The page says “Your request has been received.” It does not say an email was sent. The same submission key and the same answers return that success again and do not create a second inquiry. The same key with different answers is rejected. A later, separate request from the same person is stored as its own inquiry.
 
-If the database is down, the response is `503` with “We could not save your request. Please try again.” The page also shows the public email and phone.
+If the database is down, the response is `503` with “We could not save your request. Please try again.” The page also shows the public email.
 
 Rate limits are stored in Postgres, so they apply across more than one web instance. The defaults are 3 requests a minute and 10 an hour for an address. `CRM_RATE_PER_MINUTE` and `CRM_RATE_PER_HOUR` can change those limits.
 

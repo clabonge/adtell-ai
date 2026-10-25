@@ -1,11 +1,11 @@
 import { cfoBrief } from "@/content/cfo-brief";
-import { site } from "@/content/site";
+import { publicContactLine } from "@/lib/booking";
 import { type PdfBlock, renderPdf } from "@/lib/simple-pdf";
 
 export function cfoBriefBlocks(): PdfBlock[] {
   const blocks: PdfBlock[] = [
     { kind: "title", text: cfoBrief.title },
-    { kind: "body", text: `${site.name}. ${site.email}. ${site.phone}.` },
+    { kind: "body", text: publicContactLine() },
     { kind: "gap" },
     { kind: "body", text: cfoBrief.lede },
     { kind: "gap" },

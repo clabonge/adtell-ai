@@ -1,7 +1,7 @@
 import { companySizes } from "@/content/audit";
 import { site } from "@/content/site";
 import type { AuditSubmission } from "@/lib/audit";
-import { bookingConfirmationLine } from "@/lib/booking";
+import { auditFormUrl, bookingConfirmationLine } from "@/lib/booking";
 
 const DEFAULT_FROM = "Adtell.ai <onboarding@resend.dev>";
 
@@ -149,7 +149,7 @@ export function prospectConfirmationText(submission: AuditSubmission): string {
     "",
     "Adtell.ai",
     site.email,
-    site.phone,
+    `Request a free AI audit: ${auditFormUrl()}`,
   ].join("\n");
 }
 

@@ -76,14 +76,14 @@ export function implementationLine(item: (typeof implementations)[number]): stri
 /**
  * Public identity for the firm. Layout code reads this file; it does not
  * hard-code company names or the contact address.
+ * Public contact is the email below, the audit form, and the optional booking
+ * link. There is no public phone number.
  * Audit delivery is configured with env vars. See README "Audit form delivery".
  */
 export const site = {
   name: "Adtell.ai",
   url: resolveSiteUrl(),
   email: "clabonge@adtell.ai",
-  phone: "215-499-8959",
-  phoneTel: "+12154998959",
   /**
    * Shared revision for public pages that have not moved since.
    * Sitemap lastmod uses this unless a page has its own later date.
