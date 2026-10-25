@@ -23,7 +23,7 @@ export const servicesFaqs: Faq[] = [
   {
     question: "Can we cancel?",
     answer:
-      "Yes. The retainer has no long-term lock-in. How you cancel is set in your written agreement.",
+      "Yes. Retainers are billed monthly, at the start of each month. You can cancel with 30 days' notice. There is no long-term lock-in. An AI roadmap is 50% at kickoff and 50% when the roadmap is delivered. A fixed-price implementation is 50% at signing, 25% when the workflow goes live, and 25% at the end of the 30-day tuning period. If it still does not meet the agreed criteria at the end of tuning, you do not pay the final 25%, and you keep everything built so far.",
   },
   {
     question: "Is your data used to train AI?",
