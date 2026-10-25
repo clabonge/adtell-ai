@@ -1,3 +1,5 @@
+import { sampleBaseline } from "@/content/sample-baseline";
+
 export type Faq = {
   question: string;
   answer: string;
@@ -29,6 +31,7 @@ export const faqs: Faq[] = [
     question: "Can we pay a share of the savings?",
     answer:
       "Yes. On work where the cost can be counted, you can pay 25% of the measured savings and keep the other 75%. Before work starts, we agree a measured baseline with you in writing. Savings are measured against that baseline and reviewed together. Billing is monthly on the measured savings. Illustration only: if a change saves $4,000 a month, you keep $3,000 and pay $1,000. That example is not a client result. You can take the share, a fixed price, or both. If the savings cannot be counted, we quote a price. The audit itself stays free.",
+    link: { href: sampleBaseline.path, label: sampleBaseline.linkLabel },
   },
   {
     question: "Will this replace our team?",
@@ -38,7 +41,8 @@ export const faqs: Faq[] = [
   {
     question: "Do you sell a software product?",
     answer:
-      "No. Adtell.ai is a consulting practice. We implement workflows using tools that fit the job. We do not have a platform to license, and we will say so if a tool you already pay for is enough.",
+      "Adtell.ai is a consulting practice. BespokeQuote.furniture is a system we built for BCLE Furniture that furniture makers can try. We build similar systems for other businesses. We implement workflows using tools that fit the job, and we will say so if a tool you already pay for is enough.",
+    link: { href: "https://bespokequote.furniture", label: "BespokeQuote.furniture" },
   },
   {
     question: "Which businesses have you helped?",

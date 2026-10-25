@@ -101,6 +101,7 @@ Use the filename without `.md` as the key. Do not invent a quote, a name, or a r
 - `/contact` Audit intake form
 - `/security` Access, AI providers, retention, and the end of an engagement. No certification claims.
 - `/sample-audit` Example only. A fictional one-page ranked list, not a client result.
+- `/sample-savings-baseline` Example only. A savings-baseline worksheet for a made-up business. `/sample-savings-baseline.pdf` is the same worksheet as a download.
 - `/api/audit` Audit form intake
 - `/admin/crm` Private owner CRM. See `docs/crm.md`.
 - `/sitemap.xml` and `/robots.txt`
