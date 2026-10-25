@@ -55,19 +55,19 @@ export const industryWorkflows: Record<string, readonly WorkflowStep[]> = {
   "manufacturing-and-furniture": [
     {
       label: "Before",
-      text: "Inventory notes, sales follow-up, and marketing drafts are still prepared by a person.",
+      text: "A quote still has to be priced from drawings, materials, and labor.",
     },
     {
       label: "AI draft",
-      text: "We implement the draft for a task a careful person can already describe.",
+      text: "Clients upload drawings: DWG, DXF, PDF, and sketches. The quote is priced from real materials and labor.",
     },
     {
       label: "Person approves",
-      text: "A person still reviews what goes out.",
+      text: "A person reviews the quote. The job is approved with a PO and deposit.",
     },
     {
       label: "Sent",
-      text: "It goes out after that person checks it.",
+      text: "Status and messages live in a dashboard.",
     },
   ],
   "training-schools": [

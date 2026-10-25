@@ -18,6 +18,7 @@ import {
 import { auditRequests } from "@/content/audit";
 import { auditCta, auditPath } from "@/content/nav";
 import { sampleAudit } from "@/content/sample-audit";
+import { bcleCaseStudy } from "@/content/bcle";
 import { industryWorkflows } from "@/content/workflows";
 import { HandoffList, WorkflowDiagram } from "@/components/WorkflowDiagram";
 import { pageMetadata } from "@/lib/seo";
@@ -87,6 +88,21 @@ export default async function IndustryPage(props: PageProps<"/who-we-help/[slug]
           <WorkflowDiagram heading="How the work moves" steps={industryWorkflows[industry.slug]} />
           <HandoffList />
           <AuditRequest label={auditRequests.handoff} />
+          {industry.slug === "manufacturing-and-furniture" ? (
+            <>
+              <h2 className="mt-12 font-serif text-3xl tracking-tight">Related</h2>
+              <ul className="mt-4 list-disc space-y-3 pl-5 text-base leading-relaxed text-quiet">
+                <li>
+                  <Link
+                    href={bcleCaseStudy.path}
+                    className="font-semibold text-oxblood underline underline-offset-4"
+                  >
+                    BespokeQuote.furniture at BCLE Furniture
+                  </Link>
+                </li>
+              </ul>
+            </>
+          ) : null}
           {industry.slug === "hospitality-and-events" ? (
             <>
               <h2 className="mt-12 font-serif text-3xl tracking-tight">Related</h2>
