@@ -10,7 +10,8 @@ import { Container, JsonLd, PageHero } from "@/components/ui";
 import { getIndustry, industryPath } from "@/content/industries";
 import { auditCta, auditPath } from "@/content/nav";
 import { sampleAudit } from "@/content/sample-audit";
-import { doanWorkflow } from "@/content/workflows";
+import { doanWorkflow, fiberOpticsWorkflow } from "@/content/workflows";
+import { HomepageShot } from "@/components/HomepageShot";
 import { formatDate } from "@/lib/format";
 import { getPost, getPosts, kindLabel } from "@/lib/posts";
 import { pageMetadata } from "@/lib/seo";
@@ -64,6 +65,21 @@ export default async function CaseStudyPage(props: PageProps<"/case-studies/[slu
             <MarkdownBody source={post.body} />
           </div>
           {post.slug === bcleCaseStudy.slug ? <BcleCaseStudyShots /> : null}
+          {post.slug === "fiberoptics-com-website-and-outreach" ? (
+            <>
+              <HomepageShot
+                dir="fiberoptics"
+                name="fiberoptics-home"
+                alt="FiberOptics.com homepage, the public shop"
+                caption="The public FiberOptics.com homepage."
+                href="https://fiberoptics.com"
+                width={1440}
+                height={900}
+              />
+              <WorkflowDiagram heading="How the work moves" steps={fiberOpticsWorkflow} />
+              <HandoffList />
+            </>
+          ) : null}
           {post.slug === "doan-distillery-event-booking" ? (
             <>
               <WorkflowDiagram heading="How event booking moves" steps={doanWorkflow} />

@@ -95,7 +95,10 @@ function readCollection(collection: Collection): Post[] {
         body,
       };
     })
-    .sort((a, b) => (a.date < b.date ? 1 : a.date > b.date ? -1 : 0));
+    .sort((a, b) => {
+      if (a.date === b.date) return a.slug < b.slug ? -1 : a.slug > b.slug ? 1 : 0;
+      return a.date < b.date ? 1 : -1;
+    });
 }
 
 export function getPosts(collection: Collection): Post[] {

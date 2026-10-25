@@ -54,10 +54,11 @@ export const industries = [
     slug: "training-schools",
     name: "Training schools",
     description:
-      "Class schedules, enrollment follow-up, and student questions between sessions. We helped The Fiber School and FiberOptics.com.",
-    lede: "Class schedules, enrollment follow-up, and answers to student questions between sessions are the work we have implemented for a training school. A person still confirms the schedule and the reply.",
+      "Website content, social, outreach, and product recommendations at FiberOptics.com. Student communications about expiring certifications, class upsells, outreach, and social at The Fiber School.",
+    lede: "FiberOptics.com is the product and shop division of Adtell Inc. The Fiber School is the training division of Adtell Inc. A person reviews and approves what goes out.",
     paragraphs: [
-      "FiberOptics.com includes training-student scheduling among the tasks we helped move off someone's plate, along with sales follow-up, marketing drafts, and order follow-up. A person still reviews what the automation prepares.",
+      "FiberOptics.com is the product and shop division of Adtell Inc. Adtell.ai took over website content, social media, customer outreach, and product recommendations. The workflows use Outlook, Shopify, Teams, SharePoint, and QuickBooks. A person reviews and approves what goes out.",
+      "The Fiber School is the training division of Adtell Inc. The public site is thefiberschool.com. Adtell.ai took over student communications about expiring certifications, upselling additional classes, outreach, and social media. The workflows use Outlook, Teams, SharePoint, and QuickBooks. A person reviews and approves what goes out.",
     ],
     businesses: ["The Fiber School", "FiberOptics.com"],
   },

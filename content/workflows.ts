@@ -73,19 +73,19 @@ export const industryWorkflows: Record<string, readonly WorkflowStep[]> = {
   "training-schools": [
     {
       label: "Before",
-      text: "Class schedules, enrollment follow-up, and answers to student questions between sessions are still prepared by a person.",
+      text: "Website content, social media, customer outreach, product recommendations, and student communications were prepared by a person.",
     },
     {
       label: "AI draft",
-      text: "The automation prepares the schedule and the reply from material the school already uses.",
+      text: "FiberOptics.com workflows use Outlook, Shopify, Teams, SharePoint, and QuickBooks. The Fiber School workflows use Outlook, Teams, SharePoint, and QuickBooks.",
     },
     {
       label: "Person approves",
-      text: "A person still confirms the schedule and the reply.",
+      text: "A person reviews and approves what goes out.",
     },
     {
       label: "Sent",
-      text: "The schedule and the reply go out after that confirmation.",
+      text: "Nothing goes out until that person approves it.",
     },
   ],
   "public-markets-and-retail": [
@@ -107,6 +107,25 @@ export const industryWorkflows: Record<string, readonly WorkflowStep[]> = {
     },
   ],
 };
+
+export const fiberOpticsWorkflow: readonly WorkflowStep[] = [
+  {
+    label: "Before",
+    text: "Website content, social media, customer outreach, and product recommendations were updated by a person.",
+  },
+  {
+    label: "AI draft",
+    text: "The workflows use Outlook, Shopify, Teams, SharePoint, and QuickBooks. Shopify is the store.",
+  },
+  {
+    label: "Person approves",
+    text: "A person reviews and approves what goes out.",
+  },
+  {
+    label: "Sent",
+    text: "Nothing goes out until that person approves it. The automation does not send it on its own.",
+  },
+];
 
 export const doanWorkflow: readonly WorkflowStep[] = [
   {
