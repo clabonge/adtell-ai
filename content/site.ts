@@ -114,3 +114,16 @@ export const site = {
   holdingCompany: "Adtell Inc.",
   implementations,
 } as const;
+
+/**
+ * Footer credit on every page. "Adtell Inc." already ends with the
+ * abbreviation period, so the sentence does not add a second one.
+ */
+function sentence(value: string): string {
+  const trimmed = value.trim();
+  return /[.!?]$/.test(trimmed) ? trimmed : `${trimmed}.`;
+}
+
+export const footerIntro = `${sentence(
+  `${site.name} is the outsourced AI department, led by ${site.founder.name}, ${site.founder.role} of ${site.founder.organization}`,
+)} We implement AI that cuts operating cost.`;

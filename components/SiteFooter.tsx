@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { counties, countyPath } from "@/content/counties";
 import { auditCta, auditPath, primaryNav } from "@/content/nav";
-import { site } from "@/content/site";
+import { footerIntro, site } from "@/content/site";
 
 export function SiteFooter() {
   return (
@@ -14,11 +14,7 @@ export function SiteFooter() {
               Adtell<span className="text-oxblood">.ai</span>
             </span>
           </p>
-          <p className="mt-4 max-w-sm text-sm leading-relaxed text-quiet">
-            {site.name} is the outsourced AI department, led by {site.founder.name},{" "}
-            {site.founder.role} of {site.founder.organization}. We implement AI that cuts
-            operating cost.
-          </p>
+          <p className="mt-4 max-w-sm text-sm leading-relaxed text-quiet">{footerIntro}</p>
           <p className="mt-4 max-w-sm text-sm leading-relaxed text-quiet">{site.localPresence}</p>
           <ul className="mt-4 space-y-2 text-sm">
             {counties.map((county) => (
