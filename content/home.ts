@@ -24,7 +24,7 @@ export const departmentPitch = {
     },
     {
       title: "You pay for a team",
-      body: "A project ships one workflow, for a fixed price or 25% of the measured savings. A retainer keeps the team on the work after it is live, from $1,500 a month.",
+      body: "A project ships one workflow for a fixed price. A retainer keeps the team on the work after it is live, from $1,500 a month.",
     },
     {
       title: "Your company stays in charge",
@@ -36,5 +36,5 @@ export const departmentPitch = {
 export const homeServicesIntro = {
   kicker: "Ways to engage",
   title: "Start with the audit. Pay for the step that fits.",
-  lede: "The audit scopes the department. Every engagement below is a published starting point. An implementation can also be priced as 25% of the measured savings. A retainer is how you keep the team.",
+  lede: "The audit scopes the department. Every engagement below is a published starting point. A retainer is how you keep the team.",
 };
