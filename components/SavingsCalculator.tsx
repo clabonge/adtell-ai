@@ -1,7 +1,9 @@
 "use client";
 
+import Link from "next/link";
 import { useId, useState, type FormEvent } from "react";
 import { ButtonLink, Container, Kicker } from "@/components/ui";
+import { sampleBaseline } from "@/content/sample-baseline";
 import { auditCta, auditPath } from "@/content/nav";
 import { FirstYearCost } from "@/components/FirstYearCost";
 import { formatDollars, formatPayback, illustrateTask, type TaskIllustration } from "@/lib/illustration";
@@ -119,7 +121,14 @@ export function SavingsCalculator() {
         <p className="mt-6 max-w-2xl text-base leading-relaxed text-quiet">
           This treats the annual cost of the task as the measured savings. The fee is 25% of that
           amount. Payback is how many months of that amount cover an implementation from $10,000.
-          The baseline, the savings, and the price are set in writing after the audit.
+          The baseline, the savings, and the price are set in writing after the audit.{" "}
+          <Link
+            href={sampleBaseline.path}
+            className="font-semibold text-oxblood underline underline-offset-4"
+          >
+            {sampleBaseline.linkLabel}
+          </Link>
+          . {sampleBaseline.label}. {sampleBaseline.business} is a made-up business.
         </p>
         <p className="mt-8">
           <ButtonLink href={auditPath}>{auditCta}</ButtonLink>

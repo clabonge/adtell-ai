@@ -17,10 +17,10 @@ describe("sitemap dates", () => {
       return String(entry.lastModified);
     };
 
-    assert.equal(modified("/"), "2026-10-23");
+    assert.equal(modified("/"), "2026-10-25");
     assert.equal(modified("/about"), "2026-10-23");
-    assert.equal(modified("/services"), "2026-10-23");
-    assert.equal(modified("/cfo-brief"), "2026-10-23");
+    assert.equal(modified("/services"), "2026-10-25");
+    assert.equal(modified("/cfo-brief"), "2026-10-25");
     assert.equal(modified("/contact"), site.pageUpdated["/contact"]);
     assert.equal(modified(sampleAudit.path), sampleAudit.updated);
     assert.equal(modified(whoWeHelp.path), whoWeHelp.updated);
