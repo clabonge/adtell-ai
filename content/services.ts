@@ -22,7 +22,7 @@ export type Service = {
 export const servicesIntro = {
   kicker: "Services",
   title: "How you pay the department.",
-  lede: "The free audit scopes the work. A starter automates one workflow, with the scope and price quoted in writing after the audit and no long-term commitment. A roadmap writes the plan. An implementation ships one workflow, for a fixed price or 25% of the measured savings. A retainer is the ongoing team, from $1,500 a month. Training is for the people inside the company who will work with that team. A quote follows the work.",
+  lede: "The free audit scopes the work. A starter automates one workflow, from $5,000, with the scope and price quoted in writing after the audit and no long-term commitment. A roadmap writes the plan. An implementation ships one workflow, for a fixed price or 25% of the measured savings. A retainer is the ongoing team, from $1,500 a month. Training is for the people inside the company who will work with that team. A quote follows the work.",
 };
 
 /**
@@ -77,10 +77,10 @@ export const services: Service[] = [
   {
     slug: "starter-workflow",
     name: "Starter workflow",
-    brief: "One workflow automated. Scope and price are quoted in writing after the audit.",
-    priceLabel: "Quoted",
+    brief: "One workflow automated, from $5,000. Scope and price are quoted in writing after the audit.",
+    priceLabel: "From $5,000",
     priceDetail:
-      "Scope and price are quoted in writing after the free audit. No long-term commitment.",
+      "The starting point for one defined workflow. Scope and price are quoted in writing after the free audit. No long-term commitment.",
     summary:
       "A fixed-scope project between the free audit and a full implementation. We automate one workflow. The scope and the price are quoted in writing after the audit. There is no retainer and no long-term commitment.",
     audience:

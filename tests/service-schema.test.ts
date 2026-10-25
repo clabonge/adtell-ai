@@ -29,7 +29,8 @@ describe("service structured data", () => {
       services.map((service) => service.name),
     );
     assert.equal(offers[0]?.price, "0");
-    assert.equal(offers[1]?.description, "Quoted");
+    assert.equal(offers[1]?.priceSpecification?.minPrice, "5000");
+    assert.equal(offers[1]?.priceSpecification?.maxPrice, undefined);
     assert.equal(offers[2]?.priceSpecification?.minPrice, "2500");
     assert.equal(offers[2]?.priceSpecification?.maxPrice, "7500");
     assert.equal(offers[3]?.priceSpecification?.minPrice, "10000");

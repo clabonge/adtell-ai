@@ -48,7 +48,12 @@ describe("cfo brief", () => {
     const pdf = pdfText(cfoBriefPdf());
     assert.match(pdf, /^%PDF-1\.4/);
     assert.match(pdf, /\$2,500/);
+    assert.match(pdf, /From \$5,000/);
     assert.match(pdf, /From \$10,000/);
+    assert.equal(
+      cfoBrief.prices.find((price) => price.name === "Starter workflow")?.price,
+      "From $5,000",
+    );
     assert.match(pdf, /50% at signing/);
     assert.match(pdf, /baseline/);
     assert.match(pdf, /Illustration only, not a client result/);

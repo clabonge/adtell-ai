@@ -33,7 +33,7 @@ describe("cfo terms", () => {
     assert.equal(page.includes("placeholderLabel"), false);
     assert.deepEqual(
       services.map((service) => service.priceLabel),
-      ["Free", "Quoted", "$2,500–$7,500", "From $10,000", "From $1,500/mo", "Quoted"],
+      ["Free", "From $5,000", "$2,500–$7,500", "From $10,000", "From $1,500/mo", "Quoted"],
     );
   });
 });

@@ -7,7 +7,7 @@ describe("service delivery", () => {
     const prices = Object.fromEntries(services.map((service) => [service.slug, service.priceLabel]));
     assert.deepEqual(prices, {
       "free-ai-savings-audit": "Free",
-      "starter-workflow": "Quoted",
+      "starter-workflow": "From $5,000",
       "ai-assessment-roadmap": "$2,500–$7,500",
       implementation: "From $10,000",
       "monthly-retainer": "From $1,500/mo",

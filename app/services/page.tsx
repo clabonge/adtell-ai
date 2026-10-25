@@ -17,7 +17,7 @@ import { faqJsonLd, servicesOfferJsonLd } from "@/lib/structured-data";
 export const metadata = pageMetadata({
   title: "Services and pricing",
   description:
-    "Free AI savings audit, a quoted one-workflow starter, assessments from $2,500, implementation from $10,000 or 25% of measured savings, retainers from $1,500 a month, and quoted team workshops.",
+    "Free AI savings audit, starter workflows from $5,000, assessments from $2,500, implementation from $10,000 or 25% of measured savings, retainers from $1,500 a month, and quoted team workshops.",
   path: "/services",
 });
 
