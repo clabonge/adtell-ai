@@ -41,7 +41,8 @@ export const faqs: Faq[] = [
   {
     question: "Do you sell a software product?",
     answer:
-      "No. Adtell.ai is a consulting practice. We implement workflows using tools that fit the job. We do not have a platform to license, and we will say so if a tool you already pay for is enough.",
+      "Adtell.ai is a consulting practice. BespokeQuote.furniture is a system we built for BCLE Furniture that furniture makers can try. We build similar systems for other businesses. We implement workflows using tools that fit the job, and we will say so if a tool you already pay for is enough.",
+    link: { href: "https://bespokequote.furniture", label: "BespokeQuote.furniture" },
   },
   {
     question: "Which businesses have you helped?",
