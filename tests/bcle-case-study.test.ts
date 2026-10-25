@@ -19,9 +19,13 @@ describe("BCLE Furniture case study", () => {
     assert.match(post.body, /PO and deposit/);
     assert.match(post.body, /tracked in the dashboard/);
     assert.match(post.body, /same kind of system for your shop/);
+    assert.match(post.body, /## What changed/);
+    assert.match(post.body, /up to three days for review and quoting/);
+    assert.match(post.body, /maximum turnaround is 24 hours/);
     assert.equal(post.body.includes("\u2014"), false);
     assert.equal(post.body.includes("$"), false);
     assert.equal(post.body.includes("%"), false);
+    assert.deepEqual(post.body.match(/\d+/g), ["24"]);
     assert.equal(/our own|my shop|CNC|family/i.test(post.body), false);
 
     assert.deepEqual(
