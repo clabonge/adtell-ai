@@ -41,6 +41,7 @@ const implementations = [
     name: "Doan Distillery",
     goal: "offloading event booking",
     how: "The automation drafts booking replies, prepares tasting-room and event times, and writes order follow-up and marketing notes a person still confirms.",
+    study: "/case-studies/doan-distillery-event-booking",
   },
   {
     name: "CapoVino",
@@ -59,7 +60,13 @@ const implementations = [
   },
 ] as const;
 
-export const highlightNames = ["Doan Distillery", "CapoVino", "BCLE Furniture"] as const;
+export const highlightNames = [
+  "Doan Distillery",
+  "CapoVino",
+  "BCLE Furniture",
+  "FiberOptics.com",
+  "The Fiber School",
+] as const;
 
 export function highlightedImplementations() {
   return highlightNames.map((name) => {
@@ -93,8 +100,8 @@ export const site = {
   pageUpdated: {
     "/": "2026-10-26",
     "/how-it-works": "2026-10-25",
-    "/about": "2026-10-25",
-    "/case-studies": "2026-10-25",
+    "/about": "2026-10-26",
+    "/case-studies": "2026-10-26",
     "/who-we-help/manufacturing-and-furniture": "2026-10-25",
     "/case-studies/bcle-furniture-bespokequote": "2026-10-25",
     "/services": "2026-10-26",
