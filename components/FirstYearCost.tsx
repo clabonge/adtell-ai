@@ -2,11 +2,15 @@
 
 import { useId, useState } from "react";
 import {
+  formatDollarRange,
   formatDollars,
   formatPayback,
+  formatPaybackRange,
   illustrateFirstYear,
   illustrationOnlyLabel,
   RETAINER_MONTHLY,
+  STARTER_HIGH,
+  STARTER_LOW,
 } from "@/lib/illustration";
 
 function optionalAmount(value: string): number | null {
@@ -41,12 +45,19 @@ export function FirstYearCost() {
         {illustrationOnlyLabel}
       </p>
       <p className="mt-3 text-sm leading-relaxed text-quiet-ink">
-        The build uses the published implementation price. The retainer, if you include it, uses
-        the published retainer price. The tool line is yours to enter. Leave it blank, or type a
-        hypothetical monthly amount.
+        The starter line uses the published starter range. The implementation line uses the
+        published implementation price. The retainer, if you include it, uses the published
+        retainer price. The tool line is yours to enter. Leave it blank, or type a hypothetical
+        monthly amount. These totals are an illustration, not a client result.
       </p>
       <div className="mt-6">
-        <p className="text-sm font-semibold">Build</p>
+        <p className="text-sm font-semibold">Starter workflow</p>
+        <p className="mt-1 font-serif text-3xl tracking-tight">
+          {formatDollarRange(STARTER_LOW, STARTER_HIGH)}
+        </p>
+      </div>
+      <div className="mt-5">
+        <p className="text-sm font-semibold">Implementation</p>
         <p className="mt-1 font-serif text-3xl tracking-tight">From $10,000</p>
       </div>
       <div className="mt-5">
@@ -109,11 +120,28 @@ export function FirstYearCost() {
             <dd className="mt-1 font-serif text-3xl tracking-tight">{formatDollars(result.toolsYear)}</dd>
           </div>
           <div>
-            <dt className="text-sm font-semibold">First-year total</dt>
+            <dt className="text-sm font-semibold">First-year total, starter workflow</dt>
+            <dd className="mt-1 font-serif text-3xl tracking-tight">
+              {formatDollarRange(result.starterFirstYearLow, result.starterFirstYearHigh)}
+            </dd>
+          </div>
+          <div>
+            <dt className="text-sm font-semibold">Illustrative payback, starter workflow</dt>
+            <dd className="mt-1 font-serif text-3xl tracking-tight">
+              {result.starterPaybackMonths === null
+                ? "Enter a monthly saving"
+                : formatPaybackRange(
+                    result.starterPaybackMonths.low,
+                    result.starterPaybackMonths.high,
+                  )}
+            </dd>
+          </div>
+          <div>
+            <dt className="text-sm font-semibold">First-year total, implementation</dt>
             <dd className="mt-1 font-serif text-3xl tracking-tight">{formatDollars(result.firstYearTotal)}</dd>
           </div>
           <div>
-            <dt className="text-sm font-semibold">Payback month</dt>
+            <dt className="text-sm font-semibold">Illustrative payback, implementation</dt>
             <dd className="mt-1 font-serif text-3xl tracking-tight">
               {result.paybackMonths === null
                 ? "Enter a monthly saving"

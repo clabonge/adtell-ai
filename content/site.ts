@@ -91,15 +91,15 @@ export const site = {
   updated: "2026-10-21",
   /** Pages revised after `updated`. */
   pageUpdated: {
-    "/": "2026-10-25",
+    "/": "2026-10-26",
     "/how-it-works": "2026-10-25",
     "/about": "2026-10-25",
     "/case-studies": "2026-10-25",
     "/who-we-help/manufacturing-and-furniture": "2026-10-25",
     "/case-studies/bcle-furniture-bespokequote": "2026-10-25",
-    "/services": "2026-10-22",
+    "/services": "2026-10-26",
     "/contact": "2026-10-26",
-    "/cfo-brief": "2026-10-22",
+    "/cfo-brief": "2026-10-26",
     "/case-studies/doan-distillery-event-booking": "2026-10-23",
   },
   tagline: "Cut the cost of work that should not still be done by hand.",

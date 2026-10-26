@@ -14,9 +14,9 @@ export function MobileAuditBar() {
       <div className="fixed inset-x-0 bottom-0 z-30 border-t border-line bg-void px-4 pt-3 pb-[max(0.75rem,env(safe-area-inset-bottom))]">
         <Link
           href={auditPath}
-          className="flex min-h-11 items-center justify-center bg-ivory px-4 text-sm font-semibold text-void hover:bg-ivory-deep"
+          className="flex min-h-11 w-full items-center justify-center whitespace-nowrap bg-ivory px-3 text-[13px] font-semibold text-void hover:bg-ivory-deep min-[380px]:text-sm"
         >
-          Free AI audit · Request
+          Request a free AI audit
         </Link>
       </div>
     </div>
