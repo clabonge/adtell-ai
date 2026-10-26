@@ -19,6 +19,7 @@ const publicPaths = [
   "/security",
   "/terms",
   "/cfo-brief",
+  "/demo/bespokequote",
 ];
 
 function walk(dir: string): string[] {

@@ -2,6 +2,7 @@ import Link from "next/link";
 import { BclePhoto } from "@/components/BclePhoto";
 import { ButtonLink, Container, Kicker } from "@/components/ui";
 import { bcleAbout, bcleCaseStudy, bcleCaseStudyShots, bcleDelivery, bcleShop } from "@/content/bcle";
+import { bespokeQuoteDemo } from "@/content/bespokequote-demo";
 import { furnitureShop } from "@/content/industry-examples";
 import { auditPath } from "@/content/nav";
 
@@ -218,6 +219,14 @@ export function BcleCaseStudyShots() {
         >
           {furnitureShop.host}
         </a>
+      </p>
+      <p className="mt-4 text-lg leading-relaxed text-quiet">
+        <Link
+          href={bespokeQuoteDemo.path}
+          className="font-semibold text-oxblood underline underline-offset-4"
+        >
+          Watch the screen recording
+        </Link>
       </p>
     </div>
   );

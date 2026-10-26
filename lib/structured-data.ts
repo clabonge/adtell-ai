@@ -128,6 +128,24 @@ export function faqJsonLd(items: readonly Faq[], answerText?: (item: Faq) => str
   };
 }
 
+export function videoObjectJsonLd(video: {
+  name: string;
+  description: string;
+  thumbnailPath: string;
+  uploadDate: string;
+  contentPath: string;
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "VideoObject",
+    name: video.name,
+    description: video.description,
+    thumbnailUrl: new URL(video.thumbnailPath, site.url).toString(),
+    uploadDate: video.uploadDate,
+    contentUrl: new URL(video.contentPath, site.url).toString(),
+  };
+}
+
 export function breadcrumbJsonLd(items: { name: string; path: string }[]) {
   return {
     "@context": "https://schema.org",

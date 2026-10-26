@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
 import { describe, it } from "node:test";
 import sitemap from "../app/sitemap";
+import { bespokeQuoteDemo } from "../content/bespokequote-demo";
 import { industries, industryPath, whoWeHelp } from "../content/industries";
 import { sampleAudit } from "../content/sample-audit";
 import { site } from "../content/site";
@@ -24,6 +25,8 @@ describe("sitemap dates", () => {
     assert.equal(modified("/cfo-brief"), "2026-10-26");
     assert.equal(modified("/contact"), site.pageUpdated["/contact"]);
     assert.equal(modified(sampleAudit.path), sampleAudit.updated);
+    assert.equal(bespokeQuoteDemo.updated, "2026-10-26");
+    assert.equal(modified(bespokeQuoteDemo.path), bespokeQuoteDemo.updated);
     assert.equal(modified(whoWeHelp.path), whoWeHelp.updated);
     for (const industry of industries) {
       const path = industryPath(industry);

@@ -19,6 +19,7 @@ import { auditRequests } from "@/content/audit";
 import { auditCta, auditPath } from "@/content/nav";
 import { sampleAudit } from "@/content/sample-audit";
 import { bcleCaseStudy } from "@/content/bcle";
+import { bespokeQuoteDemo } from "@/content/bespokequote-demo";
 import { industryWorkflows } from "@/content/workflows";
 import { HandoffList, WorkflowDiagram } from "@/components/WorkflowDiagram";
 import { pageMetadata } from "@/lib/seo";
@@ -108,6 +109,14 @@ export default async function IndustryPage(props: PageProps<"/who-we-help/[slug]
                     className="font-semibold text-oxblood underline underline-offset-4"
                   >
                     BespokeQuote.furniture at BCLE Furniture
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href={bespokeQuoteDemo.path}
+                    className="font-semibold text-oxblood underline underline-offset-4"
+                  >
+                    See the BespokeQuote screen recording
                   </Link>
                 </li>
               </ul>
