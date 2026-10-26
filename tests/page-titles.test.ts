@@ -1,5 +1,6 @@
 import assert from "node:assert/strict";
 import { describe, it } from "node:test";
+import { bespokeQuoteDemo } from "../content/bespokequote-demo";
 import { industries, industryPath, whoWeHelp } from "../content/industries";
 import { sampleAudit } from "../content/sample-audit";
 import { sampleBaseline } from "../content/sample-baseline";
@@ -19,6 +20,7 @@ const pages: { topic: string; path: string }[] = [
   { topic: "Security", path: "/security" },
   { topic: "Terms", path: "/terms" },
   { topic: sampleAudit.title, path: sampleAudit.path },
+  { topic: bespokeQuoteDemo.title, path: bespokeQuoteDemo.path },
   { topic: sampleBaseline.title, path: sampleBaseline.path },
   { topic: "A one-page brief for the CFO", path: "/cfo-brief" },
   { topic: whoWeHelp.title, path: whoWeHelp.path },

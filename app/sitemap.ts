@@ -1,4 +1,5 @@
 import type { MetadataRoute } from "next";
+import { bespokeQuoteDemo } from "@/content/bespokequote-demo";
 import { industries, industryPath, whoWeHelp } from "@/content/industries";
 import { sampleAudit } from "@/content/sample-audit";
 import { sampleBaseline } from "@/content/sample-baseline";
@@ -8,6 +9,7 @@ import { getPosts } from "@/lib/posts";
 function lastModifiedFor(path: string): string {
   if (path === sampleAudit.path) return sampleAudit.updated;
   if (path === sampleBaseline.path) return sampleBaseline.updated;
+  if (path === bespokeQuoteDemo.path) return bespokeQuoteDemo.updated;
   if (path === "/security") return "2026-10-23";
   const key = (path || "/") as keyof typeof site.pageUpdated;
   if (key in site.pageUpdated) return site.pageUpdated[key];
@@ -36,6 +38,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/cfo-brief",
     sampleAudit.path,
     sampleBaseline.path,
+    bespokeQuoteDemo.path,
   ];
 
   const pages: MetadataRoute.Sitemap = staticPaths.map((path) => ({
@@ -44,6 +47,21 @@ export default function sitemap(): MetadataRoute.Sitemap {
       path === "/services" || path === "/cfo-brief" ? "2026-10-26" : lastModifiedFor(path),
     changeFrequency: path === "" || path === "/blog" ? "weekly" : "monthly",
     priority: path === "" ? 1 : path === "/services" || path === "/contact" ? 0.8 : 0.7,
+    ...(path === bespokeQuoteDemo.path
+      ? {
+          videos: [
+            {
+              title: bespokeQuoteDemo.videoName,
+              thumbnail_loc: new URL(bespokeQuoteDemo.poster, site.url).toString(),
+              description: bespokeQuoteDemo.videoDescription,
+              content_loc: new URL(bespokeQuoteDemo.video, site.url).toString(),
+              publication_date: bespokeQuoteDemo.uploadDate,
+              duration: bespokeQuoteDemo.duration,
+              family_friendly: "yes" as const,
+            },
+          ],
+        }
+      : {}),
   }));
 
   const posts = [
