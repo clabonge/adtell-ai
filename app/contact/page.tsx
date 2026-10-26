@@ -1,6 +1,7 @@
 import { Suspense } from "react";
 import { BookingPrompt } from "@/components/BookingPrompt";
 import { ContactForm } from "@/components/ContactForm";
+import { WhatHappensNext } from "@/components/WhatHappensNext";
 import { Container, PageHero } from "@/components/ui";
 import { auditOffer } from "@/content/audit";
 import { site } from "@/content/site";
@@ -37,7 +38,8 @@ export default function ContactPage(props: {
             <PrefilledContactForm searchParams={props.searchParams} />
           </Suspense>
           <div>
-            <h2 className="font-serif text-3xl tracking-tight">Write directly</h2>
+            <WhatHappensNext />
+            <h2 className="mt-12 font-serif text-3xl tracking-tight">Write directly</h2>
             <p className="mt-4 text-base leading-relaxed text-quiet">
               Email{" "}
               <a
