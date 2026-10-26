@@ -10,7 +10,7 @@ const toolPoints = cfoTerms.items.find((item) => item.title === "Tool subscripti
 export const cfoBrief = {
   path: "/cfo-brief",
   pdfPath: "/cfo-brief.pdf",
-  updated: "2026-10-23",
+  updated: "2026-10-26",
   title: "A one-page brief for the CFO",
   description:
     "Published prices, the payment schedule, acceptance criteria, tool subscriptions you pay directly, and how savings are measured.",
@@ -43,10 +43,11 @@ export const cfoBrief = {
       title: "First-year cost illustration",
       points: [
         "Illustration only, not a client result.",
-        "The build line uses the published implementation price, from $10,000.",
+        "The starter line uses the published starter range, $2,500–$7,500.",
+        "The implementation line uses the published implementation price, from $10,000.",
         "An optional retainer uses the published retainer price, from $1,500 a month.",
         "The tool subscription is a line you enter. Leave it blank, or enter a hypothetical monthly amount.",
-        "The first-year total adds the build, twelve months of the retainer when you include it, and twelve months of that tool line.",
+        "Each first-year total adds that build, twelve months of the retainer when you include it, and twelve months of that tool line.",
         "Payback is that total divided by a monthly saving you enter.",
       ],
     },

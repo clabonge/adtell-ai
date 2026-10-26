@@ -21,10 +21,18 @@ export type Service = {
   cta: string;
 };
 
+/** Difference between the two fixed-price builds. Confirm this wording before it is treated as final. */
+export const starterImplementationSplit =
+  "A Starter is one workflow built on tools the client already uses; an Implementation project connects several systems.";
+
+/** Same schedule as other fixed-price builds. Net 15 is the existing invoice term. */
+export const starterPaymentTerms =
+  "A starter workflow uses the same payment terms as other fixed-price builds: 50% at signing, 25% at go-live, and 25% after 30 days of tuning, net 15.";
+
 export const servicesIntro = {
   kicker: "Services",
   title: "How you pay the department.",
-  lede: "The free audit scopes the work. A starter builds one workflow at $2,500–$7,500. A roadmap writes the plan at the same range. They are different offers. An implementation ships one workflow, for a fixed price or 25% of the measured savings. A retainer is the ongoing team, from $1,500 a month. Training is for the people inside the company who will work with that team. A quote follows the work.",
+  lede: "The free audit scopes the work. A starter is $2,500–$7,500. A roadmap writes the plan at the same range. They are different offers. An implementation is from $10,000, for a fixed price or 25% of the measured savings. A retainer is the ongoing team, from $1,500 a month. Training is for the people inside the company who will work with that team. A quote follows the work.",
 };
 
 /**
@@ -79,13 +87,12 @@ export const services: Service[] = [
   {
     slug: "starter-workflow",
     name: "Starter workflow",
-    brief: "One workflow built. Scope and price are quoted in writing after the audit.",
+    brief: "One workflow built on tools the client already uses. Scope and price are quoted in writing after the audit.",
     priceLabel: "$2,500–$7,500",
     priceAside: "One workflow built",
-    priceDetail:
-      "This range is for one workflow built. The roadmap uses the same range for a written plan. Scope and price are quoted in writing after the free audit. No long-term commitment.",
+    priceDetail: `This range is for one workflow built on tools the client already uses. The roadmap uses the same range for a written plan. ${starterPaymentTerms} Scope and price are quoted in writing after the free audit. No long-term commitment.`,
     summary:
-      "A fixed-scope build of one workflow, between the free audit and a full implementation. This offer is the build. The scope and the price are quoted in writing after the audit. There is no retainer and no long-term commitment.",
+      "A fixed-scope build of one workflow on tools the client already uses, between the free audit and a full implementation. This offer is the build. The scope and the price are quoted in writing after the audit. There is no retainer and no long-term commitment.",
     audience:
       "Owners who want one defined workflow running before they consider a larger implementation.",
     includes: [
@@ -129,12 +136,12 @@ export const services: Service[] = [
   {
     slug: "implementation",
     name: "Implementation projects",
-    brief: "One defined workflow, shipped with rules and a handoff your team can run.",
+    brief: "Connects several systems, shipped with rules and a handoff your team can run.",
     priceLabel: "From $10,000",
     priceDetail:
       "Quoted from a defined workflow, or 25% of the measured savings if you want the fee paid from the reduction. The audit or the roadmap is how that workflow gets named.",
     summary:
-      "We design and ship one workflow: the agent, the connections it needs, and the operating rules around it. The project is tied to a specific cost, not to a vague transformation.",
+      "An implementation project connects several systems: the agent, the connections it needs, and the operating rules around it. The project is tied to a specific cost, not to a vague transformation.",
     audience:
       "Companies that already know which process should stop being done by hand, and want it running with a handoff their team can own.",
     includes: [
@@ -216,6 +223,7 @@ export const cfoTerms = {
       points: [
         "An AI roadmap is 50% at kickoff and 50% when the roadmap is delivered.",
         "A fixed-price implementation is 50% at signing, 25% when the workflow goes live, and 25% at the end of the 30-day tuning period.",
+        starterPaymentTerms,
         "Invoices are due within 15 days.",
         "Monthly retainers are billed at the start of each month. You can cancel with 30 days' notice. There is no long-term lock-in.",
       ],
