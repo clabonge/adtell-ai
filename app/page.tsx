@@ -164,7 +164,7 @@ export default function HomePage() {
             Businesses we have helped
           </h2>
           <p className="mt-5 max-w-2xl text-lg leading-relaxed text-quiet">
-            Three businesses we have helped, and why that task was the place to start.
+            Five businesses we have helped, and why that task was the place to start.
           </p>
           <div className="mt-10">
             <ImplementationHighlights />

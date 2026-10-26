@@ -65,7 +65,7 @@ export default function AboutPage() {
         <Container className="py-14 sm:py-20">
           <h2 className="font-serif text-3xl tracking-tight">Businesses we have helped</h2>
           <p className="mt-4 max-w-2xl text-lg leading-relaxed text-quiet">
-            Three of the businesses we have helped. The full list is on the case studies page.
+            Five of the businesses we have helped. The full list is on the case studies page.
           </p>
           <div className="mt-8">
             <ImplementationHighlights />
