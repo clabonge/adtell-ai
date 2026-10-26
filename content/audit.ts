@@ -26,6 +26,24 @@ export const auditRequests = {
   calculatorNote: "The audit writes the baseline down. Free, no obligation.",
 } as const;
 
+/**
+ * When the written one-page list is sent. Chris set this phrase.
+ * An empty string omits the timeframe from the timeline.
+ */
+export const writtenListTurnaround: string = "within 48 hours of your call";
+
+export const auditNext = {
+  title: "What happens next",
+  reply: "We reply within one business day.",
+  conversation: "A 30-minute conversation.",
+  writtenList: "A written one-page list of where AI would help",
+} as const;
+
+export function writtenListStep(): string {
+  if (!writtenListTurnaround) return `${auditNext.writtenList}.`;
+  return `${auditNext.writtenList}, ${writtenListTurnaround}.`;
+}
+
 export const auditExpect = [
   "The free audit is a conversation, on-site locally or by video.",
   "We reply within one business day.",

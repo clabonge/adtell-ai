@@ -98,7 +98,7 @@ export const site = {
     "/who-we-help/manufacturing-and-furniture": "2026-10-25",
     "/case-studies/bcle-furniture-bespokequote": "2026-10-25",
     "/services": "2026-10-22",
-    "/contact": "2026-10-23",
+    "/contact": "2026-10-26",
     "/cfo-brief": "2026-10-22",
     "/case-studies/doan-distillery-event-booking": "2026-10-23",
   },
