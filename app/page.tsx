@@ -14,7 +14,7 @@ import { faqs } from "@/content/faqs";
 import { costPatterns, departmentPitch, homeServicesIntro } from "@/content/home";
 import { auditCta, auditPath } from "@/content/nav";
 import { processSteps } from "@/content/process";
-import { services } from "@/content/services";
+import { services, starterImplementationSplit } from "@/content/services";
 import { site } from "@/content/site";
 import { formatDate } from "@/lib/format";
 import { pageMetadata } from "@/lib/seo";
@@ -102,6 +102,7 @@ export default function HomePage() {
                 ))}
               </tbody>
             </table>
+            <p className="mt-4 text-sm leading-relaxed text-quiet-ink">{starterImplementationSplit}</p>
             <p className="mt-4 text-sm leading-relaxed text-quiet-ink">
               <Link href="/services#savings-share" className="font-semibold text-oxblood-ink underline underline-offset-4">
                 Savings share
@@ -226,7 +227,8 @@ export default function HomePage() {
           </h2>
           <p className="mt-5 max-w-2xl text-lg leading-relaxed text-quiet">
             Hours per week and a loaded hourly cost. The services page turns that into an annual
-            cost and months to pay back an implementation from $10,000.
+            cost and months to pay back a starter workflow at $2,500–$7,500 or an implementation
+            from $10,000. Illustration only, not a client result.
           </p>
           <p className="mt-4 text-sm font-semibold uppercase tracking-[0.14em] text-oxblood">
             Illustration, not a promise.

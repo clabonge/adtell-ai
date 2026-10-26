@@ -9,7 +9,7 @@ import { auditRequests } from "@/content/audit";
 import { sampleAudit } from "@/content/sample-audit";
 import { servicesFaqs, servicesFaqJsonText } from "@/content/services-faq";
 import { cfoBrief } from "@/content/cfo-brief";
-import { cfoTerms, services, servicesIntro } from "@/content/services";
+import { cfoTerms, services, servicesIntro, starterImplementationSplit } from "@/content/services";
 import { auditCta, auditPath } from "@/content/nav";
 import { pageMetadata } from "@/lib/seo";
 import { faqJsonLd, servicesOfferJsonLd } from "@/lib/structured-data";
@@ -17,7 +17,7 @@ import { faqJsonLd, servicesOfferJsonLd } from "@/lib/structured-data";
 export const metadata = pageMetadata({
   title: "Services and pricing",
   description:
-    "Free AI savings audit, a starter workflow built at $2,500–$7,500, a written roadmap at the same range, implementation from $10,000 or 25% of measured savings, retainers from $1,500 a month, and quoted team workshops.",
+    "Free AI savings audit, a starter workflow on tools the client already uses at $2,500–$7,500, a written roadmap at the same range, an implementation that connects several systems from $10,000 or 25% of measured savings, retainers from $1,500 a month, and quoted team workshops.",
   path: "/services",
 });
 
@@ -28,6 +28,9 @@ export default function ServicesPage() {
         kicker={servicesIntro.kicker}
         title={servicesIntro.title}
         lede={servicesIntro.lede}
+        after={
+          <p className="mt-4 max-w-2xl text-lg leading-relaxed text-quiet">{starterImplementationSplit}</p>
+        }
         crumbs={[{ name: "Services", path: "/services" }]}
         cta={{ href: auditPath, label: auditCta }}
       />
