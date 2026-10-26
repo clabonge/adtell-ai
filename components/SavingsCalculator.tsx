@@ -6,7 +6,16 @@ import { ButtonLink, Container, Kicker } from "@/components/ui";
 import { sampleBaseline } from "@/content/sample-baseline";
 import { auditCta, auditPath } from "@/content/nav";
 import { FirstYearCost } from "@/components/FirstYearCost";
-import { formatDollars, formatPayback, illustrateTask, type TaskIllustration } from "@/lib/illustration";
+import {
+  formatDollarRange,
+  formatDollars,
+  formatPayback,
+  formatPaybackRange,
+  illustrateTask,
+  STARTER_HIGH,
+  STARTER_LOW,
+  type TaskIllustration,
+} from "@/lib/illustration";
 
 const noteId = "savings-illustration-note";
 
@@ -36,7 +45,8 @@ export function SavingsCalculator() {
         <p className="mt-5 max-w-2xl text-lg leading-relaxed text-quiet">
           Enter the hours a task takes each week and the loaded hourly cost. The figures below
           are an illustration of the annual cost, a 25% savings-share fee, and months to pay
-          back an implementation from $10,000.
+          back a starter workflow at {formatDollarRange(STARTER_LOW, STARTER_HIGH)} or an
+          implementation from $10,000. Not a client result.
         </p>
         <p id={noteId} className="mt-4 text-sm font-semibold uppercase tracking-[0.14em] text-oxblood">
           Illustration, not a promise.
@@ -102,7 +112,19 @@ export function SavingsCalculator() {
               </div>
               <div>
                 <dt className="text-sm font-semibold">
-                  Months to payback on an implementation from $10,000
+                  Illustrative months to pay back a starter workflow at{" "}
+                  {formatDollarRange(STARTER_LOW, STARTER_HIGH)}
+                </dt>
+                <dd className="mt-1 font-serif text-3xl tracking-tight">
+                  {formatPaybackRange(
+                    result.starterPaybackMonths.low,
+                    result.starterPaybackMonths.high,
+                  )}
+                </dd>
+              </div>
+              <div>
+                <dt className="text-sm font-semibold">
+                  Illustrative months to pay back an implementation from $10,000
                 </dt>
                 <dd className="mt-1 font-serif text-3xl tracking-tight">
                   {formatPayback(result.paybackMonths)}
@@ -120,7 +142,9 @@ export function SavingsCalculator() {
         <FirstYearCost />
         <p className="mt-6 max-w-2xl text-base leading-relaxed text-quiet">
           This treats the annual cost of the task as the measured savings. The fee is 25% of that
-          amount. Payback is how many months of that amount cover an implementation from $10,000.
+          amount. Payback is how many months of that amount cover a starter workflow at{" "}
+          {formatDollarRange(STARTER_LOW, STARTER_HIGH)} or an implementation from $10,000.
+          Illustration only, not a client result.
           The baseline, the savings, and the price are set in writing after the audit.{" "}
           <Link
             href={sampleBaseline.path}
