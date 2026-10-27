@@ -25,7 +25,7 @@ describe("sitemap dates", () => {
     assert.equal(modified("/cfo-brief"), "2026-10-26");
     assert.equal(modified("/contact"), site.pageUpdated["/contact"]);
     assert.equal(modified(sampleAudit.path), sampleAudit.updated);
-    assert.equal(bespokeQuoteDemo.updated, "2026-10-26");
+    assert.equal(bespokeQuoteDemo.updated, "2026-10-27");
     assert.equal(modified(bespokeQuoteDemo.path), bespokeQuoteDemo.updated);
     assert.equal(modified(whoWeHelp.path), whoWeHelp.updated);
     for (const industry of industries) {

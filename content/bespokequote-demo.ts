@@ -10,13 +10,13 @@ const furniture = getIndustry("manufacturing-and-furniture");
 
 export const bespokeQuoteDemo = {
   path: "/demo/bespokequote",
-  updated: "2026-10-26",
+  updated: "2026-10-27",
   title: "BespokeQuote demo",
   description:
-    "Screen recording of BespokeQuote.furniture, the quoting system Chris LaBonge built at BCLE Furniture. Drawings come in, a person reviews the quote, and the job stays in one place until installation.",
+    "Screen recording of BespokeQuote.furniture, the quoting system Adtell.ai delivered for BCLE Furniture. Drawings come in, a person reviews the quote, and the job stays in one place until installation.",
   kicker: "Screen recording",
   heading: "See what a quoting system built for a custom shop looks like.",
-  lede: "BespokeQuote.furniture is software Chris LaBonge built at BCLE Furniture to take drawings in and get quotes out. Quotes that used to take up to three days now go out within 24 hours.",
+  lede: "BespokeQuote.furniture is the quoting system Adtell.ai delivered for BCLE Furniture. Quotes that used to take up to three days now go out within 24 hours.",
   video: "/videos/bespokequote-demo.mp4",
   poster: "/videos/bespokequote-demo-poster.jpg",
   width: 1920,
@@ -25,7 +25,7 @@ export const bespokeQuoteDemo = {
   duration: 72,
   videoName: "BespokeQuote.furniture screen recording",
   videoDescription:
-    "Silent screen recording of BespokeQuote.furniture at BCLE Furniture. A sample project moves from uploaded plans, elevations, and specs through a reviewed quote, a purchase order, a 50% deposit, and installation.",
+    "Silent screen recording of BespokeQuote.furniture, the quoting system Adtell.ai delivered for BCLE Furniture. A sample project moves from uploaded plans, elevations, and specs through a reviewed quote, a purchase order, a 50% deposit, and installation.",
   silentNote: "This recording has no sound.",
   seeingHeading: "What you're seeing",
   seeing: [
