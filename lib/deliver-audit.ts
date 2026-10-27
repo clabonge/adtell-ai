@@ -1,4 +1,4 @@
-import { companySizes } from "@/content/audit";
+import { companySizes, writtenListTurnaround } from "@/content/audit";
 import { site } from "@/content/site";
 import type { AuditSubmission } from "@/lib/audit";
 import { auditFormUrl, bookingConfirmationLine } from "@/lib/booking";
@@ -142,7 +142,7 @@ export function prospectConfirmationText(submission: AuditSubmission): string {
     "",
     "We reply within one business day.",
     "",
-    "What happens next: a conversation, on-site locally or by video. Afterward you get a written one-page ranked list of opportunities. The recommendation can be a roadmap, a build, training, a retainer, or waiting.",
+    `What happens next: a free 30-minute conversation, on-site locally or by video. Afterward you get a written one-page ranked list of opportunities, ${writtenListTurnaround}. The recommendation can be a roadmap, a build, training, a retainer, or waiting.`,
     ...(booking ? ["", booking] : []),
     "",
     `A one-page brief of published prices and payment terms: ${new URL("/cfo-brief", site.url).toString()}`,

@@ -2,7 +2,7 @@ import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import { afterEach, describe, it } from "node:test";
 import { bookingConfirmationLine, bookingUrl } from "../lib/booking";
-import { prospectConfirmationText } from "../lib/deliver-audit";
+import { ownerAuditText, prospectConfirmationText } from "../lib/deliver-audit";
 import type { AuditSubmission } from "../lib/audit";
 
 const submission: AuditSubmission = {
@@ -48,6 +48,13 @@ describe("booking url", () => {
 
     delete process.env.NEXT_PUBLIC_BOOKING_URL;
     const hidden = prospectConfirmationText(submission);
+    assert.match(hidden, /free 30-minute conversation, on-site locally or by video/);
+    assert.match(
+      hidden,
+      /written one-page ranked list of opportunities, within 48 hours of your call/,
+    );
+    assert.equal(ownerAuditText(submission).includes("30-minute"), false);
+    assert.equal(ownerAuditText(submission).includes("What happens next"), false);
     assert.equal(bookingConfirmationLine(), null);
     assert.equal(hidden.includes("Prefer to pick a time?"), false);
     assert.equal(hidden.includes("cal.example"), false);

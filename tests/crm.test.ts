@@ -294,6 +294,11 @@ describe("crm", () => {
     assert.deepEqual(message.to, ["prospect@example.com"]);
     assert.match(message.text, /Thank you/);
     assert.match(message.text, /one business day/);
+    assert.match(message.text, /free 30-minute conversation, on-site locally or by video/);
+    assert.match(
+      message.text,
+      /written one-page ranked list of opportunities, within 48 hours of your call/,
+    );
     assert.match(message.text, /one-page ranked list/);
     assert.equal(message.text.includes(submission.drains), false);
     delete process.env.AUDIT_CONFIRMATION_EMAIL;
