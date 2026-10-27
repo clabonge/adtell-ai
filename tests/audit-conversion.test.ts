@@ -128,8 +128,8 @@ describe("audit conversion", () => {
     assert.equal(contact.includes("What to expect"), false);
     assert.equal(contact.includes("AuditBand"), false);
     assert.equal(contact.includes("\u2014"), false);
-    assert.equal(site.pageUpdated["/contact"], "2026-10-26");
+    assert.equal(site.pageUpdated["/contact"], "2026-10-27");
     const entry = sitemap().find((item) => item.url === new URL("/contact", site.url).toString());
-    assert.equal(entry?.lastModified, "2026-10-26");
+    assert.equal(entry?.lastModified, "2026-10-27");
   });
 });

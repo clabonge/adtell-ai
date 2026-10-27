@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useEffect, useId, useRef, useState, type FormEvent } from "react";
 import { AuditPreview } from "@/components/AuditPreview";
-import { BookingPrompt, PickTimeLink } from "@/components/BookingPrompt";
+import { PickTimeLink } from "@/components/BookingPrompt";
 import { companySizes } from "@/content/audit";
 import { site } from "@/content/site";
 import { bookingUrl } from "@/lib/booking";
@@ -177,11 +177,6 @@ export function ContactForm({
             <p className="mt-4 text-base leading-relaxed text-quiet-ink">
               We will follow up at the address you entered.
             </p>
-            {scheduleUrl ? (
-              <div className="mt-4">
-                <BookingPrompt />
-              </div>
-            ) : null}
           </>
         ) : (
           <>
@@ -248,15 +243,6 @@ export function ContactForm({
             <a className="font-semibold underline" href={`mailto:${site.email}`}>
               {site.email}
             </a>
-            {scheduleUrl ? (
-              <>
-                {" "}
-                or{" "}
-                <a className="font-semibold underline" href={scheduleUrl}>
-                  book a time
-                </a>
-              </>
-            ) : null}
             .
           </p>
         </div>
@@ -412,17 +398,7 @@ export function ContactForm({
       </button>
       <p className="mt-4 text-sm leading-relaxed text-quiet-ink">
         We save your request and email you a confirmation. We reply within one business day. You
-        can also email {site.email}
-        {scheduleUrl ? (
-          <>
-            {" "}
-            or{" "}
-            <a className="font-semibold underline" href={scheduleUrl}>
-              book a time
-            </a>
-          </>
-        ) : null}
-        .
+        can also email {site.email}.
       </p>
       <p className="mt-3 text-sm leading-relaxed text-quiet-ink">
         We store this request so we can reply, and we do not sell it.{" "}
