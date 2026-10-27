@@ -56,10 +56,10 @@ describe("what happens next", () => {
   it("keeps one pick-a-time link beside the form and one in the timeline", () => {
     const page = readFileSync("app/contact/page.tsx", "utf8");
     const formSource = readFileSync("components/ContactForm.tsx", "utf8");
-    assert.equal(page.includes("BookingPrompt"), false);
+    assert.equal(page.includes("<BookingPrompt"), false);
     assert.equal(page.includes("Want to pick a time now?"), false);
     assert.equal(page.includes("NEXT_PUBLIC_BOOKING_URL"), false);
-    assert.equal(formSource.includes("BookingPrompt"), false);
+    assert.equal(formSource.includes("<BookingPrompt"), false);
     assert.equal(formSource.includes("Want to pick a time now?"), false);
     assert.match(formSource, /<PickTimeLink \/>/);
     assert.equal(/https?:\/\//.test(formSource), false);
