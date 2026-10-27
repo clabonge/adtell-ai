@@ -126,6 +126,15 @@ describe("BCLE Furniture photographs", () => {
     assert.match(sections, /furnitureShop\.points/);
     assert.match(sections, /Request my free audit/);
     assert.match(sections, /bespokequote/);
+    const shop = sections.indexOf("export function BcleShopStrip");
+    const about = sections.indexOf("export function BcleAboutPractice");
+    const recording = sections.indexOf("<CaseStudyLink recording");
+    assert.ok(shop > 0 && about > shop && recording > shop && recording < about);
+    assert.equal((sections.match(/<CaseStudyLink/g) ?? []).length, 3);
+    assert.equal((sections.match(/<CaseStudyLink recording/g) ?? []).length, 1);
+    assert.match(sections, /Watch the \{bespokeQuoteDemo\.duration\}-second recording/);
+    assert.match(sections, /bespokeQuoteDemo\.sampleNote/);
+    assert.equal(/2[- ]minutes?/i.test(sections), false);
 
     assert.match(photo, /<picture>/);
     assert.match(photo, /image\/webp/);
