@@ -50,16 +50,29 @@ function Screen({
   return <FramedPhoto name={name} alt={alt} sizes={sizes} />;
 }
 
-function CaseStudyLink() {
+function CaseStudyLink({ recording = false }: { recording?: boolean }) {
   return (
-    <p className="mt-6">
-      <Link
-        href={bcleCaseStudy.path}
-        className="text-sm font-semibold text-oxblood underline decoration-oxblood/40 underline-offset-4"
-      >
-        Read the BCLE Furniture case study
-      </Link>
-    </p>
+    <div className="mt-6">
+      <p className="flex flex-wrap items-baseline gap-x-6 gap-y-2">
+        <Link
+          href={bcleCaseStudy.path}
+          className="text-sm font-semibold text-oxblood underline decoration-oxblood/40 underline-offset-4"
+        >
+          Read the BCLE Furniture case study
+        </Link>
+        {recording ? (
+          <Link
+            href={bespokeQuoteDemo.path}
+            className="text-sm font-semibold text-oxblood underline decoration-oxblood/40 underline-offset-4"
+          >
+            Watch the {bespokeQuoteDemo.duration}-second recording
+          </Link>
+        ) : null}
+      </p>
+      {recording ? (
+        <p className="mt-2 text-sm leading-relaxed text-quiet">{bespokeQuoteDemo.sampleNote}</p>
+      ) : null}
+    </div>
   );
 }
 
@@ -113,7 +126,7 @@ export function BcleShopStrip() {
             </li>
           ))}
         </ul>
-        <CaseStudyLink />
+        <CaseStudyLink recording />
       </Container>
     </section>
   );

@@ -18,7 +18,7 @@ describe("sitemap dates", () => {
       return String(entry.lastModified);
     };
 
-    assert.equal(modified("/"), "2026-10-26");
+    assert.equal(modified("/"), "2026-10-27");
     assert.equal(modified("/how-it-works"), "2026-10-25");
     assert.equal(modified("/about"), "2026-10-26");
     assert.equal(modified("/services"), "2026-10-26");
