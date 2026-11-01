@@ -105,7 +105,7 @@ export const site = {
     "/who-we-help/manufacturing-and-furniture": "2026-10-25",
     "/case-studies/bcle-furniture-bespokequote": "2026-10-25",
     "/services": "2026-10-26",
-    "/contact": "2026-10-26",
+    "/contact": "2026-10-27",
     "/cfo-brief": "2026-10-26",
     "/case-studies/doan-distillery-event-booking": "2026-10-23",
   },

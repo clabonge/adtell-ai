@@ -1,5 +1,4 @@
 import { Suspense } from "react";
-import { BookingPrompt } from "@/components/BookingPrompt";
 import { ContactForm } from "@/components/ContactForm";
 import { WhatHappensNext } from "@/components/WhatHappensNext";
 import { Container, PageHero } from "@/components/ui";
@@ -58,7 +57,6 @@ export default function ContactPage(props: {
               . Include your name, company, and the work that costs the most. Leave out
               secrets, customer lists, and passwords.
             </p>
-            <BookingPrompt tone="void" className="mt-8" />
           </div>
         </Container>
       </section>
