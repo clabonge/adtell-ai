@@ -37,7 +37,11 @@ function copy(): string {
 describe("BespokeQuote demo", () => {
   it("describes the BCLE Furniture recording without hype, a phone, or a booking URL", () => {
     const text = copy();
-    assert.match(text, /Chris LaBonge built at BCLE Furniture/);
+    assert.match(
+      text,
+      /BespokeQuote\.furniture is the quoting system Adtell\.ai delivered for BCLE Furniture/,
+    );
+    assert.equal(/Chris LaBonge|I built|we built/i.test(text), false);
     assert.match(text, /up to three days/);
     assert.match(text, /within 24 hours/);
     assert.match(text, /plans, elevations, and specs/);
@@ -121,7 +125,7 @@ describe("BespokeQuote demo", () => {
       (item) => item.url === new URL(bespokeQuoteDemo.path, site.url).toString(),
     );
     assert.ok(entry);
-    assert.equal(entry.lastModified, "2026-10-26");
+    assert.equal(entry.lastModified, "2026-10-27");
     assert.equal(entry.videos?.[0]?.content_loc, data.contentUrl);
     assert.equal(entry.videos?.[0]?.thumbnail_loc, data.thumbnailUrl);
     assert.equal(entry.videos?.[0]?.publication_date, "2026-10-26");
