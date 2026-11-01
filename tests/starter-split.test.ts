@@ -2,7 +2,9 @@ import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import { describe, it } from "node:test";
 import { cfoBrief } from "../content/cfo-brief";
+import { faqs } from "../content/faqs";
 import { servicesFaqs } from "../content/services-faq";
+import { faqJsonLd } from "../lib/structured-data";
 import {
   cfoTerms,
   savingsShare,
@@ -59,5 +61,20 @@ describe("starter and implementation split", () => {
     assert.match(brief, /from \$10,000/);
     assert.equal(brief.toLowerCase().includes("cap"), false);
     assert.equal(brief.includes("\u2014"), false);
+  });
+
+  it("names the starter workflow beside implementation pricing in the homepage FAQ and JSON-LD", () => {
+    const cost = faqs.find((item) => item.question === "How much does implementation cost?");
+    assert.ok(cost);
+    assert.match(cost.answer, /starter workflow is one workflow on tools you already use, at \$2,500\u2013\$7,500/);
+    assert.match(cost.answer, /Implementation projects start at \$10,000/);
+    assert.match(cost.answer, /assessment and roadmap.*\$2,500\u2013\$7,500/);
+    assert.equal(cost.answer.includes("\u2014"), false);
+    const json = JSON.stringify(faqJsonLd(faqs));
+    assert.match(json, /FAQPage/);
+    assert.match(json, /How much does implementation cost\?/);
+    assert.match(json, /one workflow on tools you already use/);
+    assert.match(json, /\$2,500\\u2013\$7,500|\$2,500\u2013\$7,500/);
+    assert.match(json, /Implementation projects start at \$10,000/);
   });
 });
