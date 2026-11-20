@@ -5,7 +5,7 @@ date: "2026-10-21"
 kind: implementation
 ---
 
-We helped Doan Distillery implement AI automation with the goal of offloading event booking. This note describes the work before the automation, the workflow itself, and the step where a person stays in charge.
+We built Doan Distillery an automation that drafts booking replies, prepares tasting-room and event times, and writes order follow-up and marketing notes for a person to confirm.
 
 ## Before
 

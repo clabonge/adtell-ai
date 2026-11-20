@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { AuditBand } from "@/components/AuditBand";
 import { BookingPrompt } from "@/components/BookingPrompt";
+import { FurnitureOffer } from "@/components/FurnitureOffer";
 import { ButtonLink, Container, JsonLd, PageHero } from "@/components/ui";
 import { bespokeQuoteDemo } from "@/content/bespokequote-demo";
 import { auditCta, auditPath } from "@/content/nav";
@@ -54,6 +55,7 @@ export default function BespokeQuoteDemoPage() {
           </p>
           <h2 className="mt-12 font-serif text-3xl tracking-tight">{bespokeQuoteDemo.shopHeading}</h2>
           <p className="mt-4 text-lg leading-relaxed text-quiet">{bespokeQuoteDemo.shopBody}</p>
+          <FurnitureOffer />
           <div className="mt-8">
             <ButtonLink href={auditPath}>{auditCta}</ButtonLink>
           </div>

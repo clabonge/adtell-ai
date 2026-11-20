@@ -47,7 +47,7 @@ export const faqs: Faq[] = [
   {
     question: "Which businesses have you helped?",
     answer:
-      "We helped FiberOptics.com, The Fiber School, BCLE Furniture, Doan Distillery, CapoVino, Trolley Barn Public Market, and Ivers Property Management implement AI automation. Each note names the goal and why that task was the place to start.",
+      "We helped FiberOptics.com, The Fiber School, BCLE Furniture, Doan Distillery, CapoVino, Trolley Barn Public Market, and Ivers Property Management implement AI automation. Each note says what that automation does.",
   },
   {
     question: "What should we send before the audit?",

@@ -45,7 +45,11 @@ describe("The Fiber School case study", () => {
     const business = site.implementations.find((item) => item.name === "The Fiber School");
     assert.ok(business);
     assert.equal("study" in business ? business.study : "", `/case-studies/${slug}`);
-    assert.equal(/hubspot|shopify/i.test(`${business.goal} ${business.how}`), false);
+    assert.equal(/hubspot|shopify/i.test(`${business.summary} ${business.detail}`), false);
+    assert.equal(business.summary.includes("with the goal of"), false);
+    assert.equal(business.runningSince, "In use since August 2026");
+    assert.deepEqual(business.tools, []);
+    assert.equal(/hubspot/i.test(business.tools.join(" ")), false);
 
     assert.deepEqual(
       fiberSchoolWorkflow.map((step) => step.label),

@@ -67,7 +67,8 @@ describe("BespokeQuote demo", () => {
     const nav = readFileSync("content/nav.ts", "utf8");
     const footer = readFileSync("components/SiteFooter.tsx", "utf8");
     assert.equal(nav.includes(bespokeQuoteDemo.path), false);
-    assert.equal(footer.includes(bespokeQuoteDemo.path), false);
+    assert.match(footer, /See the BespokeQuote demo/);
+    assert.match(footer, /bespokeQuoteDemo\.path/);
 
     const pageSource = readFileSync("app/demo/bespokequote/page.tsx", "utf8");
     assert.match(pageSource, /<video/);
@@ -98,6 +99,12 @@ describe("BespokeQuote demo", () => {
     assert.match(html, new RegExp(`src="${bespokeQuoteDemo.video}"`));
     assert.match(html, /What you(?:'|&#x27;)re seeing/);
     assert.match(html, /The names and projects in this footage are sample data\./);
+    assert.match(html, /shops anywhere, working by video/);
+    assert.match(html, /Starter workflow/);
+    assert.match(html, /\$2,500/);
+    assert.match(html, /Implementation projects/);
+    assert.match(html, /From \$10,000/);
+    assert.match(html, /Scope and price are quoted in writing after the free audit/);
     assert.match(html, /href="\/contact"/);
     assert.match(html, /Book a free AI audit/);
     assert.equal(html.includes("Book a free 30-minute audit call"), false);

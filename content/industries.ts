@@ -1,8 +1,9 @@
 import { implementationLine, site } from "@/content/site";
 
 /**
- * Industry pages under Who we help. Each business is an implementation
- * we helped, named once, using the published goal and method.
+ * Industry pages under Who we help. Each business is named once.
+ * The human-review sentence lives in that business line. Do not
+ * repeat it in the lede, the paragraphs, or the step text.
  */
 export const whoWeHelp = {
   path: "/who-we-help",
@@ -20,8 +21,8 @@ export const industries = [
     slug: "hospitality-and-events",
     name: "Hospitality and events",
     description:
-      "Event booking, tasting follow-up, and the notes a person still confirms. We helped Doan Distillery and CapoVino, a winery.",
-    lede: "Booking replies, tasting-room times, and the follow-up after an event still land on someone's desk. We draft that work. A person still confirms what goes out.",
+      "Event booking and tasting follow-up. We helped Doan Distillery and CapoVino, a winery.",
+    lede: "Booking replies, tasting-room times, and the follow-up after an event still land on someone's desk. We draft that work.",
     paragraphs: [
       "The work is usually ordinary: a booking request, a tasting follow-up, an order note, or a marketing draft. We start with material the business already uses.",
       "CapoVino is a winery. Tasting follow-up and bottle orders are the work we implemented there.",
@@ -33,9 +34,9 @@ export const industries = [
     name: "Property management",
     description:
       "Maintenance follow-up, tenant questions, and lease-renewal notes. We helped Ivers Property Management.",
-    lede: "Maintenance follow-up, answers to tenant questions, and lease-renewal notes are the work a property manager still sends by hand. We draft that work from material the company already uses. A person still sends it.",
+    lede: "Maintenance follow-up, answers to tenant questions, and lease-renewal notes are drafted from material the company already uses.",
     paragraphs: [
-      "The source material is already in the business: old replies, lease notes, and the way the team already answers a question. The automation prepares the next draft. It does not replace the person who sends it.",
+      "The source material is already in the business: old replies, lease notes, and the way the team already answers a question. The automation prepares the next draft.",
     ],
     businesses: ["Ivers Property Management"],
   },
@@ -43,11 +44,10 @@ export const industries = [
     slug: "manufacturing-and-furniture",
     name: "Manufacturing and furniture",
     description:
-      "BespokeQuote.furniture for quoting and inventory at BCLE Furniture. Clients upload drawings, a person reviews the quote, and the job is tracked in a dashboard.",
-    lede: "Adtell.ai delivered BespokeQuote.furniture to BCLE Furniture to automate quoting and inventory management. A person reviews the quote.",
-    paragraphs: [
-      "Clients upload drawings: DWG, DXF, PDF, and sketches. A person reviews a quote priced from real materials and labor. The job is approved with a PO and deposit. Status and messages live in a dashboard.",
-    ],
+      "BespokeQuote.furniture for quoting and inventory at BCLE Furniture. Clients upload drawings, and the job is tracked in a dashboard.",
+    lede: "Adtell.ai delivered BespokeQuote.furniture to BCLE Furniture to automate quoting and inventory management.",
+    // The file-type drawing list is on the delivery bullets. Do not repeat it here.
+    paragraphs: [],
     businesses: ["BCLE Furniture"],
   },
   {
@@ -55,21 +55,18 @@ export const industries = [
     name: "Training schools",
     description:
       "Website content, social, outreach, and product recommendations at FiberOptics.com. Student communications about expiring certifications, class upsells, outreach, and social at The Fiber School.",
-    lede: "FiberOptics.com is the product and shop division of Adtell Inc. The Fiber School is the training division of Adtell Inc. A person reviews and approves what goes out.",
-    paragraphs: [
-      "FiberOptics.com is the product and shop division of Adtell Inc. Adtell.ai took over website content, social media, customer outreach, and product recommendations. The workflows use Outlook, Shopify, Teams, SharePoint, and QuickBooks. A person reviews and approves what goes out.",
-      "The Fiber School is the training division of Adtell Inc. The public site is thefiberschool.com. Adtell.ai took over student communications about expiring certifications, upselling additional classes, outreach, and social media. The workflows use Outlook, Teams, SharePoint, and QuickBooks. A person reviews and approves what goes out.",
-    ],
+    lede: "FiberOptics.com is the product and shop division of Adtell Inc. The Fiber School is the training division of Adtell Inc.",
+    paragraphs: [],
     businesses: ["The Fiber School", "FiberOptics.com"],
   },
   {
     slug: "public-markets-and-retail",
     name: "Public markets and retail",
     description:
-      "Vendor replies, event times, and market announcements a person still reviews. We helped Trolley Barn Public Market.",
-    lede: "Vendor replies, event times, and market announcements are the work we have implemented for a public market. A person still reviews what goes out.",
+      "Vendor replies, event times, and market announcements. We helped Trolley Barn Public Market.",
+    lede: "Vendor replies, event times, and market announcements are the work we have implemented for a public market.",
     paragraphs: [
-      "A retail counter has the same kind of follow-up: a vendor message, an event time, or an announcement a person still checks before it is sent. The business we have helped in this group is Trolley Barn Public Market.",
+      "A retail counter has the same kind of follow-up: a vendor message, an event time, or an announcement. The business we have helped in this group is Trolley Barn Public Market.",
     ],
     businesses: ["Trolley Barn Public Market"],
   },

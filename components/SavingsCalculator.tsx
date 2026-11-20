@@ -152,7 +152,7 @@ export function SavingsCalculator() {
           >
             {sampleBaseline.linkLabel}
           </Link>
-          . {sampleBaseline.label}. {sampleBaseline.business} is a made-up business.
+          . {sampleBaseline.fictionalLabel}
         </p>
         <p className="mt-8">
           <ButtonLink href={auditPath}>{auditCta}</ButtonLink>

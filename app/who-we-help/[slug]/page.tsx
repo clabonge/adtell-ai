@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { AuditBand } from "@/components/AuditBand";
+import { BusinessFacts } from "@/components/BusinessFacts";
 import { BcleDelivery } from "@/components/BcleSections";
 import { AuditOffer, AuditRequest, SampleAuditPreview } from "@/components/AuditConversion";
 import { IndustryExample } from "@/components/IndustryExample";
@@ -77,6 +78,7 @@ export default async function IndustryPage(props: PageProps<"/who-we-help/[slug]
               <li key={business.name}>
                 <h3 className="font-serif text-2xl tracking-tight">{business.name}</h3>
                 <p className="mt-2 text-base leading-relaxed text-quiet">{lines[index]}</p>
+                <BusinessFacts business={business} />
                 {"study" in business && business.study ? (
                   <p className="mt-3">
                     <Link

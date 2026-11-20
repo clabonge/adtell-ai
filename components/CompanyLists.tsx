@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { BusinessFacts } from "@/components/BusinessFacts";
 import { highlightedImplementations, implementationLine, site } from "@/content/site";
 
 function caseStudyPath(business: (typeof site.implementations)[number]): string | undefined {
@@ -20,6 +21,7 @@ function ImplementationItems({
             <p className="mt-2 max-w-3xl text-base leading-relaxed text-quiet">
               {implementationLine(business)}
             </p>
+            <BusinessFacts business={business} />
             {study ? (
               <p className="mt-3">
                 <Link

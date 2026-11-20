@@ -84,7 +84,8 @@ describe("audit conversion", () => {
       assert.equal(lines.length, item.businesses.length);
       item.businesses.forEach((name, index) => {
         const escaped = name.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-        assert.match(lines[index], new RegExp(`We helped ${escaped}`));
+        assert.match(lines[index], new RegExp(`We built ${escaped}`));
+        assert.equal(lines[index].includes("with the goal of"), false);
         assert.equal(lines[index].includes("\u2014"), false);
       });
     }

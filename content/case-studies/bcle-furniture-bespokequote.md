@@ -5,7 +5,7 @@ date: "2026-10-25"
 kind: implementation
 ---
 
-We helped BCLE Furniture implement AI automation with the goal of automating quoting and inventory management. Adtell.ai delivered [BespokeQuote.furniture](https://bespokequote.furniture) for that work.
+We built BCLE Furniture [BespokeQuote.furniture](https://bespokequote.furniture), which prices a quote from real materials and labor after clients upload drawings. A person reviews the quote, and the job is tracked in a dashboard.
 
 ## What we delivered
 

@@ -78,7 +78,7 @@ export default function CfoBriefPage() {
                   >
                     download the PDF
                   </Link>
-                  . {sampleBaseline.label}. {sampleBaseline.business} is a made-up business.
+                  . {sampleBaseline.fictionalLabel}
                 </p>
               ) : null}
             </section>

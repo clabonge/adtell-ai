@@ -5,7 +5,7 @@ date: "2026-10-25"
 kind: implementation
 ---
 
-We helped FiberOptics.com implement AI automation with the goal of updating website content, social media, customer outreach, and product recommendations. FiberOptics.com is the product and shop division of Adtell Inc. The public shop is [fiberoptics.com](https://fiberoptics.com).
+We built FiberOptics.com an automation that updates website content, social media, customer outreach, and product recommendations for a person to approve. FiberOptics.com is the product and shop division of Adtell Inc. The public shop is [fiberoptics.com](https://fiberoptics.com).
 
 ## Before
 

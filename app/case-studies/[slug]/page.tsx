@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { AuditBand } from "@/components/AuditBand";
+import { BusinessFacts } from "@/components/BusinessFacts";
 import { ClientQuote } from "@/components/ClientQuote";
 import { BcleCaseStudyShots } from "@/components/BcleSections";
 import { HandoffList, WorkflowDiagram } from "@/components/WorkflowDiagram";
@@ -8,6 +9,7 @@ import { bcleCaseStudy } from "@/content/bcle";
 import { MarkdownBody } from "@/components/MarkdownBody";
 import { Container, JsonLd, PageHero } from "@/components/ui";
 import { getIndustry, industryPath } from "@/content/industries";
+import { implementationByStudy } from "@/content/site";
 import { auditCta, auditPath } from "@/content/nav";
 import { sampleAudit } from "@/content/sample-audit";
 import { doanWorkflow, fiberOpticsWorkflow, fiberSchoolWorkflow } from "@/content/workflows";
@@ -40,6 +42,7 @@ export default async function CaseStudyPage(props: PageProps<"/case-studies/[slu
   if (!post) notFound();
 
   const path = `/case-studies/${post.slug}`;
+  const business = implementationByStudy(path);
   const crumbs = [
     { name: "Home", path: "/" },
     { name: "Case studies", path: "/case-studies" },
@@ -60,6 +63,7 @@ export default async function CaseStudyPage(props: PageProps<"/case-studies/[slu
           <p className="text-sm text-quiet">
             <time dateTime={post.date}>{formatDate(post.date)}</time>
           </p>
+          {business ? <BusinessFacts business={business} /> : null}
           <ClientQuote slug={post.slug} />
           <div className="mt-10">
             <MarkdownBody source={post.body} />

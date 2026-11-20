@@ -15,48 +15,76 @@ function resolveSiteUrl(): string {
 }
 
 /**
- * Businesses Adtell.ai has helped. Each line is a goal and how the
- * automation works. Adtell Integration is not on this list.
+ * Businesses Adtell.ai has helped. `summary` is the public sentence.
+ * `detail` adds only facts already published, such as which division
+ * the business is. Adtell Integration is not on this list.
+ *
+ * `runningSince` is a phrase such as "In use since May 2026" or
+ * "Launched November 2026". `tools` is omitted from the page when empty.
+ * HubSpot belongs on BCLE Furniture only, not on Adtell or The Fiber School.
  */
 const implementations = [
   {
     name: "FiberOptics.com",
-    goal: "updating website content, social media, customer outreach, and product recommendations",
-    how: "FiberOptics.com is the product and shop division of Adtell Inc. The workflows use Outlook, Shopify, Teams, SharePoint, and QuickBooks. A person reviews and approves what goes out.",
+    summary:
+      "We built FiberOptics.com an automation that updates website content, social media, customer outreach, and product recommendations for a person to approve.",
+    detail:
+      "FiberOptics.com is the product and shop division of Adtell Inc. The workflows use Outlook, Shopify, Teams, SharePoint, and QuickBooks.",
+    runningSince: "",
+    tools: [] as readonly string[],
     study: "/case-studies/fiberoptics-com-website-and-outreach",
   },
   {
     name: "The Fiber School",
-    goal: "student communications about expiring certifications, upselling additional classes, outreach, and social media",
-    how: "The Fiber School is the training division of Adtell Inc. The public site is thefiberschool.com. The workflows use Outlook, Teams, SharePoint, and QuickBooks. A person reviews and approves what goes out.",
+    summary:
+      "We built The Fiber School an automation that prepares student communications about expiring certifications, upselling additional classes, outreach, and social media for a person to approve.",
+    detail:
+      "The Fiber School is the training division of Adtell Inc. The public site is thefiberschool.com. The workflows use Outlook, Teams, SharePoint, and QuickBooks.",
+    runningSince: "In use since August 2026",
+    tools: [] as readonly string[],
     study: "/case-studies/the-fiber-school-student-communications",
   },
   {
     name: "BCLE Furniture",
-    goal: "automating quoting and inventory management",
-    how: "Adtell.ai delivered BespokeQuote.furniture. Clients upload drawings, a person reviews a quote priced from real materials and labor, and the job is tracked in a dashboard.",
+    summary:
+      "We built BCLE Furniture BespokeQuote.furniture, which prices a quote from real materials and labor after clients upload drawings. A person reviews the quote, and the job is tracked in a dashboard.",
+    detail: "",
+    runningSince: "In use since September 2026",
+    tools: ["HubSpot", "QuickBooks", "OneDrive", "Mozaik Software"] as readonly string[],
     study: bcleCaseStudy.path,
   },
   {
     name: "Doan Distillery",
-    goal: "offloading event booking",
-    how: "The automation drafts booking replies, prepares tasting-room and event times, and writes order follow-up and marketing notes a person still confirms.",
+    summary:
+      "We built Doan Distillery an automation that drafts booking replies, prepares tasting-room and event times, and writes order follow-up and marketing notes for a person to confirm.",
+    detail: "",
+    runningSince: "In use since May 2026",
+    tools: [] as readonly string[],
     study: "/case-studies/doan-distillery-event-booking",
   },
   {
     name: "CapoVino",
-    goal: "offloading tasting follow-up and bottle orders",
-    how: "The automation drafts tasting follow-up, prepares bottle-order notes, and drafts marketing a person still sends.",
+    summary:
+      "We built CapoVino an automation that drafts tasting follow-up, prepares bottle-order notes, and drafts marketing for a person to send.",
+    detail: "",
+    runningSince: "Launched November 2026",
+    tools: [] as readonly string[],
   },
   {
     name: "Trolley Barn Public Market",
-    goal: "offloading vendor follow-up and event scheduling",
-    how: "The automation drafts vendor replies, prepares event times, and drafts market announcements a person still reviews.",
+    summary:
+      "We built Trolley Barn Public Market an automation that drafts vendor replies, prepares event times, and drafts market announcements for a person to review.",
+    detail: "",
+    runningSince: "",
+    tools: [] as readonly string[],
   },
   {
     name: "Ivers Property Management",
-    goal: "offloading maintenance follow-up and tenant questions",
-    how: "The automation drafts maintenance follow-up, drafts answers to tenant questions from material the company already uses, and prepares lease-renewal notes a person still sends.",
+    summary:
+      "We built Ivers Property Management an automation that drafts maintenance follow-up, drafts answers to tenant questions from material the company already uses, and prepares lease-renewal notes for a person to send.",
+    detail: "",
+    runningSince: "",
+    tools: [] as readonly string[],
   },
 ] as const;
 
@@ -77,7 +105,30 @@ export function highlightedImplementations() {
 }
 
 export function implementationLine(item: (typeof implementations)[number]): string {
-  return `We helped ${item.name} implement AI automation with the goal of ${item.goal}. ${item.how}`;
+  const detail = item.detail.trim();
+  return detail ? `${item.summary} ${detail}` : item.summary;
+}
+
+export function implementationByStudy(path: string) {
+  return implementations.find((item) => "study" in item && item.study === path);
+}
+
+/** A line for the start month and tools. The tools clause is omitted when none are given. */
+export function businessFacts(item: {
+  runningSince?: string;
+  tools?: readonly string[];
+}): string | undefined {
+  const since = item.runningSince?.trim() ?? "";
+  const tools = (item.tools ?? []).map((tool) => tool.trim()).filter((tool) => tool.length > 0);
+  const parts: string[] = [];
+  if (since) {
+    const phrase = /^(in use since|launched|running since)\b/i.test(since)
+      ? since.charAt(0).toUpperCase() + since.slice(1)
+      : `Running since ${since}`;
+    parts.push(phrase.endsWith(".") ? phrase : `${phrase}.`);
+  }
+  if (tools.length > 0) parts.push(`Tools: ${tools.join(", ")}.`);
+  return parts.length > 0 ? parts.join(" ") : undefined;
 }
 
 /**

@@ -51,7 +51,8 @@ describe("who we help", () => {
     for (const industry of industries) {
       assert.equal(getIndustry(industry.slug)?.name, industry.name);
       for (const line of industryLines(industry)) {
-        assert.match(line, /^We helped /);
+        assert.match(line, /^We built /);
+        assert.equal(line.includes("with the goal of"), false);
       }
       const copy = [industry.name, industry.description, industry.lede, ...industry.paragraphs].join(
         " ",

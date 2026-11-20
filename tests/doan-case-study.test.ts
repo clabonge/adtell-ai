@@ -10,7 +10,8 @@ describe("Doan Distillery case study", () => {
     assert.ok(post);
     if (!post) return;
     assert.equal(post.kind, "implementation");
-    assert.match(post.body, /We helped Doan Distillery/);
+    assert.match(post.body, /We built Doan Distillery an automation that drafts booking replies/);
+    assert.equal(post.body.includes("with the goal of"), false);
     assert.match(post.body, /## Before/);
     assert.match(post.body, /## The workflow/);
     assert.match(post.body, /## A person stays in charge/);
