@@ -23,12 +23,12 @@ export const counties: readonly CountyPage[] = [
     title: "AI consulting in Bucks County",
     description:
       "On-site AI audits and workshops in Bucks County, where we are based. Start with a free AI audit at your building or by video.",
-    lede: "We are based in Bucks County, so the free AI audit can be at your building. A workshop can be there too, once the audit says the work should be built. Video is the other option when a drive wastes the hour.",
+    lede: "We are based in Bucks County, so the free AI audit can be at your building. A workshop can be there too, for a team about to live with a new workflow or already using AI tools. Video is the other option when a drive wastes the hour.",
     onSiteTitle: "The audit comes to you",
     onSite:
-      "In Bucks County the first session is at your office, your shop, or your plant. We do not publish a street address, and you do not come to an office of ours. We come to the room where the work happens, or we meet on video. A workshop is a later visit, on-site with the people who will approve what an automation prepares.",
+      "In Bucks County the first session is at your office, your shop, or your plant. We do not publish a street address, and you do not come to an office of ours. We come to the room where the work happens, or we meet on video. A workshop can be on-site with the people who will use the system, including a team already using AI tools.",
     workTitle: "Bring the task a person still repeats",
-    work: "Bring a reply, a schedule, a follow-up, or a note that gets retyped. We do not arrive with a software shortlist. If the honest recommendation is to wait, that is what you get. The workshop happens only after that recommendation is to build.",
+    work: "Bring a reply, a schedule, a follow-up, or a note that gets retyped. We do not arrive with a software shortlist. If the honest recommendation is to wait, that is what you get. A workshop can also stand on its own for a team already using AI tools without a shared standard.",
   },
   {
     slug: "montgomery-county-pa",
@@ -51,12 +51,12 @@ export const counties: readonly CountyPage[] = [
     title: "AI consulting in the Lehigh Valley",
     description:
       "On-site AI audits and workshops in the Lehigh Valley. We drive from Bucks County and meet at your building.",
-    lede: "Allentown, Bethlehem, and Easton are a drive from Bucks County. The free AI audit and a workshop can be at your building in the valley.",
+    lede: "We are based in Bucks County, and we come to you. Allentown, Bethlehem, and Easton are a drive, and the free AI audit and a workshop can be at your building.",
     onSiteTitle: "The session is at your building",
     onSite:
-      "We do not keep a valley office, and we do not list a street address. For an audit we come to the floor, the office, or the front desk where the work happens. A workshop is the same kind of visit, later, with the people who will approve what the automation prepares.",
+      "For an audit we come to the floor, the office, or the front desk where the work happens. A workshop can be the same visit, on-site, for a team about to live with a new workflow or already using AI tools.",
     workTitle: "Name the update a person still rewrites",
-    work: "The valley still runs on updates a person retypes: a booking, an order, a vendor note, a schedule. The audit names that task and ranks whether it is worth a build. Waiting is an allowed answer. The workshop happens only when the answer is to build, and it happens on-site.",
+    work: "A booking, an order, a vendor note, or a schedule is the kind of task the audit names and ranks. Waiting is an allowed answer. A workshop can also stand on its own, on-site, for a team already using AI tools without a shared standard.",
   },
 ];
 

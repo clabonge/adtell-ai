@@ -1,23 +1,32 @@
 /**
  * A labeled example of the written savings baseline. Fieldstone Casework
- * is made up. The $4,000 / $1,000 / $3,000 lines match the published
- * illustration. The baseline and measured-cost inputs are made up so the
- * worksheet can show the subtraction. Do not add a duration or a maximum
- * fee. Do not present this as a client.
+ * is fictional. The example numbers stay as published. Do not add a
+ * duration or a maximum fee. Do not present this as a client.
+ *
+ * `savingsMeasurement.body` is how the after-cost is counted, who records
+ * it, and how volume changes are handled. Leave it empty until Chris
+ * supplies that wording. The section is omitted while it is empty.
+ * Do not add a term or a cap to the 25% share.
  */
+export const savingsMeasurement = {
+  title: "How savings get measured",
+  body: "",
+} as const;
+
 export const sampleBaseline = {
   path: "/sample-savings-baseline",
   pdfPath: "/sample-savings-baseline.pdf",
   updated: "2026-10-25",
   label: "Example only",
+  fictionalLabel: "Example only. Fieldstone Casework is fictional.",
   business: "Fieldstone Casework",
   task: "Preparing a custom quote",
   title: "Example savings baseline",
   description:
-    "An example of the measured baseline agreed in writing before a savings-share engagement. Fieldstone Casework is a made-up business. Example only. Not a client result.",
+    "An example of the measured baseline agreed in writing before a savings-share engagement. Not a client result.",
   kicker: "Example only",
   heading: "What a measured baseline looks like.",
-  lede: "This worksheet is an example of the baseline we agree in writing before a savings-share engagement. Fieldstone Casework is a made-up business. This is not a client, not a quote, and not a result.",
+  lede: "This worksheet is an example of the baseline we agree in writing before a savings-share engagement. This is not a client, not a quote, and not a result.",
   linkLabel: "See an example baseline worksheet",
   sections: [
     {
@@ -32,7 +41,7 @@ export const sampleBaseline = {
       title: "Who signs off",
       paragraphs: [
         "Before work starts, we agree the measured baseline with you in writing.",
-        "On this example, the person who signs is the person at Fieldstone Casework who approves the spend. That role is part of the made-up business. It is not a real signer.",
+        "On this example, the person who signs is the person at Fieldstone Casework who approves the spend.",
         "Each month, that person and Adtell.ai review the measurement together before the fee is billed.",
       ],
     },
@@ -47,12 +56,12 @@ export const sampleBaseline = {
     {
       label: "Baseline monthly cost of the named task",
       amount: "$16,000",
-      note: "Made up for this example.",
+      note: "",
     },
     {
       label: "Measured monthly cost after the workflow is in use",
       amount: "$12,000",
-      note: "Made up for this example.",
+      note: "",
     },
     {
       label: "Measured savings",
@@ -70,6 +79,5 @@ export const sampleBaseline = {
       note: "The other 75% of the measured savings.",
     },
   ],
-  close:
-    "The $4,000, $1,000, and $3,000 lines match the illustration already published on the site. The $16,000 baseline and the $12,000 measured cost are made up so this worksheet can show the subtraction. Fieldstone Casework is a made-up business. Example only. Not a client result.",
+  close: "Not a client result.",
 } as const;

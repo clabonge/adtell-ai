@@ -37,7 +37,7 @@ export function SavingsShare({ bordered = true }: { bordered?: boolean }) {
           >
             {sampleBaseline.linkLabel}
           </Link>
-          . {sampleBaseline.label}. {sampleBaseline.business} is a made-up business.
+          . {sampleBaseline.fictionalLabel}
         </p>
         <p className="mt-10">
           <Link

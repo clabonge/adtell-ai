@@ -51,5 +51,19 @@ describe("county pages", () => {
       );
       assert.equal(entry?.lastModified, "2026-10-23");
     }
+
+    const bucks = counties.find((county) => county.slug === "bucks-county-pa");
+    const lehigh = counties.find((county) => county.slug === "lehigh-valley-pa");
+    assert.ok(bucks && lehigh);
+    for (const county of [bucks, lehigh]) {
+      const copy = [county.lede, county.onSite, county.work].join(" ");
+      assert.equal(/happens only/i.test(copy), false, county.slug);
+      assert.match(copy, /already using AI tools/);
+    }
+    const lehighCopy = [lehigh.lede, lehigh.onSite, lehigh.work].join(" ");
+    assert.match(lehighCopy, /based in Bucks County, and we come to you/);
+    assert.equal(lehighCopy.includes("valley office"), false);
+    assert.equal(lehighCopy.includes("street address"), false);
+    assert.equal(lehighCopy.includes("person retypes"), false);
   });
 });

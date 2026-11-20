@@ -3,7 +3,7 @@ import { readFileSync } from "node:fs";
 import { describe, it } from "node:test";
 import sitemap from "../app/sitemap";
 import { faqs } from "../content/faqs";
-import { sampleBaseline } from "../content/sample-baseline";
+import { sampleBaseline, savingsMeasurement } from "../content/sample-baseline";
 import { site } from "../content/site";
 import { pdfText } from "../lib/simple-pdf";
 import { sampleBaselinePdf } from "../lib/sample-baseline-pdf";
@@ -11,6 +11,7 @@ import { sampleBaselinePdf } from "../lib/sample-baseline-pdf";
 function worksheetCopy(): string {
   return [
     sampleBaseline.label,
+    sampleBaseline.fictionalLabel,
     sampleBaseline.title,
     sampleBaseline.description,
     sampleBaseline.lede,
@@ -26,8 +27,14 @@ describe("sample savings baseline", () => {
   it("labels a made-up business and shows the 25% monthly calculation", () => {
     const copy = worksheetCopy();
     assert.equal(sampleBaseline.label, "Example only");
+    assert.equal(sampleBaseline.fictionalLabel, "Example only. Fieldstone Casework is fictional.");
     assert.equal(sampleBaseline.business, "Fieldstone Casework");
-    assert.match(copy, /made-up business/);
+    assert.equal(copy.includes("made-up"), false);
+    assert.equal(copy.includes("made up"), false);
+    assert.equal(copy.includes("real signer"), false);
+    assert.equal(copy.includes("already published on the site"), false);
+    assert.equal(savingsMeasurement.body, "");
+    assert.equal(copy.includes(savingsMeasurement.title), false);
     assert.match(copy, /Not a client result/);
     assert.match(copy, /25% of the measured savings/);
     assert.match(copy, /other 75%/);
@@ -64,7 +71,12 @@ describe("sample savings baseline", () => {
     assert.match(pdf, /Fieldstone Casework/);
     assert.match(pdf, /25%/);
     assert.match(pdf, /\$4,000/);
-    assert.match(pdf, /Example only/);
+    assert.match(pdf, /Example only\. Fieldstone Casework is fictional\./);
+    assert.equal(pdf.includes("How savings get measured"), false);
     assert.equal(/term length|capped at/i.test(pdf), false);
+    const page = readFileSync("app/sample-savings-baseline/page.tsx", "utf8");
+    const pdfSource = readFileSync("lib/sample-baseline-pdf.ts", "utf8");
+    assert.match(page, /savingsMeasurement\.body\.trim\(\)/);
+    assert.match(pdfSource, /savingsMeasurement\.body\.trim\(\)/);
   });
 });
