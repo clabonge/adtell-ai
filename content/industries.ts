@@ -45,9 +45,8 @@ export const industries = [
     description:
       "BespokeQuote.furniture for quoting and inventory at BCLE Furniture. Clients upload drawings, a person reviews the quote, and the job is tracked in a dashboard.",
     lede: "Adtell.ai delivered BespokeQuote.furniture to BCLE Furniture to automate quoting and inventory management. A person reviews the quote.",
-    paragraphs: [
-      "Clients upload drawings: DWG, DXF, PDF, and sketches. A person reviews a quote priced from real materials and labor. The job is approved with a PO and deposit. Status and messages live in a dashboard.",
-    ],
+    // The file-type drawing list is on the delivery bullets. Do not repeat it here.
+    paragraphs: [],
     businesses: ["BCLE Furniture"],
   },
   {

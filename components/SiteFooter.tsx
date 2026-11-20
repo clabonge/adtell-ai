@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { bespokeQuoteDemo } from "@/content/bespokequote-demo";
 import { counties, countyPath } from "@/content/counties";
 import { auditCta, auditPath, primaryNav } from "@/content/nav";
 import { footerIntro, site } from "@/content/site";
@@ -40,6 +41,11 @@ export function SiteFooter() {
                 </Link>
               </li>
             ))}
+            <li>
+              <Link href={bespokeQuoteDemo.path} className="text-ivory hover:text-oxblood">
+                See the BespokeQuote demo
+              </Link>
+            </li>
             <li>
               <Link href={auditPath} className="text-ivory hover:text-oxblood">
                 {auditCta}

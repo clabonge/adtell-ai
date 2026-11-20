@@ -1,8 +1,10 @@
 import Link from "next/link";
 import { BclePhoto } from "@/components/BclePhoto";
+import { FurnitureOffer } from "@/components/FurnitureOffer";
 import { ButtonLink, Container, Kicker } from "@/components/ui";
 import { bcleAbout, bcleCaseStudy, bcleCaseStudyShots, bcleDelivery, bcleShop } from "@/content/bcle";
 import { bespokeQuoteDemo } from "@/content/bespokequote-demo";
+import { bcleTurnaround } from "@/content/furniture-offer";
 import { furnitureShop } from "@/content/industry-examples";
 import { auditPath } from "@/content/nav";
 
@@ -197,7 +199,9 @@ export function BcleDelivery() {
             <li key={point}>{point}</li>
           ))}
         </ul>
+        <p className="mt-6 text-lg leading-relaxed text-quiet">{bcleTurnaround}</p>
         <p className="mt-6 text-lg leading-relaxed text-quiet">{furnitureShop.close}</p>
+        <FurnitureOffer />
         <div className="mt-8">
           <ButtonLink href={auditPath}>Request my free audit</ButtonLink>
         </div>

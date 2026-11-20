@@ -29,6 +29,10 @@ export const starterImplementationSplit =
 export const starterPaymentTerms =
   "A starter workflow uses the same payment terms as other fixed-price builds: 50% at signing, 25% at go-live, and 25% after 30 days of tuning, net 15.";
 
+/** Published on the starter workflow card. The exact price follows the free audit. */
+export const quotedInWriting =
+  "Scope and price are quoted in writing after the free audit.";
+
 export const servicesIntro = {
   kicker: "Services",
   title: "How you pay the department.",
@@ -90,7 +94,7 @@ export const services: Service[] = [
     brief: "One workflow built on tools the client already uses. Scope and price are quoted in writing after the audit.",
     priceLabel: "$2,500–$7,500",
     priceAside: "One workflow built",
-    priceDetail: `This range is for one workflow built on tools the client already uses. The roadmap uses the same range for a written plan. ${starterPaymentTerms} Scope and price are quoted in writing after the free audit. No long-term commitment.`,
+    priceDetail: `This range is for one workflow built on tools the client already uses. The roadmap uses the same range for a written plan. ${starterPaymentTerms} ${quotedInWriting} No long-term commitment.`,
     summary:
       "A fixed-scope build of one workflow on tools the client already uses, between the free audit and a full implementation. This offer is the build. The scope and the price are quoted in writing after the audit. There is no retainer and no long-term commitment.",
     audience:

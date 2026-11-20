@@ -59,7 +59,7 @@ export const industryWorkflows: Record<string, readonly WorkflowStep[]> = {
     },
     {
       label: "AI draft",
-      text: "Clients upload drawings: DWG, DXF, PDF, and sketches. The quote is priced from real materials and labor.",
+      text: "The quote is priced from real materials and labor.",
     },
     {
       label: "Person approves",
@@ -67,7 +67,7 @@ export const industryWorkflows: Record<string, readonly WorkflowStep[]> = {
     },
     {
       label: "Sent",
-      text: "Status and messages live in a dashboard.",
+      text: "The quote is sent after that person approves it.",
     },
   ],
   "training-schools": [
