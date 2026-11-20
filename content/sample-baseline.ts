@@ -3,14 +3,13 @@
  * is fictional. The example numbers stay as published. Do not add a
  * duration or a maximum fee. Do not present this as a client.
  *
- * `savingsMeasurement.body` is how the after-cost is counted, who records
- * it, and how volume changes are handled. Leave it empty until Chris
- * supplies that wording. The section is omitted while it is empty.
+ * `savingsMeasurement` is the approved wording for how the after-cost is
+ * counted, who records it, and how volume changes are handled.
  * Do not add a term or a cap to the 25% share.
  */
 export const savingsMeasurement = {
-  title: "How savings get measured",
-  body: "",
+  title: "How we measure savings.",
+  body: "Before we start, we write down what you spend today on the line items the work touches, such as payroll hours for the task or a software subscription. You agree to that list before any work begins. After go-live, savings are the drop in those same line items. For example, if the work once took $120,000 a year in labor and now takes $80,000, that's $40,000 in savings. If software drops from $5,000 to $3,000 a month, that's $2,000 a month. Your own records, such as payroll and invoices, are the source, and we review the numbers together each month. If your volume grows or shrinks, we compare cost per unit of work, like cost per order or per quote, so busy months don't count against you or us.",
 } as const;
 
 export const sampleBaseline = {

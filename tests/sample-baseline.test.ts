@@ -20,6 +20,8 @@ function worksheetCopy(): string {
     sampleBaseline.close,
     ...sampleBaseline.sections.flatMap((section) => [section.title, ...section.paragraphs]),
     ...sampleBaseline.rows.flatMap((row) => [row.label, row.amount, row.note]),
+    savingsMeasurement.title,
+    savingsMeasurement.body,
   ].join(" ");
 }
 
@@ -33,8 +35,13 @@ describe("sample savings baseline", () => {
     assert.equal(copy.includes("made up"), false);
     assert.equal(copy.includes("real signer"), false);
     assert.equal(copy.includes("already published on the site"), false);
-    assert.equal(savingsMeasurement.body, "");
-    assert.equal(copy.includes(savingsMeasurement.title), false);
+    assert.equal(savingsMeasurement.title, "How we measure savings.");
+    assert.match(savingsMeasurement.body, /payroll hours for the task or a software subscription/);
+    assert.match(savingsMeasurement.body, /\$120,000 a year in labor and now takes \$80,000/);
+    assert.match(savingsMeasurement.body, /\$5,000 to \$3,000 a month/);
+    assert.match(savingsMeasurement.body, /payroll and invoices, are the source/);
+    assert.match(savingsMeasurement.body, /cost per order or per quote/);
+    assert.equal(/term length|any cap|capped at|savings-share term/i.test(savingsMeasurement.body), false);
     assert.match(copy, /Not a client result/);
     assert.match(copy, /25% of the measured savings/);
     assert.match(copy, /other 75%/);
@@ -72,7 +79,8 @@ describe("sample savings baseline", () => {
     assert.match(pdf, /25%/);
     assert.match(pdf, /\$4,000/);
     assert.match(pdf, /Example only\. Fieldstone Casework is fictional\./);
-    assert.equal(pdf.includes("How savings get measured"), false);
+    assert.match(pdf, /How we measure savings/);
+    assert.match(pdf, /cost per order or per quote/);
     assert.equal(/term length|capped at/i.test(pdf), false);
     const page = readFileSync("app/sample-savings-baseline/page.tsx", "utf8");
     const pdfSource = readFileSync("lib/sample-baseline-pdf.ts", "utf8");
