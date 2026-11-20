@@ -13,7 +13,7 @@ export type IndustryExample = {
 
 export const industryExamples: Record<string, IndustryExample> = {
   "property-management": {
-    heading: "A maintenance reply, drafted and then sent by a person.",
+    heading: "A maintenance reply, drafted from notes the company already keeps.",
     note: "Example only. This is not a client, not a quote, and not a result.",
     steps: [
       {
@@ -26,20 +26,20 @@ export const industryExamples: Record<string, IndustryExample> = {
       },
       {
         label: "Person approves",
-        text: "A person still sends it.",
+        text: "The draft of the reply or the lease note.",
       },
       {
         label: "Sent",
-        text: "It goes out when that person sends it.",
+        text: "The reply goes out.",
       },
       {
         label: "Follow-up",
-        text: "The next note is prepared the same way, for a person to send.",
+        text: "The next note is prepared the same way.",
       },
     ],
   },
   "manufacturing-and-furniture": {
-    heading: "A custom quote, drafted and then approved.",
+    heading: "A custom quote, from the request through follow-up.",
     note: "Example only. This is not a client, not a quote, and not a result.",
     steps: [
       {
@@ -52,20 +52,20 @@ export const industryExamples: Record<string, IndustryExample> = {
       },
       {
         label: "Person approves",
-        text: "A person approves it.",
+        text: "The priced quote.",
       },
       {
         label: "Sent",
-        text: "It is sent only after that person approves.",
+        text: "The quote goes out.",
       },
       {
         label: "Follow-up",
-        text: "Follow-up is prepared for a person to review.",
+        text: "Follow-up is prepared the same way.",
       },
     ],
   },
   "training-schools": {
-    heading: "A class schedule or a student reply, confirmed by a person.",
+    heading: "A class schedule or a student reply.",
     note: "Example only. This is not a client, not a quote, and not a result.",
     steps: [
       {
@@ -78,20 +78,20 @@ export const industryExamples: Record<string, IndustryExample> = {
       },
       {
         label: "Person approves",
-        text: "A person still confirms the schedule and the reply.",
+        text: "The schedule or the reply.",
       },
       {
         label: "Sent",
-        text: "It goes out after that confirmation.",
+        text: "The schedule or the reply goes out.",
       },
       {
         label: "Follow-up",
-        text: "Follow-up is prepared for a person to review.",
+        text: "Follow-up is prepared the same way.",
       },
     ],
   },
   "public-markets-and-retail": {
-    heading: "A vendor reply or a market announcement, reviewed by a person.",
+    heading: "A vendor reply or a market announcement.",
     note: "Example only. This is not a client, not a quote, and not a result.",
     steps: [
       {
@@ -104,15 +104,15 @@ export const industryExamples: Record<string, IndustryExample> = {
       },
       {
         label: "Person approves",
-        text: "A person still reviews what goes out.",
+        text: "The vendor reply or the announcement.",
       },
       {
         label: "Sent",
-        text: "It is sent after that review.",
+        text: "The reply or the announcement goes out.",
       },
       {
         label: "Follow-up",
-        text: "Follow-up is prepared for a person to review.",
+        text: "Follow-up is prepared the same way.",
       },
     ],
   },
@@ -125,7 +125,7 @@ export const furnitureShop = {
   lead: deliveredLead,
   points: [
     "Clients upload drawings: DWG, DXF, PDF, and sketches.",
-    "A person reviews a quote priced from real materials and labor.",
+    "The quote is priced from real materials and labor.",
     "The job is approved with a PO and deposit.",
     "Status and messages live in a dashboard.",
   ],

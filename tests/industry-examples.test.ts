@@ -30,8 +30,8 @@ describe("industry examples", () => {
     const furniture = industryExamples["manufacturing-and-furniture"];
     assert.match(furniture.steps.map((step) => step.text).join(" "), /custom quote request/);
     assert.match(furniture.steps[1].text, /reply or a quote/);
-    assert.match(furniture.steps[2].text, /person approves/);
-    assert.match(furniture.steps[3].text, /sent only after/);
+    assert.match(furniture.steps[2].text, /priced quote/);
+    assert.match(furniture.steps[3].text, /quote goes out/);
     assert.match(furniture.steps[4].text, /Follow-up/);
 
     assert.equal(furnitureShop.heading, "What we delivered for BCLE Furniture: BespokeQuote.furniture");

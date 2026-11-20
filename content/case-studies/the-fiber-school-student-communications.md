@@ -5,7 +5,7 @@ date: "2026-10-25"
 kind: implementation
 ---
 
-We helped The Fiber School implement AI automation with the goal of student communications about expiring certifications, upselling additional classes, outreach, and social media. The Fiber School is the training division of Adtell Inc. The public site is [thefiberschool.com](https://thefiberschool.com).
+We built The Fiber School an automation that prepares student communications about expiring certifications, upselling additional classes, outreach, and social media for a person to approve. The Fiber School is the training division of Adtell Inc. The public site is [thefiberschool.com](https://thefiberschool.com).
 
 ## Before
 

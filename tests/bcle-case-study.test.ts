@@ -40,9 +40,11 @@ describe("BCLE Furniture case study", () => {
     const bcle = site.implementations.find((item) => item.name === "BCLE Furniture");
     assert.ok(bcle);
     assert.equal("study" in bcle ? bcle.study : "", bcleCaseStudy.path);
-    assert.match(bcle.how, /BespokeQuote\.furniture/);
-    assert.match(bcle.how, /tracked in a dashboard/);
-    assert.equal(/inventory notes, sales follow-up, and marketing/i.test(bcle.how), false);
+    assert.match(bcle.summary, /BespokeQuote\.furniture/);
+    assert.match(bcle.summary, /tracked in a dashboard/);
+    assert.equal(/inventory notes, sales follow-up, and marketing/i.test(bcle.summary), false);
+    assert.equal(bcle.runningSince, "");
+    assert.deepEqual(bcle.tools, []);
 
     const lists = readFileSync("components/CompanyLists.tsx", "utf8");
     const home = readFileSync("app/page.tsx", "utf8");

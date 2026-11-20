@@ -27,17 +27,17 @@ export const industryWorkflows: Record<string, readonly WorkflowStep[]> = {
     },
     {
       label: "Person approves",
-      text: "A person still confirms what goes out.",
+      text: "The booking reply, the times, or the follow-up.",
     },
     {
       label: "Sent",
-      text: "It goes out only after that person confirms it.",
+      text: "The reply goes out.",
     },
   ],
   "property-management": [
     {
       label: "Before",
-      text: "Maintenance follow-up, answers to tenant questions, and lease-renewal notes are still sent by hand.",
+      text: "Maintenance follow-up, answers to tenant questions, and lease-renewal notes are still prepared by hand.",
     },
     {
       label: "AI draft",
@@ -45,11 +45,11 @@ export const industryWorkflows: Record<string, readonly WorkflowStep[]> = {
     },
     {
       label: "Person approves",
-      text: "A person still sends it.",
+      text: "The draft of the reply or the lease note.",
     },
     {
       label: "Sent",
-      text: "The person at the company is the one who sends it.",
+      text: "The reply goes out.",
     },
   ],
   "manufacturing-and-furniture": [
@@ -63,17 +63,17 @@ export const industryWorkflows: Record<string, readonly WorkflowStep[]> = {
     },
     {
       label: "Person approves",
-      text: "A person reviews the quote. The job is approved with a PO and deposit.",
+      text: "The job is approved with a PO and deposit.",
     },
     {
       label: "Sent",
-      text: "The quote is sent after that person approves it.",
+      text: "The quote is sent.",
     },
   ],
   "training-schools": [
     {
       label: "Before",
-      text: "Website content, social media, customer outreach, product recommendations, and student communications were prepared by a person.",
+      text: "Website content, social media, customer outreach, product recommendations, and student communications were prepared by hand.",
     },
     {
       label: "AI draft",
@@ -81,17 +81,17 @@ export const industryWorkflows: Record<string, readonly WorkflowStep[]> = {
     },
     {
       label: "Person approves",
-      text: "A person reviews and approves what goes out.",
+      text: "The draft.",
     },
     {
       label: "Sent",
-      text: "Nothing goes out until that person approves it.",
+      text: "It goes out.",
     },
   ],
   "public-markets-and-retail": [
     {
       label: "Before",
-      text: "Vendor replies, event times, and market announcements are still prepared by a person.",
+      text: "Vendor replies, event times, and market announcements are still prepared by hand.",
     },
     {
       label: "AI draft",
@@ -99,11 +99,11 @@ export const industryWorkflows: Record<string, readonly WorkflowStep[]> = {
     },
     {
       label: "Person approves",
-      text: "A person still reviews what goes out.",
+      text: "The vendor reply, the event time, or the announcement.",
     },
     {
       label: "Sent",
-      text: "It goes out after that person reviews it.",
+      text: "It goes out.",
     },
   ],
 };

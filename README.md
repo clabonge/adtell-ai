@@ -20,7 +20,7 @@ Edit these files. You should not need to change layout components for ordinary c
 
 | Path | What it controls |
 | --- | --- |
-| `content/site.ts` | Name, contact email, founder, and the businesses Adtell.ai has helped, each with a goal and how the automation works. The public URL is `NEXT_PUBLIC_SITE_URL` (default `https://adtell.ai`) |
+| `content/site.ts` | Name, contact email, founder, and the businesses Adtell.ai has helped. Each business has a present-tense summary of what the automation does. `runningSince` and `tools` stay empty until they are supplied. The public URL is `NEXT_PUBLIC_SITE_URL` (default `https://adtell.ai`) |
 | `content/services.ts` | Service names, prices, summaries, and what each engagement includes |
 | `content/faqs.ts` | Questions and answers shown on the homepage |
 | `content/process.ts` | The “how it works” steps, plus what we need and what we will not do |
@@ -35,7 +35,7 @@ Prices on the homepage, the services page, and the hero ledger all come from `co
 
 Company names on the public site are listed only in `content/site.ts`. The site speaks as Adtell.ai ("we") and describes those businesses as implementations we helped. Do not write that Chris owns, runs, or operates them. Do not add Adtell Integration to that list. Do not write that they are not clients, and do not use the phrases "operator, not a theorist" or "companies we run".
 
-Do not add testimonials, performance statistics, client logos, or street addresses unless they are real and approved. The public email is `clabonge@adtell.ai`, in `content/site.ts`. There is no public phone number. Do not add one. The audit form is at `/contact`. A booking link is shown only when `NEXT_PUBLIC_BOOKING_URL` is an http or https URL. Do not commit that value. Do not invent other contact details. Describe a goal and how the automation works. Do not invent results or figures. Do not use em dashes in marketing copy.
+Do not add testimonials, performance statistics, client logos, or street addresses unless they are real and approved. The public email is `clabonge@adtell.ai`, in `content/site.ts`. There is no public phone number. Do not add one. The audit form is at `/contact`. A booking link is shown only when `NEXT_PUBLIC_BOOKING_URL` is an http or https URL. Do not commit that value. Do not invent other contact details. Describe what the automation does, in the present tense. Do not invent results or figures. Do not invent a start month or a tool list. Leave `runningSince` and `tools` empty until they are supplied. Do not use em dashes in marketing copy.
 
 ## How to add a blog post
 
