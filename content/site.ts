@@ -19,8 +19,9 @@ function resolveSiteUrl(): string {
  * `detail` adds only facts already published, such as which division
  * the business is. Adtell Integration is not on this list.
  *
- * `runningSince` and `tools` stay empty until a real month and tool
- * list are supplied. The site hides that line while both are empty.
+ * `runningSince` is a phrase such as "In use since May 2026" or
+ * "Launched November 2026". `tools` is omitted from the page when empty.
+ * HubSpot belongs on BCLE Furniture only, not on Adtell or The Fiber School.
  */
 const implementations = [
   {
@@ -39,7 +40,7 @@ const implementations = [
       "We built The Fiber School an automation that prepares student communications about expiring certifications, upselling additional classes, outreach, and social media for a person to approve.",
     detail:
       "The Fiber School is the training division of Adtell Inc. The public site is thefiberschool.com. The workflows use Outlook, Teams, SharePoint, and QuickBooks.",
-    runningSince: "",
+    runningSince: "In use since August 2026",
     tools: [] as readonly string[],
     study: "/case-studies/the-fiber-school-student-communications",
   },
@@ -48,8 +49,8 @@ const implementations = [
     summary:
       "We built BCLE Furniture BespokeQuote.furniture, which prices a quote from real materials and labor after clients upload drawings. A person reviews the quote, and the job is tracked in a dashboard.",
     detail: "",
-    runningSince: "",
-    tools: [] as readonly string[],
+    runningSince: "In use since September 2026",
+    tools: ["HubSpot", "QuickBooks", "OneDrive", "Mozaik Software"] as readonly string[],
     study: bcleCaseStudy.path,
   },
   {
@@ -57,7 +58,7 @@ const implementations = [
     summary:
       "We built Doan Distillery an automation that drafts booking replies, prepares tasting-room and event times, and writes order follow-up and marketing notes for a person to confirm.",
     detail: "",
-    runningSince: "",
+    runningSince: "In use since May 2026",
     tools: [] as readonly string[],
     study: "/case-studies/doan-distillery-event-booking",
   },
@@ -66,7 +67,7 @@ const implementations = [
     summary:
       "We built CapoVino an automation that drafts tasting follow-up, prepares bottle-order notes, and drafts marketing for a person to send.",
     detail: "",
-    runningSince: "",
+    runningSince: "Launched November 2026",
     tools: [] as readonly string[],
   },
   {
@@ -112,7 +113,7 @@ export function implementationByStudy(path: string) {
   return implementations.find((item) => "study" in item && item.study === path);
 }
 
-/** A line for the start month and tools. Hidden until both or either is filled. */
+/** A line for the start month and tools. The tools clause is omitted when none are given. */
 export function businessFacts(item: {
   runningSince?: string;
   tools?: readonly string[];
@@ -120,7 +121,12 @@ export function businessFacts(item: {
   const since = item.runningSince?.trim() ?? "";
   const tools = (item.tools ?? []).map((tool) => tool.trim()).filter((tool) => tool.length > 0);
   const parts: string[] = [];
-  if (since) parts.push(`Running since ${since}.`);
+  if (since) {
+    const phrase = /^(in use since|launched|running since)\b/i.test(since)
+      ? since.charAt(0).toUpperCase() + since.slice(1)
+      : `Running since ${since}`;
+    parts.push(phrase.endsWith(".") ? phrase : `${phrase}.`);
+  }
   if (tools.length > 0) parts.push(`Tools: ${tools.join(", ")}.`);
   return parts.length > 0 ? parts.join(" ") : undefined;
 }

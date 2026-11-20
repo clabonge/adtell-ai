@@ -43,8 +43,8 @@ describe("BCLE Furniture case study", () => {
     assert.match(bcle.summary, /BespokeQuote\.furniture/);
     assert.match(bcle.summary, /tracked in a dashboard/);
     assert.equal(/inventory notes, sales follow-up, and marketing/i.test(bcle.summary), false);
-    assert.equal(bcle.runningSince, "");
-    assert.deepEqual(bcle.tools, []);
+    assert.equal(bcle.runningSince, "In use since September 2026");
+    assert.deepEqual(bcle.tools, ["HubSpot", "QuickBooks", "OneDrive", "Mozaik Software"]);
 
     const lists = readFileSync("components/CompanyLists.tsx", "utf8");
     const home = readFileSync("app/page.tsx", "utf8");

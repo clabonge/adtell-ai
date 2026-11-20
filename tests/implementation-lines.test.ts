@@ -8,13 +8,27 @@ import { getPosts } from "../lib/posts";
 
 describe("implementation lines", () => {
   it("uses a complete present-tense sentence and hides empty start months and tools", () => {
+    const filled = {
+      "BCLE Furniture": "In use since September 2026. Tools: HubSpot, QuickBooks, OneDrive, Mozaik Software.",
+      "Doan Distillery": "In use since May 2026.",
+      "The Fiber School": "In use since August 2026.",
+      CapoVino: "Launched November 2026.",
+    } as const;
     for (const business of site.implementations) {
       const line = implementationLine(business);
       assert.match(line, /^We built /);
       assert.equal(line.includes("with the goal of"), false);
-      assert.equal(business.runningSince, "");
-      assert.deepEqual([...business.tools], []);
-      assert.equal(businessFacts(business), undefined);
+      const facts = filled[business.name as keyof typeof filled];
+      if (facts) {
+        assert.equal(businessFacts(business), facts, business.name);
+      } else {
+        assert.equal(business.runningSince, "", business.name);
+        assert.deepEqual([...business.tools], [], business.name);
+        assert.equal(businessFacts(business), undefined, business.name);
+      }
+      if (business.name !== "BCLE Furniture") {
+        assert.equal(/hubspot/i.test(business.tools.join(" ")), false, business.name);
+      }
     }
 
     const school = site.implementations.find((item) => item.name === "The Fiber School");
